@@ -1,23 +1,31 @@
 <script setup lang="ts">
-import { ref } from 'vue'
+import { ref, computed } from 'vue'
+import { useRoute, useRouter } from 'vue-router'
 import type { Candidate } from '@/components/candidates/data/schema'
 import candidatesData from '@/components/candidates/data/candidates.json'
 import { Badge } from '@/components/ui/badge'
 import { Button } from '@/components/ui/button'
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card'
+import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
 import { Separator } from '@/components/ui/separator'
-import { Textarea } from '@/components/ui/textarea'
-import { statuses, positions } from '@/components/candidates/data/data'
+import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar'
 import {
-  ChevronLeftIcon,
-  ChevronRightIcon,
-  SendIcon,
-  MoveRightIcon,
-  DownloadIcon,
-  AlertCircleIcon,
-  MapPinIcon,
-  CalendarIcon,
-  FileTextIcon,
+  ChevronLeft,
+  ChevronRight,
+  Send,
+  MoveRight,
+  Download,
+  AlertTriangle,
+  MapPin,
+  Clock,
+  Calendar,
+  Headphones,
+  Gem,
+  FileText,
+  Info,
+  MessageSquare,
+  Activity,
+  ExternalLink,
+  Briefcase,
 } from 'lucide-vue-next'
 
 const route = useRoute()
@@ -25,51 +33,56 @@ const router = useRouter()
 const candidates = (candidatesData as { data: Candidate[] }).data
 const candidateId = route.params.id as string
 const currentIndex = ref(candidates.findIndex(c => c.id === candidateId))
+
+// Ensure we have a valid index
+if (currentIndex.value === -1 && candidates.length > 0) {
+  currentIndex.value = 0
+}
+
 const candidate = computed(() => candidates[currentIndex.value])
 
-if (currentIndex.value === -1) {
-  navigateTo('/candidates')
-}
-
-const statusInfo = computed(() => {
-  return statuses.find(s => s.value === candidate.value?.status)
-})
-
-const positionInfo = computed(() => {
-  return positions.find(p => p.value === candidate.value?.position)
-})
-
 const goToCandidate = (index: number) => {
-  if (index >= 0 && index < candidates.length) {
+  if (index >= 0 && index < candidates.length && candidates[index]) {
     currentIndex.value = index
-    navigateTo(`/candidates/${candidates[index].id}`)
+    router.push(`/candidates/${candidates[index].id}`)
   }
 }
 
-const getStatusColor = (status: string) => {
-  const colorMap: Record<string, string> = {
-    applied: 'bg-blue-100 text-blue-800',
-    reviewing: 'bg-yellow-100 text-yellow-800',
-    shortlisted: 'bg-purple-100 text-purple-800',
-    rejected: 'bg-red-100 text-red-800',
-    hired: 'bg-green-100 text-green-800',
+// Mock extended data for the UI
+const extendedCandidate = computed(() => {
+  if (!candidate.value) return null
+  
+  return {
+    ...candidate.value,
+    role: 'Product Designer I', // Mock role
+    location: 'Amsterdam, The Netherlands',
+    daysInGoodfit: 3,
+    birthday: 'October 14, 1994 (31 years old)',
+    signals: [
+      { label: 'Short Tenure', color: 'bg-yellow-100 text-yellow-800 border-yellow-200', icon: 'briefcase' },
+      { label: 'Proctoring Incident', color: 'bg-red-100 text-red-800 border-red-200', icon: 'alert' },
+      { label: 'Quick Joiner', color: 'bg-green-100 text-green-800 border-green-200', icon: 'zap' },
+    ],
+    scores: {
+      aiInterview: 8.0,
+      assessments: 4.9,
+      resume: 7.3
+    },
+    interviewScores: [
+      { label: 'Visual Design', value: 8.5, color: 'bg-green-500' },
+      { label: 'Communication', value: 7.2, color: 'bg-blue-500' },
+      { label: 'Problem Solving', value: 6.8, color: 'bg-purple-500' }
+    ],
+    experience: [
+      { role: 'Human Interface Designer', company: 'Apple, Inc.', period: '2024 - present' },
+      { role: 'Product Designer', company: 'Uber', period: '2019-2024' }
+    ],
+    education: [
+      { school: 'National Institute of Design', period: '2015-2019' },
+      { school: 'National Institute of Fashion Technology', period: '2012-2015' }
+    ]
   }
-  return colorMap[status] || 'bg-gray-100 text-gray-800'
-}
-
-// Generate mock AI interview data
-const aiInterviewScores = computed(() => ({
-  overall: candidate.value?.rating || 0,
-  assessment: Math.round((candidate.value?.rating || 0) * 10) / 10,
-  resume: Math.round((candidate.value?.rating || 0) * 10 - 2) / 10,
-  visualDesign: Math.round((candidate.value?.rating || 0) * 10 - 1) / 10,
-}))
-
-const signals = [
-  { label: 'Short Tenure', color: 'bg-yellow-100 text-yellow-800' },
-  { label: 'Proctoring Incident', color: 'bg-red-100 text-red-800' },
-  { label: 'Quick Joiner', color: 'bg-blue-100 text-blue-800' },
-]
+})
 
 const downloadCV = () => {
   if (candidate.value?.cv_url) {
@@ -79,193 +92,184 @@ const downloadCV = () => {
 </script>
 
 <template>
-  <div v-if="candidate" class="min-h-screen bg-slate-50">
-    <!-- Header Navigation -->
-    <div class="border-b bg-white">
-      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4 flex items-center justify-between">
-        <div class="flex items-center gap-2 text-sm text-muted-foreground">
-          <span class="ml-4 text-xs font-medium">{{ currentIndex + 1 }} of {{ candidates.length }}</span>
-        </div>
-        <div class="flex items-center gap-2">
+  <div v-if="extendedCandidate" class="min-h-screen bg-slate-50/50">
+    <!-- Top Navigation Bar -->
+    <div class="border-b bg-white px-6 py-3 flex items-center justify-end sticky top-0 z-10">
+      <div class="flex items-center gap-4">
+        <span class="text-sm text-muted-foreground">{{ currentIndex + 1 }} of {{ candidates.length }}</span>
+        <div class="flex items-center gap-1">
           <Button
-            variant="ghost"
-            size="sm"
+            variant="outline"
+            size="icon"
+            class="h-8 w-8"
             :disabled="currentIndex === 0"
             @click="goToCandidate(currentIndex - 1)"
           >
-            <ChevronLeftIcon class="h-4 w-4" />
-            Prev
+            <ChevronLeft class="h-4 w-4" />
           </Button>
           <Button
             variant="outline"
-            size="sm"
+            size="icon"
+            class="h-8 w-8"
             :disabled="currentIndex === candidates.length - 1"
             @click="goToCandidate(currentIndex + 1)"
           >
-            Next
-            <ChevronRightIcon class="h-4 w-4" />
+            <ChevronRight class="h-4 w-4" />
           </Button>
         </div>
       </div>
     </div>
 
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
-      <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
-        <!-- Main Content -->
-        <div class="lg:col-span-2 space-y-6">
-          <!-- Header Section with Avatar -->
-          <Card class="bg-white">
-            <CardContent class="pt-6">
-              <div class="flex items-start gap-6 mb-6">
-                <div class="flex-shrink-0 relative">
-                  <div class="w-20 h-20 rounded-full bg-gradient-to-br from-blue-400 to-purple-500 flex items-center justify-center text-white text-2xl font-bold">
-                    {{ candidate.name.charAt(0) }}
-                  </div>
-                  <Badge class="absolute -bottom-2 -right-2 rounded-full bg-green-500 text-white border-2 border-white">
-                    {{ candidate.rating }}/10
-                  </Badge>
+    <div class="max-w-7xl mx-auto p-6">
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-6">
+        
+        <!-- Left Column (Main Content) -->
+        <div class="lg:col-span-8 space-y-6">
+          
+          <!-- Profile Header -->
+          <div class="flex flex-col sm:flex-row gap-6 items-start">
+            <div class="relative">
+              <Avatar class="h-24 w-24 border-4 border-white shadow-sm">
+                <AvatarImage :src="`https://api.dicebear.com/7.x/avataaars/svg?seed=${extendedCandidate.name}`" />
+                <AvatarFallback>{{ extendedCandidate.name.charAt(0) }}</AvatarFallback>
+              </Avatar>
+              <Badge class="absolute -bottom-2 -right-2 bg-green-100 text-green-700 hover:bg-green-100 border-green-200 px-2 py-0.5 text-sm font-bold shadow-sm">
+                {{ extendedCandidate.scores.aiInterview }}/10
+              </Badge>
+            </div>
+            
+            <div class="flex-1 space-y-2">
+              <div class="flex flex-col sm:flex-row sm:items-center gap-2 sm:gap-4">
+                <h1 class="text-3xl font-bold tracking-tight text-gray-900">{{ extendedCandidate.name }}</h1>
+                <span class="text-lg text-muted-foreground">for {{ extendedCandidate.role }}</span>
+              </div>
+              
+              <div class="flex flex-wrap gap-4 text-sm text-muted-foreground">
+                <div class="flex items-center gap-1.5">
+                  <MapPin class="h-4 w-4" />
+                  {{ extendedCandidate.location }}
                 </div>
-                <div class="flex-1">
-                  <div class="flex items-baseline gap-3 mb-2">
-                    <h1 class="text-3xl font-bold">{{ candidate.name }}</h1>
-                    <Badge :class="getStatusColor(candidate.status)" class="text-sm">
-                      {{ statusInfo?.label }}
-                    </Badge>
-                  </div>
-                  <p class="text-lg text-muted-foreground mb-4">for {{ positionInfo?.label }}</p>
-                  <div class="flex flex-wrap gap-2 text-sm text-muted-foreground">
-                    <div class="flex items-center gap-1">
-                      <MapPinIcon class="h-4 w-4" />
-                      <span>{{ candidate.experience }} years experience</span>
-                    </div>
-                    <span>•</span>
-                    <div class="flex items-center gap-1">
-                      <CalendarIcon class="h-4 w-4" />
-                      <span>Applied {{ new Date(candidate.appliedDate).toLocaleDateString() }}</span>
-                    </div>
-                  </div>
+                <div class="flex items-center gap-1.5">
+                  <Clock class="h-4 w-4" />
+                  {{ extendedCandidate.daysInGoodfit }} days in Goodfit
+                </div>
+                <div class="flex items-center gap-1.5">
+                  <Calendar class="h-4 w-4" />
+                  Applied {{ Math.floor((new Date().getTime() - new Date(extendedCandidate.appliedDate).getTime()) / (1000 * 3600 * 24)) }} days ago
                 </div>
               </div>
+            </div>
+          </div>
 
-              <!-- Action Buttons -->
-              <div class="flex gap-2 flex-wrap">
-                <Button class="gap-2">
-                  <SendIcon class="h-4 w-4" />
-                  Send Mail
-                </Button>
-                <Button variant="outline" class="gap-2">
-                  <MoveRightIcon class="h-4 w-4" />
-                  Move to stage
-                </Button>
-                <Button variant="outline" class="gap-2">
-                  <DownloadIcon class="h-4 w-4" />
-                  Download Candidate Report
-                </Button>
-                <Button variant="ghost" size="sm">
-                  <AlertCircleIcon class="h-4 w-4" />
-                </Button>
-              </div>
-            </CardContent>
-          </Card>
+          <!-- Action Buttons -->
+          <div class="flex flex-wrap gap-3">
+            <Button class="bg-blue-600 hover:bg-blue-700 text-white gap-2">
+              <Send class="h-4 w-4" />
+              Send Mail
+            </Button>
+            <Button variant="outline" class="gap-2">
+              <MoveRight class="h-4 w-4" />
+              Move to stage
+            </Button>
+            <Button variant="outline" class="gap-2" @click="downloadCV">
+              <Download class="h-4 w-4" />
+              Download Candidate Report
+            </Button>
+            <Button variant="outline" size="icon" class="text-amber-500 border-amber-200 hover:bg-amber-50">
+              <AlertTriangle class="h-4 w-4" />
+            </Button>
+          </div>
 
-          <!-- Status Note -->
-          <Card class="bg-blue-50 border-blue-200">
-            <CardContent class="pt-6">
-              <p class="text-sm text-blue-900">
-                {{ candidate.name }} is interviewing for {{ candidate.skills.length }} more role{{ candidate.skills.length > 1 ? 's' : '' }}
-              </p>
-            </CardContent>
-          </Card>
+          <!-- Info Banner -->
+          <div class="bg-blue-50 border border-blue-100 rounded-lg p-3 flex items-center justify-between text-blue-700 text-sm">
+            <span class="font-medium">{{ extendedCandidate.name }} is interviewing for 2 more roles</span>
+            <ChevronRight class="h-4 w-4 opacity-60" />
+          </div>
 
           <!-- Signals -->
-          <div>
-            <h3 class="font-semibold mb-3">Signals</h3>
-            <div class="flex flex-wrap gap-2">
-              <Badge v-for="(signal, index) in signals" :key="index" :class="signal.color" class="px-3 py-1">
-                <span v-if="index === 0" class="mr-1">📊</span>
-                <span v-else-if="index === 1" class="mr-1">⚠️</span>
-                <span v-else class="mr-1">⚡</span>
+          <div class="space-y-3">
+            <h3 class="text-sm font-medium text-muted-foreground">Signals</h3>
+            <div class="flex flex-wrap gap-3">
+              <Badge 
+                v-for="signal in extendedCandidate.signals" 
+                :key="signal.label" 
+                variant="outline"
+                :class="['gap-1.5 py-1.5 px-3 text-sm font-normal', signal.color]"
+              >
+                <Briefcase v-if="signal.icon === 'briefcase'" class="h-3.5 w-3.5" />
+                <AlertTriangle v-else-if="signal.icon === 'alert'" class="h-3.5 w-3.5" />
+                <Activity v-else class="h-3.5 w-3.5" />
                 {{ signal.label }}
               </Badge>
             </div>
           </div>
 
-          <!-- Scores Section -->
-          <div>
-            <h3 class="font-semibold mb-4">Score</h3>
-            <div class="grid grid-cols-3 gap-4">
-              <Card>
-                <CardContent class="pt-6 text-center">
-                  <div class="text-3xl font-bold text-blue-600 mb-2">{{ aiInterviewScores.overall.toFixed(1) }}</div>
-                  <p class="text-sm text-muted-foreground">AI Interview</p>
+          <!-- AI Interview Summary -->
+          <div class="space-y-3">
+            <h3 class="text-sm font-medium text-muted-foreground">AI Interview Summary</h3>
+            <p class="text-sm text-gray-600 leading-relaxed">
+              {{ extendedCandidate.notes || 'Lorem ipsum dolor sit amet consectetur. Nulla risus nisl magna platea in convallis. Vitae elementum pellentesque elit augue massa. Lectus sit nisl vitae a. Massa felis aliquot amet habitasse. Scelerisque ut proin nescitur non ornare. Ut amet mauris nulla cursus cum mauris ac tempor. In sed condimentum nullam sed in. Nibh dui mattis ornare bibendum nullam risus ut pharetra. Sed ultrices tempus amet egestas hac arcu. Ut a convallis pellentesque sem ipsum bibendum. Arcu nulla dictum sit enim at vulputate. Congue odio risus amet egestas nec diam consequat venenatis. This will contain both info and a summary of recommended actionable for the candidate.' }}
+            </p>
+          </div>
+
+          <!-- Score Cards -->
+          <div class="space-y-3">
+            <h3 class="text-sm font-medium text-muted-foreground">Score</h3>
+            <div class="grid grid-cols-1 sm:grid-cols-3 gap-4">
+              <Card class="bg-green-50/50 border-green-100">
+                <CardContent class="p-4 flex items-center gap-4">
+                  <div class="h-10 w-10 rounded-full bg-white flex items-center justify-center shadow-sm text-green-600">
+                    <Headphones class="h-5 w-5" />
+                  </div>
+                  <div>
+                    <div class="text-2xl font-bold text-gray-900">{{ extendedCandidate.scores.aiInterview.toFixed(1) }}</div>
+                    <div class="text-xs font-medium text-muted-foreground">AI Interview</div>
+                  </div>
                 </CardContent>
               </Card>
-              <Card>
-                <CardContent class="pt-6 text-center">
-                  <div class="text-3xl font-bold text-red-600 mb-2">{{ aiInterviewScores.assessment.toFixed(1) }}</div>
-                  <p class="text-sm text-muted-foreground">Assessments</p>
+              
+              <Card class="bg-red-50/50 border-red-100">
+                <CardContent class="p-4 flex items-center gap-4">
+                  <div class="h-10 w-10 rounded-full bg-white flex items-center justify-center shadow-sm text-red-600">
+                    <Gem class="h-5 w-5" />
+                  </div>
+                  <div>
+                    <div class="text-2xl font-bold text-gray-900">{{ extendedCandidate.scores.assessments.toFixed(1) }}</div>
+                    <div class="text-xs font-medium text-muted-foreground">Assessments</div>
+                  </div>
                 </CardContent>
               </Card>
-              <Card>
-                <CardContent class="pt-6 text-center">
-                  <div class="text-3xl font-bold text-green-600 mb-2">{{ aiInterviewScores.resume.toFixed(1) }}</div>
-                  <p class="text-sm text-muted-foreground">Resume</p>
+              
+              <Card class="bg-gray-50/50 border-gray-100">
+                <CardContent class="p-4 flex items-center gap-4">
+                  <div class="h-10 w-10 rounded-full bg-white flex items-center justify-center shadow-sm text-gray-600">
+                    <FileText class="h-5 w-5" />
+                  </div>
+                  <div>
+                    <div class="text-2xl font-bold text-gray-900">{{ extendedCandidate.scores.resume.toFixed(1) }}</div>
+                    <div class="text-xs font-medium text-muted-foreground">Resume</div>
+                  </div>
                 </CardContent>
               </Card>
             </div>
           </div>
 
-          <!-- AI Interview Summary -->
+          <!-- AI Interview Score Details -->
           <Card>
-            <CardHeader>
-              <CardTitle class="text-lg">AI Interview Summary</CardTitle>
-            </CardHeader>
-            <CardContent>
-              <p class="text-sm text-muted-foreground leading-relaxed">
-                {{ candidate.notes || 'No summary available. ' }}Lorem ipsum dolor sit amet consectetur. Nulla risus nisl magna platea in convallis. Vitae elementum pellentesque elit augue massa. Lectus sit nisl vitae a. Massa felis aliquot amet habitasse. Scelerisque ut proin nescitur non. Ut amet mauris nulla cursus cum mauris ac tempor. In sed condimentum nullam sed in. Nibh dui mattis ornare bibendum nullam risus ut pharetra. Sed ultrices tempus amet egestas hac arcu.
-              </p>
-            </CardContent>
-          </Card>
-
-          <!-- AI Interview Scores Detail -->
-          <Card>
-            <CardHeader>
-              <CardTitle class="text-lg">AI Interview Score</CardTitle>
+            <CardHeader class="pb-3">
+              <CardTitle class="text-base font-medium">AI Interview Score</CardTitle>
             </CardHeader>
             <CardContent class="space-y-6">
-              <div>
+              <div v-for="score in extendedCandidate.interviewScores" :key="score.label">
                 <div class="flex justify-between items-center mb-2">
-                  <span class="text-sm font-medium">Visual Design</span>
-                  <span class="text-sm font-semibold">{{ aiInterviewScores.visualDesign.toFixed(1) }}</span>
+                  <span class="text-sm font-medium text-gray-700">{{ score.label }}</span>
+                  <span class="text-sm font-bold text-gray-900">{{ score.value }}</span>
                 </div>
-                <div class="w-full bg-gray-200 rounded-full h-2">
+                <div class="w-full bg-gray-100 rounded-full h-2">
                   <div
-                    class="bg-green-500 h-2 rounded-full"
-                    :style="{ width: `${(aiInterviewScores.visualDesign / 10) * 100}%` }"
-                  />
-                </div>
-              </div>
-              <div>
-                <div class="flex justify-between items-center mb-2">
-                  <span class="text-sm font-medium">Communication</span>
-                  <span class="text-sm font-semibold">{{ (aiInterviewScores.overall * 0.9).toFixed(1) }}</span>
-                </div>
-                <div class="w-full bg-gray-200 rounded-full h-2">
-                  <div
-                    class="bg-blue-500 h-2 rounded-full"
-                    :style="{ width: `${(aiInterviewScores.overall * 0.9 / 10) * 100}%` }"
-                  />
-                </div>
-              </div>
-              <div>
-                <div class="flex justify-between items-center mb-2">
-                  <span class="text-sm font-medium">Technical Knowledge</span>
-                  <span class="text-sm font-semibold">{{ (aiInterviewScores.overall * 0.95).toFixed(1) }}</span>
-                </div>
-                <div class="w-full bg-gray-200 rounded-full h-2">
-                  <div
-                    class="bg-purple-500 h-2 rounded-full"
-                    :style="{ width: `${(aiInterviewScores.overall * 0.95 / 10) * 100}%` }"
+                    class="h-2 rounded-full transition-all duration-500"
+                    :class="score.color"
+                    :style="{ width: `${(score.value / 10) * 100}%` }"
                   />
                 </div>
               </div>
@@ -273,93 +277,119 @@ const downloadCV = () => {
           </Card>
         </div>
 
-        <!-- Sidebar -->
-        <div class="space-y-6">
+        <!-- Right Column (Sidebar) -->
+        <div class="lg:col-span-4 space-y-6">
+          
+          <!-- Tabs -->
+          <div class="bg-white rounded-lg border p-1 flex gap-1">
+            <Button variant="ghost" size="sm" class="flex-1 bg-gray-100 text-gray-900 shadow-sm">
+              <Info class="h-4 w-4" />
+            </Button>
+            <Button variant="ghost" size="sm" class="flex-1 text-muted-foreground hover:text-gray-900">
+              <MessageSquare class="h-4 w-4" />
+            </Button>
+            <Button variant="ghost" size="sm" class="flex-1 text-muted-foreground hover:text-gray-900">
+              <Activity class="h-4 w-4" />
+            </Button>
+          </div>
+
           <!-- Contact Info -->
           <Card>
-            <CardHeader>
-              <CardTitle class="text-sm">Contact Info</CardTitle>
+            <CardHeader class="pb-3">
+              <CardTitle class="text-sm font-medium text-muted-foreground">Contact Info</CardTitle>
             </CardHeader>
             <CardContent class="space-y-4">
-              <div>
-                <p class="text-xs text-muted-foreground mb-1">Name</p>
-                <p class="font-medium">{{ candidate.name }}</p>
+              <div class="grid grid-cols-[80px_1fr] gap-2 text-sm">
+                <span class="text-muted-foreground">Name</span>
+                <span class="font-medium text-right">{{ extendedCandidate.name }}</span>
               </div>
               <Separator />
-              <div>
-                <p class="text-xs text-muted-foreground mb-1">Location</p>
-                <p class="font-medium">New York, NY</p>
+              <div class="grid grid-cols-[80px_1fr] gap-2 text-sm">
+                <span class="text-muted-foreground">Location</span>
+                <span class="font-medium text-right">{{ extendedCandidate.location }}</span>
               </div>
               <Separator />
-              <div>
-                <p class="text-xs text-muted-foreground mb-1">Email</p>
-                <a href="#" class="text-blue-600 hover:underline text-sm">{{ candidate.email }}</a>
+              <div class="grid grid-cols-[80px_1fr] gap-2 text-sm">
+                <span class="text-muted-foreground">Birthday</span>
+                <span class="font-medium text-right">{{ extendedCandidate.birthday }}</span>
               </div>
               <Separator />
-              <div>
-                <p class="text-xs text-muted-foreground mb-1">Phone</p>
-                <p class="font-medium">{{ candidate.phone }}</p>
+              <div class="grid grid-cols-[80px_1fr] gap-2 text-sm">
+                <span class="text-muted-foreground">Email</span>
+                <span class="font-medium text-right truncate text-blue-600">{{ extendedCandidate.email }}</span>
               </div>
             </CardContent>
           </Card>
 
           <!-- Experience -->
           <Card>
-            <CardHeader>
-              <CardTitle class="text-sm">Experience</CardTitle>
+            <CardHeader class="pb-3">
+              <CardTitle class="text-sm font-medium text-muted-foreground">Experience</CardTitle>
             </CardHeader>
-            <CardContent class="space-y-3">
-              <div v-for="skill in candidate.skills" :key="skill" class="pb-3 border-b last:border-b-0 last:pb-0">
-                <p class="font-medium text-sm">{{ skill }}</p>
-                <p class="text-xs text-muted-foreground">2024 - present</p>
+            <CardContent class="space-y-4">
+              <div v-for="(exp, i) in extendedCandidate.experience" :key="i" class="space-y-1">
+                <div class="font-medium text-sm">{{ exp.role }}, {{ exp.company }}</div>
+                <div class="text-xs text-muted-foreground">{{ exp.period }}</div>
               </div>
             </CardContent>
           </Card>
 
           <!-- Education -->
           <Card>
-            <CardHeader>
-              <CardTitle class="text-sm">Education</CardTitle>
+            <CardHeader class="pb-3">
+              <CardTitle class="text-sm font-medium text-muted-foreground">Education</CardTitle>
             </CardHeader>
-            <CardContent class="space-y-3">
-              <div>
-                <p class="font-medium text-sm">Technical Skills</p>
-                <p class="text-xs text-muted-foreground">2015-2019</p>
-              </div>
-              <Separator />
-              <div>
-                <p class="font-medium text-sm">Professional Training</p>
-                <p class="text-xs text-muted-foreground">2012-2015</p>
+            <CardContent class="space-y-4">
+              <div v-for="(edu, i) in extendedCandidate.education" :key="i" class="space-y-1">
+                <div class="font-medium text-sm">{{ edu.school }}</div>
+                <div class="text-xs text-muted-foreground">{{ edu.period }}</div>
               </div>
             </CardContent>
           </Card>
 
           <!-- Resume -->
           <Card>
-            <CardHeader>
-              <CardTitle class="text-sm">Résumé</CardTitle>
+            <CardHeader class="pb-3">
+              <CardTitle class="text-sm font-medium text-muted-foreground">Résumé</CardTitle>
             </CardHeader>
             <CardContent>
-              <Button v-if="candidate.cv_url" variant="outline" class="w-full gap-2 justify-start" @click="downloadCV">
-                <FileTextIcon class="h-4 w-4" />
-                <span class="text-xs">resume_{{ candidate.name.toLowerCase().replace(' ', '_') }}.pdf</span>
-              </Button>
-            </CardContent>
-          </Card>
-
-          <!-- Skills -->
-          <Card>
-            <CardHeader>
-              <CardTitle class="text-sm">Skills</CardTitle>
-            </CardHeader>
-            <CardContent>
-              <div class="flex flex-wrap gap-2">
-                <Badge v-for="skill in candidate.skills" :key="skill" variant="secondary" class="text-xs">
-                  {{ skill }}
-                </Badge>
+              <div class="border rounded-lg p-3 flex items-center justify-between bg-slate-50">
+                <div class="flex items-center gap-3 overflow-hidden">
+                  <div class="h-8 w-8 bg-white rounded border flex items-center justify-center shrink-0">
+                    <FileText class="h-4 w-4 text-red-500" />
+                  </div>
+                  <div class="flex flex-col overflow-hidden">
+                    <span class="text-sm font-medium truncate">resume_{{ extendedCandidate.name.toLowerCase().split(' ')[0] }}.pdf</span>
+                    <span class="text-xs text-muted-foreground">PDF Document</span>
+                  </div>
+                </div>
+                <Button variant="ghost" size="icon" class="h-8 w-8" @click="downloadCV">
+                  <ExternalLink class="h-4 w-4 text-muted-foreground" />
+                </Button>
+              </div>
+              
+              <!-- Resume Preview Image (Mock) -->
+              <div class="mt-3 border rounded-lg overflow-hidden bg-white h-32 flex items-center justify-center relative group cursor-pointer" @click="downloadCV">
+                <div class="absolute inset-0 bg-slate-100 flex flex-col items-center justify-center p-4">
+                   <div class="w-full h-full bg-white shadow-sm p-2 text-[6px] text-gray-400 overflow-hidden">
+                      <div class="font-bold text-gray-800 text-[8px] mb-1">{{ extendedCandidate.name }}</div>
+                      <div class="mb-1">PRODUCT DESIGNER</div>
+                      <div class="space-y-1">
+                        <div class="h-1 bg-gray-200 w-full"></div>
+                        <div class="h-1 bg-gray-200 w-3/4"></div>
+                        <div class="h-1 bg-gray-200 w-5/6"></div>
+                        <div class="h-1 bg-gray-200 w-full"></div>
+                        <div class="h-1 bg-gray-200 w-1/2"></div>
+                      </div>
+                   </div>
+                </div>
+                <div class="absolute inset-0 bg-black/0 group-hover:bg-black/5 transition-colors flex items-center justify-center">
+                  <ExternalLink class="h-6 w-6 text-gray-600 opacity-0 group-hover:opacity-100 transition-opacity" />
+                </div>
               </div>
             </CardContent>
           </Card>
+
         </div>
       </div>
     </div>
