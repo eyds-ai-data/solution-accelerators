@@ -28,6 +28,9 @@ import {
   Users,
   GraduationCap,
   IdCard,
+  Edit,
+  AlertCircle,
+  CheckCircle2,
 } from 'lucide-vue-next'
 
 const route = useRoute()
@@ -89,6 +92,18 @@ const extendedCandidate = computed(() => {
   }
 })
 
+const requiredDocuments = ['KTP', 'Kartu Keluarga', 'Ijazah', 'Buku Tabungan', 'NPWP', 'SKCK']
+
+const documentCompletion = computed(() => {
+  if (!extendedCandidate.value) return { progress: 0, missing: [] }
+  
+  const uploadedTypes = extendedCandidate.value.documents.map(d => d.type)
+  const missing = requiredDocuments.filter(doc => !uploadedTypes.includes(doc))
+  const progress = Math.round(((requiredDocuments.length - missing.length) / requiredDocuments.length) * 100)
+  
+  return { progress, missing }
+})
+
 const downloadCV = () => {
   if (candidate.value?.cv_url) {
     window.open(candidate.value.cv_url, '_blank')
@@ -146,6 +161,10 @@ const downloadCV = () => {
             <Button class="bg-blue-600 hover:bg-blue-700 text-white gap-2">
               <Send class="h-4 w-4" />
               Send Mail
+            </Button>
+            <Button variant="outline" class="gap-2" @click="router.push(`/candidates/edit/${candidateId}`)">
+              <Edit class="h-4 w-4" />
+              Edit Profile
             </Button>
             <Button variant="outline" class="gap-2">
               <MoveRight class="h-4 w-4" />
@@ -260,6 +279,38 @@ const downloadCV = () => {
         <!-- Right Column (Sidebar) -->
         <div class="lg:col-span-4 space-y-6">
           
+          <!-- Document Completion Card -->
+          <Card>
+            <CardHeader class="pb-3">
+              <CardTitle class="text-sm font-medium text-muted-foreground">Document Completion</CardTitle>
+            </CardHeader>
+            <CardContent class="space-y-4">
+              <div class="space-y-2">
+                <div class="flex justify-between text-sm">
+                  <span class="font-medium">{{ documentCompletion.progress }}% Complete</span>
+                  <span class="text-muted-foreground">{{ extendedCandidate.documents.length }}/{{ requiredDocuments.length }}</span>
+                </div>
+                <div class="h-2 bg-muted rounded-full overflow-hidden">
+                  <div class="h-full bg-blue-600 rounded-full transition-all duration-500" :style="{ width: `${documentCompletion.progress}%` }"></div>
+                </div>
+              </div>
+
+              <div v-if="documentCompletion.missing.length > 0" class="space-y-2">
+                <p class="text-xs font-medium text-muted-foreground">Missing Documents:</p>
+                <div class="space-y-1">
+                  <div v-for="doc in documentCompletion.missing" :key="doc" class="flex items-center gap-2 text-sm text-amber-600 dark:text-amber-500 bg-amber-50 dark:bg-amber-900/20 px-2 py-1.5 rounded border border-amber-100 dark:border-amber-900/30">
+                    <AlertCircle class="h-3.5 w-3.5" />
+                    <span>{{ doc }}</span>
+                  </div>
+                </div>
+              </div>
+              <div v-else class="flex items-center gap-2 text-sm text-green-600 bg-green-50 dark:bg-green-900/20 px-2 py-1.5 rounded border border-green-100 dark:border-green-900/30">
+                <CheckCircle2 class="h-4 w-4" />
+                <span>All documents submitted</span>
+              </div>
+            </CardContent>
+          </Card>
+
           <!-- Tabs -->
           <div class="bg-muted/20 rounded-lg border p-1 flex gap-1">
             <Button 
