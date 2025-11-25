@@ -13,6 +13,8 @@ from src.repository.database import CosmosDB
 from src.repository.embedding import AzureAIEmbedding
 from src.domain.candidate_recommendation import CandidateData, JobData
 from pydantic import ValidationError
+from src.repository.candidate_repository import CandidateRepository
+from src.usecase.candidate_service import CandidateService
 
 app = Flask(__name__)
 
@@ -33,6 +35,10 @@ llm = LLMService(
 cv_scoring = CVScoring(llm_service=llm)
 cv_extractor = CVExtractor(llm_service=llm)
 candidate_recommendation = CandidateRecommendation(cosmosdb=cosmosdb, embedding_service=azembedding)
+
+# Initialize candidate service
+candidate_repository = CandidateRepository(cosmosdb=cosmosdb)
+candidate_service = CandidateService(candidate_repository=candidate_repository)
 
 @app.route('/ping', methods=['GET'])
 def ping():
@@ -163,6 +169,82 @@ def insert_candidate():
 
     except Exception as e:
         app.logger.exception("Error in insert_candidate route")
+        return internal_server_error(str(e))
+
+@app.route('/api/v1/hr/candidate/<candidate_id>', methods=['GET'])
+def get_candidate(candidate_id):
+    try:
+        if not candidate_id:
+            return bad_request_error("candidate_id is required")
+
+        result = asyncio.run(candidate_service.get_candidate(candidate_id))
+        
+        if not result:
+            return bad_request_error(f"Candidate with ID {candidate_id} not found")
+
+        return ok(
+            message="Candidate retrieved successfully",
+            data=result.model_dump()
+        )
+
+    except Exception as e:
+        app.logger.exception("Error in get_candidate route")
+        return internal_server_error(str(e))
+
+@app.route('/api/v1/hr/candidates', methods=['GET'])
+def list_candidates():
+    try:
+        limit = request.args.get('limit', default=100, type=int)
+        
+        result = asyncio.run(candidate_service.list_candidates(limit=limit))
+
+        return ok(
+            message="Candidates retrieved successfully",
+            data=[c.model_dump() for c in result]
+        )
+
+    except Exception as e:
+        app.logger.exception("Error in list_candidates route")
+        return internal_server_error(str(e))
+
+@app.route('/api/v1/hr/candidates/by-status', methods=['GET'])
+def get_candidates_by_status():
+    try:
+        status = request.args.get('status')
+        limit = request.args.get('limit', default=100, type=int)
+        
+        if not status:
+            return bad_request_error("status query parameter is required")
+
+        result = asyncio.run(candidate_service.get_candidates_by_status(status=status, limit=limit))
+
+        return ok(
+            message=f"Candidates with status '{status}' retrieved successfully",
+            data=[c.model_dump() for c in result]
+        )
+
+    except Exception as e:
+        app.logger.exception("Error in get_candidates_by_status route")
+        return internal_server_error(str(e))
+
+@app.route('/api/v1/hr/candidates/by-position', methods=['GET'])
+def get_candidates_by_position():
+    try:
+        position = request.args.get('position')
+        limit = request.args.get('limit', default=100, type=int)
+        
+        if not position:
+            return bad_request_error("position query parameter is required")
+
+        result = asyncio.run(candidate_service.get_candidates_by_position(position=position, limit=limit))
+
+        return ok(
+            message=f"Candidates for position '{position}' retrieved successfully",
+            data=[c.model_dump() for c in result]
+        )
+
+    except Exception as e:
+        app.logger.exception("Error in get_candidates_by_position route")
         return internal_server_error(str(e))
 
 if __name__ == '__main__':
