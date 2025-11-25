@@ -1,31 +1,88 @@
-from pydantic import BaseModel
-from typing import Optional, List
+from pydantic import BaseModel, Field, ConfigDict
+from typing import Optional, List, Any, Dict
+
+class Education(BaseModel):
+    model_config = ConfigDict(populate_by_name=True)
+    
+    institution: str
+    degree: str
+    field_of_study: str = Field(..., alias="fieldOfStudy")
+    graduation_year: int = Field(..., alias="graduationYear")
+    gpa: Optional[float] = None
+
+class WorkExperience(BaseModel):
+    model_config = ConfigDict(populate_by_name=True)
+    
+    company: str
+    position: str
+    start_date: str = Field(..., alias="startDate")
+    end_date: Optional[str] = Field(None, alias="endDate")
+    is_current: bool = Field(False, alias="isCurrent")
+    description: Optional[str] = None
+
+class ExtractedContent(BaseModel):
+    model_config = ConfigDict(populate_by_name=True)
+    
+    text: str
+    tables: Optional[List[Dict[str, Any]]] = None
+    bounding_boxes: Optional[List[Dict[str, Any]]] = Field(None, alias="boundingBoxes")
+
+class Document(BaseModel):
+    model_config = ConfigDict(populate_by_name=True)
+    
+    type: str  # RESUME, KTP, KARTU_KELUARGA, IJAZAH, etc.
+    name: str
+    url: str
+    last_updated: str = Field(..., alias="lastUpdated")
+    extracted_content: Optional[ExtractedContent] = Field(None, alias="extractedContent")
 
 class Candidate(BaseModel):
+    model_config = ConfigDict(
+        populate_by_name=True,  # Allow both snake_case and camelCase
+        from_attributes=True
+    )
+    
     id: str
-    candidate_id: str
+    candidate_id: str = Field(..., alias="candidateId")
     name: str
     email: Optional[str] = None
     phone: Optional[str] = None
+    gender: Optional[str] = None
+    date_of_birth: Optional[str] = Field(None, alias="dateOfBirth")
     position: Optional[str] = None
     status: Optional[str] = None
-    applied_date: Optional[str] = None
+    applied_date: Optional[str] = Field(None, alias="appliedDate")
     experience: Optional[int] = None
     skills: Optional[List[str]] = None
     rating: Optional[float] = None
     notes: Optional[str] = None
+    cv_url: Optional[str] = Field(None, alias="cvUrl")
+    education: Optional[List[Education]] = None
+    work_experiences: Optional[List[WorkExperience]] = Field(None, alias="workExperiences")
+    documents: Optional[List[Document]] = None
     embeddings: Optional[List[float]] = None
 
 class CandidateResponse(BaseModel):
+    model_config = ConfigDict(
+        populate_by_name=True,
+        from_attributes=True
+    )
+    
     id: str
-    candidate_id: str
+    candidate_id: str = Field(..., alias="candidateId")
     name: str
     email: Optional[str] = None
     phone: Optional[str] = None
+    gender: Optional[str] = None
+    date_of_birth: Optional[str] = Field(None, alias="dateOfBirth")
     position: Optional[str] = None
     status: Optional[str] = None
-    applied_date: Optional[str] = None
+    applied_date: Optional[str] = Field(None, alias="appliedDate")
     experience: Optional[int] = None
     skills: Optional[List[str]] = None
     rating: Optional[float] = None
     notes: Optional[str] = None
+    cv_url: Optional[str] = Field(None, alias="cvUrl")
+    education: Optional[List[Education]] = None
+    work_experiences: Optional[List[WorkExperience]] = Field(None, alias="workExperiences")
+    documents: Optional[List[Document]] = None

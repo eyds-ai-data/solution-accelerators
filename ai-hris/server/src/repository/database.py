@@ -7,12 +7,67 @@ from typing import Optional, List, Type, TypeVar, Dict, Any
 
 T = TypeVar('T')
 
+def convert_camel_to_snake(data: Dict[str, Any]) -> Dict[str, Any]:
+    """
+    Convert camelCase keys in a dictionary to snake_case recursively.
+    This helps with Pydantic model instantiation when data comes from CosmosDB.
+    """
+    if not isinstance(data, dict):
+        return data
+    
+    result = {}
+    for key, value in data.items():
+        # Convert camelCase to snake_case
+        snake_key = ''.join(['_' + c.lower() if c.isupper() else c for c in key]).lstrip('_')
+        
+        # Recursively convert nested dictionaries
+        if isinstance(value, dict):
+            result[snake_key] = convert_camel_to_snake(value)
+        # Recursively convert items in lists (for nested objects in arrays)
+        elif isinstance(value, list):
+            result[snake_key] = [
+                convert_camel_to_snake(item) if isinstance(item, dict) else item
+                for item in value
+            ]
+        else:
+            result[snake_key] = value
+    
+    return result
+
 class CosmosDB:
     def __init__(self, config: AppConfig):
         self.config = config
         self.client = CosmosClient.from_connection_string(self.config.COSMOSDB_CONNECTION_STRING)
         self.database = self.client.get_database_client(self.config.COSMOSDB_DATABASE)
-        self.container = self.database.get_container_client(self.config.COSMOSDB_CONTAINER)
+        self.containers = {}  # Dictionary to hold multiple containers
+        self._load_container(self.config.COSMOSDB_CONTAINER, "default")
+
+    def _load_container(self, container_name: str, alias: str = None):
+        """
+        Load a container by name and optionally assign an alias.
+        
+        Args:
+            container_name: The name of the container in CosmosDB
+            alias: Optional alias for easy reference (default: use container_name)
+        """
+        key = alias or container_name
+        self.containers[key] = self.database.get_container_client(container_name)
+        if key == "default":
+            self.container = self.containers[key]  # Keep default for backward compatibility
+
+    def get_container(self, container_name: str):
+        """
+        Get a specific container by name or alias.
+        
+        Args:
+            container_name: The container name or alias
+            
+        Returns:
+            The container client
+        """
+        if container_name not in self.containers:
+            self._load_container(container_name, container_name)
+        return self.containers[container_name]
 
     def insert_items(self, vector, candidate_id, name, skills, work_history, education_history):
         chat_item = {
@@ -58,7 +113,27 @@ class CosmosDB:
         except Exception as e:
             logger.error(f"Error querying items: {e}")
             raise ValueError(f"Error querying items: {e}")
+
+
+class CosmosDBRepository:
+    """
+    Generic CosmosDB repository for handling CRUD operations.
+    Supports multiple containers through the CosmosDB client.
+    """
+    
+    def __init__(self, cosmosdb: CosmosDB, model_class: Type[T], container_name: str = "default"):
+        """
+        Initialize the repository with a CosmosDB client, model class, and container name.
         
+        Args:
+            cosmosdb: CosmosDB client instance
+            model_class: Pydantic model class for data mapping
+            container_name: The name or alias of the container to use (default: "default")
+        """
+        self.cosmosdb = cosmosdb
+        self.model_class = model_class
+        self.container = cosmosdb.get_container(container_name)
+
     def get_by_id(self, item_id: str, id_field: str = "id") -> Optional[T]:
         """
         Retrieve an item from CosmosDB by ID.
@@ -79,7 +154,9 @@ class CosmosDB:
             ))
             
             if items and len(items) > 0:
-                return self.model_class(**items[0])
+                # Convert camelCase to snake_case for Pydantic model
+                converted_item = convert_camel_to_snake(items[0])
+                return self.model_class(**converted_item)
             return None
         except Exception as e:
             logger.error(f"Error retrieving item by ID: {e}")
@@ -102,7 +179,8 @@ class CosmosDB:
                 enable_cross_partition_query=True
             ))
             
-            return [self.model_class(**item) for item in items]
+            # Convert camelCase to snake_case for Pydantic model
+            return [self.model_class(**convert_camel_to_snake(item)) for item in items]
         except Exception as e:
             logger.error(f"Error retrieving all items: {e}")
             raise
@@ -127,7 +205,8 @@ class CosmosDB:
                 enable_cross_partition_query=True
             ))
             
-            return [self.model_class(**item) for item in items]
+            # Convert camelCase to snake_case for Pydantic model
+            return [self.model_class(**convert_camel_to_snake(item)) for item in items]
         except Exception as e:
             logger.error(f"Error retrieving items by field {field_name}: {e}")
             raise
@@ -159,7 +238,8 @@ class CosmosDB:
                 enable_cross_partition_query=True
             ))
             
-            return [self.model_class(**item) for item in items]
+            # Convert camelCase to snake_case for Pydantic model
+            return [self.model_class(**convert_camel_to_snake(item)) for item in items]
         except Exception as e:
             logger.error(f"Error retrieving items by multiple fields: {e}")
             raise
@@ -240,7 +320,8 @@ class CosmosDB:
                 enable_cross_partition_query=True
             ))
             
-            return [self.model_class(**item) for item in items]
+            # Convert camelCase to snake_case for Pydantic model
+            return [self.model_class(**convert_camel_to_snake(item)) for item in items]
         except Exception as e:
             logger.error(f"Error executing custom query: {e}")
             raise

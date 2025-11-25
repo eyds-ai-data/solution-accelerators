@@ -13,7 +13,7 @@ from src.repository.database import CosmosDB
 from src.repository.embedding import AzureAIEmbedding
 from src.domain.candidate_recommendation import CandidateData, JobData
 from pydantic import ValidationError
-from src.repository.candidate_repository import CandidateRepository
+from src.repository.database import CosmosDB
 from src.usecase.candidate_service import CandidateService
 
 app = Flask(__name__)
@@ -27,7 +27,6 @@ llm = LLMService(
     service_id="eyds-hris-ai",
     azure_openai_deployment=config.AZURE_OPENAI_DEPLOYMENT_NAME,
     azure_openai_endpoint=config.AZURE_OPENAI_API_BASE,
-    
     azure_openai_version=config.AZURE_OPENAI_API_VERSION,
     azure_openai_key=config.AZURE_OPENAI_API_KEY
 )
@@ -35,10 +34,7 @@ llm = LLMService(
 cv_scoring = CVScoring(llm_service=llm)
 cv_extractor = CVExtractor(llm_service=llm)
 candidate_recommendation = CandidateRecommendation(cosmosdb=cosmosdb, embedding_service=azembedding)
-
-# Initialize candidate service
-candidate_repository = CandidateRepository(cosmosdb=cosmosdb)
-candidate_service = CandidateService(candidate_repository=candidate_repository)
+candidate_service = CandidateService(cosmosdb=cosmosdb)
 
 @app.route('/ping', methods=['GET'])
 def ping():

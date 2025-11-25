@@ -91,10 +91,10 @@ export const columns: ColumnDef<Candidate>[] = [
     },
   },
   {
-    accessorKey: 'appliedDate',
+    accessorKey: 'applied_date',
     header: ({ column }) => h(DataTableColumnHeader, { column, title: 'Applied Date' }),
     cell: ({ row }) => {
-      const date = new Date(row.getValue('appliedDate') as string)
+      const date = new Date(row.getValue('applied_date') as string)
       return h('div', { class: 'text-sm' }, date.toLocaleDateString())
     },
   },
