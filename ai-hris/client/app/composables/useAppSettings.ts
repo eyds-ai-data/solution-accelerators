@@ -17,7 +17,7 @@ const defaultAppSettings: AppSettings = {
   },
   theme: {
     color: 'blue',
-    type: 'scaled',
+    type: 'default',
   },
 }
 

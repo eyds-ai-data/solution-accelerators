@@ -54,9 +54,20 @@ export const columns: ColumnDef<Candidate>[] = [
       if (!status)
         return null
 
-      return h('div', { class: 'flex items-center gap-2' }, [
-        status.icon && h(status.icon, { class: 'h-4 w-4' }),
-        h('span', { class: 'text-sm' }, status.label),
+      const colors: Record<string, string> = {
+        applied: 'bg-slate-100 text-slate-700 dark:bg-slate-800 dark:text-slate-400 border-slate-200 dark:border-slate-700',
+        reviewing: 'bg-blue-100 text-blue-700 dark:bg-blue-900/30 dark:text-blue-400 border-blue-200 dark:border-blue-800',
+        shortlisted: 'bg-purple-100 text-purple-700 dark:bg-purple-900/30 dark:text-purple-400 border-purple-200 dark:border-purple-800',
+        rejected: 'bg-red-100 text-red-700 dark:bg-red-900/30 dark:text-red-400 border-red-200 dark:border-red-800',
+        hired: 'bg-green-100 text-green-700 dark:bg-green-900/30 dark:text-green-400 border-green-200 dark:border-green-800',
+      }
+
+      return h(Badge, { 
+        variant: 'outline', 
+        class: `flex w-fit items-center gap-1.5 px-2 py-0.5 ${colors[status.value] || ''}` 
+      }, () => [
+        status.icon && h(status.icon, { class: 'h-3.5 w-3.5' }),
+        status.label,
       ])
     },
     filterFn: (row, id, value) => {
