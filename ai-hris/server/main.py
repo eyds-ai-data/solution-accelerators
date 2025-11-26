@@ -15,6 +15,8 @@ from src.domain.candidate_recommendation import CandidateData, JobData
 from pydantic import ValidationError
 from src.repository.database import CosmosDB
 from src.usecase.candidate_service import CandidateService
+from src.repository.document_intelligence import DocumentIntelligenceRepository
+from src.usecase.document_analyzer import DocumentAnalyzer
 
 app = Flask(__name__)
 
@@ -31,10 +33,14 @@ llm = LLMService(
     azure_openai_key=config.AZURE_OPENAI_API_KEY
 )
 
+document_intelligence = DocumentIntelligenceRepository(config=config)
+
 cv_scoring = CVScoring(llm_service=llm)
 cv_extractor = CVExtractor(llm_service=llm)
 candidate_recommendation = CandidateRecommendation(cosmosdb=cosmosdb, embedding_service=azembedding)
 candidate_service = CandidateService(cosmosdb=cosmosdb)
+
+document_analyzer = DocumentAnalyzer(doc_intel_repo=document_intelligence, llm_service=llm)
 
 @app.route('/ping', methods=['GET'])
 def ping():
@@ -241,6 +247,44 @@ def get_candidates_by_position():
 
     except Exception as e:
         app.logger.exception("Error in get_candidates_by_position route")
+        return internal_server_error(str(e))
+
+@app.route('/api/v1/document/analyze', methods=['POST'])
+def analyze_document():
+    try:
+        if 'document' not in request.files:
+            return bad_request_error("No document file provided")
+        
+        file = request.files['document']
+        
+        if file.filename == '':
+            return bad_request_error("No file selected")
+        
+        allowed_extensions = {'.pdf', '.png', '.jpg', '.jpeg', '.bmp', '.tiff'}
+        file_ext = os.path.splitext(file.filename)[1].lower()
+        
+        if file_ext not in allowed_extensions:
+            return bad_request_error(f"File type not allowed. Allowed types: {', '.join(allowed_extensions)}")
+        
+        # Save temporary file
+        temp_dir = "assets"
+        os.makedirs(temp_dir, exist_ok=True)
+        temp_path = os.path.join(temp_dir, file.filename)
+        file.save(temp_path)
+        
+        try:
+            result = asyncio.run(document_analyzer.analyze_document_kk(document_path=temp_path))
+            return ok(
+                message="Document analyzed successfully",
+                data=result.model_dump()
+            )
+        finally:
+            # Clean up temporary file
+            if os.path.exists(temp_path):
+                os.remove(temp_path)
+    
+    except Exception as e:
+        app.logger.exception("Error in analyze_document route")
         return internal_server_error(str(e))
 
 if __name__ == '__main__':

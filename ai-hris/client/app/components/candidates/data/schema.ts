@@ -1,17 +1,48 @@
 import { z } from 'zod'
 
-const extractedContentSchema = z.object({
-  text: z.string(),
-  tables: z.array(z.any()).optional(),
-  bounding_boxes: z.array(z.any()).optional(),
+const boundingBoxSchema = z.object({
+  content: z.string(),
+  page_number: z.number(),
+  polygons: z.array(z.number()),
 })
 
-const documentSchema = z.object({
+const familyMemberDetailSchema = z.object({
+  name: z.string(),
+  nik: z.string(),
+  gender: z.string(),
+  birth_date: z.string(),
+  religion: z.string(),
+  education: z.string(),
+  occupation: z.string(),
+  marital_status: z.string(),
+  blood_type: z.string().optional().nullable(),
+})
+
+const kartuKeluargaStructuredSchema = z.object({
+  family_head_name: z.string(),
+  family_number: z.string(),
+  address: z.string(),
+  rt_rw: z.string(),
+  village: z.string(),
+  district: z.string(),
+  city: z.string(),
+  province: z.string(),
+  postal_code: z.string(),
+  family_members: z.array(familyMemberDetailSchema),
+})
+
+const extractedContentSchema = z.object({
+  bounding_boxes: z.array(boundingBoxSchema),
+  content: z.string(),
+  structured_data: z.record(z.any()).optional(),
+})
+
+const legalDocumentSchema = z.object({
   type: z.string(),
   name: z.string(),
   url: z.string(),
-  last_updated: z.string(),
-  extracted_content: extractedContentSchema.optional(),
+  lastUpdated: z.string(),
+  extractedContent: extractedContentSchema.optional(),
 })
 
 const noteSchema = z.object({
@@ -40,8 +71,18 @@ export const candidateSchema = z.object({
   skills: z.array(z.string()).optional(),
   rating: z.number().min(0).max(5).optional(),
   notes: z.array(noteSchema).optional(),
-  resume: z.array(documentSchema).optional(),
-  legal_documents: z.array(documentSchema).optional(),
+  resume: z.array(z.object({
+    type: z.string(),
+    name: z.string(),
+    url: z.string(),
+    last_updated: z.string(),
+    extracted_content: z.object({
+      text: z.string(),
+      tables: z.array(z.any()).optional(),
+      bounding_boxes: z.array(z.any()).optional(),
+    }).optional(),
+  })).optional(),
+  legal_documents: z.array(legalDocumentSchema).optional(),
   cv_url: z.string().optional(),
   gender: z.string().optional(),
   date_of_birth: z.string().optional(),
@@ -61,7 +102,20 @@ export const candidateSchema = z.object({
     is_current: z.boolean().optional(),
     description: z.string().optional(),
   })).optional(),
-  documents: z.array(documentSchema).optional(),
+  documents: z.array(z.object({
+    type: z.string(),
+    name: z.string(),
+    url: z.string(),
+    last_updated: z.string(),
+    extracted_content: z.object({
+      text: z.string(),
+      tables: z.array(z.any()).optional(),
+      bounding_boxes: z.array(z.any()).optional(),
+    }).optional(),
+  })).optional(),
 })
 
 export type Candidate = z.infer<typeof candidateSchema>
+export type KartuKeluargaStructured = z.infer<typeof kartuKeluargaStructuredSchema>
+export type FamilyMemberDetail = z.infer<typeof familyMemberDetailSchema>
+export type BoundingBox = z.infer<typeof boundingBoxSchema>

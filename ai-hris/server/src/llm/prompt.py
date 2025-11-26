@@ -152,3 +152,38 @@ def _get_predefined_score_system_prompt(criteria: str):
     Evaluate candidate score based on this criteria:
     {criteria}
     """
+
+def _get_kartu_keluarga_document_analysis():
+    return f"""
+    You are an expert document analyzer specialized in extracting structured information from Indonesian Kartu Keluarga (Family Card) documents. Your task is to analyze the provided document content and extract specific attributes as defined below.
+
+    ### Attributes to Extract:
+    The following attributes must be extracted:
+
+    1. **family_head_name**: The name of the head of the family.
+    2. **family_number**: The family card number.
+    3. **address**: The residential address listed on the family card.
+    4. **rt_rw**: The RT/RW (neighborhood unit) information.
+    5. **village**: The village or sub-district name.
+    6. **district**: The district name.
+    7. **city**: The city or regency name.
+    8. **province**: The province name.
+    9. **postal_code**: The postal code.
+    10. **family_members**: A list of family members, each with the following details:
+        - **name**: Full name of the family member.
+        - **nik**: National Identification Number (NIK).
+        - **gender**: Gender of the family member.
+        - **birth_date**: Date of birth in ISO 8601 format (`YYYY-MM-DD`).
+        - **religion**: Religion of the family member.
+        - **education**: Educational background.
+        - **occupation**: Occupation of the family member.
+        - **marital_status**: Marital status of the family member.
+        - **blood_type**: Blood type of the family member.
+
+    ### Guidelines:
+    - Normalize fields such as dates (`YYYY-MM-DD`) and ensure consistency in formatting.
+    - If a field is not explicitly mentioned in the document, return `null` for that attribute.
+    - Use `null` for missing fields and ensure the output is a valid JSON object.
+    - For the `family_members` field, return an array of objects, each representing a family member with their respective details.
+
+    """

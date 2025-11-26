@@ -20,10 +20,17 @@ class WorkExperience(BaseModel):
     is_current: bool = Field(False, alias="isCurrent")
     description: Optional[str] = None
 
+class BoundingBoxDetail(BaseModel):
+    model_config = ConfigDict(populate_by_name=True)
+    
+    content: Optional[str] = None
+    page_number: Optional[int] = Field(None, alias="pageNumber")
+    polygons: Optional[List[int]] = None
+
 class ExtractedContent(BaseModel):
     model_config = ConfigDict(populate_by_name=True)
     
-    text: str
+    text: Optional[str] = None
     tables: Optional[List[Dict[str, Any]]] = None
     bounding_boxes: Optional[List[Dict[str, Any]]] = Field(None, alias="boundingBoxes")
 
@@ -50,6 +57,10 @@ class Document(BaseModel):
     url: str
     last_updated: str = Field(..., alias="lastUpdated")
     extracted_content: Optional[ExtractedContent] = Field(None, alias="extractedContent")
+    # Fields from document_analyzer.py
+    content: Optional[str] = None
+    structured_data: Optional[Dict[str, Any]] = Field(None, alias="structuredData")
+    bounding_boxes_detailed: Optional[List[BoundingBoxDetail]] = Field(None, alias="boundingBoxesDetailed")
 
 class Candidate(BaseModel):
     model_config = ConfigDict(

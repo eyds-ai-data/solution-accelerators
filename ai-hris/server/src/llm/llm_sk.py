@@ -1,6 +1,6 @@
 from semantic_kernel.connectors.ai.open_ai import AzureChatCompletion, OpenAIChatPromptExecutionSettings
 from loguru import logger
-from src.llm.prompt import _get_cv_extractor_system_prompt, _get_predefined_score_system_prompt
+from src.llm.prompt import _get_cv_extractor_system_prompt, _get_predefined_score_system_prompt, _get_kartu_keluarga_document_analysis
 from src.domain.cv_extractor import CVAttributeExtractionResponse
 from semantic_kernel.agents import ChatCompletionAgent
 from semantic_kernel.functions import KernelArguments
@@ -83,5 +83,35 @@ class LLMService:
 
         except Exception as e:
             raise Exception(f"Error scoring CV: {str(e)}")
+    
+    async def kartu_keluarga_extractor(self, kk_text: str) -> str:
+        try:
+            settings = OpenAIChatPromptExecutionSettings()
+
+            prompt = f"""
+            Here is the Kartu Keluarga text:
+            {kk_text}
+            """
+
+            chat_content = ChatMessageContent(
+                role=AuthorRole.USER,
+                items=[
+                    TextContent(text=prompt)
+                ]
+            )
+
+            agent = ChatCompletionAgent(
+                service=self.azure_chat_completion,
+                name="KartuKeluargaExtractorAgent",
+                instructions=_get_kartu_keluarga_document_analysis(),
+                arguments=KernelArguments(settings=settings)
+            )
+
+            response = await agent.get_response(chat_content)
+
+            return json.loads(str(response.content))
+        
+        except Exception as e:
+            raise Exception(f"Error extracting Kartu Keluarga information: {str(e)}")
 
 
