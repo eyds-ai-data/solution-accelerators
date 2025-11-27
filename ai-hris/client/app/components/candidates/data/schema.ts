@@ -41,8 +41,8 @@ const legalDocumentSchema = z.object({
   type: z.string(),
   name: z.string(),
   url: z.string(),
-  lastUpdated: z.string(),
-  extractedContent: extractedContentSchema.optional(),
+  last_updated: z.string(),
+  extracted_content: extractedContentSchema.optional(),
 })
 
 const noteSchema = z.object({

@@ -46,24 +46,24 @@ console.log('KartuKeluargaModal data prop:', props.data)
 
 <template>
   <Dialog :open="open" @update:open="$emit('update:open', $event)">
-    <DialogContent class="max-w-4xl max-h-[90vh] overflow-y-auto">
-      <DialogHeader>
+    <DialogContent class="w-[95vw] max-w-none! h-[95vh] flex flex-col p-6">
+      <DialogHeader class="shrink-0">
         <DialogTitle>Kartu Keluarga Details</DialogTitle>
         <DialogDescription>
           Extracted data from the uploaded Kartu Keluarga document.
         </DialogDescription>
       </DialogHeader>
 
-      <div v-if="data" class="space-y-6">
+      <div v-if="data" class="flex flex-col gap-6 flex-1 overflow-hidden">
         <!-- Header Info -->
-        <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-4 shrink-0">
           <Card>
             <CardHeader class="pb-2">
               <CardTitle class="text-sm font-medium text-muted-foreground">Family Head</CardTitle>
             </CardHeader>
             <CardContent>
-              <div class="text-lg font-bold">{{ data.extractedContent?.structured_data?.family_head_name }}</div>
-              <div class="text-sm text-muted-foreground">No. KK: {{ data.extractedContent?.structured_data?.family_number }}</div>
+              <div class="text-lg font-bold">{{ data.extracted_content?.structured_data?.family_head_name }}</div>
+              <div class="text-sm text-muted-foreground">No. KK: {{ data.extracted_content?.structured_data?.family_number }}</div>
             </CardContent>
           </Card>
 
@@ -72,26 +72,26 @@ console.log('KartuKeluargaModal data prop:', props.data)
               <CardTitle class="text-sm font-medium text-muted-foreground">Address</CardTitle>
             </CardHeader>
             <CardContent>
-              <div class="text-sm">{{ data.extractedContent?.structured_data?.address }}</div>
+              <div class="text-sm">{{ data.extracted_content?.structured_data?.address }}</div>
               <div class="text-sm text-muted-foreground">
-                RT/RW: {{ data.extractedContent?.structured_data?.rt_rw }} | Village: {{ data.extractedContent?.structured_data?.village }}
+                RT/RW: {{ data.extracted_content?.structured_data?.rt_rw }} | Village: {{ data.extracted_content?.structured_data?.village }}
               </div>
               <div class="text-sm text-muted-foreground">
-                District: {{ data.extractedContent?.structured_data?.district }} | City: {{ data.extractedContent?.structured_data?.city }}
+                District: {{ data.extracted_content?.structured_data?.district }} | City: {{ data.extracted_content?.structured_data?.city }}
               </div>
               <div class="text-sm text-muted-foreground">
-                Province: {{ data.extractedContent?.structured_data?.province }} | Postal Code: {{ data.extractedContent?.structured_data?.postal_code }}
+                Province: {{ data.extracted_content?.structured_data?.province }} | Postal Code: {{ data.extracted_content?.structured_data?.postal_code }}
               </div>
             </CardContent>
           </Card>
         </div>
 
-        <Separator />
+        <Separator class="shrink-0" />
 
         <!-- Family Members Table -->
-        <div>
-          <h3 class="text-lg font-semibold mb-4">Family Members</h3>
-          <div class="border rounded-md">
+        <div class="flex flex-col overflow-auto min-h-0 flex-1">
+          <h3 class="text-lg font-semibold mb-4 shrink-0">Family Members</h3>
+          <div class="border rounded-md overflow-auto flex-1">
             <Table>
               <TableHeader>
                 <TableRow>
@@ -107,7 +107,7 @@ console.log('KartuKeluargaModal data prop:', props.data)
                 </TableRow>
               </TableHeader>
               <TableBody>
-                <TableRow v-for="member in data.extractedContent?.structured_data?.family_members" :key="member.nik">
+                <TableRow v-for="member in data.extracted_content?.structured_data?.family_members" :key="member.nik">
                   <TableCell class="font-medium">{{ member.name }}</TableCell>
                   <TableCell>{{ member.nik }}</TableCell>
                   <TableCell>{{ member.gender }}</TableCell>
