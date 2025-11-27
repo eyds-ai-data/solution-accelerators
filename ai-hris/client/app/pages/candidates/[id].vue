@@ -97,14 +97,28 @@ const documentCompletion = computed(() => {
 })
 
 const downloadCV = () => {
-  if (candidate.value?.cv_url) {
-    window.open(candidate.value.cv_url, '_blank')
-  }
+  // if (candidate.value?.resume) {
+  //   window.open(candidate.value?.resume[0], '_blank')
+  // }
+  throw new Error('Not implemented yet')
 }
 
 const formatDate = (dateString: string) => {
   const date = new Date(dateString)
   return date.toLocaleDateString('en-US', { year: 'numeric', month: 'short' })
+}
+
+const calculateAge = (dateString: string) => {
+  const today = new Date()
+  const birthDate = new Date(dateString)
+  let age = today.getFullYear() - birthDate.getFullYear()
+  const monthDiff = today.getMonth() - birthDate.getMonth()
+  
+  if (monthDiff < 0 || (monthDiff === 0 && today.getDate() < birthDate.getDate())) {
+    age--
+  }
+  
+  return age
 }
 
 const isKKModalOpen = ref(false)
@@ -383,7 +397,8 @@ const getSignalColor = (signal: string, index?: number) => {
                 <Separator />
                 <div class="grid grid-cols-[80px_1fr] gap-2 text-sm">
                   <span class="text-muted-foreground">Birthday</span>
-                  <span class="font-medium text-right">{{ candidate?.date_of_birth }}</span>
+                  <span class="font-medium text-right" v-if="candidate?.date_of_birth">{{ formatDate(candidate.date_of_birth) }} ({{ calculateAge(candidate.date_of_birth) }} years old)</span>
+                  <span v-else class="font-medium text-right text-muted-foreground">-</span>
                 </div>
                 <Separator />
                 <div class="grid grid-cols-[80px_1fr] gap-2 text-sm">
