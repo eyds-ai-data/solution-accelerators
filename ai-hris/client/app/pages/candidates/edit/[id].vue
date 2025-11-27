@@ -60,6 +60,8 @@ const fileInput = ref<HTMLInputElement | null>(null)
 const isModalOpen = ref(false)
 const isFamilyModalOpen = ref(false)
 const selectedDocument = ref<LegalDocument | undefined>(undefined)
+const showSuccessNotification = ref(false)
+const isSaving = ref(false)
 
 const calculateTotalExperience = (experiences: any[]) => {
   if (!experiences || experiences.length === 0) return 0
@@ -214,6 +216,8 @@ const handleFileUpload = async (event: Event) => {
 }
 
 const saveCandidate = async () => {
+  isSaving.value = true
+  
   const payload = {
     name: form.value.name,
     email: form.value.email,
@@ -233,19 +237,27 @@ const saveCandidate = async () => {
     family_members: form.value.family_members
   }
 
-  const { data, error } = await useFetch(`/api/candidates/${candidateId}`, {
-    method: 'PUT',
-    body: payload
-  })
+  try {
+    const { data, error } = await useFetch(`/api/candidates/${candidateId}`, {
+      method: 'PUT',
+      body: payload
+    })
 
-  if (error.value) {
-    console.error('Error saving candidate:', error.value)
-    // You might want to show a toast notification here
-    return
+    if (error.value) {
+      console.error('Error saving candidate:', error.value)
+      return
+    }
+
+    // Show success notification
+    showSuccessNotification.value = true
+    
+    // Auto-hide notification after 3 seconds
+    setTimeout(() => {
+      showSuccessNotification.value = false
+    }, 3000)
+  } finally {
+    isSaving.value = false
   }
-
-  // Navigate back on success
-  router.push(`/candidates/${candidateId}`)
 }
 </script>
 
@@ -486,11 +498,21 @@ const saveCandidate = async () => {
       </Card>
 
       <div class="flex justify-end gap-4">
-        <Button variant="outline" @click="goBack">Cancel</Button>
-        <Button @click="saveCandidate">
-          <Save class="mr-2 h-4 w-4" />
-          Save Changes
+        <Button variant="outline" @click="goBack" :disabled="isSaving">Cancel</Button>
+        <Button @click="saveCandidate" :disabled="isSaving">
+          <Loader2 v-if="isSaving" class="mr-2 h-4 w-4 animate-spin" />
+          <Save v-else class="mr-2 h-4 w-4" />
+          {{ isSaving ? 'Saving...' : 'Save Changes' }}
         </Button>
+      </div>
+
+      <!-- Success Notification -->
+      <div 
+        v-if="showSuccessNotification"
+        class="fixed bottom-6 right-6 bg-green-500 text-white px-6 py-3 rounded-lg shadow-lg flex items-center gap-2 z-50"
+      >
+        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>
+        <span>Data successfully updated!</span>
       </div>
 
     </div>
