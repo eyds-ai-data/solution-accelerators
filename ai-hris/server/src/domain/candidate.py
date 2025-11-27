@@ -58,6 +58,21 @@ class LegalDocument(BaseModel):
     last_updated: str = Field(..., alias="lastUpdated")
     extracted_content: Optional[ExtractedContent] = Field(None, alias="extractedContent")
 
+class InterviewScore(BaseModel):
+    model_config = ConfigDict(populate_by_name=True)
+    
+    label: str
+    value: float
+
+class Interview(BaseModel):
+    model_config = ConfigDict(populate_by_name=True)
+
+    summary: Optional[str] = None
+    score_details: Optional[List[InterviewScore]] = Field(None, alias="scoreDetails")
+    interview_scores: Optional[List[InterviewScore]] = Field(None, alias="interviewScores")
+    signals: Optional[list[str]] = None
+
+
 class Candidate(BaseModel):
     model_config = ConfigDict(
         populate_by_name=True,  # Allow both snake_case and camelCase
@@ -84,6 +99,8 @@ class Candidate(BaseModel):
     education: Optional[List[Education]] = None
     work_experiences: Optional[List[WorkExperience]] = Field(None, alias="workExperiences")
     embeddings: Optional[List[float]] = None
+    interview: Optional[Interview] = None
+
 
 class CandidateResponse(BaseModel):
     model_config = ConfigDict(
@@ -111,3 +128,4 @@ class CandidateResponse(BaseModel):
     education: Optional[List[Education]] = None
     work_experiences: Optional[List[WorkExperience]] = Field(None, alias="workExperiences")
     embeddings: Optional[List[float]] = None
+    interview: Optional[Interview] = None

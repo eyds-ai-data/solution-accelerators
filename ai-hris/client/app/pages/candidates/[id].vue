@@ -43,48 +43,21 @@ const { data: candidate, pending: loading, error } = await useFetch<Candidate>(`
 
 const activeTab = ref('info')
 
-// Extended data for the UI
+// Extended data for the UI - keeping only truly extended/mock data
 const extendedCandidate = computed(() => {
   if (!candidate.value) return null
   
   return {
     ...candidate.value,
-    role: 'Product Designer I', // Mock role
-    location: 'Amsterdam, The Netherlands',
-    daysInGoodfit: 3,
-    birthday: 'October 14, 1994 (31 years old)',
-    signals: [
-      { label: 'Short Tenure', color: 'bg-yellow-100 text-yellow-800 border-yellow-200', icon: 'briefcase' },
-      { label: 'Proctoring Incident', color: 'bg-red-100 text-red-800 border-red-200', icon: 'alert' },
-      { label: 'Quick Joiner', color: 'bg-green-100 text-green-800 border-green-200', icon: 'zap' },
-    ],
-    scores: {
-      aiInterview: 8.0,
-      assessments: 4.9,
-      resume: 7.3
-    },
-    interviewScores: [
-      { label: 'Visual Design', value: 8.5, color: 'bg-green-500' },
-      { label: 'Communication', value: 7.2, color: 'bg-blue-500' },
-      { label: 'Problem Solving', value: 6.8, color: 'bg-purple-500' }
-    ],
     experience: [
       { role: 'Human Interface Designer', company: 'Apple, Inc.', period: '2024 - present' },
       { role: 'Product Designer', company: 'Uber', period: '2019-2024' }
-    ],
-    education: [
-      { school: 'National Institute of Design', period: '2015-2019' },
-      { school: 'National Institute of Fashion Technology', period: '2012-2015' }
     ],
     documents: [
       { type: 'KTP', name: 'ktp_scan.jpg', icon: IdCard },
       { type: 'Kartu Keluarga', name: 'kk_scan.pdf', icon: Users },
       { type: 'Ijazah', name: 'ijazah_s1.pdf', icon: GraduationCap },
       { type: 'Buku Tabungan', name: 'buku_tabungan_bca.jpg', icon: CreditCard }
-    ],
-    notes: [
-      { author: 'Sarah Miller', role: 'Hiring Manager', date: '2 days ago', content: 'Strong portfolio, but I have concerns about the short tenure at the previous role. Let\'s dig deeper into that during the interview.' },
-      { author: 'James Chen', role: 'Recruiter', date: '3 days ago', content: 'Candidate was very responsive and enthusiastic during the initial screening.' }
     ],
     activities: [
       { title: 'Moved to Interview Stage', date: '2 days ago', description: 'Candidate was moved from Screening to Interview stage.' },
@@ -146,6 +119,34 @@ const handleDocumentClick = (doc: any) => {
     window.open(doc.url, '_blank')
   }
 }
+
+const getSignalColor = (signal: string, index?: number) => {
+  const colors = [
+    'bg-blue-100 text-blue-800 border-blue-200 dark:bg-blue-900/40 dark:text-blue-300 dark:border-blue-900/60',
+    'bg-purple-100 text-purple-800 border-purple-200 dark:bg-purple-900/40 dark:text-purple-300 dark:border-purple-900/60',
+    'bg-pink-100 text-pink-800 border-pink-200 dark:bg-pink-900/40 dark:text-pink-300 dark:border-pink-900/60',
+    'bg-red-100 text-red-800 border-red-200 dark:bg-red-900/40 dark:text-red-300 dark:border-red-900/60',
+    'bg-green-100 text-green-800 border-green-200 dark:bg-green-900/40 dark:text-green-300 dark:border-green-900/60',
+    'bg-yellow-100 text-yellow-800 border-yellow-200 dark:bg-yellow-900/40 dark:text-yellow-300 dark:border-yellow-900/60',
+    'bg-indigo-100 text-indigo-800 border-indigo-200 dark:bg-indigo-900/40 dark:text-indigo-300 dark:border-indigo-900/60',
+    'bg-cyan-100 text-cyan-800 border-cyan-200 dark:bg-cyan-900/40 dark:text-cyan-300 dark:border-cyan-900/60',
+  ]
+  
+  // If index is provided, use it; otherwise use hash-based index
+  let colorIndex = 0
+  if (index !== undefined) {
+    colorIndex = index % colors.length
+  } else {
+    let hash = 0
+    for (let i = 0; i < signal.length; i++) {
+      hash = ((hash << 5) - hash) + signal.charCodeAt(i)
+      hash = hash & hash
+    }
+    colorIndex = Math.abs(hash) % colors.length
+  }
+  
+  return colors[colorIndex]
+}
 </script>
 
 <template>
@@ -181,8 +182,8 @@ const handleDocumentClick = (doc: any) => {
                 <AvatarImage :src="`https://api.dicebear.com/7.x/avataaars/svg?seed=${extendedCandidate.name}`" />
                 <AvatarFallback>{{ extendedCandidate.name.charAt(0) }}</AvatarFallback>
               </Avatar>
-              <Badge class="absolute -bottom-2 -right-2 bg-green-100 text-green-700 hover:bg-green-100 border-green-200 px-2 py-0.5 text-sm font-bold shadow-sm">
-                {{ extendedCandidate.scores.aiInterview }}/10
+              <Badge v-if="candidate?.interview?.score?.[0]" class="absolute -bottom-2 -right-2 bg-green-100 text-green-700 hover:bg-green-100 border-green-200 px-2 py-0.5 text-sm font-bold shadow-sm">
+                {{ candidate.interview.score[0].value }}/10
               </Badge>
             </div>
             
@@ -237,15 +238,13 @@ const handleDocumentClick = (doc: any) => {
             <h3 class="text-sm font-medium text-muted-foreground">Signals</h3>
             <div class="flex flex-wrap gap-3">
               <Badge 
-                v-for="signal in extendedCandidate.signals" 
-                :key="signal.label" 
+                v-for="(signal, index) in candidate?.interview?.signals" 
+                :key="signal" 
                 variant="outline"
-                :class="['gap-1.5 py-1.5 px-3 text-sm font-normal', signal.color]"
+                :class="getSignalColor(signal, index)"
+                class="p-2"
               >
-                <Briefcase v-if="signal.icon === 'briefcase'" class="h-3.5 w-3.5" />
-                <AlertTriangle v-else-if="signal.icon === 'alert'" class="h-3.5 w-3.5" />
-                <Activity v-else class="h-3.5 w-3.5" />
-                {{ signal.label }}
+                {{ signal }}
               </Badge>
             </div>
           </div>
@@ -254,7 +253,7 @@ const handleDocumentClick = (doc: any) => {
           <div class="space-y-3">
             <h3 class="text-sm font-medium text-muted-foreground">AI Interview Summary</h3>
             <p class="text-sm text-muted-foreground leading-relaxed whitespace-pre-line">
-              {{ (extendedCandidate.notes || '') + '\n\nLorem ipsum dolor sit amet consectetur. Nulla risus nisl magna platea in convallis. Vitae elementum pellentesque elit augue massa. Lectus sit nisl vitae a. Massa felis aliquot amet habitasse. Scelerisque ut proin nescitur non ornare. Ut amet mauris nulla cursus cum mauris ac tempor. In sed condimentum nullam sed in. Nibh dui mattis ornare bibendum nullam risus ut pharetra. Sed ultrices tempus amet egestas hac arcu. Ut a convallis pellentesque sem ipsum bibendum. Arcu nulla dictum sit enim at vulputate. Congue odio risus amet egestas nec diam consequat venenatis. This will contain both info and a summary of recommended actionable for the candidate.\n\nPraesent sapien massa, convallis a pellentesque nec, egestas non nisi. Curabitur arcu erat, accumsan id imperdiet et, porttitor at sem. Vestibulum ac diam sit amet quam vehicula elementum sed sit amet dui. Nulla quis lorem ut libero malesuada feugiat. Vivamus magna justo, lacinia eget consectetur sed, convallis at tellus. Quisque velit nisi, pretium ut lacinia in, elementum id enim.\n\nDonec sollicitudin molestie malesuada. Cras ultricies ligula sed magna dictum porta. Curabitur aliquet quam id dui posuere blandit. Curabitur non nulla sit amet nisl tempus convallis quis ac lectus. Proin eget tortor risus. Mauris blandit aliquet elit, eget tincidunt nibh pulvinar a.' }}
+              {{ candidate?.interview?.summary || 'No summary available.' }}
             </p>
           </div>
 
@@ -262,38 +261,14 @@ const handleDocumentClick = (doc: any) => {
           <div class="space-y-3">
             <h3 class="text-sm font-medium text-muted-foreground">Score</h3>
             <div class="grid grid-cols-1 sm:grid-cols-3 gap-4">
-              <Card class="bg-green-50/50 dark:bg-green-900/10 border-green-100 dark:border-green-900/20">
+              <Card v-for="(score, index) in candidate?.interview?.score_details" :key="index" class="bg-green-50/50 dark:bg-green-900/10 border-green-100 dark:border-green-900/20">
                 <CardContent class="p-4 flex items-center gap-4">
                   <div class="h-10 w-10 rounded-full bg-background flex items-center justify-center shadow-sm text-green-600 dark:text-green-400">
                     <Headphones class="h-5 w-5" />
                   </div>
                   <div>
-                    <div class="text-2xl font-bold text-foreground">{{ extendedCandidate.scores.aiInterview.toFixed(1) }}</div>
-                    <div class="text-xs font-medium text-muted-foreground">AI Interview</div>
-                  </div>
-                </CardContent>
-              </Card>
-              
-              <Card class="bg-red-50/50 dark:bg-red-900/10 border-red-100 dark:border-red-900/20">
-                <CardContent class="p-4 flex items-center gap-4">
-                  <div class="h-10 w-10 rounded-full bg-background flex items-center justify-center shadow-sm text-red-600 dark:text-red-400">
-                    <Gem class="h-5 w-5" />
-                  </div>
-                  <div>
-                    <div class="text-2xl font-bold text-foreground">{{ extendedCandidate.scores.assessments.toFixed(1) }}</div>
-                    <div class="text-xs font-medium text-muted-foreground">Assessments</div>
-                  </div>
-                </CardContent>
-              </Card>
-              
-              <Card class="bg-muted/50 border-border">
-                <CardContent class="p-4 flex items-center gap-4">
-                  <div class="h-10 w-10 rounded-full bg-background flex items-center justify-center shadow-sm text-muted-foreground">
-                    <FileText class="h-5 w-5" />
-                  </div>
-                  <div>
-                    <div class="text-2xl font-bold text-foreground">{{ extendedCandidate.scores.resume.toFixed(1) }}</div>
-                    <div class="text-xs font-medium text-muted-foreground">Resume</div>
+                    <div class="text-2xl font-bold text-foreground">{{ score.value.toFixed(1) }}</div>
+                    <div class="text-xs font-medium text-muted-foreground">{{ score.label }}</div>
                   </div>
                 </CardContent>
               </Card>
@@ -301,20 +276,19 @@ const handleDocumentClick = (doc: any) => {
           </div>
 
           <!-- AI Interview Score Details -->
-          <Card>
+          <Card v-if="candidate?.interview?.interview_scores">
             <CardHeader class="pb-3">
               <CardTitle class="text-base font-medium">AI Interview Score</CardTitle>
             </CardHeader>
             <CardContent class="space-y-6">
-              <div v-for="score in extendedCandidate.interviewScores" :key="score.label">
+              <div v-for="score in candidate.interview.interview_scores" :key="score.label">
                 <div class="flex justify-between items-center mb-2">
                   <span class="text-sm font-medium text-muted-foreground">{{ score.label }}</span>
                   <span class="text-sm font-bold text-foreground">{{ score.value }}</span>
                 </div>
                 <div class="w-full bg-muted rounded-full h-2">
                   <div
-                    class="h-2 rounded-full transition-all duration-500"
-                    :class="score.color"
+                    class="h-2 rounded-full transition-all duration-500 bg-green-500"
                     :style="{ width: `${(score.value / 10) * 100}%` }"
                   />
                 </div>

@@ -2,7 +2,6 @@
 import { ref, computed, onMounted } from 'vue'
 import { useRoute, useRouter } from 'vue-router'
 import type { Candidate } from '@/components/candidates/data/schema'
-import candidatesData from '@/components/candidates/data/candidates.json'
 import { Button } from '@/components/ui/button'
 import { Card, CardContent, CardHeader, CardTitle, CardDescription, CardFooter } from '@/components/ui/card'
 import { Input } from '@/components/ui/input'
@@ -17,31 +16,37 @@ const router = useRouter()
 const candidateId = route.params.id as string
 
 // Form state
-const form = ref<Partial<Candidate>>({
+const form = ref({
   name: '',
   email: '',
   phone: '',
   position: '',
   status: 'applied',
   experience: 0,
-  skills: [],
+  skills: [] as string[],
   notes: ''
 })
 
 const newSkill = ref('')
 
 // Load data
-onMounted(() => {
-  const candidates = (candidatesData as { data: Candidate[] }).data
-  const candidate = candidates.find(c => c.id === candidateId)
-  
-  if (candidate) {
-    form.value = { ...candidate }
-  } else {
-    // Handle not found
-    router.push('/candidates')
+const { data: candidate, error } = await useFetch<Candidate>(`/api/candidates/${candidateId}`)
+
+if (error.value || !candidate.value) {
+  router.push('/candidates')
+} else {
+  const c = candidate.value
+  form.value = {
+    name: c.name,
+    email: c.email || '',
+    phone: c.phone || '',
+    position: c.position || '',
+    status: c.status || 'applied',
+    experience: c.experience || 0,
+    skills: c.skills || [],
+    notes: Array.isArray(c.notes) ? c.notes.map(n => n.message).join('\n') : ''
   }
-})
+}
 
 const goBack = () => {
   router.back()
@@ -73,7 +78,7 @@ const saveCandidate = () => {
 
 <template>
   <div class="min-h-screen bg-muted/40 p-6">
-    <div class="max-w-3xl mx-auto space-y-6">
+    <div class="w-full mx-auto space-y-6">
       
       <!-- Header -->
       <div class="flex items-center gap-4">

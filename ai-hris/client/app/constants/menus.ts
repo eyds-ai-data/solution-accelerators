@@ -2,13 +2,18 @@ import type { NavMenu, NavMenuItems } from '~/types/nav'
 
 export const navMenu: NavMenu[] = [
   {
-    heading: 'General',
+    heading: '',
     items: [
       {
         title: 'Home',
         icon: 'i-lucide-home',
         link: '/',
-      },
+      }
+    ],
+  },
+  {
+    heading: 'Hiring',
+    items: [
       {
         title: 'Jobs',
         icon: 'i-lucide-book-open',
@@ -18,6 +23,16 @@ export const navMenu: NavMenu[] = [
         title: 'Candidates',
         icon: 'i-lucide-users',
         link: '/candidates',
+      },
+    ],
+  },
+  {
+    heading: 'Internal',
+    items: [
+      {
+        title: 'Employees',
+        icon: 'i-lucide-users',
+        link: '/employees',
       },
     ],
   }

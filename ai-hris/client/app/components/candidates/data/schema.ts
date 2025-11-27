@@ -58,6 +58,23 @@ const addressSchema = z.object({
   zip: z.number().optional(),
 })
 
+const interviewScoreSchema = z.object({
+  label: z.string(),
+  value: z.number(),
+})
+
+const interviewScoreSchema = z.object({
+  label: z.string(),
+  value: z.number(),
+})
+
+const interviewSchema = z.object({
+  summary: z.string().optional(),
+  score_details: z.array(interviewScoreSchema).optional(),
+  interview_scores: z.array(interviewScoreSchema).optional(),
+  signals: z.array(z.string()).optional(),
+})
+
 export const candidateSchema = z.object({
   id: z.string(),
   candidate_id: z.string(),
@@ -111,6 +128,7 @@ export const candidateSchema = z.object({
       bounding_boxes: z.array(z.any()).optional(),
     }).optional(),
   })).optional(),
+  interview: interviewSchema.optional(),
 })
 
 export type Candidate = z.infer<typeof candidateSchema>
@@ -119,3 +137,6 @@ export type FamilyMemberDetail = z.infer<typeof familyMemberDetailSchema>
 export type BoundingBox = z.infer<typeof boundingBoxSchema>
 export type LegalDocument = z.infer<typeof legalDocumentSchema>
 export type ExtractedContent = z.infer<typeof extractedContentSchema>
+export type Interview = z.infer<typeof interviewSchema>
+export type InterviewScore = z.infer<typeof interviewScoreSchema>
+export type AiInterviewScore = z.infer<typeof interviewScoreSchema>
