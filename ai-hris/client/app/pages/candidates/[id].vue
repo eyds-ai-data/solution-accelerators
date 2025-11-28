@@ -7,6 +7,15 @@ import { Badge } from '@/components/ui/badge'
 import { Button } from '@/components/ui/button'
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
 import { Separator } from '@/components/ui/separator'
+import {
+  Stepper,
+  StepperDescription,
+  StepperIndicator,
+  StepperItem,
+  StepperSeparator,
+  StepperTitle,
+  StepperTrigger,
+} from '@/components/ui/stepper'
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar'
 import {
   Send,
@@ -42,6 +51,27 @@ const candidateId = route.params.id as string
 const { data: candidate, pending: loading, error } = await useFetch<Candidate>(`/api/candidates/${candidateId}`)
 
 const activeTab = ref('info')
+
+const statusSteps = computed(() => [
+  { value: 'applied', label: 'Applied' },
+  { value: 'reviewing', label: 'Reviewing' },
+  { value: 'shortlisted', label: 'Shortlisted' },
+  { 
+    value: 'decision', 
+    label: candidate.value?.status === 'hired' 
+      ? 'Hired' 
+      : candidate.value?.status === 'rejected' 
+        ? 'Rejected' 
+        : 'Hired / Rejected' 
+  },
+])
+
+const currentStatusIndex = computed(() => {
+  if (!candidate.value?.status) return 0
+  const status = candidate.value.status
+  if (status === 'hired' || status === 'rejected') return 3
+  return statusSteps.value.findIndex(s => s.value === status)
+})
 
 // Extended data for the UI - keeping only truly extended/mock data
 const extendedCandidate = computed(() => {
@@ -220,6 +250,42 @@ const getSignalColor = (signal: string, index?: number) => {
                   Applied {{ Math.floor((Date.now() - new Date(candidate?.applied_date ?? Date.now()).getTime()) / (1000 * 3600 * 24)) }} days ago
                 </div>
 
+              </div>
+
+              <!-- Status Stepper -->
+              <div class="w-full mt-6">
+                <Stepper :model-value="currentStatusIndex" class="flex w-full items-start gap-2">
+                  <StepperItem
+                    v-for="(step, index) in statusSteps"
+                    :key="step.value"
+                    :step="index"
+                    class="relative flex flex-col flex-1 group"
+                    :class="{
+                      'items-start': index === 0,
+                      'items-center': index !== 0 && index !== statusSteps.length - 1,
+                      'items-end': index === statusSteps.length - 1
+                    }"
+                  >
+                    <StepperTrigger class="flex flex-col items-center gap-2 p-2 rounded-md hover:bg-muted/50 transition-colors">
+                      <StepperIndicator class="h-8 w-8 rounded-full flex items-center justify-center border-2 transition-all duration-300 group-data-[state=active]:bg-primary group-data-[state=active]:border-primary group-data-[state=active]:text-primary-foreground group-data-[state=completed]:bg-primary/20 group-data-[state=completed]:border-primary/20 group-data-[state=completed]:text-primary">
+                        <CheckCircle2 v-if="index < currentStatusIndex" class="h-4 w-4" />
+                        <span v-else class="text-sm font-medium">{{ index + 1 }}</span>
+                      </StepperIndicator>
+                      <div class="flex flex-col items-center text-center">
+                        <StepperTitle class="text-sm font-medium transition-colors group-data-[state=active]:text-primary group-data-[state=completed]:text-muted-foreground">{{ step.label }}</StepperTitle>
+                      </div>
+                    </StepperTrigger>
+                    <StepperSeparator 
+                      v-if="index !== statusSteps.length - 1" 
+                      class="absolute top-6 h-0.5 bg-muted group-data-[state=completed]:bg-primary/20"
+                      :class="{
+                        'left-[calc(50%+20px)] right-[calc(-50%+20px)]': index !== 0 && index !== statusSteps.length - 2,
+                        'left-11 right-[calc(-50%+20px)]': index === 0,
+                        'left-[calc(50%+20px)] right-[calc(-100%+44px)]': index === statusSteps.length - 2
+                      }"
+                    />
+                  </StepperItem>
+                </Stepper>
               </div>
             </div>
           </div>
