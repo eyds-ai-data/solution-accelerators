@@ -52,25 +52,35 @@ const { data: candidate, pending: loading, error } = await useFetch<Candidate>(`
 
 const activeTab = ref('info')
 
-const statusSteps = computed(() => [
-  { value: 'applied', label: 'Applied' },
-  { value: 'reviewing', label: 'Reviewing' },
-  { value: 'shortlisted', label: 'Shortlisted' },
-  { 
-    value: 'decision', 
-    label: candidate.value?.status === 'hired' 
-      ? 'Hired' 
-      : candidate.value?.status === 'rejected' 
-        ? 'Rejected' 
-        : 'Hired / Rejected' 
-  },
-])
+const statusSteps = computed(() => {
+  const steps = [
+    { value: 'applied', label: 'Applied' },
+    { value: 'screening', label: 'Screening' },
+    { value: 'interview', label: 'Interview' },
+    { value: 'shortlisted', label: 'Shortlisted' },
+  ]
+
+  if (candidate.value?.status === 'hired') {
+    steps.push({ value: 'hired', label: 'Hired' })
+    steps.push({ value: 'onboarding', label: 'Onboarding' })
+  } else if (candidate.value?.status === 'rejected') {
+    steps.push({ value: 'rejected', label: 'Rejected' })
+  } else {
+    steps.push({ value: 'decision', label: 'Hired / Rejected' })
+  }
+  
+  return steps
+})
 
 const currentStatusIndex = computed(() => {
   if (!candidate.value?.status) return 0
   const status = candidate.value.status
-  if (status === 'hired' || status === 'rejected') return 3
-  return statusSteps.value.findIndex(s => s.value === status)
+  
+  if (status === 'hired') return 5
+  if (status === 'rejected') return 4
+  
+  const index = statusSteps.value.findIndex(s => s.value === status)
+  return index !== -1 ? index : 0
 })
 
 // Extended data for the UI - keeping only truly extended/mock data
@@ -381,7 +391,7 @@ const getSignalColor = (signal: string, index?: number) => {
         <div class="lg:col-span-4 space-y-6">
           
           <!-- Document Completion Card -->
-          <Card>
+          <Card v-if="candidate?.status === 'hired'" :class="{ 'border-blue-600 dark:border-blue-400 shadow-md ring-1 ring-blue-600 dark:ring-blue-400': candidate?.status === 'hired' }">
             <CardHeader class="pb-3">
               <CardTitle class="text-sm font-medium text-muted-foreground">Document Completion</CardTitle>
             </CardHeader>

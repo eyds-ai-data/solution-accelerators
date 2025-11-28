@@ -75,9 +75,24 @@ export const columns: ColumnDef<Candidate>[] = [
     },
   },
   {
-    accessorKey: 'experience',
+    id: 'experience',
+    accessorFn: (row) => {
+      const workExperiences = row.work_experiences || []
+      if (workExperiences.length === 0) {
+        return row.experience || 0
+      }
+      const totalMilliseconds = workExperiences.reduce((acc, exp) => {
+        const startDate = new Date(exp.start_date).getTime()
+        const endDate = exp.end_date ? new Date(exp.end_date).getTime() : Date.now()
+        return acc + (endDate - startDate)
+      }, 0)
+      return totalMilliseconds / (1000 * 60 * 60 * 24 * 365.25)
+    },
     header: ({ column }) => h(DataTableColumnHeader, { column, title: 'Experience' }),
-    cell: ({ row }) => h('div', { class: 'text-sm' }, `${row.getValue('experience')} yrs`),
+    cell: ({ row }) => {
+      const years = row.getValue('experience') as number
+      return h('div', { class: 'text-sm' }, `${years.toFixed(1)} yrs`)
+    },
   },
   {
     accessorKey: 'rating',
