@@ -96,17 +96,6 @@ export const candidateSchema = z.object({
   skills: z.array(z.string()).optional(),
   rating: z.number().min(0).max(5).optional(),
   notes: z.array(noteSchema).optional(),
-  resume: z.array(z.object({
-    type: z.string(),
-    name: z.string(),
-    url: z.string(),
-    last_updated: z.string(),
-    extracted_content: z.object({
-      text: z.string(),
-      tables: z.array(z.any()).optional(),
-      bounding_boxes: z.array(z.any()).optional(),
-    }).optional(),
-  })).optional(),
   gender: z.string().optional(),
   date_of_birth: z.string().optional(),
   address: addressSchema.optional(),
@@ -137,6 +126,8 @@ export const candidateSchema = z.object({
       bounding_boxes: z.array(z.any()).optional(),
     }).optional(),
   })).optional(),
+  resume: z.object({}).optional(),
+  offering_letter: z.object({}).optional(),
   interview: interviewSchema.optional(),
 })
 

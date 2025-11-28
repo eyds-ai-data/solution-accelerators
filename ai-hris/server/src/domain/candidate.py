@@ -111,12 +111,13 @@ class Candidate(BaseModel):
     skills: Optional[List[str]] = None
     rating: Optional[float] = None
     notes: Optional[List[Note]] = None
-    resume: Optional[List[LegalDocument]] = None
     legal_documents: Optional[List[LegalDocument]] = Field(None, alias="legalDocuments")
     education: Optional[List[Education]] = None
     work_experiences: Optional[List[WorkExperience]] = Field(None, alias="workExperiences")
     family_members: Optional[List[FamilyMember]] = Field(None, alias="familyMembers")
     embeddings: Optional[List[float]] = None
+    resume: Optional[Dict[str, Any]] = None
+    offering_letter: Optional[Dict[str, Any]] = Field(None, alias="offeringLetter")
     interview: Optional[Interview] = None
 
 
@@ -142,10 +143,11 @@ class CandidateResponse(BaseModel):
     skills: Optional[List[str]] = None
     rating: Optional[float] = None
     notes: Optional[List[Note]] = None
-    resume: Optional[List[LegalDocument]] = None
     legal_documents: Optional[List[LegalDocument]] = Field(None, alias="legalDocuments")
     education: Optional[List[Education]] = None
     work_experiences: Optional[List[WorkExperience]] = Field(None, alias="workExperiences")
     family_members: Optional[List[FamilyMember]] = Field(None, alias="familyMembers")
     embeddings: Optional[List[float]] = None
+    resume: Optional[Dict[str, Any]] = None
+    offering_letter: Optional[Dict[str, Any]] = Field(None, alias="offeringLetter")
     interview: Optional[Interview] = None

@@ -94,6 +94,8 @@ const uploadProgress = ref(0)
 const isAnalyzing = ref(false)
 const tempUploadedFile = ref<File | null>(null)
 const tempExtractedData = ref<any>(null)
+const offeringLetterInput = ref<HTMLInputElement | null>(null)
+const currentUploadType = ref<'document' | 'offering_letter'>('document')
 
 const previewDocument = computed(() => {
   if (!tempExtractedData.value?.data) return null
@@ -105,6 +107,12 @@ const previewDocument = computed(() => {
     last_updated: d.last_updated,
     extracted_content: d.document_data
   } as LegalDocument
+})
+
+const hasOfferingLetter = computed(() => {
+  return form.value.legal_documents.some(doc => 
+    doc.type === 'OFFERING_LETTER' || doc.type?.toUpperCase().includes('OFFERING')
+  )
 })
 
 const uploadDocument = async (file: File) => {
@@ -130,19 +138,27 @@ const confirmUpload = () => {
     const result = tempExtractedData.value
     const file = tempUploadedFile.value
 
+    // Determine document type based on upload type
+    let docType = result.data?.document_type || result.document_type || 'OTHER'
+    
+    // If uploading as offering letter, use that type
+    if (currentUploadType.value === 'offering_letter') {
+      docType = 'OFFERING_LETTER'
+    }
+
     // Create new document entry
     const newDoc: LegalDocument = {
-      type: result.data.document_type, 
-      name: result.data.name || file.name,
-      url: result.data.url, 
-      last_updated: result.data.last_updated || new Date().toISOString(),
-      extracted_content: result.data.document_data
+      type: docType, 
+      name: result.data?.name || file.name,
+      url: result.data?.url || '', 
+      last_updated: result.data?.last_updated || new Date().toISOString(),
+      extracted_content: result.data?.document_data || result
     }
 
     form.value.legal_documents.push(newDoc)
 
-    // Auto-fill address if available and empty
-    if (result.data?.document_data?.structured_data) {
+    // Auto-fill address if available and empty (only for KK documents)
+    if (docType === 'KK' && result.data?.document_data?.structured_data) {
       const sd = result.data.document_data.structured_data
       if (!form.value.address_detail && sd.address) form.value.address_detail = sd.address
       if (!form.value.address_city && sd.city) form.value.address_city = sd.city
@@ -252,6 +268,10 @@ const triggerFileUpload = () => {
   fileInput.value?.click()
 }
 
+const triggerOfferingLetterUpload = () => {
+  offeringLetterInput.value?.click()
+}
+
 const handleFileUpload = async (event: Event) => {
   const target = event.target as HTMLInputElement
   if (!target.files || target.files.length === 0) return
@@ -259,6 +279,7 @@ const handleFileUpload = async (event: Event) => {
   const file = target.files[0]
   if (!file) return
 
+  currentUploadType.value = 'document'
   tempUploadedFile.value = file
   isUploadModalOpen.value = true
   isAnalyzing.value = true
@@ -279,6 +300,36 @@ const handleFileUpload = async (event: Event) => {
   
   // Reset input so same file can be selected again if needed
   if (fileInput.value) fileInput.value.value = ''
+}
+
+const handleOfferingLetterUpload = async (event: Event) => {
+  const target = event.target as HTMLInputElement
+  if (!target.files || target.files.length === 0) return
+
+  const file = target.files[0]
+  if (!file) return
+
+  currentUploadType.value = 'offering_letter'
+  tempUploadedFile.value = file
+  isUploadModalOpen.value = true
+  isAnalyzing.value = true
+  uploadProgress.value = 20
+  
+  try {
+    // Upload/analysis
+    const result = await uploadDocument(file)
+    uploadProgress.value = 100
+    tempExtractedData.value = result
+  } catch (error) {
+    console.error('Upload failed:', error)
+    // Handle error (maybe show a toast or message)
+    isUploadModalOpen.value = false
+  } finally {
+    isAnalyzing.value = false
+  }
+  
+  // Reset input so same file can be selected again if needed
+  if (offeringLetterInput.value) offeringLetterInput.value.value = ''
 }
 
 const saveCandidate = async () => {
@@ -483,7 +534,7 @@ const saveCandidate = async () => {
       <Card>
         <CardHeader>
           <CardTitle>Documents</CardTitle>
-          <CardDescription>Manage legal documents (e.g. Kartu Keluarga).</CardDescription>
+          <CardDescription>Manage legal documents (e.g. Kartu Keluarga, Signed Offering Letter).</CardDescription>
         </CardHeader>
         <CardContent class="space-y-4">
           <div v-if="form.legal_documents.length > 0" class="space-y-2">
@@ -493,10 +544,15 @@ const saveCandidate = async () => {
               class="flex items-center justify-between p-3 border rounded-md bg-muted/50 hover:bg-muted cursor-pointer transition-colors"
               @click="openDocumentModal(doc)"
             >
-              <div class="flex items-center gap-3">
+              <div class="flex items-center gap-3 flex-1">
                 <FileText class="h-5 w-5 text-muted-foreground" />
-                <div>
-                  <p class="text-sm font-medium">{{ doc.name }}</p>
+                <div class="flex-1">
+                  <div class="flex items-center gap-2">
+                    <p class="text-sm font-medium">{{ doc.name }}</p>
+                    <Badge v-if="doc.type === 'OFFERING_LETTER' || doc.type?.toUpperCase().includes('OFFERING')" variant="default">
+                      Offering Letter
+                    </Badge>
+                  </div>
                   <p class="text-xs text-muted-foreground">{{ doc.type }} • {{ new Date(doc.last_updated).toLocaleDateString() }}</p>
                 </div>
               </div>
@@ -509,8 +565,14 @@ const saveCandidate = async () => {
             No documents uploaded yet.
           </div>
 
-          <div class="flex justify-end">
+          <div class="flex gap-2 justify-end">
             <input type="file" ref="fileInput" class="hidden" accept=".pdf,.png,.jpg,.jpeg" @change="handleFileUpload" />
+            <input type="file" ref="offeringLetterInput" class="hidden" accept=".pdf" @change="handleOfferingLetterUpload" />
+            <Button variant="outline" @click="triggerOfferingLetterUpload" :disabled="isUploading">
+              <Loader2 v-if="isUploading" class="mr-2 h-4 w-4 animate-spin" />
+              <Upload v-else class="mr-2 h-4 w-4" />
+              {{ isUploading ? 'Analyzing...' : 'Upload Offering Letter' }}
+            </Button>
             <Button variant="outline" @click="triggerFileUpload" :disabled="isUploading">
               <Loader2 v-if="isUploading" class="mr-2 h-4 w-4 animate-spin" />
               <Upload v-else class="mr-2 h-4 w-4" />
