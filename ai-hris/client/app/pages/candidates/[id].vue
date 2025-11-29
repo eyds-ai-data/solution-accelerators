@@ -141,7 +141,8 @@ const documentCompletion = computed(() => {
   const uploadedTypes = candidate.value.legal_documents?.map(d => d.type) || []
   
   // Check if offering letter exists and include it in the count
-  if (candidate.value.offering_letter) {
+  if (Object.keys(candidate.value.offering_letter || {}).length > 0) {
+    console.log('Offering letter found, adding to uploaded types')
     uploadedTypes.push('Signed Offer Letter')
   }
   
@@ -633,7 +634,7 @@ const getSignalColor = (signal: string, index?: number) => {
             </Card>
 
             <!-- Signed Offering Letter -->
-            <Card v-if="candidate?.offering_letter">
+            <Card v-if="Object.keys(candidate?.offering_letter || {}).length > 0">
               <CardHeader class="pb-3">
                 <CardTitle class="text-sm font-medium text-muted-foreground">Signed Offering Letter</CardTitle>
               </CardHeader>
@@ -644,7 +645,7 @@ const getSignalColor = (signal: string, index?: number) => {
                 >
                   <div class="flex items-center gap-3 overflow-hidden">
                     <div class="h-8 w-8 bg-background rounded border flex items-center justify-center shrink-0">
-                      <component :is="getDocumentIcon('Signed Offer Letter')" class="h-4 w-4 text-blue-500" />
+                      <component :is="getDocumentIcon('Signed Offer Letter')" class="h-4 w-4 text-green-500" />
                     </div>
                     <div class="flex flex-col overflow-hidden">
                       <span class="text-sm font-medium truncate">{{ candidate.offering_letter.name }}</span>
