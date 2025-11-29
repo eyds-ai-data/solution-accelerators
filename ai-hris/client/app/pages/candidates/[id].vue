@@ -3,6 +3,14 @@ import { ref, computed } from 'vue'
 import { useRoute, useRouter } from 'vue-router'
 import type { Candidate, KartuKeluargaStructured, LegalDocument } from '@/components/candidates/data/schema'
 import KartuKeluargaModal from '@/components/candidates/KartuKeluargaModal.vue'
+import SignedOfferLetterContent from '@/components/candidates/SignedOfferLetterContent.vue'
+import {
+  Dialog,
+  DialogContent,
+  DialogDescription,
+  DialogHeader,
+  DialogTitle,
+} from '@/components/ui/dialog'
 import { Badge } from '@/components/ui/badge'
 import { Button } from '@/components/ui/button'
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
@@ -131,6 +139,12 @@ const documentCompletion = computed(() => {
   if (!candidate.value) return { progress: 0, missing: [] }
   
   const uploadedTypes = candidate.value.legal_documents?.map(d => d.type) || []
+  
+  // Check if offering letter exists and include it in the count
+  if (candidate.value.offering_letter) {
+    uploadedTypes.push('Signed Offer Letter')
+  }
+  
   const missing = requiredDocuments.filter(doc => !uploadedTypes.includes(doc))
   const progress = Math.round(((requiredDocuments.length - missing.length) / requiredDocuments.length) * 100)
   
@@ -164,6 +178,7 @@ const calculateAge = (dateString: string) => {
 
 const isKKModalOpen = ref(false)
 const selectedKKData = ref<LegalDocument | undefined>(undefined)
+const isOfferingLetterModalOpen = ref(false)
 
 const handleDocumentClick = (doc: any) => {
   console.log('Document clicked:', doc)
@@ -617,6 +632,32 @@ const getSignalColor = (signal: string, index?: number) => {
               </CardContent>
             </Card>
 
+            <!-- Signed Offering Letter -->
+            <Card v-if="candidate?.offering_letter">
+              <CardHeader class="pb-3">
+                <CardTitle class="text-sm font-medium text-muted-foreground">Signed Offering Letter</CardTitle>
+              </CardHeader>
+              <CardContent class="space-y-3">
+                <div 
+                  class="border rounded-lg p-3 flex items-center justify-between bg-muted/50 cursor-pointer hover:bg-muted/80 transition-colors"
+                  @click="isOfferingLetterModalOpen = true"
+                >
+                  <div class="flex items-center gap-3 overflow-hidden">
+                    <div class="h-8 w-8 bg-background rounded border flex items-center justify-center shrink-0">
+                      <component :is="getDocumentIcon('Signed Offer Letter')" class="h-4 w-4 text-blue-500" />
+                    </div>
+                    <div class="flex flex-col overflow-hidden">
+                      <span class="text-sm font-medium truncate">{{ candidate.offering_letter.name }}</span>
+                      <span class="text-xs text-muted-foreground">{{ candidate.offering_letter.type }}</span>
+                    </div>
+                  </div>
+                  <Button variant="ghost" size="icon" class="h-8 w-8" @click.stop="isOfferingLetterModalOpen = true">
+                    <ExternalLink class="h-4 w-4 text-muted-foreground" />
+                  </Button>
+                </div>
+              </CardContent>
+            </Card>
+
             <!-- Legal Documents -->
             <Card>
               <CardHeader class="pb-3">
@@ -706,5 +747,19 @@ const getSignalColor = (signal: string, index?: number) => {
       v-model:open="isKKModalOpen" 
       :data="selectedKKData" 
     />
+
+    <!-- Signed Offering Letter Modal -->
+    <Dialog :open="isOfferingLetterModalOpen" @update:open="isOfferingLetterModalOpen = $event">
+      <DialogContent class="w-[95vw] max-w-2xl flex flex-col p-6 max-h-[90vh] overflow-y-auto">
+        <DialogHeader>
+          <DialogTitle>Signed Offering Letter</DialogTitle>
+          <DialogDescription>
+            Review the signed offering letter document
+          </DialogDescription>
+        </DialogHeader>
+        
+        <SignedOfferLetterContent :data="candidate?.offering_letter" />
+      </DialogContent>
+    </Dialog>
   </div>
 </template>

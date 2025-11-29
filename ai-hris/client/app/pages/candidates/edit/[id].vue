@@ -726,7 +726,7 @@ const saveCandidate = async () => {
                   <p class="text-sm font-medium">{{ form.offering_letter.name }}</p>
                   <Badge variant="default" class="bg-green-600">Signed</Badge>
                 </div>
-                <p class="text-xs text-muted-foreground">OFFERING_LETTER • {{ new Date(form.offering_letter.last_updated).toLocaleDateString() }}</p>
+                <p class="text-xs text-muted-foreground">Signed Offering Letter • {{ new Date(form.offering_letter.last_updated).toLocaleDateString() }}</p>
               </div>
             </div>
             <Button variant="ghost" size="icon" @click.stop="form.offering_letter = undefined" class="text-destructive hover:text-destructive hover:bg-destructive/10">
