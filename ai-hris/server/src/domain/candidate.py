@@ -1,5 +1,5 @@
-from pydantic import BaseModel, Field, ConfigDict
-from typing import Optional, List, Any, Dict
+from pydantic import BaseModel, Field, ConfigDict, field_validator
+from typing import Optional, List, Any, Dict, Union
 
 class Education(BaseModel):
     model_config = ConfigDict(populate_by_name=True)
@@ -107,10 +107,10 @@ class Candidate(BaseModel):
     position: Optional[str] = None
     status: Optional[str] = None
     applied_date: Optional[str] = Field(None, alias="appliedDate")
-    experience: Optional[float] = None
+    experience: Optional[Union[int, float]] = None
     skills: Optional[List[str]] = None
     rating: Optional[float] = None
-    notes: Optional[List[Note]] = None
+    notes: Optional[Union[List[Note], str]] = None
     resume: Optional[List[LegalDocument]] = None
     legal_documents: Optional[List[LegalDocument]] = Field(None, alias="legalDocuments")
     education: Optional[List[Education]] = None
@@ -118,6 +118,46 @@ class Candidate(BaseModel):
     family_members: Optional[List[FamilyMember]] = Field(None, alias="familyMembers")
     embeddings: Optional[List[float]] = None
     interview: Optional[Interview] = None
+    
+    @field_validator('experience', mode='before')
+    @classmethod
+    def coerce_experience_to_float(cls, v):
+        """Convert experience to float, handling both int and float types."""
+        if v is None:
+            return None
+        if isinstance(v, (int, float)):
+            return float(v)
+        if isinstance(v, str):
+            try:
+                return float(v)
+            except ValueError:
+                return None
+        return v
+    
+    @field_validator('notes', mode='before')
+    @classmethod
+    def normalize_notes(cls, v):
+        """Normalize notes to ensure it's a list of Note objects or a string."""
+        if v is None:
+            return None
+        if isinstance(v, str):
+            return v
+        if isinstance(v, list):
+            # Try to convert list items to Note objects if they're dicts
+            result = []
+            for item in v:
+                if isinstance(item, dict):
+                    try:
+                        result.append(Note(**item))
+                    except Exception:
+                        # If conversion fails, keep the dict as is
+                        result.append(item)
+                elif isinstance(item, Note):
+                    result.append(item)
+                else:
+                    result.append(item)
+            return result
+        return v
 
 
 class CandidateResponse(BaseModel):
@@ -138,10 +178,10 @@ class CandidateResponse(BaseModel):
     position: Optional[str] = None
     status: Optional[str] = None
     applied_date: Optional[str] = Field(None, alias="appliedDate")
-    experience: Optional[float] = None
+    experience: Optional[Union[int, float]] = None
     skills: Optional[List[str]] = None
     rating: Optional[float] = None
-    notes: Optional[List[Note]] = None
+    notes: Optional[Union[List[Note], str]] = None
     resume: Optional[List[LegalDocument]] = None
     legal_documents: Optional[List[LegalDocument]] = Field(None, alias="legalDocuments")
     education: Optional[List[Education]] = None
@@ -149,3 +189,43 @@ class CandidateResponse(BaseModel):
     family_members: Optional[List[FamilyMember]] = Field(None, alias="familyMembers")
     embeddings: Optional[List[float]] = None
     interview: Optional[Interview] = None
+    
+    @field_validator('experience', mode='before')
+    @classmethod
+    def coerce_experience_to_float(cls, v):
+        """Convert experience to float, handling both int and float types."""
+        if v is None:
+            return None
+        if isinstance(v, (int, float)):
+            return float(v)
+        if isinstance(v, str):
+            try:
+                return float(v)
+            except ValueError:
+                return None
+        return v
+    
+    @field_validator('notes', mode='before')
+    @classmethod
+    def normalize_notes(cls, v):
+        """Normalize notes to ensure it's a list of Note objects or a string."""
+        if v is None:
+            return None
+        if isinstance(v, str):
+            return v
+        if isinstance(v, list):
+            # Try to convert list items to Note objects if they're dicts
+            result = []
+            for item in v:
+                if isinstance(item, dict):
+                    try:
+                        result.append(Note(**item))
+                    except Exception:
+                        # If conversion fails, keep the dict as is
+                        result.append(item)
+                elif isinstance(item, Note):
+                    result.append(item)
+                else:
+                    result.append(item)
+            return result
+        return v
