@@ -40,7 +40,7 @@ blob_storage = BlobStorageRepository(connection_string=config.AZURE_STORAGE_CONN
 cv_scoring = CVScoring(llm_service=llm)
 cv_extractor = CVExtractor(llm_service=llm)
 candidate_recommendation = CandidateRecommendation(cosmosdb=cosmosdb, embedding_service=azembedding)
-candidate_service = CandidateService(cosmosdb=cosmosdb)
+candidate_service = CandidateService(cosmosdb=cosmosdb, llm_service=llm)
 
 document_analyzer = DocumentAnalyzer(doc_intel_repo=document_intelligence, llm_service=llm)
 

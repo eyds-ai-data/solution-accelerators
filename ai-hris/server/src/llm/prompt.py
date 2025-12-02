@@ -1,3 +1,5 @@
+from src.domain.candidate import Candidate
+
 def _get_cv_extractor_system_prompt():
     return f"""
         You are a professional resume parser designed to extract structured information from resumes or CVs and return the result in JSON format. Your task is to analyze the provided resume content, interpret it accurately regardless of formatting (PDF, plain text, etc.), and extract specific attributes as defined below.
@@ -218,5 +220,32 @@ def _get_legal_documents_classification_prompt():
     - Ensure the output is a valid JSON object.
     - Return only the JSON object without any additional text.
     - Add confidence score between 0 and 1 indicating the certainty of your classification.
+
+    """
+
+def _get_discrepancy_analysis_prompt():
+    return f"""
+    You are an expert discrepancy analyst specialized in identifying and categorizing discrepancies between source and target documents. Your task is to analyze the provided document content and identify any discrepancies based on the defined attributes below.
+
+    ### Attributes to Extract:
+    The following attributes must be extracted for each identified discrepancy:
+
+    1. **category**: The category of the discrepancy (if applicable; use `null` if not applicable).
+    2. **field**: The specific field where the discrepancy was found.
+    3. **severity**: The severity level of the discrepancy ('low', 'medium', 'high').
+    4. **note**: Additional notes or comments about the discrepancy (if applicable; use `null` if not applicable).
+    5. **source**: Details of the source document related to the discrepancy, including:
+        - **type**: The type of source document.
+        - **name**: The name of the source document.
+        - **value**: The value from the source document (if applicable; use `null` if not applicable).
+    6. **target**: Details of the target document related to the discrepancy, including:
+        - **type**: The type of target document.
+        - **name**: The name of the target document.
+        - **value**: The value from the target document (if applicable; use `null` if not applicable).
+
+    ### Guidelines:
+    - Analyze the provided documents thoroughly to identify any discrepancies.
+    - For each identified discrepancy, extract and structure the information according to the attributes listed above.
+    - Use `null` for missing fields and ensure the output is a valid JSON array of objects.
 
     """

@@ -130,12 +130,12 @@ const discrepancySchema = z.object({
   source: z.object({
     type: z.string(),
     name: z.string(),
-    value: z.any().optional(),
+    value: z.string().optional(),
   }).optional(),
   target: z.object({
     type: z.string(),
     name: z.string(),
-    value: z.any().optional(),
+    value: z.string().optional(),
   }).optional(),
 })
 

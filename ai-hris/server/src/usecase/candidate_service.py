@@ -2,10 +2,12 @@ from loguru import logger
 from typing import Optional, List
 from src.repository.database import CosmosDB, CosmosDBRepository
 from src.domain.candidate import Candidate, CandidateResponse, LegalDocument
+from src.llm.llm_sk import LLMService
 
 class CandidateService:
-    def __init__(self, cosmosdb: CosmosDB):
+    def __init__(self, cosmosdb: CosmosDB, llm_service: LLMService):
         self.cosmosdb = cosmosdb
+        self.llm_service = llm_service
         # Use 'candidates' container, or create with default if not specified
         self.candidate_repo = CosmosDBRepository(cosmosdb, Candidate, container_name="candidates")
 
@@ -82,24 +84,13 @@ class CandidateService:
             raise
 
     async def update_candidate(self, candidate_id: str, candidate_data: dict) -> Optional[CandidateResponse]:
-        """
-        Use case: Update a candidate.
-        
-        If legal_documents are provided and a document type already exists, 
-        it will be replaced instead of adding duplicates.
-        
-        Args:
-            candidate_id: The candidate ID to update
-            candidate_data: The new candidate data (partial or full)
-            
-        Returns:
-            CandidateResponse object if updated, None otherwise
-        """
         try:
             # Get existing candidate (Model)
             existing_candidate = self.candidate_repo.get_by_id(candidate_id, id_field="candidateId")
             if not existing_candidate:
                 return None
+            
+            discrepancy_results = await self.llm_service.discrepancy_analysis(existing_candidate)
             
             # Get existing raw candidate (Dict) to preserve extra fields and casing
             existing_candidate_raw = self.candidate_repo.get_raw_by_id(candidate_id, id_field="candidateId")

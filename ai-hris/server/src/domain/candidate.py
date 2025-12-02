@@ -118,7 +118,7 @@ class SourceTargetDocument(BaseModel):
     
     type: str
     name: str
-    value: Optional[Any] = None
+    value: str
 
 class Discrepancy(BaseModel):
     model_config = ConfigDict(populate_by_name=True)
@@ -129,6 +129,11 @@ class Discrepancy(BaseModel):
     note: Optional[str] = None
     source: Optional[SourceTargetDocument] = None
     target: Optional[SourceTargetDocument] = None
+
+class ListDiscrepancyResponse(BaseModel):
+    model_config = ConfigDict(populate_by_name=True)
+    
+    discrepancies: List[Discrepancy]
 
 class Candidate(BaseModel):
     model_config = ConfigDict(
