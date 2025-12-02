@@ -15,6 +15,7 @@ from src.domain.candidate_recommendation import CandidateData, JobData
 from pydantic import ValidationError
 from src.repository.database import CosmosDB
 from src.usecase.candidate_service import CandidateService
+from src.usecase.employee_service import EmployeeService
 from src.repository.document_intelligence import DocumentIntelligenceRepository
 from src.repository.blob_storage import BlobStorageRepository
 from src.usecase.document_analyzer import DocumentAnalyzer
@@ -41,6 +42,7 @@ cv_scoring = CVScoring(llm_service=llm)
 cv_extractor = CVExtractor(llm_service=llm)
 candidate_recommendation = CandidateRecommendation(cosmosdb=cosmosdb, embedding_service=azembedding)
 candidate_service = CandidateService(cosmosdb=cosmosdb, llm_service=llm)
+employee_service = EmployeeService(cosmosdb=cosmosdb, llm_service=llm)
 
 document_analyzer = DocumentAnalyzer(doc_intel_repo=document_intelligence, llm_service=llm)
 
@@ -424,6 +426,42 @@ def analyze_document_offering_signature():
     
     except Exception as e:
         app.logger.exception("Error in analyze_document route")
+        return internal_server_error(str(e))
+    
+@app.route('/api/v1/employees/by-position', methods=['GET'])
+def get_employees_by_position():
+    try:
+        position = request.args.get('position')
+        limit = request.args.get('limit', default=100, type=int)
+        
+        if not position:
+            return bad_request_error("position query parameter is required")
+
+        result = asyncio.run(candidate_service.get_candidates_by_position(position=position, limit=limit))
+
+        return ok(
+            message=f"Candidates for position '{position}' retrieved successfully",
+            data=[c.model_dump() for c in result]
+        )
+
+    except Exception as e:
+        app.logger.exception("Error in get_candidates_by_position route")
+        return internal_server_error(str(e))
+    
+@app.route('/api/v1/employees', methods=['GET'])
+def list_employees():
+    try:
+        limit = request.args.get('limit', default=100, type=int)
+        
+        result = asyncio.run(employee_service.list_employees(limit=limit))
+
+        return ok(
+            message="Employees retrieved successfully",
+            data=[c.model_dump() for c in result]
+        )
+
+    except Exception as e:
+        app.logger.exception("Error in list_employees route")
         return internal_server_error(str(e))
 
 if __name__ == '__main__':

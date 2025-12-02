@@ -95,7 +95,7 @@ class Employee(BaseModel):
     )
     
     id: str
-    candidate_id: str = Field(..., alias="candidateId")
+    employee_id: str = Field(..., alias="employeeId")
     name: str
     
     @field_validator('discrepancies', mode='before')
