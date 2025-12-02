@@ -113,6 +113,23 @@ class Salary(BaseModel):
     factors: List[SalaryFactor]
 
 
+class SourceTargetDocument(BaseModel):
+    model_config = ConfigDict(populate_by_name=True)
+    
+    type: str
+    name: str
+    value: Optional[Any] = None
+
+class Discrepancy(BaseModel):
+    model_config = ConfigDict(populate_by_name=True)
+    
+    category: Optional[str] = None
+    field: str
+    severity: str  # 'low', 'medium', 'high'
+    note: Optional[str] = None
+    source: Optional[SourceTargetDocument] = None
+    target: Optional[SourceTargetDocument] = None
+
 class Candidate(BaseModel):
     model_config = ConfigDict(
         populate_by_name=True,  # Allow both snake_case and camelCase
@@ -144,6 +161,7 @@ class Candidate(BaseModel):
     offering_letter: Optional[Dict[str, Any]] = Field(None, alias="offeringLetter")
     interview: Optional[Interview] = None
     salary: Optional[Salary] = None
+    discrepancies: Optional[List[Discrepancy]] = None
 
 
 class CandidateResponse(BaseModel):
@@ -177,3 +195,4 @@ class CandidateResponse(BaseModel):
     offering_letter: Optional[Dict[str, Any]] = Field(None, alias="offeringLetter")
     interview: Optional[Interview] = None
     salary: Optional[Salary] = None
+    discrepancies: Optional[List[Discrepancy]] = None

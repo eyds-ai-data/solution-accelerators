@@ -122,6 +122,23 @@ const salarySchema = z.object({
   factors: z.array(salaryFactorSchema),
 })
 
+const discrepancySchema = z.object({
+  category: z.string().optional(),
+  field: z.string(),
+  severity: z.enum(['low', 'medium', 'high']),
+  note: z.string().optional(),
+  source: z.object({
+    type: z.string(),
+    name: z.string(),
+    value: z.any().optional(),
+  }).optional(),
+  target: z.object({
+    type: z.string(),
+    name: z.string(),
+    value: z.any().optional(),
+  }).optional(),
+})
+
 export const candidateSchema = z.object({
   id: z.string(),
   candidate_id: z.string(),
@@ -160,6 +177,7 @@ export const candidateSchema = z.object({
   offering_letter: offeringLetterSchema.optional(),
   interview: interviewSchema.optional(),
   salary: salarySchema.optional(),
+  discrepancies: z.array(discrepancySchema).optional(),
 })
 
 export type Candidate = z.infer<typeof candidateSchema>
@@ -177,3 +195,4 @@ export type FamilyMember = z.infer<typeof familyMemberSchema>
 export type Salary = z.infer<typeof salarySchema>
 export type MarketRange = z.infer<typeof marketRangeSchema>
 export type SalaryFactor = z.infer<typeof salaryFactorSchema>
+export type Discrepancy = z.infer<typeof discrepancySchema>

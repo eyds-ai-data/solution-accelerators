@@ -52,6 +52,7 @@ import {
   Shield,
   Mail,
   Sparkles,
+  AlertTriangleIcon,
 } from 'lucide-vue-next'
 
 const route = useRoute()
@@ -60,7 +61,7 @@ const candidateId = route.params.id as string
 
 const { data: candidate, pending: loading, error } = await useFetch<Candidate>(`/api/candidates/${candidateId}`)
 
-const activeTab = ref('info')
+const activeTab = ref('notes')
 
 const statusSteps = computed(() => {
   const steps = [
@@ -117,6 +118,24 @@ const getFactorColor = (value: string) => {
     'Very Low': 'text-gray-600'
   }
   return map[value] || 'text-foreground'
+}
+
+const getSeverityColor = (severity: string) => {
+  const map: Record<string, string> = {
+    'low': 'bg-blue-50 border-blue-200 text-blue-700 dark:bg-blue-900/20 dark:border-blue-900/40 dark:text-blue-300',
+    'medium': 'bg-yellow-50 border-yellow-200 text-yellow-700 dark:bg-yellow-900/20 dark:border-yellow-900/40 dark:text-yellow-300',
+    'high': 'bg-red-50 border-red-200 text-red-700 dark:bg-red-900/20 dark:border-red-900/40 dark:text-red-300'
+  }
+  return map[severity] || 'bg-gray-50 border-gray-200 text-gray-700'
+}
+
+const getSeverityIcon = (severity: string) => {
+  const map: Record<string, any> = {
+    'low': Info,
+    'medium': AlertTriangle,
+    'high': AlertCircle
+  }
+  return map[severity] || Info
 }
 
 const requiredDocuments = ['KTP', 'KK', 'Ijazah', 'Buku Tabungan', 'NPWP', 'Signed Offer Letter']
@@ -349,6 +368,8 @@ const getSignalColor = (signal: string, index?: number) => {
             </Button>
           </div>
 
+
+
           <!-- Signals -->
           <div class="space-y-3">
             <h3 class="text-sm font-semibold text-muted-foreground">Signals</h3>
@@ -455,76 +476,9 @@ const getSignalColor = (signal: string, index?: number) => {
               </div>
             </CardContent>
           </Card>
-        </div>
 
-        <!-- Right Column (Sidebar) -->
-        <div class="lg:col-span-4 space-y-6">
-          
-          <!-- Document Completion Card -->
-          <Card v-if="candidate?.status === 'hired'" :class="{ 'border-blue-600 dark:border-blue-400 shadow-md ring-1 ring-blue-600 dark:ring-blue-400': candidate?.status === 'hired' }">
-            <CardHeader class="pb-3">
-              <CardTitle class="text-sm font-medium text-muted-foreground">Document Completion</CardTitle>
-            </CardHeader>
-            <CardContent class="space-y-4">
-              <div class="space-y-2">
-                <div class="flex justify-between text-sm">
-                  <span class="font-medium">{{ documentCompletion.progress }}% Complete</span>
-                  <span class="text-muted-foreground">{{ candidate?.legal_documents?.length }}/{{ requiredDocuments.length }}</span>
-                </div>
-                <div class="h-2 bg-muted rounded-full overflow-hidden">
-                  <div class="h-full bg-blue-600 rounded-full transition-all duration-500" :style="{ width: `${documentCompletion.progress}%` }"></div>
-                </div>
-              </div>
 
-              <div v-if="documentCompletion.missing.length > 0" class="space-y-2">
-                <p class="text-xs font-medium text-muted-foreground">Missing Documents:</p>
-                <div class="space-y-1">
-                  <div v-for="doc in documentCompletion.missing" :key="doc" class="flex items-center gap-2 text-sm text-amber-600 dark:text-amber-500 bg-amber-50 dark:bg-amber-900/20 px-2 py-1.5 rounded border border-amber-100 dark:border-amber-900/30">
-                    <AlertCircle class="h-3.5 w-3.5" />
-                    <span>{{ doc }}</span>
-                  </div>
-                </div>
-              </div>
-              <div v-else class="flex items-center gap-2 text-sm text-green-600 bg-green-50 dark:bg-green-900/20 px-2 py-1.5 rounded border border-green-100 dark:border-green-900/30">
-                <CheckCircle2 class="h-4 w-4" />
-                <span>All documents submitted</span>
-              </div>
-            </CardContent>
-          </Card>
 
-          <!-- Tabs -->
-          <div class="bg-muted/20 rounded-lg border p-1 flex gap-1">
-            <Button 
-              variant="ghost" 
-              size="sm" 
-              class="flex-1 transition-all"
-              :class="activeTab === 'info' ? 'bg-background text-foreground shadow-sm' : 'text-muted-foreground hover:text-foreground'"
-              @click="activeTab = 'info'"
-            >
-              <Info class="h-4 w-4" />
-            </Button>
-            <Button 
-              variant="ghost" 
-              size="sm" 
-              class="flex-1 transition-all"
-              :class="activeTab === 'notes' ? 'bg-background text-foreground shadow-sm' : 'text-muted-foreground hover:text-foreground'"
-              @click="activeTab = 'notes'"
-            >
-              <MessageSquare class="h-4 w-4" />
-            </Button>
-            <Button 
-              variant="ghost" 
-              size="sm" 
-              class="flex-1 transition-all"
-              :class="activeTab === 'activity' ? 'bg-background text-foreground shadow-sm' : 'text-muted-foreground hover:text-foreground'"
-              @click="activeTab = 'activity'"
-            >
-              <Activity class="h-4 w-4" />
-            </Button>
-          </div>
-
-          <!-- Info Tab Content -->
-          <div v-if="activeTab === 'info'" class="space-y-6">
             <!-- Contact Info -->
             <Card>
               <CardHeader class="pb-3">
@@ -739,10 +693,164 @@ const getSignalColor = (signal: string, index?: number) => {
                 </div>
               </CardContent>
             </Card>
+        </div>
+
+        <!-- Right Column (Sidebar) -->
+        <div class="lg:col-span-4 space-y-6">
+          
+          <!-- Document Completion Card -->
+          <Card v-if="candidate?.status === 'hired'" :class="{ 'border-blue-600 dark:border-blue-400 shadow-md ring-1 ring-blue-600 dark:ring-blue-400': candidate?.status === 'hired' }">
+            <CardHeader class="pb-3">
+              <CardTitle class="text-sm font-medium text-muted-foreground">Document Completion</CardTitle>
+            </CardHeader>
+            <CardContent class="space-y-4">
+              <div class="space-y-2">
+                <div class="flex justify-between text-sm">
+                  <span class="font-medium">{{ documentCompletion.progress }}% Complete</span>
+                  <span class="text-muted-foreground">{{ candidate?.legal_documents?.length }}/{{ requiredDocuments.length }}</span>
+                </div>
+                <div class="h-2 bg-muted rounded-full overflow-hidden">
+                  <div class="h-full bg-blue-600 rounded-full transition-all duration-500" :style="{ width: `${documentCompletion.progress}%` }"></div>
+                </div>
+              </div>
+
+              <div v-if="documentCompletion.missing.length > 0" class="space-y-2">
+                <p class="text-xs font-medium text-muted-foreground">Missing Documents:</p>
+                <div class="space-y-1">
+                  <div v-for="doc in documentCompletion.missing" :key="doc" class="flex items-center gap-2 text-sm text-amber-600 dark:text-amber-500 bg-amber-50 dark:bg-amber-900/20 px-2 py-1.5 rounded border border-amber-100 dark:border-amber-900/30">
+                    <AlertCircle class="h-3.5 w-3.5" />
+                    <span>{{ doc }}</span>
+                  </div>
+                </div>
+              </div>
+              <div v-else class="flex items-center gap-2 text-sm text-green-600 bg-green-50 dark:bg-green-900/20 px-2 py-1.5 rounded border border-green-100 dark:border-green-900/30">
+                <CheckCircle2 class="h-4 w-4" />
+                <span>All documents submitted</span>
+              </div>
+            </CardContent>
+          </Card>
+
+          <!-- Discrepancies Warning Card -->
+          <Card v-if="candidate?.discrepancies && candidate.discrepancies.length > 0" class="border-amber-200 bg-amber-50/50 dark:bg-amber-950/10">
+            <CardHeader class="pb-3">
+              <div class="flex items-center justify-between">
+                <CardTitle class="text-base font-medium flex items-center gap-2 text-amber-900 dark:text-amber-200">
+                  <AlertTriangle class="h-5 w-5 text-amber-600" />
+                  Data Discrepancies
+                </CardTitle>
+                <Badge variant="outline" class="bg-amber-100 text-amber-700 border-amber-200">
+                  {{ candidate.discrepancies.length }} Issues
+                </Badge>
+              </div>
+            </CardHeader>
+            <CardContent class="space-y-4">
+              <div v-for="(discrepancy, index) in candidate.discrepancies" :key="index" 
+                class="group relative bg-card rounded-lg border shadow-sm overflow-hidden transition-all hover:shadow-md"
+              >
+                <!-- Severity Strip -->
+                <div class="absolute left-0 top-0 bottom-0 w-1.5" :class="{
+                  'bg-blue-500': discrepancy.severity === 'low',
+                  'bg-amber-500': discrepancy.severity === 'medium',
+                  'bg-red-500': discrepancy.severity === 'high'
+                }"></div>
+
+                <div class="p-4 pl-5">
+                  <!-- Header -->
+                  <div class="flex justify-between items-start mb-3">
+                    <div class="space-y-1">
+                      <div class="flex items-center gap-2">
+                        <h4 class="font-semibold text-sm text-foreground">{{ discrepancy.field }}</h4>
+                        <Badge v-if="discrepancy.category" variant="secondary" class="text-[10px] px-1.5 h-5 font-medium text-muted-foreground bg-muted">
+                          {{ discrepancy.category }}
+                        </Badge>
+                      </div>
+                    </div>
+                    <Badge class="capitalize text-[10px] px-2 py-0.5 shadow-none" :class="{
+                      'bg-blue-50 text-blue-700 border-blue-200 hover:bg-blue-100': discrepancy.severity === 'low',
+                      'bg-amber-50 text-amber-700 border-amber-200 hover:bg-amber-100': discrepancy.severity === 'medium',
+                      'bg-red-50 text-red-700 border-red-200 hover:bg-red-100': discrepancy.severity === 'high'
+                    }" variant="outline">
+                      {{ discrepancy.severity }} Severity
+                    </Badge>
+                  </div>
+
+                  <!-- Comparison Box -->
+                  <div class="grid grid-cols-[1fr_auto_1fr] gap-2 items-center bg-muted/30 rounded-md p-3 mb-3 border border-muted/50">
+                    <!-- Target Side (Applicant Data) -->
+                    <div class="space-y-1">
+                      <div class="flex items-center gap-1.5 text-[10px] uppercase tracking-wider text-muted-foreground font-semibold">
+                        <Edit class="h-3 w-3" />
+                        {{ discrepancy.target?.type || 'Application' }}
+                      </div>
+                      <div class="text-sm font-medium text-foreground break-words">
+                        {{ discrepancy.target?.value ?? '-' }}
+                      </div>
+                    </div>
+
+                    <!-- Arrow -->
+                    <div class="text-muted-foreground/40 px-1">
+                      <MoveRight class="h-4 w-4" />
+                    </div>
+
+                    <!-- Source Side (Document Data) -->
+                    <div class="space-y-1 text-right">
+                      <div class="flex items-center justify-end gap-1.5 text-[10px] uppercase tracking-wider text-muted-foreground font-semibold">
+                        {{ discrepancy.source?.type || 'Document' }}
+                        <FileText class="h-3 w-3" />
+                      </div>
+                      <div class="text-sm font-medium text-foreground break-words">
+                        {{ discrepancy.source?.value ?? '-' }}
+                      </div>
+                    </div>
+                  </div>
+
+                  <!-- Footer Info -->
+                  <div class="space-y-2">
+                    <!-- Note -->
+                    <div v-if="discrepancy.note" class="flex gap-2 text-xs text-muted-foreground bg-amber-50/50 dark:bg-amber-900/10 p-2 rounded border border-amber-100 dark:border-amber-900/20">
+                      <Info class="h-4 w-4 text-amber-600 shrink-0 mt-0.5" />
+                      <span class="leading-relaxed">{{ discrepancy.note }}</span>
+                    </div>
+
+                    <!-- Source -->
+                    <div v-if="discrepancy.source?.name" class="flex items-center justify-end">
+                      <div class="inline-flex items-center gap-1.5 text-[10px] text-muted-foreground bg-muted/50 px-2 py-1 rounded-full border hover:bg-muted transition-colors cursor-help" :title="discrepancy.source.name">
+                        <FileText class="h-3 w-3" />
+                        <span class="font-medium truncate max-w-[150px]">
+                          {{ discrepancy.source.name }}
+                        </span>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </CardContent>
+          </Card>
+
+          <!-- Tabs -->
+          <div class="bg-muted/20 rounded-lg border p-1 flex gap-1">
+            <Button 
+              variant="ghost" 
+              size="sm" 
+              class="flex-1 transition-all"
+              :class="activeTab === 'notes' ? 'bg-background text-foreground shadow-sm' : 'text-muted-foreground hover:text-foreground'"
+              @click="activeTab = 'notes'"
+            >
+              <MessageSquare class="h-4 w-4" />
+            </Button>
+            <Button 
+              variant="ghost" 
+              size="sm" 
+              class="flex-1 transition-all"
+              :class="activeTab === 'activity' ? 'bg-background text-foreground shadow-sm' : 'text-muted-foreground hover:text-foreground'"
+              @click="activeTab = 'activity'"
+            >
+              <Activity class="h-4 w-4" />
+            </Button>
           </div>
 
           <!-- Notes Tab Content -->
-          <div v-else-if="activeTab === 'notes'" class="space-y-4">
+          <div v-if="activeTab === 'notes'" class="space-y-4">
             <Card>
               <CardHeader class="pb-3">
                 <CardTitle class="text-sm font-medium text-muted-foreground">Internal Notes</CardTitle>
