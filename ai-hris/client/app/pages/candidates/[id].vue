@@ -491,8 +491,18 @@ const getSignalColor = (signal: string, index?: number) => {
                 </div>
                 <Separator />
                 <div class="grid grid-cols-[80px_1fr] gap-2 text-sm">
-                  <span class="text-muted-foreground">Location</span>
-                  <span class="font-medium text-right">{{ candidate?.address?.city }}, {{ candidate?.address?.country }}</span>
+                  <span class="text-muted-foreground">Phone</span>
+                  <span class="font-medium text-right">{{ candidate?.phone || '-' }}</span>
+                </div>
+                <Separator />
+                <div class="grid grid-cols-[80px_1fr] gap-2 text-sm">
+                  <span class="text-muted-foreground">Email</span>
+                  <span class="font-medium text-right truncate text-blue-600">{{ candidate?.email }}</span>
+                </div>
+                <Separator />
+                <div class="grid grid-cols-[80px_1fr] gap-2 text-sm">
+                  <span class="text-muted-foreground">Gender</span>
+                  <span class="font-medium text-right">{{ candidate?.gender || '-' }}</span>
                 </div>
                 <Separator />
                 <div class="grid grid-cols-[80px_1fr] gap-2 text-sm">
@@ -502,8 +512,48 @@ const getSignalColor = (signal: string, index?: number) => {
                 </div>
                 <Separator />
                 <div class="grid grid-cols-[80px_1fr] gap-2 text-sm">
-                  <span class="text-muted-foreground">Email</span>
-                  <span class="font-medium text-right truncate text-blue-600">{{ candidate?.email }}</span>
+                  <span class="text-muted-foreground">Address</span>
+                  <div class="text-right">
+                    <div class="font-medium">{{ candidate?.address?.detail || '-' }}</div>
+                    <div class="text-muted-foreground text-xs">
+                      {{ [candidate?.address?.city, candidate?.address?.country, candidate?.address?.zip].filter(Boolean).join(', ') }}
+                    </div>
+                  </div>
+                </div>
+              </CardContent>
+            </Card>
+
+            <!-- Family Members -->
+            <Card v-if="candidate?.family_members && candidate.family_members.length > 0">
+              <CardHeader class="pb-3">
+                <CardTitle class="text-sm font-medium text-muted-foreground flex items-center gap-2">
+                  <Users class="h-4 w-4" />
+                  Family Members
+                </CardTitle>
+              </CardHeader>
+              <CardContent class="space-y-3">
+                <div v-for="(member, i) in candidate.family_members" :key="i" class="border rounded-lg p-3 bg-muted/30">
+                  <div class="flex justify-between items-start">
+                    <div>
+                      <div class="font-medium text-sm">{{ member.name }}</div>
+                      <div class="text-xs text-muted-foreground">{{ member.relationship }}</div>
+                    </div>
+                    <div v-if="member.date_of_birth" class="text-xs text-muted-foreground">
+                      {{ formatDate(member.date_of_birth) }}
+                    </div>
+                  </div>
+                  <div v-if="member.brief_data" class="mt-2 text-xs text-muted-foreground grid grid-cols-2 gap-2">
+                    <div>
+                      <span v-if="member.brief_data.occupation">
+                        <span class="font-semibold">Occupation:</span> {{ member.brief_data.occupation }}
+                      </span>
+                    </div>
+                    <div class="text-right">
+                      <span v-if="member.brief_data.contact">
+                        <span class="font-semibold">Contact:</span> {{ member.brief_data.contact }}
+                      </span>
+                    </div>
+                  </div>
                 </div>
               </CardContent>
             </Card>
@@ -655,8 +705,8 @@ const getSignalColor = (signal: string, index?: number) => {
                       <component :is="getDocumentIcon('Signed Offer Letter')" class="h-4 w-4 text-green-500" />
                     </div>
                     <div class="flex flex-col overflow-hidden">
-                      <span class="text-sm font-medium truncate">{{ candidate.offering_letter.name }}</span>
-                      <span class="text-xs text-muted-foreground">{{ candidate.offering_letter.type }}</span>
+                      <span class="text-sm font-medium truncate">{{ candidate.offering_letter?.name }}</span>
+                      <span class="text-xs text-muted-foreground">{{ candidate.offering_letter?.type }}</span>
                     </div>
                   </div>
                   <Button variant="ghost" size="icon" class="h-8 w-8" @click.stop="isOfferingLetterModalOpen = true">
@@ -782,7 +832,7 @@ const getSignalColor = (signal: string, index?: number) => {
                         <Edit class="h-3 w-3" />
                         {{ discrepancy.target?.type || 'Application' }}
                       </div>
-                      <div class="text-sm font-medium text-foreground break-words">
+                      <div class="text-sm font-medium text-foreground wrap-break-word">
                         {{ discrepancy.target?.value ?? '-' }}
                       </div>
                     </div>
@@ -798,7 +848,7 @@ const getSignalColor = (signal: string, index?: number) => {
                         {{ discrepancy.source?.type || 'Document' }}
                         <FileText class="h-3 w-3" />
                       </div>
-                      <div class="text-sm font-medium text-foreground break-words">
+                      <div class="text-sm font-medium text-foreground wrap-break-word">
                         {{ discrepancy.source?.value ?? '-' }}
                       </div>
                     </div>
