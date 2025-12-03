@@ -85,7 +85,7 @@ const resumeDocumentSchema = z.object({
 })
 
 const offeringLetterSchema = z.object({
-  type: z.string().default('OFFERING_LETTER'),
+  type: z.string().default('Signed Offering Letter'),
   name: z.string(),
   url: z.string(),
   last_updated: z.string(),

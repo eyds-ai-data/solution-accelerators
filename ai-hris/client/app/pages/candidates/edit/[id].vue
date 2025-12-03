@@ -144,12 +144,14 @@ const uploadDocument = async (file: File) => {
 const analyzeOfferingLetter = async (file: File) => {
   const formData = new FormData()
   formData.append('document', file)
+  formData.append('candidate_id', candidateId)
 
   try {
-    const response = await $fetch('/api/v1/document/analyze/offering-signature', {
+    const response = await $fetch('/api/document/analyze/offering-letter', {
       method: 'POST',
       body: formData,
     })
+    console.log('Offering letter analysis response:', response)
     return response
   } catch (error) {
     console.error('Offering letter analysis failed:', error)
@@ -416,10 +418,11 @@ const confirmOfferingLetter = () => {
 
   const file = tempUploadedFile.value
   const analysis = offeringLetterAnalysis.value
+  console.log('Confirmed offering letter analysis:', analysis)
 
   // Create offering letter entry
   const newOfferingLetter: OfferingLetter = {
-    type: 'OFFERING_LETTER',
+    type: 'Signed Offering Letter',
     name: file.name,
     url: '',
     last_updated: new Date().toISOString(),

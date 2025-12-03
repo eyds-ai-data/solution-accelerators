@@ -391,9 +391,13 @@ def document_upload():
         app.logger.exception("Error in document_upload route")
         return internal_server_error(str(e))
     
-@app.route('/api/v1/document/analyze/offering-signature', methods=['POST'])
-def analyze_document_offering_signature():
+@app.route('/api/v1/document/analyze/offering-letter', methods=['POST'])
+def analyze_document_offering_letter():
     try:
+        candidate_id = request.form.get('candidate_id')
+        if not candidate_id:
+            return bad_request_error("candidate_id is required")
+        
         if 'document' not in request.files:
             return bad_request_error("No document file provided")
         
@@ -415,10 +419,21 @@ def analyze_document_offering_signature():
         file.save(temp_path)
         
         try:
-            result = asyncio.run(document_analyzer.analyze_document_layout(document_path=temp_path))
+            result = asyncio.run(document_analyzer.analyze_offering_letter(document_path=temp_path))
+
+            # Upload to blob storage
+            file.seek(0)  # Reset file pointer
+            blob_info = blob_storage.upload_file(file=file, candidate_id=candidate_id, original_filename=file.filename)
+            
+            # Add blob info to response
+            result_dict = result.model_dump() if hasattr(result, 'model_dump') else result
+            result_dict['url'] = blob_info.get('url', '')
+            result_dict['name'] = file.filename
+            result_dict['last_updated'] = blob_info.get('uploaded_at', '')
+
             return ok(
                 message="Document analyzed successfully",
-                data=result.model_dump()
+                data=result_dict
             )
         finally:
             # Clean up temporary file

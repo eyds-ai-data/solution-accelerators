@@ -10,10 +10,6 @@ class KartuKeluargaResponse(KernelBaseModel):
     structured_data: dict
     bounding_boxes: list[KartuKeluargaBoundingBox] = []
 
-class OfferingSignatureResponse(KernelBaseModel):
-    exists: bool
-    signed_content: str | None = None
-
 class FamilyMemberDetail(KernelBaseModel):
     name: str
     nik: str
@@ -71,4 +67,27 @@ class LegalDocumentResponse(KernelBaseModel):
     structured_data: dict
     url: str
     last_updated: str
+
+class OfferingLetterContent(KernelBaseModel):
+    position: str
+    start_date: str
+    salary: str
+    benefits: list[str]
+
+class OfferingLetterData(KernelBaseModel):
+    is_signed: bool
+    content: OfferingLetterContent
+
+class ExtractedDocumentContent(KernelBaseModel):
+    bounding_boxes: list[dict]
+    content: str
+    structured_data: dict
+
+class DocumentResponse(KernelBaseModel):
+    type: str
+    name: str
+    last_updated: str
+    url: str
+    extracted_content: ExtractedDocumentContent
+
     
