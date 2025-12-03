@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { ref, computed } from 'vue'
 import { useRoute, useRouter } from 'vue-router'
-import type { Candidate, KartuKeluargaStructured, LegalDocument } from '@/components/candidates/data/schema'
+import type { Employee, KartuKeluargaStructured, LegalDocument } from '@/components/candidates/data/schema'
 import KartuKeluargaModal from '@/components/candidates/KartuKeluargaModal.vue'
 import SignedOfferLetterContent from '@/components/candidates/SignedOfferLetterContent.vue'
 import {
@@ -57,42 +57,47 @@ import {
 
 const route = useRoute()
 const router = useRouter()
-const candidateId = route.params.id as string
+const employeeId = route.params.id as string
 
-const { data: candidate, pending: loading, error } = await useFetch<Candidate>(`/api/candidates/${candidateId}`)
+
+const { data: employeeData, pending: loading, error } = await useFetch<Employee[]>(`/api/employees/${employeeId}`)
+
+const employee = employeeData.value?.[0]
+
 
 const activeTab = ref('notes')
 
-const statusSteps = computed(() => {
-  const steps = [
-    { value: 'applied', label: 'Applied' },
-    { value: 'screening', label: 'Screening' },
-    { value: 'interview', label: 'Interview' },
-    { value: 'shortlisted', label: 'Shortlisted' },
-  ]
+// const statusSteps = computed(() => {
+//   const steps = [
+//     { value: 'applied', label: 'Applied' },<
+//     { value: 'screening', label: 'Screening' },
+//     { value: 'interview', label: 'Interview' },
+//     { value: 'shortlisted', label: 'Shortlisted' },
+//   ]
 
-  if (candidate.value?.status === 'hired') {
-    steps.push({ value: 'hired', label: 'Hired' })
-    steps.push({ value: 'onboarding', label: 'Onboarding' })
-  } else if (candidate.value?.status === 'rejected') {
-    steps.push({ value: 'rejected', label: 'Rejected' })
-  } else {
-    steps.push({ value: 'decision', label: 'Hired / Rejected' })
-  }
+//   if (dummyEmployees.value?.status === 'hired') {
+//     steps.push({ value: 'hired', label: 'Hired' })
+//     steps.push({ value: 'onboarding', label: 'Onboarding' })
+//   } else if (dummyEmployees.value?.status === 'rejected') {
+//     steps.push({ value: 'rejected', label: 'Rejected' })
+//   } else {
+//     steps.push({ value: 'decision', label: 'Hired / Rejected' })
+//   }
 
-  return steps
-})
+//   return steps
+// })
 
-const currentStatusIndex = computed(() => {
-  if (!candidate.value?.status) return 0
-  const status = candidate.value.status
 
-  if (status === 'hired') return 5
-  if (status === 'rejected') return 4
+// const currentStatusIndex = computed(() => {
+//   if (!employee.value?.status) return 0
+//   const status = employee.value.status
 
-  const index = statusSteps.value.findIndex(s => s.value === status)
-  return index !== -1 ? index : 0
-})
+//   if (status === 'active') return 5
+//   if (status === 'inactive') return 4
+
+//   const index = statusSteps.value.findIndex(s => s.value === status)
+//   return index !== -1 ? index : 0
+// })
 
 const activities = computed(() => [
   { title: 'Moved to Interview Stage', date: '2 days ago', description: 'Candidate was moved from Screening to Interview stage.' },
@@ -159,15 +164,15 @@ const getDocumentIcon = (docType: string) => {
 }
 
 const documentCompletion = computed(() => {
-  if (!candidate.value) return { progress: 0, missing: [] }
+  if (!employee) return { progress: 0, missing: [] }
 
-  const uploadedTypes = candidate.value.legal_documents?.map(d => d.type) || []
+  const uploadedTypes = employee?.legal_documents?.map((d: any) => d.type) || []
 
   // Check if offering letter exists and include it in the count
-  if (Object.keys(candidate.value.offering_letter || {}).length > 0) {
-    console.log('Offering letter found, adding to uploaded types')
-    uploadedTypes.push('Signed Offer Letter')
-  }
+  // if (Object.keys(employee?.value.offering_letter || {}).length > 0) {
+  //   console.log('Offering letter found, adding to uploaded types')
+  //   uploadedTypes.push('Signed Offer Letter')
+  // }
 
   const missing = requiredDocuments.filter(doc => !uploadedTypes.includes(doc))
   const progress = Math.round(((requiredDocuments.length - missing.length) / requiredDocuments.length) * 100)
@@ -175,12 +180,12 @@ const documentCompletion = computed(() => {
   return { progress, missing }
 })
 
-const downloadCV = () => {
-  // if (candidate.value?.resume) {
-  //   window.open(candidate.value?.resume[0], '_blank')
-  // }
-  throw new Error('Not implemented yet')
-}
+// const downloadCV = () => {
+//   // if (candidate.value?.resume) {
+//   //   window.open(candidate.value?.resume[0], '_blank')
+//   // }
+//   throw new Error('Not implemented yet')
+// }
 
 const formatDate = (dateString: string) => {
   const date = new Date(dateString)
@@ -263,7 +268,7 @@ const getSignalColor = (signal: string, index?: number) => {
     </div>
 
     <!-- Content -->
-    <div v-else-if="candidate" class="max-w-7xl mx-auto p-6">
+    <div v-else-if="employee" class="max-w-7xl mx-auto p-6">
       <div class="grid grid-cols-1 lg:grid-cols-12 gap-6">
 
         <!-- Left Column (Main Content) -->
@@ -274,41 +279,42 @@ const getSignalColor = (signal: string, index?: number) => {
             <div class="relative">
               <Avatar class="h-24 w-24 border-4 border-background shadow-sm">
                 <AvatarImage
-                  :src="candidate?.photo_url ?? `https://api.dicebear.com/7.x/avataaars/svg?seed=${candidate?.name}`"
-                  :alt="candidate?.name" class="object-cover" />
-                <AvatarFallback>{{ candidate?.name?.charAt(0) }}</AvatarFallback>
+                  :src="employee?.photo_url || `https://api.dicebear.com/7.x/avataaars/svg?seed=${encodeURIComponent(employee?.name || 'user')}`"
+                  :alt="employee?.name" class="object-cover" />
+                <AvatarFallback>{{ employee?.name?.charAt(0) || 'U' }}</AvatarFallback>
               </Avatar>
-              <Badge v-if="candidate?.rating"
+              <Badge v-if="employee?.rating"
                 class="absolute -bottom-2 -right-2 bg-green-100 text-green-700 hover:bg-green-100 border-green-200 px-2 py-0.5 text-sm font-bold shadow-sm">
-                {{ candidate.rating }}/5
+                {{ employee.rating }}/5
               </Badge>
             </div>
 
             <div class="flex-1 space-y-2">
               <div class="flex justify-between items-start">
                 <div class="flex flex-col sm:flex-row sm:items-center gap-2 sm:gap-4">
-                  <h1 class="text-3xl font-bold tracking-tight text-foreground">{{ candidate?.name }}</h1>
+                  <h1 class="text-3xl font-bold tracking-tight text-foreground">{{ employee?.name }}</h1>
                   <span class="text-lg text-muted-foreground">for <span class="inline-block font-semibold">{{
-                      candidate?.position }}</span></span>
+                    employee?.position }}</span></span>
                 </div>
               </div>
 
               <div class="flex flex-wrap gap-4 text-sm text-muted-foreground">
                 <div class="flex items-center gap-1.5">
                   <MapPin class="h-4 w-4" />
-                  {{ candidate?.address?.city }}, {{ candidate?.address?.country }}
+                  {{ employee?.address?.city }}, {{ employee?.address?.country }}
                 </div>
 
                 <div class="flex items-center gap-1.5">
                   <Calendar class="h-4 w-4" />
-                  Applied {{ Math.floor((Date.now() - new Date(candidate?.applied_date ?? Date.now()).getTime()) / (1000
-                  * 3600 * 24)) }} days ago
+                  Applied {{ Math.floor((Date.now() - new Date(employee.joined_date ?? Date.now()).getTime()) / (1000 *
+                    3600 * 24)) }} days ago
                 </div>
+
 
               </div>
 
               <!-- Status Stepper -->
-              <div class="w-full mt-6">
+              <!-- <div class="w-full mt-6">
                 <Stepper :model-value="currentStatusIndex" class="flex w-full items-start gap-2">
                   <StepperItem v-for="(step, index) in statusSteps" :key="step.value" :step="index"
                     class="relative flex flex-col flex-1 group" :class="{
@@ -337,7 +343,7 @@ const getSignalColor = (signal: string, index?: number) => {
                       }" />
                   </StepperItem>
                 </Stepper>
-              </div>
+              </div> -->
             </div>
           </div>
 
@@ -347,12 +353,12 @@ const getSignalColor = (signal: string, index?: number) => {
               <Send class="h-4 w-4" />
               Send Mail
             </Button>
-            <Button v-if="candidate?.status === 'hired'" class="bg-green-600 hover:bg-green-700 text-white gap-2"
-              @click="router.push(`/candidates/email-payroll/${candidateId}`)">
+            <Button v-if="employee?.status === 'active'" class="bg-green-600 hover:bg-green-700 text-white gap-2"
+              @click="router.push(`/candidates/email-payroll/${employeeId}`)">
               <Mail class="h-4 w-4" />
               Email to Payroll
             </Button>
-            <Button variant="outline" class="gap-2" @click="router.push(`/candidates/edit/${candidateId}`)">
+            <Button variant="outline" class="gap-2" @click="router.push(`/candidates/edit/${employeeId}`)">
               <Edit class="h-4 w-4" />
               Edit Profile
             </Button>
@@ -360,38 +366,38 @@ const getSignalColor = (signal: string, index?: number) => {
               <MoveRight class="h-4 w-4" />
               Move to stage
             </Button>
-            <Button variant="outline" class="gap-2" @click="downloadCV">
+            <!-- <Button variant="outline" class="gap-2" @click="downloadCV">
               <Download class="h-4 w-4" />
               Download Candidate Report
-            </Button>
+            </Button> -->
           </div>
 
 
 
           <!-- Signals -->
-          <div class="space-y-3">
+          <!-- <div class="space-y-3">
             <h3 class="text-sm font-semibold text-muted-foreground">Signals</h3>
             <div class="flex flex-wrap gap-3">
-              <Badge v-for="(signal, index) in candidate?.interview?.signals" :key="signal" variant="outline"
+              <Badge v-for="(signal, index) in employee?.interview?.signals" :key="signal" variant="outline"
                 :class="getSignalColor(signal, index)" class="p-2">
                 {{ signal }}
               </Badge>
             </div>
-          </div>
+          </div> -->
 
           <!-- AI Interview Summary -->
-          <div class="space-y-3">
+          <!-- <div class="space-y-3">
             <h3 class="text-sm font-semibold text-muted-foreground">AI Interview Summary</h3>
             <p class="text-sm text-muted-foreground leading-relaxed whitespace-pre-line">
-              {{ candidate?.interview?.summary || 'No summary available.' }}
+              {{ employee?.interview?.summary || 'No summary available.' }}
             </p>
-          </div>
+          </div> -->
 
           <!-- Score Cards -->
-          <div class="space-y-3">
+          <!-- <div class="space-y-3">
             <h3 class="text-sm font-semibold text-muted-foreground">Score</h3>
             <div class="grid grid-cols-1 sm:grid-cols-3 gap-4">
-              <Card v-for="(score, index) in candidate?.interview?.score_details" :key="index"
+              <Card v-for="(score, index) in employee?.interview?.score_details" :key="index"
                 class="bg-green-50/50 dark:bg-green-900/10 border-green-100 dark:border-green-900/20">
                 <CardContent class="p-4 flex items-center gap-4">
                   <div
@@ -405,10 +411,10 @@ const getSignalColor = (signal: string, index?: number) => {
                 </CardContent>
               </Card>
             </div>
-          </div>
+          </div> -->
 
           <!-- AI Interview Score Details -->
-          <Card v-if="candidate?.interview?.interview_scores">
+          <!-- <Card v-if="candidate?.interview?.interview_scores">
             <CardHeader class="pb-3">
               <CardTitle class="text-base font-medium">AI Interview Score</CardTitle>
             </CardHeader>
@@ -424,10 +430,10 @@ const getSignalColor = (signal: string, index?: number) => {
                 </div>
               </div>
             </CardContent>
-          </Card>
+          </Card> -->
 
           <!-- Salary Analysis Card -->
-          <Card v-if="candidate?.salary">
+          <Card v-if="employee?.salary">
             <CardHeader class="pb-3">
               <div class="flex items-center justify-between">
                 <CardTitle class="text-base font-medium flex items-center gap-2">
@@ -435,7 +441,7 @@ const getSignalColor = (signal: string, index?: number) => {
                   Salary & Market Analysis
                 </CardTitle>
                 <Badge variant="outline" class="bg-green-50 text-green-700 border-green-200">
-                  {{ candidate.salary.status }}
+                  {{ employee.salary.status }}
                 </Badge>
               </div>
             </CardHeader>
@@ -443,12 +449,12 @@ const getSignalColor = (signal: string, index?: number) => {
               <div class="grid grid-cols-2 gap-4">
                 <div class="space-y-1">
                   <span class="text-xs text-muted-foreground">Candidate Expectation</span>
-                  <div class="font-bold text-lg">{{ formatCurrency(candidate.salary.expectation) }}</div>
+                  <div class="font-bold text-lg">{{ formatCurrency(employee.salary.expectation) }}</div>
                 </div>
                 <div class="space-y-1">
                   <span class="text-xs text-muted-foreground">Market Range</span>
                   <div class="font-bold text-lg text-muted-foreground">{{
-                    formatMarketRange(candidate.salary.market_range) }}</div>
+                    formatMarketRange(employee.salary.market_range) }}</div>
                 </div>
               </div>
 
@@ -458,12 +464,12 @@ const getSignalColor = (signal: string, index?: number) => {
                   AI Analysis
                 </div>
                 <p class="text-sm text-muted-foreground leading-relaxed">
-                  {{ candidate.salary.analysis }}
+                  {{ employee.salary.analysis }}
                 </p>
               </div>
 
               <div class="grid grid-cols-3 gap-2 pt-2">
-                <div v-for="factor in candidate.salary.factors" :key="factor.name"
+                <div v-for="factor in employee.salary.factors" :key="factor.name"
                   class="text-center p-2 border rounded-md bg-background">
                   <div class="text-xs text-muted-foreground mb-1">{{ factor.name }}</div>
                   <div class="font-medium text-sm" :class="getFactorColor(factor.value)">{{ factor.value }}</div>
@@ -482,38 +488,38 @@ const getSignalColor = (signal: string, index?: number) => {
             <CardContent class="space-y-4">
               <div class="grid grid-cols-[80px_1fr] gap-2 text-sm">
                 <span class="text-muted-foreground">Name</span>
-                <span class="font-medium text-right">{{ candidate?.name }}</span>
+                <span class="font-medium text-right">{{ employee?.name }}</span>
               </div>
               <Separator />
               <div class="grid grid-cols-[80px_1fr] gap-2 text-sm">
                 <span class="text-muted-foreground">Phone</span>
-                <span class="font-medium text-right">{{ candidate?.phone || '-' }}</span>
+                <span class="font-medium text-right">{{ employee?.phone || '-' }}</span>
               </div>
               <Separator />
               <div class="grid grid-cols-[80px_1fr] gap-2 text-sm">
                 <span class="text-muted-foreground">Email</span>
-                <span class="font-medium text-right truncate text-blue-600">{{ candidate?.email }}</span>
+                <span class="font-medium text-right truncate text-blue-600">{{ employee?.email }}</span>
               </div>
               <Separator />
               <div class="grid grid-cols-[80px_1fr] gap-2 text-sm">
                 <span class="text-muted-foreground">Gender</span>
-                <span class="font-medium text-right">{{ candidate?.gender || '-' }}</span>
+                <span class="font-medium text-right">{{ employee?.gender || '-' }}</span>
               </div>
               <Separator />
               <div class="grid grid-cols-[80px_1fr] gap-2 text-sm">
                 <span class="text-muted-foreground">Birthday</span>
-                <span class="font-medium text-right" v-if="candidate?.date_of_birth">{{
-                  formatDate(candidate.date_of_birth) }} ({{ calculateAge(candidate.date_of_birth) }} years old)</span>
+                <span class="font-medium text-right" v-if="employee?.date_of_birth">{{
+                  formatDate(employee.date_of_birth) }} ({{ calculateAge(employee.date_of_birth) }} years old)</span>
                 <span v-else class="font-medium text-right text-muted-foreground">-</span>
               </div>
               <Separator />
               <div class="grid grid-cols-[80px_1fr] gap-2 text-sm">
                 <span class="text-muted-foreground">Address</span>
                 <div class="text-right">
-                  <div class="font-medium">{{ candidate?.address?.detail || '-' }}</div>
+                  <div class="font-medium">{{ employee?.address?.detail || '-' }}</div>
                   <div class="text-muted-foreground text-xs">
-                    {{ [candidate?.address?.city, candidate?.address?.country,
-                    candidate?.address?.zip].filter(Boolean).join(', ') }}
+                    {{ [employee?.address?.city, employee?.address?.country,
+                    employee?.address?.zip].filter(Boolean).join(', ') }}
                   </div>
                 </div>
               </div>
@@ -521,7 +527,7 @@ const getSignalColor = (signal: string, index?: number) => {
           </Card>
 
           <!-- Family Members -->
-          <Card v-if="candidate?.family_members && candidate.family_members.length > 0">
+          <Card v-if="employee?.family_members && employee.family_members.length > 0">
             <CardHeader class="pb-3">
               <CardTitle class="text-sm font-medium text-muted-foreground flex items-center gap-2">
                 <Users class="h-4 w-4" />
@@ -529,7 +535,7 @@ const getSignalColor = (signal: string, index?: number) => {
               </CardTitle>
             </CardHeader>
             <CardContent class="space-y-3">
-              <div v-for="(member, i) in candidate.family_members" :key="i" class="border rounded-lg p-3 bg-muted/30">
+              <div v-for="(member, i) in employee.family_members" :key="i" class="border rounded-lg p-3 bg-muted/30">
                 <div class="flex justify-between items-start">
                   <div>
                     <div class="font-medium text-sm">{{ member.name }}</div>
@@ -564,7 +570,7 @@ const getSignalColor = (signal: string, index?: number) => {
               </CardTitle>
             </CardHeader>
             <CardContent class="space-y-3">
-              <div v-for="(exp, i) in candidate?.work_experiences" :key="i"
+              <div v-for="(exp, i) in employee?.work_experiences" :key="i"
                 class="border rounded-lg p-4 bg-linear-to-br from-purple-50/50 to-transparent dark:from-purple-950/20 hover:shadow-sm transition-all">
                 <div class="space-y-3">
                   <!-- Top row: Position and Duration -->
@@ -581,7 +587,7 @@ const getSignalColor = (signal: string, index?: number) => {
                         const months = totalMonths % 12
                         return years > 0 ? `${years} year${years > 1 ? 's' : ''} ${months} month${months !== 1 ? 's' :
                           ''}` : `${months} month${months !== 1 ? 's' : ''}`
-                      })() }}
+                      })()}}
                     </Badge>
                   </div>
 
@@ -596,7 +602,7 @@ const getSignalColor = (signal: string, index?: number) => {
                     <div class="flex items-center gap-2 text-sm text-muted-foreground">
                       <Clock class="h-3.5 w-3.5" />
                       <span>{{ formatDate(exp.start_date) }} - {{ exp.end_date ? formatDate(exp.end_date) : 'Present'
-                        }}</span>
+                      }}</span>
                     </div>
                   </div>
                 </div>
@@ -613,7 +619,7 @@ const getSignalColor = (signal: string, index?: number) => {
               </CardTitle>
             </CardHeader>
             <CardContent class="space-y-3">
-              <div v-for="(edu, i) in candidate?.education" :key="i"
+              <div v-for="(edu, i) in employee?.education" :key="i"
                 class="border rounded-lg p-4 bg-linear-to-br from-blue-50/50 to-transparent dark:from-blue-950/20 hover:shadow-sm transition-all">
                 <div class="space-y-3">
                   <!-- Top row: Degree and Graduation Year -->
@@ -664,25 +670,25 @@ const getSignalColor = (signal: string, index?: number) => {
                   <div class="h-8 w-8 bg-background rounded border flex items-center justify-center shrink-0">
                     <FileText class="h-4 w-4 text-red-500" />
                   </div>
-                  <div class="flex flex-col overflow-hidden">
-                    <span class="text-sm font-medium truncate">resume_{{ candidate.name.toLowerCase().split(' ')[0]
-                      }}.pdf</span>
+                  <!-- <div class="flex flex-col overflow-hidden">
+                    <span class="text-sm font-medium truncate">resume_{{ employee?.name.toLowerCase().split(' ')[0]
+                    }}.pdf</span>
                     <span class="text-xs text-muted-foreground">PDF Document</span>
-                  </div>
+                  </div> -->
                 </div>
-                <Button variant="ghost" size="icon" class="h-8 w-8" @click="downloadCV">
+                <!-- <Button variant="ghost" size="icon" class="h-8 w-8" @click="downloadCV">
                   <ExternalLink class="h-4 w-4 text-muted-foreground" />
-                </Button>
+                </Button> -->
               </div>
 
               <!-- Resume Preview Image (Mock) -->
-              <div
+              <!-- <div
                 class="mt-3 border rounded-lg overflow-hidden bg-background h-32 flex items-center justify-center relative group cursor-pointer"
                 @click="downloadCV">
                 <div class="absolute inset-0 bg-muted/30 flex flex-col items-center justify-center p-4">
                   <div
                     class="w-full h-full bg-background shadow-sm p-2 text-[6px] text-muted-foreground overflow-hidden">
-                    <div class="font-bold text-foreground text-[8px] mb-1">{{ candidate.name }}</div>
+                    <div class="font-bold text-foreground text-[8px] mb-1">{{ employee.name }}</div>
                     <div class="mb-1">PRODUCT DESIGNER</div>
                     <div class="space-y-1">
                       <div class="h-1 bg-muted w-full"></div>
@@ -698,12 +704,12 @@ const getSignalColor = (signal: string, index?: number) => {
                   <ExternalLink
                     class="h-6 w-6 text-muted-foreground opacity-0 group-hover:opacity-100 transition-opacity" />
                 </div>
-              </div>
+              </div> -->
             </CardContent>
           </Card>
 
           <!-- Signed Offering Letter -->
-          <Card v-if="Object.keys(candidate?.offering_letter || {}).length > 0">
+          <!-- <Card v-if="Object.keys(employee?.offering_letter || {}).length > 0">
             <CardHeader class="pb-3">
               <CardTitle class="text-sm font-medium text-muted-foreground">Signed Offering Letter</CardTitle>
             </CardHeader>
@@ -725,7 +731,7 @@ const getSignalColor = (signal: string, index?: number) => {
                 </Button>
               </div>
             </CardContent>
-          </Card>
+          </Card> -->
 
           <!-- Legal Documents -->
           <Card>
@@ -733,7 +739,7 @@ const getSignalColor = (signal: string, index?: number) => {
               <CardTitle class="text-sm font-medium text-muted-foreground">Legal Documents</CardTitle>
             </CardHeader>
             <CardContent class="space-y-3">
-              <div v-for="doc in candidate?.legal_documents" :key="doc.type"
+              <div v-for="doc in employee?.legal_documents" :key="doc.type"
                 class="border rounded-lg p-3 flex items-center justify-between bg-muted/50 cursor-pointer hover:bg-muted/80 transition-colors"
                 @click="handleDocumentClick(doc)">
                 <div class="flex items-center gap-3 overflow-hidden">
@@ -757,8 +763,8 @@ const getSignalColor = (signal: string, index?: number) => {
         <div class="lg:col-span-4 space-y-6">
 
           <!-- Document Completion Card -->
-          <Card v-if="candidate?.status === 'hired'"
-            :class="{ 'border-blue-600 dark:border-blue-400 shadow-md ring-1 ring-blue-600 dark:ring-blue-400': candidate?.status === 'hired' }">
+          <Card v-if="employee?.status === 'active'"
+            :class="{ 'border-blue-600 dark:border-blue-400 shadow-md ring-1 ring-blue-600 dark:ring-blue-400': employee?.status === 'active' }">
             <CardHeader class="pb-3">
               <CardTitle class="text-sm font-medium text-muted-foreground">Document Completion</CardTitle>
             </CardHeader>
@@ -766,7 +772,7 @@ const getSignalColor = (signal: string, index?: number) => {
               <div class="space-y-2">
                 <div class="flex justify-between text-sm">
                   <span class="font-medium">{{ documentCompletion.progress }}% Complete</span>
-                  <span class="text-muted-foreground">{{ candidate?.legal_documents?.length }}/{{
+                  <span class="text-muted-foreground">{{ employee?.legal_documents?.length }}/{{
                     requiredDocuments.length }}</span>
                 </div>
                 <div class="h-2 bg-muted rounded-full overflow-hidden">
@@ -794,7 +800,7 @@ const getSignalColor = (signal: string, index?: number) => {
           </Card>
 
           <!-- Discrepancies Warning Card -->
-          <Card v-if="candidate?.discrepancies && candidate.discrepancies.length > 0"
+          <Card v-if="employee?.discrepancies && employee.discrepancies.length > 0"
             class="border-amber-200 bg-amber-50/50 dark:bg-amber-950/10">
             <CardHeader class="pb-3">
               <div class="flex items-center justify-between">
@@ -803,12 +809,12 @@ const getSignalColor = (signal: string, index?: number) => {
                   Data Discrepancies
                 </CardTitle>
                 <Badge variant="outline" class="bg-amber-100 text-amber-700 border-amber-200">
-                  {{ candidate.discrepancies.length }} Issues
+                  {{ employee.discrepancies.length }} Issues
                 </Badge>
               </div>
             </CardHeader>
             <CardContent class="space-y-4">
-              <div v-for="(discrepancy, index) in candidate.discrepancies" :key="index"
+              <div v-for="(discrepancy, index) in employee.discrepancies" :key="index"
                 class="group relative bg-card rounded-lg border shadow-sm overflow-hidden transition-all hover:shadow-md">
                 <!-- Severity Strip -->
                 <div class="absolute left-0 top-0 bottom-0 w-1.5" :class="{
@@ -918,7 +924,7 @@ const getSignalColor = (signal: string, index?: number) => {
                 <CardTitle class="text-sm font-medium text-muted-foreground">Internal Notes</CardTitle>
               </CardHeader>
               <CardContent class="space-y-4">
-                <div v-for="(note, i) in candidate?.notes" :key="i" class="flex gap-3">
+                <div v-for="(note, i) in employee?.notes" :key="i" class="flex gap-3">
                   <Avatar class="h-8 w-8 border">
                     <AvatarFallback class="text-xs">{{ note.author.charAt(0) }}</AvatarFallback>
                   </Avatar>
@@ -971,7 +977,7 @@ const getSignalColor = (signal: string, index?: number) => {
     <KartuKeluargaModal v-model:open="isKKModalOpen" :data="selectedKKData" />
 
     <!-- Signed Offering Letter Modal -->
-    <Dialog :open="isOfferingLetterModalOpen" @update:open="isOfferingLetterModalOpen = $event">
+    <!-- <Dialog :open="isOfferingLetterModalOpen" @update:open="isOfferingLetterModalOpen = $event">
       <DialogContent class="w-[95vw] max-w-2xl flex flex-col p-6 max-h-[90vh] overflow-y-auto">
         <DialogHeader>
           <DialogTitle>Signed Offering Letter</DialogTitle>
@@ -980,8 +986,8 @@ const getSignalColor = (signal: string, index?: number) => {
           </DialogDescription>
         </DialogHeader>
 
-        <SignedOfferLetterContent :data="candidate?.offering_letter" />
+        <SignedOfferLetterContent :data="employee?.offering_letter" />
       </DialogContent>
-    </Dialog>
+    </Dialog> -->
   </div>
 </template>

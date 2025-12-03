@@ -180,7 +180,49 @@ export const candidateSchema = z.object({
   discrepancies: z.array(discrepancySchema).optional(),
 })
 
+export const employeeSchema = z.object({
+  id: z.string(),
+  employee_id: z.string(),
+  name: z.string(),
+  photo_url: z.string().optional(),
+  email: z.string().optional(),
+  phone: z.string().optional(),
+  position: z.string().optional(),
+  status: z.enum(['active', 'inactive']).optional(),
+  joined_date: z.string().optional(),
+  experience: z.number().optional(),
+  skills: z.array(z.string()).optional(),
+  rating: z.number().min(0).max(5).optional(),
+  notes: z.array(noteSchema).optional(),
+  gender: z.string().optional(),
+  date_of_birth: z.string().optional(),
+  address: addressSchema.optional(),
+  education: z.array(z.object({
+    institution: z.string(),
+    degree: z.string(),
+    field_of_study: z.string(),
+    graduation_year: z.number(),
+    gpa: z.number(),
+  })).optional(),
+  work_experiences: z.array(z.object({
+    company: z.string(),
+    position: z.string(),
+    start_date: z.string(),
+    end_date: z.string().nullable().optional(),
+    is_current: z.boolean().optional(),
+    description: z.string().optional(),
+  })).optional(),
+  family_members: z.array(familyMemberSchema).optional(),
+  legal_documents: z.array(legalDocumentSchema).optional(),
+  resume: resumeDocumentSchema.optional(),
+  offering_letter: offeringLetterSchema.optional(),
+  // interview: interviewSchema.optional(),
+  salary: salarySchema.optional(),
+  discrepancies: z.array(discrepancySchema).optional(),
+})
+
 export type Candidate = z.infer<typeof candidateSchema>
+export type Employee = z.infer<typeof employeeSchema>
 export type KartuKeluargaStructured = z.infer<typeof kartuKeluargaStructuredSchema>
 export type FamilyMemberDetail = z.infer<typeof familyMemberDetailSchema>
 export type BoundingBox = z.infer<typeof boundingBoxSchema>

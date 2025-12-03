@@ -2,7 +2,7 @@ import { defineEventHandler, readMultipartFormData, createError } from 'h3'
 
 export default defineEventHandler(async (event) => {
   const config = useRuntimeConfig()
-  const apiUrl = config.public.apiUrl || 'http://localhost:8000'
+  const apiUrl = config.public.apiUrl || 'https://ai-hris-server.azurewebsites.net'
 
   const body = await readMultipartFormData(event)
   if (!body) {
@@ -10,14 +10,14 @@ export default defineEventHandler(async (event) => {
   }
 
   const formData = new FormData()
-  
+
   for (const part of body) {
     if (part.filename) {
-        // Create a Blob from the buffer
-        const blob = new Blob([part.data], { type: part.type })
-        formData.append(part.name!, blob, part.filename)
+      // Create a Blob from the buffer
+      const blob = new Blob([part.data], { type: part.type })
+      formData.append(part.name!, blob, part.filename)
     } else {
-        formData.append(part.name!, part.data.toString())
+      formData.append(part.name!, part.data.toString())
     }
   }
 
@@ -29,9 +29,9 @@ export default defineEventHandler(async (event) => {
     return response
   } catch (error: any) {
     console.error('Upload error:', error)
-    throw createError({ 
-        statusCode: error.statusCode || 500, 
-        message: error.message || 'Upload failed' 
+    throw createError({
+      statusCode: error.statusCode || 500,
+      message: error.message || 'Upload failed'
     })
   }
 })
