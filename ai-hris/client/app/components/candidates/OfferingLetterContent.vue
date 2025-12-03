@@ -1,20 +1,12 @@
 <script setup lang="ts">
-import { ref } from 'vue'
-import { ZoomIn, ZoomOut, RotateCcw } from 'lucide-vue-next'
+import { CheckCircle2, AlertCircle, FileText } from 'lucide-vue-next'
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
-import { Button } from '@/components/ui/button'
-import { Badge } from '@/components/ui/badge'
 import { Separator } from '@/components/ui/separator'
-import { Label } from '@/components/ui/label'
 import type { OfferingLetter } from './data/schema'
 
 const props = defineProps<{
   data: OfferingLetter
 }>()
-
-const zoom = ref(1)
-const minZoom = 1
-const maxZoom = 3
 
 // Helper to format date
 const formatDate = (dateString: string) => {
@@ -30,98 +22,92 @@ const formatDate = (dateString: string) => {
   }
 }
 
-const zoomIn = () => {
-  if (zoom.value < maxZoom) {
-    zoom.value = Math.min(zoom.value + 0.2, maxZoom)
-  }
-}
-
-const zoomOut = () => {
-  if (zoom.value > minZoom) {
-    zoom.value = Math.max(zoom.value - 0.2, minZoom)
-  }
-}
-
-const resetZoom = () => {
-  zoom.value = minZoom
-}
+const isSigned = props.data.extracted_content?.structured_data?.is_signed
 </script>
 
 <template>
-  <div class="flex gap-6 flex-1 overflow-hidden h-full">
-    <!-- Left Column: Data -->
-    <div class="flex flex-col gap-6 flex-1 overflow-auto">
-      <!-- Header Info -->
-      <div class="grid grid-cols-1 md:grid-cols-2 gap-4 shrink-0">
-        <Card>
-          <CardHeader class="pb-2">
-            <CardTitle class="text-sm font-medium text-muted-foreground">Position Details</CardTitle>
-          </CardHeader>
-          <CardContent>
-            <div class="text-lg font-bold">{{ data.extracted_content?.structured_data?.position || '-' }}</div>
-            <div class="text-sm text-muted-foreground mt-1">
-              Start Date: {{ formatDate(data.extracted_content?.structured_data?.start_date) }}
-            </div>
-          </CardContent>
-        </Card>
-
-        <Card>
-          <CardHeader class="pb-2">
-            <CardTitle class="text-sm font-medium text-muted-foreground">Compensation</CardTitle>
-          </CardHeader>
-          <CardContent>
-            <div class="text-lg font-bold">{{ data.extracted_content?.structured_data?.salary || '-' }}</div>
-            <div class="flex items-center gap-2 mt-1">
-              <Badge :variant="data.extracted_content?.structured_data?.is_signed ? 'default' : 'secondary'" :class="data.extracted_content?.structured_data?.is_signed ? 'bg-green-600' : ''">
-                {{ data.extracted_content?.structured_data?.is_signed ? 'Signed' : 'Not Signed' }}
-              </Badge>
-            </div>
-          </CardContent>
-        </Card>
-      </div>
-
-      <Separator class="shrink-0" />
-
-      <!-- Benefits -->
-      <div v-if="data.extracted_content?.structured_data?.benefits?.length" class="flex flex-col shrink-0">
-        <h3 class="text-lg font-semibold mb-4">Benefits</h3>
-        <div class="grid grid-cols-1 md:grid-cols-2 gap-2">
-          <div 
-            v-for="(benefit, index) in data.extracted_content.structured_data.benefits" 
-            :key="index"
-            class="p-3 bg-muted/50 rounded-md text-sm"
-          >
-            {{ benefit }}
-          </div>
-        </div>
-      </div>
-
-      <!-- Full Content -->
-      <div class="flex flex-col flex-1 min-h-0">
-        <h3 class="text-lg font-semibold mb-4 shrink-0">Document Content</h3>
-        <div class="bg-muted p-4 rounded-lg overflow-auto flex-1 border">
-          <pre class="text-xs whitespace-pre-wrap text-muted-foreground font-mono">{{ data.extracted_content?.content }}</pre>
-        </div>
+  <div class="flex flex-col gap-6 h-full overflow-hidden">
+    <!-- Signature Status Banner -->
+    <div 
+      class="flex items-center gap-3 p-4 rounded-lg border shrink-0"
+      :class="isSigned ? 'bg-green-50 border-green-200 text-green-700' : 'bg-red-100 border-red-200 text-red-700'"
+    >
+      <CheckCircle2 v-if="isSigned" class="h-6 w-6" />
+      <AlertCircle v-else class="h-6 w-6" />
+      <div>
+        <h3 class="font-semibold">{{ isSigned ? 'Document Signed' : 'Document Not Signed' }}</h3>
+        <p class="text-sm opacity-90">
+          {{ isSigned ? 'This offering letter has been digitally signed by the candidate.' : 'This offering letter has not been signed by the candidate.' }}
+        </p>
       </div>
     </div>
 
-    <!-- Right Column: Document Preview -->
-    <div class="w-1/3 flex flex-col shrink-0">
-      <Card class="h-full flex flex-col">
-        <CardHeader class="pb-3 shrink-0">
-          <div class="flex items-center justify-between">
-            <CardTitle class="text-sm font-medium text-muted-foreground">Document Preview</CardTitle>
-          </div>
-        </CardHeader>
-        <CardContent class="flex-1 overflow-hidden p-0">
-          <div v-if="data.url" class="w-full h-full bg-muted rounded-b-lg overflow-hidden">
-            <iframe :src="data.url" class="w-full h-full border-0"></iframe>
-          </div>
-          <div v-else class="flex items-center justify-center h-full text-muted-foreground text-sm p-4">
-            No document preview available
-          </div>
-        </CardContent>
-      </Card>
+    <div class="flex gap-6 flex-1 overflow-hidden">
+      <!-- Left Column: Structured Data -->
+      <div class="flex flex-col gap-6 w-1/3 overflow-y-auto pr-2">
+        <Card>
+          <CardHeader>
+            <CardTitle class="text-base">Key Details</CardTitle>
+          </CardHeader>
+          <CardContent class="space-y-4">
+            <div>
+              <p class="text-sm text-muted-foreground">Position</p>
+              <p class="font-medium">{{ data.extracted_content?.structured_data?.position || '-' }}</p>
+            </div>
+            
+            <Separator />
+            
+            <div>
+              <p class="text-sm text-muted-foreground">Start Date</p>
+              <p class="font-medium">{{ formatDate(data.extracted_content?.structured_data?.start_date) }}</p>
+            </div>
+
+            <Separator />
+
+            <div>
+              <p class="text-sm text-muted-foreground">Salary</p>
+              <p class="font-medium">{{ data.extracted_content?.structured_data?.salary || '-' }}</p>
+            </div>
+          </CardContent>
+        </Card>
+
+        <Card v-if="data.extracted_content?.structured_data?.benefits?.length">
+          <CardHeader>
+            <CardTitle class="text-base">Benefits</CardTitle>
+          </CardHeader>
+          <CardContent>
+            <ul class="space-y-2">
+              <li 
+                v-for="(benefit, index) in data.extracted_content.structured_data.benefits" 
+                :key="index"
+                class="text-sm flex items-start gap-2"
+              >
+                <span class="mt-1.5 h-1.5 w-1.5 rounded-full bg-primary shrink-0" />
+                <span>{{ benefit }}</span>
+              </li>
+            </ul>
+          </CardContent>
+        </Card>
+      </div>
+
+      <!-- Right Column: Document Content (Text) -->
+      <div class="flex flex-col flex-1 min-w-0 h-full">
+        <Card class="h-full flex flex-col border-muted">
+          <CardHeader class="pb-3 border-b bg-muted/30">
+            <div class="flex items-center gap-2">
+              <FileText class="h-4 w-4 text-muted-foreground" />
+              <CardTitle class="text-sm font-medium">Extracted Content</CardTitle>
+            </div>
+          </CardHeader>
+          <CardContent class="flex-1 overflow-hidden p-0 bg-muted/10">
+            <div class="h-full overflow-y-auto p-6">
+              <div class="max-w-3xl mx-auto bg-white shadow-sm border p-8 min-h-full rounded-sm">
+                <pre class="whitespace-pre-wrap font-serif text-sm leading-relaxed text-foreground">{{ data.extracted_content?.content }}</pre>
+              </div>
+            </div>
+          </CardContent>
+        </Card>
+      </div>
     </div>
   </div>
 </template>
