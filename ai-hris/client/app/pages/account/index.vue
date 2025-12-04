@@ -18,6 +18,8 @@ import KtpModal from '@/components/candidates/KtpModal.vue'
 import KtpContent from '@/components/candidates/KtpContent.vue'
 import OfferingLetterModal from '@/components/candidates/OfferingLetterModal.vue'
 import OfferingLetterContent from '@/components/candidates/OfferingLetterContent.vue'
+import BukuTabunganModal from '@/components/candidates/BukuTabunganModal.vue'
+import BukuTabunganContent from '@/components/candidates/BukuTabunganContent.vue'
 import {
   Dialog,
   DialogContent,
@@ -968,6 +970,13 @@ const saveCandidate = async () => {
         :data="selectedDocument as any"
         @update:open="isModalOpen = $event"
       />
+
+      <BukuTabunganModal 
+        v-else-if="selectedDocument && selectedDocument.type === 'Buku Tabungan'"
+        :open="isModalOpen" 
+        :data="selectedDocument"
+        @update:open="isModalOpen = $event"
+      />
       
       <!-- Fallback for other document types -->
       <Dialog 
@@ -1014,6 +1023,11 @@ const saveCandidate = async () => {
 
             <KtpContent 
               v-else-if="previewDocument && (previewDocument.type === 'KTP' || previewDocument.type === 'KARTU_TANDA_PENDUDUK')" 
+              :data="previewDocument"
+            />
+
+            <BukuTabunganContent 
+              v-else-if="previewDocument && previewDocument.type === 'Buku Tabungan'" 
               :data="previewDocument"
             />
 
