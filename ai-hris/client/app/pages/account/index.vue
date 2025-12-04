@@ -584,7 +584,10 @@ const saveCandidate = async () => {
         <!-- Document Completion Card -->
         <Card :class="{ 'border-blue-600 dark:border-blue-400 shadow-md ring-1 ring-blue-600 dark:ring-blue-400': documentCompletion.progress === 100 }">
           <CardHeader class="pb-3">
-            <CardTitle class="text-sm font-medium text-muted-foreground">Document Completion</CardTitle>
+            <CardTitle class="text-base font-semibold">Document Completion</CardTitle>
+            <CardDescription class="text-xs">
+              Please ensure all required documents are uploaded to complete your profile.
+            </CardDescription>
           </CardHeader>
           <CardContent class="space-y-4">
             <div class="space-y-2">
@@ -625,6 +628,9 @@ const saveCandidate = async () => {
                 {{ discrepancies.length }} Issues
               </Badge>
             </div>
+            <CardDescription class="text-xs text-amber-800/80 dark:text-amber-200/80 mt-1">
+              We found some inconsistencies between your form data and uploaded documents. Please review and correct them.
+            </CardDescription>
           </CardHeader>
           <CardContent class="space-y-4 max-h-[300px] overflow-y-auto">
             <div v-for="(discrepancy, index) in discrepancies" :key="index" 
@@ -725,10 +731,6 @@ const saveCandidate = async () => {
               <Input id="name" v-model="form.name" placeholder="John Doe" />
             </div>
             <div class="space-y-2">
-              <Label for="photo_url">Photo URL</Label>
-              <Input id="photo_url" v-model="form.photo_url" placeholder="https://..." />
-            </div>
-            <div class="space-y-2">
               <Label for="email">Email</Label>
               <Input id="email" type="email" v-model="form.email" placeholder="john@example.com" />
             </div>
@@ -743,9 +745,9 @@ const saveCandidate = async () => {
                   <SelectValue placeholder="Select gender" />
                 </SelectTrigger>
                 <SelectContent>
-                  <SelectItem value="male">Male</SelectItem>
-                  <SelectItem value="female">Female</SelectItem>
-                  <SelectItem value="other">Other</SelectItem>
+                  <SelectItem value="Male">Male</SelectItem>
+                  <SelectItem value="Female">Female</SelectItem>
+                  <SelectItem value="Other">Other</SelectItem>
                 </SelectContent>
               </Select>
             </div>
@@ -858,7 +860,7 @@ const saveCandidate = async () => {
       <Card v-if="form.legal_documents.length > 0">
         <CardHeader>
           <CardTitle>Legal Documents</CardTitle>
-          <CardDescription>Manage legal documents (e.g. Kartu Keluarga, ID cards).</CardDescription>
+          <CardDescription>Manage your legal documents. Ensure all uploads are clear and legible to avoid verification issues.</CardDescription>
         </CardHeader>
         <CardContent class="space-y-4">
           <div class="space-y-2">
@@ -894,41 +896,8 @@ const saveCandidate = async () => {
 
       <Card>
         <CardHeader>
-          <CardTitle>Resume</CardTitle>
-          <CardDescription>Upload or manage candidate's resume/CV.</CardDescription>
-        </CardHeader>
-        <CardContent class="space-y-4">
-          <div v-if="hasResume" class="flex items-center justify-between p-3 border rounded-md bg-muted/50 hover:bg-muted cursor-pointer transition-colors" @click="selectedDocument = form.resume; isModalOpen = true">
-            <div class="flex items-center gap-3 flex-1">
-              <FileText class="h-5 w-5 text-muted-foreground" />
-              <div class="flex-1">
-                <p class="text-sm font-medium">{{ form.resume.name }}</p>
-                <p class="text-xs text-muted-foreground">RESUME • {{ new Date(form.resume.last_updated).toLocaleDateString() }}</p>
-              </div>
-            </div>
-            <Button variant="ghost" size="icon" @click.stop="form.resume = undefined" class="text-destructive hover:text-destructive hover:bg-destructive/10">
-              <Trash2 class="h-4 w-4" />
-            </Button>
-          </div>
-          <div v-else class="text-sm text-muted-foreground text-center py-4 border border-dashed rounded-md">
-            No resume uploaded yet.
-          </div>
-
-          <div class="flex justify-end">
-            <input type="file" ref="resumeInput" class="hidden" accept=".pdf" @change="handleResumeUpload" />
-            <Button variant="outline" @click="triggerResumeUpload" :disabled="isUploading">
-              <Loader2 v-if="isUploading" class="mr-2 h-4 w-4 animate-spin" />
-              <Upload v-else class="mr-2 h-4 w-4" />
-              {{ isUploading ? 'Analyzing...' : 'Upload Resume' }}
-            </Button>
-          </div>
-        </CardContent>
-      </Card>
-
-      <Card>
-        <CardHeader>
           <CardTitle>Signed Offering Letter</CardTitle>
-          <CardDescription>Upload or manage the signed offer letter document.</CardDescription>
+          <CardDescription>Please upload the signed copy of your offering letter to finalize your acceptance.</CardDescription>
         </CardHeader>
         <CardContent class="space-y-4">
           <div v-if="hasOfferingLetter" class="flex flex-col gap-2 p-4 border rounded-md bg-green-50 hover:bg-green-100 cursor-pointer transition-colors" @click="selectedDocument = form.offering_letter; isModalOpen = true">
