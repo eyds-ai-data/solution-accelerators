@@ -88,25 +88,28 @@ const isSigned = props.data.extracted_content?.structured_data?.is_signed
             </ul>
           </CardContent>
         </Card>
+
+        <Card>
+          <CardHeader>
+            <CardTitle class="text-base">Extracted Content</CardTitle>
+          </CardHeader>
+          <CardContent class="text-sm whitespace-pre-wrap">
+            <div v-if="data.extracted_content?.content">
+              {{ data.extracted_content.content }}
+            </div>
+            <div v-else class="text-muted-foreground">
+              <FileText class="inline h-4 w-4 mr-1 mb-1" />
+              No extracted content available.
+            </div>
+          </CardContent>
+        </Card>
       </div>
 
       <!-- Right Column: Document Content (Text) -->
       <div class="flex flex-col flex-1 min-w-0 h-full">
-        <Card class="h-full flex flex-col border-muted">
-          <CardHeader class="pb-3 border-b bg-muted/30">
-            <div class="flex items-center gap-2">
-              <FileText class="h-4 w-4 text-muted-foreground" />
-              <CardTitle class="text-sm font-medium">Extracted Content</CardTitle>
-            </div>
-          </CardHeader>
-          <CardContent class="flex-1 overflow-hidden p-0 bg-muted/10">
-            <div class="h-full overflow-y-auto p-6">
-              <div class="max-w-3xl mx-auto bg-white shadow-sm border p-8 min-h-full rounded-sm">
-                <pre class="whitespace-pre-wrap font-serif text-sm leading-relaxed text-foreground">{{ data.extracted_content?.content }}</pre>
-              </div>
-            </div>
-          </CardContent>
-        </Card>
+        <ClientOnly>
+          <CandidatesOfferingLetterPdfViewer :url="data.url" />
+        </ClientOnly>
       </div>
     </div>
   </div>
