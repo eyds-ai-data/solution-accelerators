@@ -1,60 +1,41 @@
 <script setup lang="ts">
 import { ref, computed, onMounted } from 'vue'
 import { useRoute, useRouter } from 'vue-router'
-import type { Candidate, KartuKeluargaStructured, LegalDocument } from '@/components/candidates/data/schema'
+import type { Candidate, LegalDocument, FamilyMember, ResumeDocument, OfferingLetter, LegalDocumentSchemaV2 } from '@/components/candidates/data/schema'
+import { Button } from '@/components/ui/button'
+import { Card, CardContent, CardHeader, CardTitle, CardDescription, CardFooter } from '@/components/ui/card'
+import { Input } from '@/components/ui/input'
+import { Label } from '@/components/ui/label'
+import { Textarea } from '@/components/ui/textarea'
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select'
+import { ArrowLeft, Save, Upload, FileText, Trash2, Loader2, Plus } from 'lucide-vue-next'
+import { Badge } from '@/components/ui/badge'
+import { Progress } from '@/components/ui/progress'
 import KartuKeluargaModal from '@/components/candidates/KartuKeluargaModal.vue'
+import KartuKeluargaContent from '@/components/candidates/KartuKeluargaContent.vue'
+import KtpModal from '@/components/candidates/KtpModal.vue'
+import KtpContent from '@/components/candidates/KtpContent.vue'
 import OfferingLetterModal from '@/components/candidates/OfferingLetterModal.vue'
+import OfferingLetterContent from '@/components/candidates/OfferingLetterContent.vue'
 import {
   Dialog,
   DialogContent,
   DialogDescription,
   DialogHeader,
   DialogTitle,
+  DialogFooter,
 } from '@/components/ui/dialog'
-import { Badge } from '@/components/ui/badge'
-import { Button } from '@/components/ui/button'
-import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
+import {
+  Table,
+  TableBody,
+  TableCell,
+  TableHead,
+  TableHeader,
+  TableRow,
+} from '@/components/ui/table'
 import { Separator } from '@/components/ui/separator'
-import {
-  Stepper,
-  StepperDescription,
-  StepperIndicator,
-  StepperItem,
-  StepperSeparator,
-  StepperTitle,
-  StepperTrigger,
-} from '@/components/ui/stepper'
-import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar'
-import {
-  Send,
-  MoveRight,
-  Download,
-  AlertTriangle,
-  MapPin,
-  Clock,
-  Calendar,
-  Headphones,
-  Gem,
-  FileText,
-  Info,
-  MessageSquare,
-  Activity,
-  ExternalLink,
-  Briefcase,
-  CreditCard,
-  Users,
-  GraduationCap,
-  IdCard,
-  Edit,
-  AlertCircle,
-  CheckCircle2,
-  Banknote,
-  Shield,
-  Mail,
-  Sparkles,
-  AlertTriangleIcon,
-} from 'lucide-vue-next'
 
+const route = useRoute()
 const router = useRouter()
 const candidateIdCookie = useCookie('candidate_id')
 console.log('Candidate ID Cookie:', candidateIdCookie.value)
@@ -73,769 +54,917 @@ definePageMeta({
   layout: 'blank'
 })
 
-const { data: candidate, pending: loading, error } = await useFetch<Candidate>(`/api/candidates/${candidateId}`)
-
-const activeTab = ref('notes')
-
-const statusSteps = computed(() => {
-  const steps = [
-    { value: 'applied', label: 'Applied' },
-    { value: 'screening', label: 'Screening' },
-    { value: 'interview', label: 'Interview' },
-    { value: 'shortlisted', label: 'Shortlisted' },
-  ]
-
-  if (candidate.value?.status === 'hired') {
-    steps.push({ value: 'hired', label: 'Hired' })
-    steps.push({ value: 'onboarding', label: 'Onboarding' })
-  } else if (candidate.value?.status === 'rejected') {
-    steps.push({ value: 'rejected', label: 'Rejected' })
-  } else {
-    steps.push({ value: 'decision', label: 'Hired / Rejected' })
-  }
+// Form state
+const form = ref({
+  name: '',
+  email: '',
+  phone: '',
+  gender: '',
+  date_of_birth: '',
   
-  return steps
+  // Address
+  address_detail: '',
+  address_city: '',
+  address_country: '',
+  address_zip: undefined as number | undefined,
+
+  position: '',
+  experience: 0,
+  skills: [] as string[],
+  legal_documents: [] as LegalDocument[],
+  resume: undefined as ResumeDocument | undefined,
+  offering_letter: undefined as OfferingLetter | undefined,
+  family_members: [] as FamilyMember[]
 })
 
-const currentStatusIndex = computed(() => {
-  if (!candidate.value?.status) return 0
-  const status = candidate.value.status
-  
-  if (status === 'hired') return 5
-  if (status === 'rejected') return 4
-  
-  const index = statusSteps.value.findIndex(s => s.value === status)
-  return index !== -1 ? index : 0
+const newSkill = ref('')
+const newFamilyMember = ref({
+  name: '',
+  relationship: '',
+  date_of_birth: '',
+  brief_data: {
+    occupation: '',
+    contact: ''
+  }
 })
+const isUploading = ref(false)
+const fileInput = ref<HTMLInputElement | null>(null)
+const isModalOpen = ref(false)
+const isFamilyModalOpen = ref(false)
+const selectedDocument = ref<LegalDocument | undefined>(undefined)
+const showSuccessNotification = ref(false)
+const isSaving = ref(false)
 
-const activities = computed(() => [
-  { title: 'Moved to Interview Stage', date: '2 days ago', description: 'Candidate was moved from Screening to Interview stage.' },
-  { title: 'AI Interview Completed', date: '3 days ago', description: 'Candidate completed the AI interview with a score of 8.0/10.' },
-  { title: 'Application Received', date: '4 days ago', description: 'Candidate applied for Product Designer I position.' }
-])
-
-const formatCurrency = (value: number, currency: string = 'IDR') => {
-  return new Intl.NumberFormat('id-ID', { style: 'currency', currency: currency, maximumFractionDigits: 0 }).format(value)
-}
-
-const formatMarketRange = (range?: { min: number, max: number, currency: string }) => {
-  if (!range) return '-'
-  return `${formatCurrency(range.min, range.currency)} - ${formatCurrency(range.max, range.currency)}`
-}
-
-const getFactorColor = (value: string) => {
-  const map: Record<string, string> = {
-    'High': 'text-green-600',
-    'Very High': 'text-orange-600',
-    'Moderate': 'text-blue-600',
-    'Low': 'text-red-600',
-    'Very Low': 'text-gray-600'
-  }
-  return map[value] || 'text-foreground'
-}
-
-const getSeverityColor = (severity: string) => {
-  const map: Record<string, string> = {
-    'low': 'bg-blue-50 border-blue-200 text-blue-700 dark:bg-blue-900/20 dark:border-blue-900/40 dark:text-blue-300',
-    'medium': 'bg-yellow-50 border-yellow-200 text-yellow-700 dark:bg-yellow-900/20 dark:border-yellow-900/40 dark:text-yellow-300',
-    'high': 'bg-red-50 border-red-200 text-red-700 dark:bg-red-900/20 dark:border-red-900/40 dark:text-red-300'
-  }
-  return map[severity] || 'bg-gray-50 border-gray-200 text-gray-700'
-}
-
-const getSeverityIcon = (severity: string) => {
-  const map: Record<string, any> = {
-    'low': Info,
-    'medium': AlertTriangle,
-    'high': AlertCircle
-  }
-  return map[severity] || Info
-}
-
-const requiredDocuments = ['KTP', 'KK', 'Buku Tabungan', 'Signed Offer Letter']
-
-const getDocumentIcon = (docType: string) => {
-  const iconMap: Record<string, any> = {
-    'KTP': IdCard,
-    'KARTU_KELUARGA': Users,
-    'KK': Users,
-    'IJAZAH': GraduationCap,
-    'Ijazah': GraduationCap,
-    'BUKU_TABUNGAN': CreditCard,
-    'Buku Tabungan': CreditCard,
-    'NPWP': FileText,
-    'RESUME': FileText,
-    'Resume': FileText,
-    'Signed Offer Letter': FileText,
-    'OFFERING_LETTER': FileText,
-  }
-  return iconMap[docType] || FileText
-}
-
-const documentCompletion = computed(() => {
-  if (!candidate.value) return { progress: 0, missing: [] }
-  
-  const uploadedTypes = candidate.value.legal_documents?.map(d => d.type) || []
-  
-  // Check if offering letter exists and include it in the count
-  if (Object.keys(candidate.value.offering_letter || {}).length > 0) {
-    console.log('Offering letter found, adding to uploaded types')
-    uploadedTypes.push('Signed Offer Letter')
-  }
-  
-  const missing = requiredDocuments.filter(doc => !uploadedTypes.includes(doc))
-  const progress = Math.round(((requiredDocuments.length - missing.length) / requiredDocuments.length) * 100)
-  
-  return { progress, missing }
-})
-
-const downloadCV = () => {
-  // if (candidate.value?.resume) {
-  //   window.open(candidate.value?.resume[0], '_blank')
-  // }
-  throw new Error('Not implemented yet')
-}
-
+// Helper to format date
 const formatDate = (dateString: string) => {
-  const date = new Date(dateString)
-  return date.toLocaleDateString('en-US', { year: 'numeric', month: 'short' })
-}
-
-const calculateAge = (dateString: string) => {
-  const today = new Date()
-  const birthDate = new Date(dateString)
-  let age = today.getFullYear() - birthDate.getFullYear()
-  const monthDiff = today.getMonth() - birthDate.getMonth()
-  
-  if (monthDiff < 0 || (monthDiff === 0 && today.getDate() < birthDate.getDate())) {
-    age--
+  if (!dateString) return '-'
+  try {
+    return new Date(dateString).toLocaleDateString('id-ID', {
+      year: 'numeric',
+      month: 'long',
+      day: 'numeric',
+    })
+  } catch (e) {
+    return dateString
   }
-  
-  return age
 }
 
-const isKKModalOpen = ref(false)
-const selectedKKData = ref<LegalDocument | undefined>(undefined)
+// Upload State
+const isUploadModalOpen = ref(false)
+const uploadProgress = ref(0)
+const isAnalyzing = ref(false)
+const tempUploadedFile = ref<File | null>(null)
+const tempExtractedData = ref<any>(null)
+const offeringLetterInput = ref<HTMLInputElement | null>(null)
+const resumeInput = ref<HTMLInputElement | null>(null)
+const currentUploadType = ref<'document' | 'offering_letter' | 'resume'>('document')
 const isOfferingLetterModalOpen = ref(false)
+const offeringLetterAnalysis = ref<any>(null)
 
-const handleDocumentClick = (doc: any) => {
-  console.log('Document clicked:', doc)
-  if (doc.type === 'KK' && doc.extracted_content) {
-    selectedKKData.value = doc
-    isKKModalOpen.value = true
-  } else if (doc.url) {
-    window.open(doc.url, '_blank')
+const previewDocument = computed(() => {
+  if (!tempExtractedData.value?.data) return null
+  const d = tempExtractedData.value.data
+  return {
+    type: d.type || d.document_type,
+    name: d.name,
+    url: d.url,
+    last_updated: d.last_updated,
+    extracted_content: d.document_data || (d.structured_data ? { structured_data: d.structured_data } : undefined)
+  } as LegalDocumentSchemaV2
+})
+
+const previewOfferingLetter = computed(() => {
+  if (!offeringLetterAnalysis.value?.data) return undefined
+  
+  const d = offeringLetterAnalysis.value.data
+  return {
+    type: 'Signed Offering Letter',
+    name: tempUploadedFile.value?.name || d.name,
+    url: d.url,
+    last_updated: d.last_updated || new Date().toISOString(),
+    extracted_content: {
+      content: d.extracted_content?.content || '',
+      bounding_boxes: d.extracted_content?.bounding_boxes || [],
+      structured_data: d.extracted_content?.structured_data || {}
+    }
+  } as OfferingLetter
+})
+
+const hasResume = computed(() => {
+  return form.value.resume !== undefined && form.value.resume !== null && Object.keys(form.value.resume).length > 0
+})
+
+const hasOfferingLetter = computed(() => {
+  return form.value.offering_letter !== undefined && form.value.offering_letter !== null && Object.keys(form.value.offering_letter).length > 0
+})
+
+const uploadDocument = async (file: File) => {
+  const formData = new FormData()
+  formData.append('document', file)
+  formData.append('candidate_id', candidateId)
+
+  try {
+    const response = await $fetch('/api/candidates/upload', {
+      method: 'POST',
+      body: formData,
+    })
+    return response
+  } catch (error) {
+    console.error('Upload failed:', error)
+    throw new Error('Upload failed')
   }
 }
 
-const getSignalColor = (signal: string, index?: number) => {
-  const colors = [
-    'bg-blue-100 text-blue-800 border-blue-200 dark:bg-blue-900/40 dark:text-blue-300 dark:border-blue-900/60',
-    'bg-purple-100 text-purple-800 border-purple-200 dark:bg-purple-900/40 dark:text-purple-300 dark:border-purple-900/60',
-    'bg-pink-100 text-pink-800 border-pink-200 dark:bg-pink-900/40 dark:text-pink-300 dark:border-pink-900/60',
-    'bg-red-100 text-red-800 border-red-200 dark:bg-red-900/40 dark:text-red-300 dark:border-red-900/60',
-    'bg-green-100 text-green-800 border-green-200 dark:bg-green-900/40 dark:text-green-300 dark:border-green-900/60',
-    'bg-yellow-100 text-yellow-800 border-yellow-200 dark:bg-yellow-900/40 dark:text-yellow-300 dark:border-yellow-900/60',
-    'bg-indigo-100 text-indigo-800 border-indigo-200 dark:bg-indigo-900/40 dark:text-indigo-300 dark:border-indigo-900/60',
-    'bg-cyan-100 text-cyan-800 border-cyan-200 dark:bg-cyan-900/40 dark:text-cyan-300 dark:border-cyan-900/60',
-  ]
-  
-  // If index is provided, use it; otherwise use hash-based index
-  let colorIndex = 0
-  if (index !== undefined) {
-    colorIndex = index % colors.length
-  } else {
-    let hash = 0
-    for (let i = 0; i < signal.length; i++) {
-      hash = ((hash << 5) - hash) + signal.charCodeAt(i)
-      hash = hash & hash
+const analyzeOfferingLetter = async (file: File) => {
+  const formData = new FormData()
+  formData.append('document', file)
+  formData.append('candidate_id', candidateId)
+
+  try {
+    const response = await $fetch('/api/document/analyze/offering-letter', {
+      method: 'POST',
+      body: formData,
+    })
+    console.log('Offering letter analysis response:', response)
+    return response
+  } catch (error) {
+    console.error('Offering letter analysis failed:', error)
+    throw new Error('Offering letter analysis failed')
+  }
+}
+
+const confirmUpload = () => {
+    if (!tempUploadedFile.value || !tempExtractedData.value) return
+
+    const result = tempExtractedData.value
+    const file = tempUploadedFile.value
+
+    if (currentUploadType.value === 'resume') {
+      // Handle resume upload
+      const newResume: ResumeDocument = {
+        type: 'RESUME',
+        name: result.data?.name || file.name,
+        url: result.data?.url || '',
+        last_updated: result.data?.last_updated || new Date().toISOString(),
+        extracted_content: result.data?.document_data || result
+      }
+      form.value.resume = newResume
+    } else if (currentUploadType.value === 'offering_letter') {
+      // Handle offering letter upload
+      const newOfferingLetter: OfferingLetter = {
+        type: 'OFFERING_LETTER',
+        name: result.data?.name || file.name,
+        url: result.data?.url || '',
+        last_updated: result.data?.last_updated || new Date().toISOString(),
+        extracted_content: result.data?.document_data || result
+      }
+      form.value.offering_letter = newOfferingLetter
+    } else {
+      // Handle legal documents
+      let docType = result.data?.document_type || result.data?.type || result.document_type || 'OTHER'
+
+      // Create new document entry
+      const newDoc: LegalDocument = {
+        type: docType, 
+        name: result.data?.name || file.name,
+        url: result.data?.url || '', 
+        last_updated: result.data?.last_updated || new Date().toISOString(),
+        extracted_content: result.data?.document_data || (result.data?.structured_data ? { structured_data: result.data.structured_data } : result)
+      }
+
+      form.value.legal_documents.push(newDoc)
+
+      // Auto-fill address if available and empty (only for KK documents)
+      if (docType === 'KK' && result.data?.document_data?.structured_data) {
+        const sd = result.data.document_data.structured_data
+        if (!form.value.address_detail && sd.address) form.value.address_detail = sd.address
+        if (!form.value.address_city && sd.city) form.value.address_city = sd.city
+        if (!form.value.address_zip && sd.postal_code) form.value.address_zip = parseInt(sd.postal_code.replace(/\D/g, '')) || undefined
+      }
     }
-    colorIndex = Math.abs(hash) % colors.length
+    
+    isUploadModalOpen.value = false
+    tempUploadedFile.value = null
+    tempExtractedData.value = null
+}
+
+const calculateTotalExperience = (experiences: any[]) => {
+  if (!experiences || experiences.length === 0) return 0
+  
+  let totalMonths = 0
+  
+  experiences.forEach(exp => {
+    const start = new Date(exp.start_date)
+    const end = exp.end_date ? new Date(exp.end_date) : new Date()
+    
+    if (!isNaN(start.getTime()) && !isNaN(end.getTime())) {
+      const months = (end.getFullYear() - start.getFullYear()) * 12 + (end.getMonth() - start.getMonth())
+      if (months > 0) {
+        totalMonths += months
+      }
+    }
+  })
+  
+  return Number((totalMonths / 12).toFixed(1))
+}
+
+// Load data
+const { data: candidate, error } = await useFetch<Candidate>(`/api/candidates/${candidateId}`)
+
+if (error.value || !candidate.value) {
+  router.push('/candidates')
+} else {
+  const c = candidate.value
+  form.value = {
+    name: c.name,
+    email: c.email || '',
+    phone: c.phone || '',
+    gender: c.gender || '',
+    date_of_birth: c.date_of_birth || '',
+    
+    address_detail: c.address?.detail || '',
+    address_city: c.address?.city || '',
+    address_country: c.address?.country || '',
+    address_zip: c.address?.zip,
+
+    position: c.position || '',
+    experience: c.work_experiences ? calculateTotalExperience(c.work_experiences) : (c.experience || 0),
+    skills: c.skills || [],
+    legal_documents: c.legal_documents || [],
+    resume: c.resume,
+    offering_letter: c.offering_letter,
+    family_members: c.family_members || []
+  }
+}
+
+const goBack = () => {
+  router.back()
+}
+
+const addSkill = () => {
+  if (newSkill.value.trim() && form.value.skills) {
+    if (!form.value.skills.includes(newSkill.value.trim())) {
+      form.value.skills.push(newSkill.value.trim())
+    }
+    newSkill.value = ''
+  }
+}
+
+const removeSkill = (skill: string) => {
+  if (form.value.skills) {
+    form.value.skills = form.value.skills.filter(s => s !== skill)
+  }
+}
+
+const removeDocument = (index: number) => {
+  form.value.legal_documents.splice(index, 1)
+}
+
+const addFamilyMember = () => {
+  if (newFamilyMember.value.name && newFamilyMember.value.relationship) {
+    form.value.family_members.push(JSON.parse(JSON.stringify(newFamilyMember.value)))
+    // Reset
+    newFamilyMember.value = {
+      name: '',
+      relationship: '',
+      date_of_birth: '',
+      brief_data: { occupation: '', contact: '' }
+    }
+    isFamilyModalOpen.value = false
+  }
+}
+
+const removeFamilyMember = (index: number) => {
+  form.value.family_members.splice(index, 1)
+}
+
+const openDocumentModal = (doc: LegalDocumentSchemaV2) => {
+  selectedDocument.value = doc
+  isModalOpen.value = true
+}
+
+const triggerFileUpload = () => {
+  fileInput.value?.click()
+}
+
+const triggerOfferingLetterUpload = () => {
+  offeringLetterInput.value?.click()
+}
+
+const triggerResumeUpload = () => {
+  resumeInput.value?.click()
+}
+
+const handleFileUpload = async (event: Event) => {
+  const target = event.target as HTMLInputElement
+  if (!target.files || target.files.length === 0) return
+
+  const file = target.files[0]
+  if (!file) return
+
+  currentUploadType.value = 'document'
+  tempUploadedFile.value = file
+  isUploadModalOpen.value = true
+  isAnalyzing.value = true
+  uploadProgress.value = 20
+  
+  try {
+    // Upload/analysis
+    const result = await uploadDocument(file)
+    uploadProgress.value = 100
+    tempExtractedData.value = result
+  } catch (error) {
+    console.error('Upload failed:', error)
+    // Handle error (maybe show a toast or message)
+    isUploadModalOpen.value = false
+  } finally {
+    isAnalyzing.value = false
   }
   
-  return colors[colorIndex]
+  // Reset input so same file can be selected again if needed
+  if (fileInput.value) fileInput.value.value = ''
+}
+
+const handleOfferingLetterUpload = async (event: Event) => {
+  const target = event.target as HTMLInputElement
+  if (!target.files || target.files.length === 0) return
+
+  const file = target.files[0]
+  if (!file) return
+
+  currentUploadType.value = 'offering_letter'
+  tempUploadedFile.value = file
+  isUploading.value = true
+  isAnalyzing.value = true
+  uploadProgress.value = 20
+  
+  try {
+    // Analyze offering letter with special API
+    const result = await analyzeOfferingLetter(file)
+    uploadProgress.value = 100
+    offeringLetterAnalysis.value = result
+    isOfferingLetterModalOpen.value = true
+  } catch (error) {
+    console.error('Offering letter analysis failed:', error)
+    // Handle error (maybe show a toast or message)
+    isOfferingLetterModalOpen.value = false
+  } finally {
+    isUploading.value = false
+    isAnalyzing.value = false
+  }
+  
+  // Reset input so same file can be selected again if needed
+  if (offeringLetterInput.value) offeringLetterInput.value.value = ''
+}
+
+const handleResumeUpload = async (event: Event) => {
+  const target = event.target as HTMLInputElement
+  if (!target.files || target.files.length === 0) return
+
+  const file = target.files[0]
+  if (!file) return
+
+  currentUploadType.value = 'resume'
+  tempUploadedFile.value = file
+  isUploadModalOpen.value = true
+  isAnalyzing.value = true
+  uploadProgress.value = 20
+  
+  try {
+    // Upload/analysis
+    const result = await uploadDocument(file)
+    uploadProgress.value = 100
+    tempExtractedData.value = result
+  } catch (error) {
+    console.error('Upload failed:', error)
+    // Handle error (maybe show a toast or message)
+    isUploadModalOpen.value = false
+  } finally {
+    isAnalyzing.value = false
+  }
+  
+  // Reset input so same file can be selected again if needed
+  if (resumeInput.value) resumeInput.value.value = ''
+}
+
+const confirmOfferingLetter = () => {
+  if (!tempUploadedFile.value || !offeringLetterAnalysis.value) return
+
+  const file = tempUploadedFile.value
+  const analysis = offeringLetterAnalysis.value
+  console.log('Confirmed offering letter analysis:', analysis)
+
+  // Create offering letter entry
+  const newOfferingLetter: OfferingLetter = {
+    type: 'Signed Offering Letter',
+    name: analysis.data?.name || file.name,
+    url: analysis.data?.url || '',
+    last_updated: analysis.data?.last_updated || new Date().toISOString(),
+    extracted_content: {
+      content: analysis.data?.extracted_content?.content || '',
+      bounding_boxes: analysis.data?.extracted_content?.bounding_boxes || [],
+      structured_data: analysis.data?.extracted_content?.structured_data || {}
+    }
+  }
+  
+  form.value.offering_letter = newOfferingLetter
+  
+  // Close modals and reset state
+  isOfferingLetterModalOpen.value = false
+  tempUploadedFile.value = null
+  offeringLetterAnalysis.value = null
+}
+
+const saveCandidate = async () => {
+  isSaving.value = true
+  
+  const payload = {
+    name: form.value.name,
+    email: form.value.email,
+    phone: form.value.phone,
+    gender: form.value.gender,
+    date_of_birth: form.value.date_of_birth,
+    address: {
+      detail: form.value.address_detail,
+      city: form.value.address_city,
+      country: form.value.address_country,
+      zip: form.value.address_zip
+    },
+    position: form.value.position,
+    experience: form.value.experience,
+    skills: form.value.skills,
+    legal_documents: form.value.legal_documents,
+    resume: form.value.resume,
+    offering_letter: form.value.offering_letter,
+    family_members: form.value.family_members
+  }
+
+  try {
+    const { data, error } = await useFetch(`/api/candidates/${candidateId}`, {
+      method: 'PUT',
+      body: payload
+    })
+
+    if (error.value) {
+      console.error('Error saving candidate:', error.value)
+      return
+    }
+
+    // Show success notification
+    showSuccessNotification.value = true
+    
+    // Auto-hide notification after 3 seconds
+    setTimeout(() => {
+      showSuccessNotification.value = false
+    }, 3000)
+  } finally {
+    isSaving.value = false
+  }
 }
 </script>
 
 <template>
-  <div class="min-h-screen bg-muted/40">
-    <!-- Loading State -->
-    <div v-if="loading" class="flex items-center justify-center py-12">
-      <div class="animate-spin rounded-full h-12 w-12 border-b-2 border-primary" />
-    </div>
+  <div class="min-h-screen bg-muted/40 p-6">
+    <div class="w-full mx-auto space-y-6">
+      
+      <!-- Header -->
+      <div class="flex items-center gap-4">
+        <Button variant="ghost" size="icon" @click="goBack">
+          <ArrowLeft class="h-5 w-5" />
+        </Button>
+        <div>
+          <h1 class="text-2xl font-bold tracking-tight text-foreground">Edit Candidate</h1>
+          <p class="text-muted-foreground">Update candidate information</p>
+        </div>
+      </div>
 
-    <!-- Error State -->
-    <div v-else-if="error" class="max-w-7xl mx-auto p-6">
-      <Card class="bg-red-50 border-red-200">
-        <CardContent class="pt-6">
-          <div class="flex items-center gap-2 text-red-700">
-            <AlertCircle class="h-5 w-5" />
-            <span>Failed to load candidate details. Please try again.</span>
+      <Card>
+        <CardHeader>
+          <CardTitle>Personal Information</CardTitle>
+          <CardDescription>Basic details about the candidate.</CardDescription>
+        </CardHeader>
+        <CardContent class="space-y-4">
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+            <div class="space-y-2">
+              <Label for="name">Full Name</Label>
+              <Input id="name" v-model="form.name" placeholder="John Doe" />
+            </div>
+            <div class="space-y-2">
+              <Label for="email">Email</Label>
+              <Input id="email" type="email" v-model="form.email" placeholder="john@example.com" />
+            </div>
+            <div class="space-y-2">
+              <Label for="phone">Phone</Label>
+              <Input id="phone" v-model="form.phone" placeholder="+1 234 567 890" />
+            </div>
+            <div class="space-y-2">
+              <Label for="gender">Gender</Label>
+              <Select v-model="form.gender">
+                <SelectTrigger>
+                  <SelectValue placeholder="Select gender" />
+                </SelectTrigger>
+                <SelectContent>
+                  <SelectItem value="male">Male</SelectItem>
+                  <SelectItem value="female">Female</SelectItem>
+                  <SelectItem value="other">Other</SelectItem>
+                </SelectContent>
+              </Select>
+            </div>
+            <div class="space-y-2">
+              <Label for="date_of_birth">Date of Birth</Label>
+              <Input id="date_of_birth" type="date" v-model="form.date_of_birth" />
+            </div>
           </div>
         </CardContent>
       </Card>
-    </div>
 
-    <!-- Content -->
-    <div v-else-if="candidate" class="max-w-7xl mx-auto p-6">
-      <div class="grid grid-cols-1 lg:grid-cols-12 gap-6">
-        
-        <!-- Left Column (Main Content) -->
-        <div class="lg:col-span-8 space-y-6">
+      <Card>
+        <CardHeader>
+          <CardTitle>Address</CardTitle>
+          <CardDescription>Candidate's residence details.</CardDescription>
+        </CardHeader>
+        <CardContent class="space-y-4">
+          <div class="space-y-2">
+            <Label for="address_detail">Street Address</Label>
+            <Textarea id="address_detail" v-model="form.address_detail" placeholder="123 Main St" />
+          </div>
+          <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+            <div class="space-y-2">
+              <Label for="address_city">City</Label>
+              <Input id="address_city" v-model="form.address_city" placeholder="New York" />
+            </div>
+            <div class="space-y-2">
+              <Label for="address_country">Country</Label>
+              <Input id="address_country" v-model="form.address_country" placeholder="USA" />
+            </div>
+            <div class="space-y-2">
+              <Label for="address_zip">Zip Code</Label>
+              <Input id="address_zip" type="number" v-model="form.address_zip" placeholder="10001" />
+            </div>
+          </div>
+        </CardContent>
+      </Card>
+
+      <Card>
+        <CardHeader class="flex flex-row items-center justify-between">
+          <div>
+            <CardTitle>Family Members</CardTitle>
+            <CardDescription>Details about family members.</CardDescription>
+          </div>
+          <Button size="sm" variant="outline" @click="isFamilyModalOpen = true">
+            <Plus class="h-4 w-4 mr-2" />
+            Add Member
+          </Button>
+        </CardHeader>
+        <CardContent class="space-y-4">
+          <!-- List -->
+          <div v-if="form.family_members.length > 0" class="space-y-2">
+             <div v-for="(member, index) in form.family_members" :key="index" class="flex items-center justify-between p-3 border rounded-md bg-muted/50">
+                <div>
+                  <p class="font-medium">{{ member.name }} ({{ member.relationship }})</p>
+                  <p class="text-sm text-muted-foreground">
+                    DOB: {{ member.date_of_birth || '-' }} | 
+                    Job: {{ member.brief_data?.occupation || '-' }} | 
+                    Contact: {{ member.brief_data?.contact || '-' }}
+                  </p>
+                </div>
+                <Button variant="ghost" size="icon" @click="removeFamilyMember(index)">
+                  <Trash2 class="h-4 w-4 text-destructive" />
+                </Button>
+             </div>
+          </div>
+          <div v-else class="text-sm text-muted-foreground text-center py-4 border border-dashed rounded-md">
+            No family members listed.
+          </div>
+        </CardContent>
+      </Card>
+
+      <!-- Family Member Modal -->
+      <Dialog :open="isFamilyModalOpen" @update:open="isFamilyModalOpen = $event">
+        <DialogContent class="sm:max-w-[425px]">
+          <DialogHeader>
+            <DialogTitle>Add Family Member</DialogTitle>
+            <DialogDescription>
+              Add details for a new family member here. Click save when you're done.
+            </DialogDescription>
+          </DialogHeader>
+          <div class="grid gap-4 py-4">
+            <div class="grid grid-cols-4 items-center gap-4">
+              <Label for="fm-name" class="text-right">Name</Label>
+              <Input id="fm-name" v-model="newFamilyMember.name" class="col-span-3" />
+            </div>
+            <div class="grid grid-cols-4 items-center gap-4">
+              <Label for="fm-rel" class="text-right">Relation</Label>
+              <Input id="fm-rel" v-model="newFamilyMember.relationship" class="col-span-3" placeholder="e.g. Spouse" />
+            </div>
+            <div class="grid grid-cols-4 items-center gap-4">
+              <Label for="fm-dob" class="text-right">DOB</Label>
+              <Input id="fm-dob" type="date" v-model="newFamilyMember.date_of_birth" class="col-span-3" />
+            </div>
+            <div class="grid grid-cols-4 items-center gap-4">
+              <Label for="fm-job" class="text-right">Job</Label>
+              <Input id="fm-job" v-model="newFamilyMember.brief_data.occupation" class="col-span-3" />
+            </div>
+            <div class="grid grid-cols-4 items-center gap-4">
+              <Label for="fm-contact" class="text-right">Contact</Label>
+              <Input id="fm-contact" v-model="newFamilyMember.brief_data.contact" class="col-span-3" />
+            </div>
+          </div>
+          <DialogFooter>
+            <Button type="submit" @click="addFamilyMember" :disabled="!newFamilyMember.name || !newFamilyMember.relationship">Save changes</Button>
+          </DialogFooter>
+        </DialogContent>
+      </Dialog>
+
+      <Card v-if="form.legal_documents.length > 0">
+        <CardHeader>
+          <CardTitle>Legal Documents</CardTitle>
+          <CardDescription>Manage legal documents (e.g. Kartu Keluarga, ID cards).</CardDescription>
+        </CardHeader>
+        <CardContent class="space-y-4">
+          <div class="space-y-2">
+            <div 
+              v-for="(doc, index) in form.legal_documents" 
+              :key="index" 
+              class="flex items-center justify-between p-3 border rounded-md bg-muted/50 hover:bg-muted cursor-pointer transition-colors"
+              @click="openDocumentModal(doc)"
+            >
+              <div class="flex items-center gap-3 flex-1">
+                <FileText class="h-5 w-5 text-muted-foreground" />
+                <div class="flex-1">
+                  <p class="text-sm font-medium">{{ doc.name }}</p>
+                  <p class="text-xs text-muted-foreground">{{ doc.type }} • {{ new Date(doc.last_updated).toLocaleDateString() }}</p>
+                </div>
+              </div>
+              <Button variant="ghost" size="icon" @click.stop="removeDocument(index)" class="text-destructive hover:text-destructive hover:bg-destructive/10">
+                <Trash2 class="h-4 w-4" />
+              </Button>
+            </div>
+          </div>
+
+          <div class="flex justify-end">
+            <input type="file" ref="fileInput" class="hidden" accept=".pdf,.png,.jpg,.jpeg" @change="handleFileUpload" />
+            <Button variant="outline" @click="triggerFileUpload" :disabled="isUploading">
+              <Loader2 v-if="isUploading" class="mr-2 h-4 w-4 animate-spin" />
+              <Upload v-else class="mr-2 h-4 w-4" />
+              {{ isUploading ? 'Analyzing...' : 'Upload Legal Document' }}
+            </Button>
+          </div>
+        </CardContent>
+      </Card>
+
+      <Card>
+        <CardHeader>
+          <CardTitle>Resume</CardTitle>
+          <CardDescription>Upload or manage candidate's resume/CV.</CardDescription>
+        </CardHeader>
+        <CardContent class="space-y-4">
+          <div v-if="hasResume" class="flex items-center justify-between p-3 border rounded-md bg-muted/50 hover:bg-muted cursor-pointer transition-colors" @click="selectedDocument = form.resume; isModalOpen = true">
+            <div class="flex items-center gap-3 flex-1">
+              <FileText class="h-5 w-5 text-muted-foreground" />
+              <div class="flex-1">
+                <p class="text-sm font-medium">{{ form.resume.name }}</p>
+                <p class="text-xs text-muted-foreground">RESUME • {{ new Date(form.resume.last_updated).toLocaleDateString() }}</p>
+              </div>
+            </div>
+            <Button variant="ghost" size="icon" @click.stop="form.resume = undefined" class="text-destructive hover:text-destructive hover:bg-destructive/10">
+              <Trash2 class="h-4 w-4" />
+            </Button>
+          </div>
+          <div v-else class="text-sm text-muted-foreground text-center py-4 border border-dashed rounded-md">
+            No resume uploaded yet.
+          </div>
+
+          <div class="flex justify-end">
+            <input type="file" ref="resumeInput" class="hidden" accept=".pdf" @change="handleResumeUpload" />
+            <Button variant="outline" @click="triggerResumeUpload" :disabled="isUploading">
+              <Loader2 v-if="isUploading" class="mr-2 h-4 w-4 animate-spin" />
+              <Upload v-else class="mr-2 h-4 w-4" />
+              {{ isUploading ? 'Analyzing...' : 'Upload Resume' }}
+            </Button>
+          </div>
+        </CardContent>
+      </Card>
+
+      <Card>
+        <CardHeader>
+          <CardTitle>Signed Offering Letter</CardTitle>
+          <CardDescription>Upload or manage the signed offer letter document.</CardDescription>
+        </CardHeader>
+        <CardContent class="space-y-4">
+          <div v-if="hasOfferingLetter" class="flex flex-col gap-2 p-4 border rounded-md bg-green-50 hover:bg-green-100 cursor-pointer transition-colors" @click="selectedDocument = form.offering_letter; isModalOpen = true">
+            <div class="flex items-center justify-between">
+              <div class="flex items-center gap-3 flex-1">
+                <FileText class="h-5 w-5 text-green-600" />
+                <div class="flex-1">
+                  <div class="flex items-center gap-2">
+                    <p class="text-sm font-medium">{{ form.offering_letter.name }}</p>
+                    <Badge variant="default" class="bg-green-600">Signed</Badge>
+                  </div>
+                  <p class="text-xs text-muted-foreground">Signed Offering Letter • {{ new Date(form.offering_letter.last_updated).toLocaleDateString() }}</p>
+                </div>
+              </div>
+              <Button variant="ghost" size="icon" @click.stop="form.offering_letter = undefined" class="text-destructive hover:text-destructive hover:bg-destructive/10">
+                <Trash2 class="h-4 w-4" />
+              </Button>
+            </div>
+
+            <!-- Structured Data Preview -->
+            <div v-if="form.offering_letter.extracted_content?.structured_data" class="grid grid-cols-1 sm:grid-cols-3 gap-4 pl-8 mt-1 border-t border-green-200/50 pt-3">
+              <div v-if="form.offering_letter.extracted_content.structured_data.position">
+                <p class="text-xs text-muted-foreground">Position</p>
+                <p class="text-sm font-medium">{{ form.offering_letter.extracted_content.structured_data.position }}</p>
+              </div>
+              <div v-if="form.offering_letter.extracted_content.structured_data.salary">
+                <p class="text-xs text-muted-foreground">Salary</p>
+                <p class="text-sm font-medium">{{ form.offering_letter.extracted_content.structured_data.salary }}</p>
+              </div>
+              <div v-if="form.offering_letter.extracted_content.structured_data.start_date">
+                <p class="text-xs text-muted-foreground">Start Date</p>
+                <p class="text-sm font-medium">{{ formatDate(form.offering_letter.extracted_content.structured_data.start_date) }}</p>
+              </div>
+            </div>
+          </div>
+          <div v-else class="text-sm text-muted-foreground text-center py-4 border border-dashed rounded-md">
+            No offering letter uploaded yet.
+          </div>
+
+          <div class="flex justify-end">
+            <input type="file" ref="offeringLetterInput" class="hidden" accept=".pdf" @change="handleOfferingLetterUpload" />
+            <Button variant="outline" @click="triggerOfferingLetterUpload" :disabled="isUploading">
+              <Loader2 v-if="isUploading" class="mr-2 h-4 w-4 animate-spin" />
+              <Upload v-else class="mr-2 h-4 w-4" />
+              {{ isUploading ? 'Analyzing...' : 'Upload Offering Letter' }}
+            </Button>
+          </div>
+        </CardContent>
+      </Card>
+
+      <KartuKeluargaModal 
+        v-if="selectedDocument && (selectedDocument.type === 'KK' || selectedDocument.type === 'KARTU_KELUARGA')"
+        :open="isModalOpen" 
+        :data="selectedDocument"
+        @update:open="isModalOpen = $event"
+      />
+
+      <KtpModal 
+        v-else-if="selectedDocument && (selectedDocument.type === 'KTP' || selectedDocument.type === 'KARTU_TANDA_PENDUDUK')"
+        :open="isModalOpen" 
+        :data="selectedDocument"
+        @update:open="isModalOpen = $event"
+      />
+
+      <OfferingLetterModal 
+        v-else-if="selectedDocument && selectedDocument.type === 'Signed Offering Letter'"
+        :open="isModalOpen" 
+        :data="selectedDocument as any"
+        @update:open="isModalOpen = $event"
+      />
+      
+      <!-- Fallback for other document types -->
+      <Dialog 
+        v-else-if="selectedDocument"
+        :open="isModalOpen" 
+        @update:open="isModalOpen = $event"
+      >
+        <DialogContent>
+          <DialogHeader>
+            <DialogTitle>{{ selectedDocument.name }}</DialogTitle>
+            <DialogDescription>
+              Document Type: {{ selectedDocument.type }}
+            </DialogDescription>
+          </DialogHeader>
+          <div class="py-4">
+            <p class="text-sm text-muted-foreground mb-2">Raw Content:</p>
+            <div class="bg-muted p-4 rounded-md max-h-[300px] overflow-auto">
+              <pre class="text-xs whitespace-pre-wrap">{{ selectedDocument.extracted_content?.content || 'No content extracted' }}</pre>
+            </div>
+          </div>
+        </DialogContent>
+      </Dialog>
+
+      <!-- Upload Analysis Modal -->
+      <Dialog :open="isUploadModalOpen" @update:open="isUploadModalOpen = $event">
+        <DialogContent class="w-[95vw] max-w-none! h-[95vh] flex flex-col p-6">
+          <DialogHeader>
+            <DialogTitle>Document Analysis</DialogTitle>
+            <DialogDescription>
+              {{ isAnalyzing ? 'Analyzing document content...' : 'Review extracted information' }}
+            </DialogDescription>
+          </DialogHeader>
           
-          <!-- Profile Header -->
-          <div class="flex flex-col sm:flex-row gap-6 items-start">
-            <div class="relative">
-              <Avatar class="h-24 w-24 border-4 border-background shadow-sm">
-                <AvatarImage :src="candidate?.photo_url ?? `https://api.dicebear.com/7.x/avataaars/svg?seed=${candidate?.name}`" :alt="candidate?.name" class="object-cover" />
-                <AvatarFallback>{{ candidate?.name?.charAt(0) }}</AvatarFallback>
-              </Avatar>
-              <Badge v-if="candidate?.rating" class="absolute -bottom-2 -right-2 bg-green-100 text-green-700 hover:bg-green-100 border-green-200 px-2 py-0.5 text-sm font-bold shadow-sm">
-                {{ candidate.rating }}/5
-              </Badge>
+          <div class="flex-1 overflow-hidden py-4">
+            <div v-if="isAnalyzing" class="space-y-4 flex flex-col items-center justify-center h-full">
+              <Progress :model-value="uploadProgress" class="w-full max-w-md" />
+              <p class="text-sm text-center text-muted-foreground">Processing... {{ uploadProgress }}%</p>
             </div>
             
-            <div class="flex-1 space-y-2">
-              <div class="flex justify-between items-start">
-                <div class="flex flex-col sm:flex-row sm:items-center gap-2 sm:gap-4">
-                  <h1 class="text-3xl font-bold tracking-tight text-foreground">{{ candidate?.name }}</h1>
-                  <span class="text-lg text-muted-foreground">for <span class="inline-block font-semibold">{{ candidate?.position }}</span></span>
-                </div>
-              </div>
-              
-              <div class="flex flex-wrap gap-4 text-sm text-muted-foreground">
-                <div class="flex items-center gap-1.5">
-                  <MapPin class="h-4 w-4" />
-                  {{ candidate?.address?.city }}, {{ candidate?.address?.country }}
-                </div>
+            <KartuKeluargaContent 
+              v-else-if="previewDocument && (previewDocument.type === 'KK' || previewDocument.type === 'KARTU_KELUARGA')" 
+              :data="previewDocument"
+            />
 
-                <div class="flex items-center gap-1.5">
-                  <Calendar class="h-4 w-4" />
-                  Applied {{ Math.floor((Date.now() - new Date(candidate?.applied_date ?? Date.now()).getTime()) / (1000 * 3600 * 24)) }} days ago
-                </div>
+            <KtpContent 
+              v-else-if="previewDocument && (previewDocument.type === 'KTP' || previewDocument.type === 'KARTU_TANDA_PENDUDUK')" 
+              :data="previewDocument"
+            />
 
+            <div v-else class="space-y-4">
+              <div class="rounded-md bg-muted p-4 max-h-[500px] overflow-y-auto">
+                <pre class="text-xs whitespace-pre-wrap">{{ JSON.stringify(tempExtractedData?.data, null, 2) }}</pre>
               </div>
             </div>
           </div>
 
-          <!-- Action Buttons -->
-          <div class="flex flex-wrap gap-3">
-            <Button class="bg-blue-600 hover:bg-blue-700 text-white gap-2">
-              <Send class="h-4 w-4" />
-              Send Mail
-            </Button>
-            <Button 
-              v-if="candidate?.status === 'hired'"
-              class="bg-green-600 hover:bg-green-700 text-white gap-2"
-              @click="router.push(`/candidates/email-payroll/${candidateId}`)"
-            >
-              <Mail class="h-4 w-4" />
-              Email to Payroll
-            </Button>
-            <Button variant="outline" class="gap-2" @click="router.push(`/candidates/edit/${candidateId}`)">
-              <Edit class="h-4 w-4" />
-              Edit Profile
-            </Button>
-            <Button variant="outline" class="gap-2">
-              <MoveRight class="h-4 w-4" />
-              Move to stage
-            </Button>
-            <Button variant="outline" class="gap-2" @click="downloadCV">
-              <Download class="h-4 w-4" />
-              Download Candidate Report
-            </Button>
-          </div>
+          <DialogFooter v-if="!isAnalyzing">
+            <Button variant="outline" @click="isUploadModalOpen = false">Cancel</Button>
+            <Button @click="confirmUpload">Confirm & Add</Button>
+          </DialogFooter>
+        </DialogContent>
+      </Dialog>
 
-    
-
-
-
-            <!-- Contact Info -->
-            <Card>
-              <CardHeader class="pb-3">
-                <CardTitle class="text-sm font-medium text-muted-foreground">Contact Info</CardTitle>
-              </CardHeader>
-              <CardContent class="space-y-4">
-                <div class="grid grid-cols-[80px_1fr] gap-2 text-sm">
-                  <span class="text-muted-foreground">Name</span>
-                  <span class="font-medium text-right">{{ candidate?.name }}</span>
-                </div>
-                <Separator />
-                <div class="grid grid-cols-[80px_1fr] gap-2 text-sm">
-                  <span class="text-muted-foreground">Phone</span>
-                  <span class="font-medium text-right">{{ candidate?.phone || '-' }}</span>
-                </div>
-                <Separator />
-                <div class="grid grid-cols-[80px_1fr] gap-2 text-sm">
-                  <span class="text-muted-foreground">Email</span>
-                  <span class="font-medium text-right truncate text-blue-600">{{ candidate?.email }}</span>
-                </div>
-                <Separator />
-                <div class="grid grid-cols-[80px_1fr] gap-2 text-sm">
-                  <span class="text-muted-foreground">Gender</span>
-                  <span class="font-medium text-right">{{ candidate?.gender || '-' }}</span>
-                </div>
-                <Separator />
-                <div class="grid grid-cols-[80px_1fr] gap-2 text-sm">
-                  <span class="text-muted-foreground">Birthday</span>
-                  <span class="font-medium text-right" v-if="candidate?.date_of_birth">{{ formatDate(candidate.date_of_birth) }} ({{ calculateAge(candidate.date_of_birth) }} years old)</span>
-                  <span v-else class="font-medium text-right text-muted-foreground">-</span>
-                </div>
-                <Separator />
-                <div class="grid grid-cols-[80px_1fr] gap-2 text-sm">
-                  <span class="text-muted-foreground">Address</span>
-                  <div class="text-right">
-                    <div class="font-medium">{{ candidate?.address?.detail || '-' }}</div>
-                    <div class="text-muted-foreground text-xs">
-                      {{ [candidate?.address?.city, candidate?.address?.country, candidate?.address?.zip].filter(Boolean).join(', ') }}
-                    </div>
-                  </div>
-                </div>
-              </CardContent>
-            </Card>
-
-            <!-- Family Members -->
-            <Card v-if="candidate?.family_members && candidate.family_members.length > 0">
-              <CardHeader class="pb-3">
-                <CardTitle class="text-sm font-medium text-muted-foreground flex items-center gap-2">
-                  <Users class="h-4 w-4" />
-                  Family Members
-                </CardTitle>
-              </CardHeader>
-              <CardContent class="space-y-3">
-                <div v-for="(member, i) in candidate.family_members" :key="i" class="border rounded-lg p-3 bg-muted/30">
-                  <div class="flex justify-between items-start">
-                    <div>
-                      <div class="font-medium text-sm">{{ member.name }}</div>
-                      <div class="text-xs text-muted-foreground">{{ member.relationship }}</div>
-                    </div>
-                    <div v-if="member.date_of_birth" class="text-xs text-muted-foreground">
-                      {{ formatDate(member.date_of_birth) }}
-                    </div>
-                  </div>
-                  <div v-if="member.brief_data" class="mt-2 text-xs text-muted-foreground grid grid-cols-2 gap-2">
-                    <div>
-                      <span v-if="member.brief_data.occupation">
-                        <span class="font-semibold">Occupation:</span> {{ member.brief_data.occupation }}
-                      </span>
-                    </div>
-                    <div class="text-right">
-                      <span v-if="member.brief_data.contact">
-                        <span class="font-semibold">Contact:</span> {{ member.brief_data.contact }}
-                      </span>
-                    </div>
-                  </div>
-                </div>
-              </CardContent>
-            </Card>
-
-            <!-- Experience -->
-            <Card>
-              <CardHeader class="pb-3">
-                <CardTitle class="text-sm font-medium text-muted-foreground flex items-center gap-2">
-                  <Briefcase class="h-4 w-4" />
-                  Experience
-                </CardTitle>
-              </CardHeader>
-              <CardContent class="space-y-3">
-                <div v-for="(exp, i) in candidate?.work_experiences" :key="i" class="border rounded-lg p-4 bg-linear-to-br from-purple-50/50 to-transparent dark:from-purple-950/20 hover:shadow-sm transition-all">
-                  <div class="space-y-3">
-                    <!-- Top row: Position and Duration -->
-                    <div class="flex items-start justify-between gap-3">
-                      <div class="flex-1">
-                        <div class="font-semibold text-sm text-foreground">{{ exp.position }}</div>
-                      </div>
-                      <Badge class="bg-purple-100 text-purple-700 border-purple-200 dark:bg-purple-900/40 dark:text-purple-300 dark:border-purple-900/60 shrink-0 text-xs">
-                        {{ (() => {
-                          const totalMonths = Math.ceil((new Date(exp.end_date || new Date()).getTime() - new Date(exp.start_date).getTime()) / (1000 * 60 * 60 * 24 * 30.44))
-                          const years = Math.floor(totalMonths / 12)
-                          const months = totalMonths % 12
-                          return years > 0 ? `${years} year${years > 1 ? 's' : ''} ${months} month${months !== 1 ? 's' : ''}` : `${months} month${months !== 1 ? 's' : ''}`
-                        })() }}
-                      </Badge>
-                    </div>
-                    
-                    <!-- Company -->
-                    <div>
-                      <div class="text-xs font-medium text-muted-foreground uppercase tracking-wide">Company</div>
-                      <div class="text-sm text-foreground font-medium mt-1">{{ exp.company }}</div>
-                    </div>
-                    
-                    <!-- Duration -->
-                    <div class="pt-2 border-t border-border">
-                      <div class="flex items-center gap-2 text-sm text-muted-foreground">
-                        <Clock class="h-3.5 w-3.5" />
-                        <span>{{ formatDate(exp.start_date) }} - {{ exp.end_date ? formatDate(exp.end_date) : 'Present' }}</span>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </CardContent>
-            </Card>
-
-            <!-- Education -->
-            <Card>
-              <CardHeader class="">
-                <CardTitle class="text-sm font-medium text-muted-foreground flex items-center gap-2">
-                  <GraduationCap class="h-4 w-4" />
-                  Education
-                </CardTitle>
-              </CardHeader>
-              <CardContent class="space-y-3">
-                <div v-for="(edu, i) in candidate?.education" :key="i" class="border rounded-lg p-4 bg-linear-to-br from-blue-50/50 to-transparent dark:from-blue-950/20 hover:shadow-sm transition-all">
-                  <div class="space-y-3">
-                    <!-- Top row: Degree and Graduation Year -->
-                    <div class="flex items-start justify-between gap-3">
-                      <div class="flex-1">
-                        <div class="font-semibold text-sm text-foreground">{{ edu.degree }}</div>
-                      </div>
-                      <Badge class="bg-blue-100 text-blue-700 border-blue-200 dark:bg-blue-900/40 dark:text-blue-300 dark:border-blue-900/60 shrink-0">
-                        {{ edu.graduation_year }}
-                      </Badge>
-                    </div>
-                    
-                    <!-- Institution -->
-                    <div>
-                      <div class="text-xs font-medium text-muted-foreground uppercase tracking-wide">Institution</div>
-                      <div class="text-sm text-foreground font-medium mt-1">{{ edu.institution }}</div>
-                    </div>
-                    
-                    <!-- Field of Study -->
-                    <div>
-                      <div class="text-xs font-medium text-muted-foreground uppercase tracking-wide">Field of Study</div>
-                      <div class="text-sm text-foreground mt-1">{{ edu.field_of_study }}</div>
-                    </div>
-                    
-                    <!-- GPA -->
-                    <div class="pt-2 border-t border-border">
-                      <div class="flex items-center justify-between">
-                        <span class="text-xs font-medium text-muted-foreground uppercase tracking-wide">GPA</span>
-                        <div class="bg-green-100 text-green-700 dark:bg-green-900/40 dark:text-green-300 px-2.5 py-1 rounded font-bold text-sm">{{ edu.gpa }}</div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </CardContent>
-            </Card>
-
-            <!-- Resume -->
-            <Card>
-              <CardHeader class="pb-3">
-                <CardTitle class="text-sm font-medium text-muted-foreground">Résumé</CardTitle>
-              </CardHeader>
-              <CardContent>
-                <div class="border rounded-lg p-3 flex items-center justify-between bg-muted/50">
-                  <div class="flex items-center gap-3 overflow-hidden">
-                    <div class="h-8 w-8 bg-background rounded border flex items-center justify-center shrink-0">
-                      <FileText class="h-4 w-4 text-red-500" />
-                    </div>
-                    <div class="flex flex-col overflow-hidden">
-                      <span class="text-sm font-medium truncate">resume_{{ candidate.name.toLowerCase().split(' ')[0] }}.pdf</span>
-                      <span class="text-xs text-muted-foreground">PDF Document</span>
-                    </div>
-                  </div>
-                  <Button variant="ghost" size="icon" class="h-8 w-8" @click="downloadCV">
-                    <ExternalLink class="h-4 w-4 text-muted-foreground" />
-                  </Button>
-                </div>
-                
-                <!-- Resume Preview Image (Mock) -->
-                <div class="mt-3 border rounded-lg overflow-hidden bg-background h-32 flex items-center justify-center relative group cursor-pointer" @click="downloadCV">
-                  <div class="absolute inset-0 bg-muted/30 flex flex-col items-center justify-center p-4">
-                    <div class="w-full h-full bg-background shadow-sm p-2 text-[6px] text-muted-foreground overflow-hidden">
-                        <div class="font-bold text-foreground text-[8px] mb-1">{{ candidate.name }}</div>
-                        <div class="mb-1">PRODUCT DESIGNER</div>
-                        <div class="space-y-1">
-                          <div class="h-1 bg-muted w-full"></div>
-                          <div class="h-1 bg-muted w-3/4"></div>
-                          <div class="h-1 bg-muted w-5/6"></div>
-                          <div class="h-1 bg-muted w-full"></div>
-                          <div class="h-1 bg-muted w-1/2"></div>
-                        </div>
-                    </div>
-                  </div>
-                  <div class="absolute inset-0 bg-black/0 group-hover:bg-black/5 transition-colors flex items-center justify-center">
-                    <ExternalLink class="h-6 w-6 text-muted-foreground opacity-0 group-hover:opacity-100 transition-opacity" />
-                  </div>
-                </div>
-              </CardContent>
-            </Card>
-
-            <!-- Signed Offering Letter -->
-            <Card v-if="Object.keys(candidate?.offering_letter || {}).length > 0">
-              <CardHeader class="pb-3">
-                <CardTitle class="text-sm font-medium text-muted-foreground">Signed Offering Letter</CardTitle>
-              </CardHeader>
-              <CardContent class="space-y-3">
-                <div 
-                  class="border rounded-lg p-3 flex items-center justify-between bg-muted/50 cursor-pointer hover:bg-muted/80 transition-colors"
-                  @click="isOfferingLetterModalOpen = true"
-                >
-                  <div class="flex items-center gap-3 overflow-hidden">
-                    <div class="h-8 w-8 bg-background rounded border flex items-center justify-center shrink-0">
-                      <component :is="getDocumentIcon('Signed Offer Letter')" class="h-4 w-4 text-green-500" />
-                    </div>
-                    <div class="flex flex-col overflow-hidden">
-                      <span class="text-sm font-medium truncate">{{ candidate.offering_letter?.name }}</span>
-                      <span class="text-xs text-muted-foreground">{{ candidate.offering_letter?.type }}</span>
-                    </div>
-                  </div>
-                  <Button variant="ghost" size="icon" class="h-8 w-8" @click.stop="isOfferingLetterModalOpen = true">
-                    <ExternalLink class="h-4 w-4 text-muted-foreground" />
-                  </Button>
-                </div>
-              </CardContent>
-            </Card>
-
-            <!-- Legal Documents -->
-            <Card>
-              <CardHeader class="pb-3">
-                <CardTitle class="text-sm font-medium text-muted-foreground">Legal Documents</CardTitle>
-              </CardHeader>
-              <CardContent class="space-y-3">
-                <div 
-                  v-for="doc in candidate?.legal_documents" 
-                  :key="doc.type" 
-                  class="border rounded-lg p-3 flex items-center justify-between bg-muted/50 cursor-pointer hover:bg-muted/80 transition-colors"
-                  @click="handleDocumentClick(doc)"
-                >
-                  <div class="flex items-center gap-3 overflow-hidden">
-                    <div class="h-8 w-8 bg-background rounded border flex items-center justify-center shrink-0">
-                      <component :is="getDocumentIcon(doc.type)" class="h-4 w-4 text-blue-500" />
-                    </div>
-                    <div class="flex flex-col overflow-hidden">
-                      <span class="text-sm font-medium truncate">{{ doc.name }}</span>
-                      <span class="text-xs text-muted-foreground">{{ doc.type }}</span>
-                    </div>
-                  </div>
-                  <Button variant="ghost" size="icon" class="h-8 w-8" @click.stop="handleDocumentClick(doc)">
-                    <ExternalLink class="h-4 w-4 text-muted-foreground" />
-                  </Button>
-                </div>
-              </CardContent>
-            </Card>
-        </div>
-
-        <!-- Right Column (Sidebar) -->
-        <div class="lg:col-span-4 space-y-6">
+      <!-- Offering Letter Analysis Modal -->
+      <Dialog :open="isOfferingLetterModalOpen" @update:open="isOfferingLetterModalOpen = $event">
+        <DialogContent class="w-[95vw] max-w-none! h-[95vh] flex flex-col p-6">
+          <DialogHeader>
+            <DialogTitle>Offering Letter Preview</DialogTitle>
+            <DialogDescription>
+              Review the offering letter and signature details
+            </DialogDescription>
+          </DialogHeader>
           
-          <!-- Document Completion Card -->
-          <Card v-if="candidate?.status === 'hired'" :class="{ 'border-blue-600 dark:border-blue-400 shadow-md ring-1 ring-blue-600 dark:ring-blue-400': candidate?.status === 'hired' }">
-            <CardHeader class="pb-3">
-              <CardTitle class="text-sm font-medium text-muted-foreground">Document Completion</CardTitle>
-            </CardHeader>
-            <CardContent class="space-y-4">
-              <div class="space-y-2">
-                <div class="flex justify-between text-sm">
-                  <span class="font-medium">{{ documentCompletion.progress }}% Complete</span>
-                  <span class="text-muted-foreground">{{ candidate?.legal_documents?.length }}/{{ requiredDocuments.length }}</span>
-                </div>
-                <div class="h-2 bg-muted rounded-full overflow-hidden">
-                  <div class="h-full bg-blue-600 rounded-full transition-all duration-500" :style="{ width: `${documentCompletion.progress}%` }"></div>
-                </div>
-              </div>
+          <div v-if="isAnalyzing" class="space-y-4 flex flex-col items-center justify-center py-12 h-full">
+            <Progress :model-value="uploadProgress" class="w-full max-w-md" />
+            <p class="text-sm text-center text-muted-foreground">Analyzing document... {{ uploadProgress }}%</p>
+          </div>
 
-              <div v-if="documentCompletion.missing.length > 0" class="space-y-2">
-                <p class="text-xs font-medium text-muted-foreground">Missing Documents:</p>
-                <div class="space-y-1">
-                  <div v-for="doc in documentCompletion.missing" :key="doc" class="flex items-center gap-2 text-sm text-amber-600 dark:text-amber-500 bg-amber-50 dark:bg-amber-900/20 px-2 py-1.5 rounded border border-amber-100 dark:border-amber-900/30">
-                    <AlertCircle class="h-3.5 w-3.5" />
-                    <span>{{ doc }}</span>
-                  </div>
-                </div>
-              </div>
-              <div v-else class="flex items-center gap-2 text-sm text-green-600 bg-green-50 dark:bg-green-900/20 px-2 py-1.5 rounded border border-green-100 dark:border-green-900/30">
-                <CheckCircle2 class="h-4 w-4" />
-                <span>All documents submitted</span>
-              </div>
-            </CardContent>
-          </Card>
+          <div v-else-if="previewOfferingLetter" class="flex-1 overflow-hidden py-4">
+            <OfferingLetterContent :data="previewOfferingLetter" />
+          </div>
 
-          <!-- Discrepancies Warning Card -->
-          <Card v-if="candidate?.discrepancies && candidate.discrepancies.length > 0" class="border-amber-200 bg-amber-50/50 dark:bg-amber-950/10">
-            <CardHeader class="pb-3">
-              <div class="flex items-center justify-between">
-                <CardTitle class="text-base font-medium flex items-center gap-2 text-amber-900 dark:text-amber-200">
-                  <AlertTriangle class="h-5 w-5 text-amber-600" />
-                  Data Discrepancies
-                </CardTitle>
-                <Badge variant="outline" class="bg-amber-100 text-amber-700 border-amber-200">
-                  {{ candidate.discrepancies.length }} Issues
-                </Badge>
-              </div>
-            </CardHeader>
-            <CardContent class="space-y-4">
-              <div v-for="(discrepancy, index) in candidate.discrepancies" :key="index" 
-                class="group relative bg-card rounded-lg border shadow-sm overflow-hidden transition-all hover:shadow-md"
-              >
-                <!-- Severity Strip -->
-                <div class="absolute left-0 top-0 bottom-0 w-1.5" :class="{
-                  'bg-blue-500': discrepancy.severity === 'low',
-                  'bg-amber-500': discrepancy.severity === 'medium',
-                  'bg-red-500': discrepancy.severity === 'high'
-                }"></div>
-
-                <div class="p-4 pl-5">
-                  <!-- Header -->
-                  <div class="flex justify-between items-start mb-3">
-                    <div class="space-y-1">
-                      <div class="flex items-center gap-2">
-                        <h4 class="font-semibold text-sm text-foreground">{{ discrepancy.field }}</h4>
-                        <Badge v-if="discrepancy.category" variant="secondary" class="text-[10px] px-1.5 h-5 font-medium text-muted-foreground bg-muted">
-                          {{ discrepancy.category }}
-                        </Badge>
-                      </div>
-                    </div>
-                    <Badge class="capitalize text-[10px] px-2 py-0.5 shadow-none" :class="{
-                      'bg-blue-50 text-blue-700 border-blue-200 hover:bg-blue-100': discrepancy.severity === 'low',
-                      'bg-amber-50 text-amber-700 border-amber-200 hover:bg-amber-100': discrepancy.severity === 'medium',
-                      'bg-red-50 text-red-700 border-red-200 hover:bg-red-100': discrepancy.severity === 'high'
-                    }" variant="outline">
-                      {{ discrepancy.severity }} Severity
-                    </Badge>
-                  </div>
-
-                  <!-- Comparison Box -->
-                  <div class="grid grid-cols-[1fr_auto_1fr] gap-2 items-center bg-muted/30 rounded-md p-3 mb-3 border border-muted/50">
-                    <!-- Target Side (Applicant Data) -->
-                    <div class="space-y-1">
-                      <div class="flex items-center gap-1.5 text-[10px] uppercase tracking-wider text-muted-foreground font-semibold">
-                        <Edit class="h-3 w-3" />
-                        {{ discrepancy.target?.type || 'Application' }}
-                      </div>
-                      <div class="text-sm font-medium text-foreground wrap-break-word">
-                        {{ discrepancy.target?.value ?? '-' }}
-                      </div>
-                    </div>
-
-                    <!-- Arrow -->
-                    <div class="text-muted-foreground/40 px-1">
-                      <MoveRight class="h-4 w-4" />
-                    </div>
-
-                    <!-- Source Side (Document Data) -->
-                    <div class="space-y-1 text-right">
-                      <div class="flex items-center justify-end gap-1.5 text-[10px] uppercase tracking-wider text-muted-foreground font-semibold">
-                        {{ discrepancy.source?.type || 'Document' }}
-                        <FileText class="h-3 w-3" />
-                      </div>
-                      <div class="text-sm font-medium text-foreground wrap-break-word">
-                        {{ discrepancy.source?.value ?? '-' }}
-                      </div>
-                    </div>
-                  </div>
-
-                  <!-- Footer Info -->
-                  <div class="space-y-2">
-                    <!-- Note -->
-                    <div v-if="discrepancy.note" class="flex gap-2 text-xs text-muted-foreground bg-amber-50/50 dark:bg-amber-900/10 p-2 rounded border border-amber-100 dark:border-amber-900/20">
-                      <Info class="h-4 w-4 text-amber-600 shrink-0 mt-0.5" />
-                      <span class="leading-relaxed">{{ discrepancy.note }}</span>
-                    </div>
-
-                    <!-- Source -->
-                    <div v-if="discrepancy.source?.name" class="flex items-center justify-end">
-                      <div class="inline-flex items-center gap-1.5 text-[10px] text-muted-foreground bg-muted/50 px-2 py-1 rounded-full border hover:bg-muted transition-colors cursor-help" :title="discrepancy.source.name">
-                        <FileText class="h-3 w-3" />
-                        <span class="font-medium truncate max-w-[150px]">
-                          {{ discrepancy.source.name }}
-                        </span>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </CardContent>
-          </Card>
-
-          <!-- Tabs -->
-          <div class="bg-muted/20 rounded-lg border p-1 flex gap-1">
-            <Button 
-              variant="ghost" 
-              size="sm" 
-              class="flex-1 transition-all"
-              :class="activeTab === 'notes' ? 'bg-background text-foreground shadow-sm' : 'text-muted-foreground hover:text-foreground'"
-              @click="activeTab = 'notes'"
-            >
-              <MessageSquare class="h-4 w-4" />
+          <DialogFooter v-if="!isAnalyzing">
+            <Button variant="outline" @click="isOfferingLetterModalOpen = false">Cancel</Button>
+            <Button @click="confirmOfferingLetter" :disabled="!previewOfferingLetter?.extracted_content?.structured_data?.is_signed">
+              Confirm & Add Offering Letter
             </Button>
-            <Button 
-              variant="ghost" 
-              size="sm" 
-              class="flex-1 transition-all"
-              :class="activeTab === 'activity' ? 'bg-background text-foreground shadow-sm' : 'text-muted-foreground hover:text-foreground'"
-              @click="activeTab = 'activity'"
-            >
-              <Activity class="h-4 w-4" />
-            </Button>
+          </DialogFooter>
+        </DialogContent>
+      </Dialog>
+
+      <Card>
+        <CardHeader>
+          <CardTitle>Professional Details</CardTitle>
+          <CardDescription>Role, experience, and skills.</CardDescription>
+        </CardHeader>
+        <CardContent class="space-y-4">
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+            <div class="space-y-2">
+              <Label for="position">Position</Label>
+              <Input id="position" v-model="form.position" placeholder="e.g. Product Designer" />
+            </div>
+            <div class="space-y-2">
+              <Label for="experience">Experience (Years)</Label>
+              <Input id="experience" type="number" v-model="form.experience" min="0" />
+            </div>
           </div>
 
-          <!-- Notes Tab Content -->
-          <div v-if="activeTab === 'notes'" class="space-y-4">
-            <Card>
-              <CardHeader class="pb-3">
-                <CardTitle class="text-sm font-medium text-muted-foreground">Internal Notes</CardTitle>
-              </CardHeader>
-              <CardContent class="space-y-4">
-                <div v-for="(note, i) in candidate?.notes" :key="i" class="flex gap-3">
-                  <Avatar class="h-8 w-8 border">
-                    <AvatarFallback class="text-xs">{{ note.author.charAt(0) }}</AvatarFallback>
-                  </Avatar>
-                  <div class="flex-1 space-y-1">
-                    <div class="flex items-center justify-between">
-                      <span class="text-sm font-medium">{{ note.author }}</span>
-                      <!-- <span class="text-xs text-muted-foreground">{{ note. }}</span> -->
-                    </div>
-                    <p class="text-xs text-muted-foreground">{{ note.role }}</p>
-                    <p class="text-sm text-foreground bg-muted/50 p-2 rounded-md mt-1">{{ note.message }}</p>
-                  </div>
-                </div>
-                
-                <div class="pt-2">
-                  <Button variant="outline" class="w-full text-xs h-8">Add Note</Button>
-                </div>
-              </CardContent>
-            </Card>
+          <div class="space-y-2">
+            <Label>Skills</Label>
+            <div class="flex flex-wrap gap-2 mb-2">
+              <Badge v-for="skill in form.skills" :key="skill" variant="secondary" class="gap-1 pr-1">
+                {{ skill }}
+                <button @click="removeSkill(skill)" class="hover:bg-muted rounded-full p-0.5">
+                  <span class="sr-only">Remove</span>
+                  <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-x"><path d="M18 6 6 18"/><path d="m6 6 12 12"/></svg>
+                </button>
+              </Badge>
+            </div>
+            <div class="flex gap-2">
+              <Input v-model="newSkill" placeholder="Add a skill (e.g. React)" @keydown.enter.prevent="addSkill" />
+              <Button type="button" variant="outline" @click="addSkill">Add</Button>
+            </div>
           </div>
+        </CardContent>
+      </Card>
 
-          <!-- Activity Tab Content -->
-          <div v-else-if="activeTab === 'activity'" class="space-y-4">
-            <Card>
-              <CardHeader class="pb-3">
-                <CardTitle class="text-sm font-medium text-muted-foreground">Activity Log</CardTitle>
-              </CardHeader>
-              <CardContent>
-                <div class="ml-2 border-l border-border space-y-8 my-2">
-                  <div v-for="(activity, i) in activities" :key="i" class="relative pl-6">
-                    <span class="absolute -left-[6.5px] top-1.5 h-3 w-3 rounded-full bg-primary ring-4 ring-background"></span>
-                    <div class="flex flex-col gap-1">
-                      <div class="flex items-center justify-between">
-                        <span class="text-sm font-medium text-foreground">{{ activity.title }}</span>
-                        <span class="text-xs text-muted-foreground">{{ activity.date }}</span>
-                      </div>
-                      <p class="text-sm text-muted-foreground">{{ activity.description }}</p>
-                    </div>
-                  </div>
-                </div>
-              </CardContent>
-            </Card>
-          </div>
-
-        </div>
+      <div class="flex justify-end gap-4">
+        <Button variant="outline" @click="goBack" :disabled="isSaving">Cancel</Button>
+        <Button @click="saveCandidate" :disabled="isSaving">
+          <Loader2 v-if="isSaving" class="mr-2 h-4 w-4 animate-spin" />
+          <Save v-else class="mr-2 h-4 w-4" />
+          {{ isSaving ? 'Saving...' : 'Save Changes' }}
+        </Button>
       </div>
+
+      <!-- Success Notification -->
+      <div 
+        v-if="showSuccessNotification"
+        class="fixed bottom-6 right-6 bg-green-500 text-white px-6 py-3 rounded-lg shadow-lg flex items-center gap-2 z-50"
+      >
+        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>
+        <span>Data successfully updated!</span>
+      </div>
+
     </div>
-
-    <!-- Modals -->
-    <KartuKeluargaModal 
-      v-model:open="isKKModalOpen" 
-      :data="selectedKKData" 
-    />
-
-    <!-- Signed Offering Letter Modal -->
-    <OfferingLetterModal 
-      :open="isOfferingLetterModalOpen" 
-      :data="candidate?.offering_letter"
-      @update:open="isOfferingLetterModalOpen = $event"
-    />
   </div>
 </template>
