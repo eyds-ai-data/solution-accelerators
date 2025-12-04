@@ -8,9 +8,10 @@ import { Input } from '@/components/ui/input'
 import { Label } from '@/components/ui/label'
 import { Textarea } from '@/components/ui/textarea'
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select'
-import { ArrowLeft, Save, Upload, FileText, Trash2, Loader2, Plus } from 'lucide-vue-next'
+import { ArrowLeft, Save, Upload, FileText, Trash2, Loader2, Plus, AlertTriangle, AlertCircle, CheckCircle2, Info, MoveRight, Edit } from 'lucide-vue-next'
 import { Badge } from '@/components/ui/badge'
 import { Progress } from '@/components/ui/progress'
+import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar'
 import KartuKeluargaModal from '@/components/candidates/KartuKeluargaModal.vue'
 import KartuKeluargaContent from '@/components/candidates/KartuKeluargaContent.vue'
 import KtpModal from '@/components/candidates/KtpModal.vue'
@@ -57,6 +58,7 @@ definePageMeta({
 // Form state
 const form = ref({
   name: '',
+  photo_url: '',
   email: '',
   phone: '',
   gender: '',
@@ -94,6 +96,25 @@ const isFamilyModalOpen = ref(false)
 const selectedDocument = ref<LegalDocument | undefined>(undefined)
 const showSuccessNotification = ref(false)
 const isSaving = ref(false)
+
+const requiredDocuments = ['KTP', 'KK', 'Buku Tabungan', 'Signed Offer Letter']
+
+const documentCompletion = computed(() => {
+  // Use form.value to reflect current state including new uploads
+  const uploadedTypes = form.value.legal_documents?.map(d => d.type) || []
+  
+  // Check if offering letter exists
+  if (form.value.offering_letter && Object.keys(form.value.offering_letter).length > 0) {
+    uploadedTypes.push('Signed Offer Letter')
+  }
+  
+  const missing = requiredDocuments.filter(doc => !uploadedTypes.includes(doc))
+  const progress = Math.round(((requiredDocuments.length - missing.length) / requiredDocuments.length) * 100)
+  
+  return { progress, missing }
+})
+
+const discrepancies = computed(() => candidate.value?.discrepancies || [])
 
 // Helper to format date
 const formatDate = (dateString: string) => {
@@ -272,11 +293,12 @@ const calculateTotalExperience = (experiences: any[]) => {
 const { data: candidate, error } = await useFetch<Candidate>(`/api/candidates/${candidateId}`)
 
 if (error.value || !candidate.value) {
-  router.push('/candidates')
+  router.push('/account/login')
 } else {
   const c = candidate.value
   form.value = {
     name: c.name,
+    photo_url: c.photo_url || '',
     email: c.email || '',
     phone: c.phone || '',
     gender: c.gender || '',
@@ -477,10 +499,11 @@ const confirmOfferingLetter = () => {
 
 const saveCandidate = async () => {
   isSaving.value = true
-  
   const payload = {
     name: form.value.name,
+    photo_url: form.value.photo_url,
     email: form.value.email,
+    phone: form.value.phone,
     phone: form.value.phone,
     gender: form.value.gender,
     date_of_birth: form.value.date_of_birth,
@@ -528,16 +551,168 @@ const saveCandidate = async () => {
     <div class="w-full mx-auto space-y-6">
       
       <!-- Header -->
-      <div class="flex items-center gap-4">
-        <Button variant="ghost" size="icon" @click="goBack">
-          <ArrowLeft class="h-5 w-5" />
-        </Button>
-        <div>
-          <h1 class="text-2xl font-bold tracking-tight text-foreground">Edit Candidate</h1>
-          <p class="text-muted-foreground">Update candidate information</p>
+      <div class="flex flex-col md:flex-row gap-6 items-center">
+        <div class="relative group">
+           <Avatar class="h-24 w-24 border-4 border-background shadow-sm">
+              <AvatarImage :src="form.photo_url || `https://api.dicebear.com/7.x/avataaars/svg?seed=${form.name}`" class="object-cover" />
+              <AvatarFallback>{{ form.name?.charAt(0) }}</AvatarFallback>
+           </Avatar>
+        </div>
+        
+        <div class="flex-1 space-y-2">
+           <h1 class="text-3xl font-bold tracking-tight text-foreground">{{ form.name }}</h1>
+           <div class="flex items-center gap-2 text-muted-foreground">
+             <span class="font-medium">{{ form.position }}</span>
+             <span v-if="form.email">•</span>
+             <span v-if="form.email">{{ form.email }}</span>
+           </div>
+        </div>
+        
+        <div class="flex gap-2">
+           <Button variant="outline" @click="goBack" :disabled="isSaving">Cancel</Button>
+           <Button @click="saveCandidate" :disabled="isSaving">
+             <Loader2 v-if="isSaving" class="mr-2 h-4 w-4 animate-spin" />
+             <Save v-else class="mr-2 h-4 w-4" />
+             {{ isSaving ? 'Saving...' : 'Save Changes' }}
+           </Button>
         </div>
       </div>
 
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-6">
+        <!-- Right Column (Sidebar) -->
+        <div class="lg:col-span-4 lg:col-start-9 space-y-6 lg:order-2 sticky top-6 self-start">
+        <!-- Document Completion Card -->
+        <Card :class="{ 'border-blue-600 dark:border-blue-400 shadow-md ring-1 ring-blue-600 dark:ring-blue-400': documentCompletion.progress === 100 }">
+          <CardHeader class="pb-3">
+            <CardTitle class="text-sm font-medium text-muted-foreground">Document Completion</CardTitle>
+          </CardHeader>
+          <CardContent class="space-y-4">
+            <div class="space-y-2">
+              <div class="flex justify-between text-sm">
+                <span class="font-medium">{{ documentCompletion.progress }}% Complete</span>
+                <span class="text-muted-foreground">{{ requiredDocuments.length - documentCompletion.missing.length }}/{{ requiredDocuments.length }}</span>
+              </div>
+              <div class="h-2 bg-muted rounded-full overflow-hidden">
+                <div class="h-full bg-blue-600 rounded-full transition-all duration-500" :style="{ width: `${documentCompletion.progress}%` }"></div>
+              </div>
+            </div>
+
+            <div v-if="documentCompletion.missing.length > 0" class="space-y-2">
+              <p class="text-xs font-medium text-muted-foreground">Missing Documents:</p>
+              <div class="space-y-1">
+                <div v-for="doc in documentCompletion.missing" :key="doc" class="flex items-center gap-2 text-sm text-amber-600 dark:text-amber-500 bg-amber-50 dark:bg-amber-900/20 px-2 py-1.5 rounded border border-amber-100 dark:border-amber-900/30">
+                  <AlertCircle class="h-3.5 w-3.5" />
+                  <span>{{ doc }}</span>
+                </div>
+              </div>
+            </div>
+            <div v-else class="flex items-center gap-2 text-sm text-green-600 bg-green-50 dark:bg-green-900/20 px-2 py-1.5 rounded border border-green-100 dark:border-green-900/30">
+              <CheckCircle2 class="h-4 w-4" />
+              <span>All documents submitted</span>
+            </div>
+          </CardContent>
+        </Card>
+
+        <!-- Discrepancies Warning Card -->
+        <Card v-if="discrepancies.length > 0" class="border-amber-200 bg-amber-50/50 dark:bg-amber-950/10">
+          <CardHeader class="pb-3">
+            <div class="flex items-center justify-between">
+              <CardTitle class="text-base font-medium flex items-center gap-2 text-amber-900 dark:text-amber-200">
+                <AlertTriangle class="h-5 w-5 text-amber-600" />
+                Data Discrepancies
+              </CardTitle>
+              <Badge variant="outline" class="bg-amber-100 text-amber-700 border-amber-200">
+                {{ discrepancies.length }} Issues
+              </Badge>
+            </div>
+          </CardHeader>
+          <CardContent class="space-y-4 max-h-[300px] overflow-y-auto">
+            <div v-for="(discrepancy, index) in discrepancies" :key="index" 
+              class="group relative bg-card rounded-lg border shadow-sm overflow-hidden transition-all hover:shadow-md"
+            >
+              <!-- Severity Strip -->
+              <div class="absolute left-0 top-0 bottom-0 w-1.5" :class="{
+                'bg-blue-500': discrepancy.severity === 'low',
+                'bg-amber-500': discrepancy.severity === 'medium',
+                'bg-red-500': discrepancy.severity === 'high'
+              }"></div>
+
+              <div class="p-4 pl-5">
+                <!-- Header -->
+                <div class="flex justify-between items-start mb-3">
+                  <div class="space-y-1">
+                    <div class="flex items-center gap-2">
+                      <h4 class="font-semibold text-sm text-foreground">{{ discrepancy.field }}</h4>
+                      <Badge v-if="discrepancy.category" variant="secondary" class="text-[10px] px-1.5 h-5 font-medium text-muted-foreground bg-muted">
+                        {{ discrepancy.category }}
+                      </Badge>
+                    </div>
+                  </div>
+                  <Badge class="capitalize text-[10px] px-2 py-0.5 shadow-none" :class="{
+                    'bg-blue-50 text-blue-700 border-blue-200 hover:bg-blue-100': discrepancy.severity === 'low',
+                    'bg-amber-50 text-amber-700 border-amber-200 hover:bg-amber-100': discrepancy.severity === 'medium',
+                    'bg-red-50 text-red-700 border-red-200 hover:bg-red-100': discrepancy.severity === 'high'
+                  }" variant="outline">
+                    {{ discrepancy.severity }} Severity
+                  </Badge>
+                </div>
+
+                <!-- Comparison Box -->
+                <div class="grid grid-cols-[1fr_auto_1fr] gap-2 items-center bg-muted/30 rounded-md p-3 mb-3 border border-muted/50">
+                  <!-- Target Side (Applicant Data) -->
+                  <div class="space-y-1">
+                    <div class="flex items-center gap-1.5 text-[10px] uppercase tracking-wider text-muted-foreground font-semibold">
+                      <Edit class="h-3 w-3" />
+                      {{ discrepancy.target?.type || 'Application' }}
+                    </div>
+                    <div class="text-sm font-medium text-foreground wrap-break-word">
+                      {{ discrepancy.target?.value ?? '-' }}
+                    </div>
+                  </div>
+
+                  <!-- Arrow -->
+                  <div class="text-muted-foreground/40 px-1">
+                    <MoveRight class="h-4 w-4" />
+                  </div>
+
+                  <!-- Source Side (Document Data) -->
+                  <div class="space-y-1 text-right">
+                    <div class="flex items-center justify-end gap-1.5 text-[10px] uppercase tracking-wider text-muted-foreground font-semibold">
+                      {{ discrepancy.source?.type || 'Document' }}
+                      <FileText class="h-3 w-3" />
+                    </div>
+                    <div class="text-sm font-medium text-foreground wrap-break-word">
+                      {{ discrepancy.source?.value ?? '-' }}
+                    </div>
+                  </div>
+                </div>
+
+                <!-- Footer Info -->
+                <div class="space-y-2">
+                  <!-- Note -->
+                  <div v-if="discrepancy.note" class="flex gap-2 text-xs text-muted-foreground bg-amber-50/50 dark:bg-amber-900/10 p-2 rounded border border-amber-100 dark:border-amber-900/20">
+                    <Info class="h-4 w-4 text-amber-600 shrink-0 mt-0.5" />
+                    <span class="leading-relaxed">{{ discrepancy.note }}</span>
+                  </div>
+
+                  <!-- Source -->
+                  <div v-if="discrepancy.source?.name" class="flex items-center justify-end">
+                    <div class="inline-flex items-center gap-1.5 text-[10px] text-muted-foreground bg-muted/50 px-2 py-1 rounded-full border hover:bg-muted transition-colors cursor-help" :title="discrepancy.source.name">
+                      <FileText class="h-3 w-3" />
+                      <span class="font-medium truncate max-w-[150px]">
+                        {{ discrepancy.source.name }}
+                      </span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </CardContent>
+        </Card>
+      </div>
+
+      <!-- Left Column (Main Forms) -->
+      <div class="lg:col-span-8 lg:row-start-1 space-y-6">
       <Card>
         <CardHeader>
           <CardTitle>Personal Information</CardTitle>
@@ -548,6 +723,10 @@ const saveCandidate = async () => {
             <div class="space-y-2">
               <Label for="name">Full Name</Label>
               <Input id="name" v-model="form.name" placeholder="John Doe" />
+            </div>
+            <div class="space-y-2">
+              <Label for="photo_url">Photo URL</Label>
+              <Input id="photo_url" v-model="form.photo_url" placeholder="https://..." />
             </div>
             <div class="space-y-2">
               <Label for="email">Email</Label>
@@ -946,15 +1125,8 @@ const saveCandidate = async () => {
           </div>
         </CardContent>
       </Card>
-
-      <div class="flex justify-end gap-4">
-        <Button variant="outline" @click="goBack" :disabled="isSaving">Cancel</Button>
-        <Button @click="saveCandidate" :disabled="isSaving">
-          <Loader2 v-if="isSaving" class="mr-2 h-4 w-4 animate-spin" />
-          <Save v-else class="mr-2 h-4 w-4" />
-          {{ isSaving ? 'Saving...' : 'Save Changes' }}
-        </Button>
-      </div>
+      </div> <!-- End Left Column -->
+      </div> <!-- End Grid -->
 
       <!-- Success Notification -->
       <div 
