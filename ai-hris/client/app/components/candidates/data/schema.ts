@@ -50,7 +50,7 @@ const ktpStructuredSchema = z.object({
 }).passthrough()
 
 const extractedContentSchema = z.object({
-  bounding_boxes: z.array(boundingBoxSchema).optional(),
+  boundingBoxes: z.array(boundingBoxSchema).optional(),
   content: z.string().optional(),
   structured_data: z.any().optional(),
 }).passthrough()
@@ -60,8 +60,8 @@ const legalDocumentSchema = z.object({
   type: z.string(),
   name: z.string(),
   url: z.string(),
-  last_updated: z.string(),
-  extracted_content: extractedContentSchema.optional(),
+  lastUpdated: z.string(),
+  extractedContent: extractedContentSchema.optional(),
 })
 
 const legalDocumentSchemaV2 = z.object({
@@ -76,11 +76,11 @@ const resumeDocumentSchema = z.object({
   type: z.string().default('RESUME'),
   name: z.string(),
   url: z.string(),
-  last_updated: z.string(),
-  extracted_content: z.object({
+  lastUpdated: z.string(),
+  extractedContent: z.object({
     content: z.string(),
     tables: z.array(z.any()).optional(),
-    bounding_boxes: z.array(z.any()).optional(),
+    boundingBoxes: z.array(z.any()).optional(),
   }).optional(),
 })
 
@@ -104,8 +104,8 @@ const bukuTabunganSchema = z.object({
   type: z.string().default('Buku Tabungan'),
   name: z.string(),
   url: z.string(),
-  last_updated: z.string(),
-  extracted_content: extractedContentSchema.optional(),
+  lastUpdated: z.string(),
+  extractedContent: extractedContentSchema.optional(),
 })
 
 const noteSchema = z.object({
@@ -216,6 +216,7 @@ export const candidateSchema = z.object({
   })).optional(),
   family_members: z.array(familyMemberSchema).optional(),
   legal_documents: z.array(legalDocumentSchema).optional(),
+  legalDocuments: z.array(legalDocumentSchema).optional(),
   resume: resumeDocumentSchema.optional(),
   offering_letter: offeringLetterSchema.optional(),
   interview: interviewSchema.optional(),
@@ -223,7 +224,50 @@ export const candidateSchema = z.object({
   discrepancies: z.array(discrepancySchema).optional(),
 })
 
+export const employeeSchema = z.object({
+  id: z.string(),
+  employee_id: z.string(),
+  name: z.string(),
+  photo_url: z.string().optional(),
+  email: z.string().optional(),
+  phone: z.string().optional(),
+  position: z.string().optional(),
+  status: z.enum(['active', 'inactive']).optional(),
+  joined_date: z.string().optional(),
+  experience: z.number().optional(),
+  skills: z.array(z.string()).optional(),
+  rating: z.number().min(0).max(5).optional(),
+  notes: z.array(noteSchema).optional(),
+  gender: z.string().optional(),
+  date_of_birth: z.string().optional(),
+  address: addressSchema.optional(),
+  education: z.array(z.object({
+    institution: z.string(),
+    degree: z.string(),
+    field_of_study: z.string(),
+    graduation_year: z.number(),
+    gpa: z.number(),
+  })).optional(),
+  work_experiences: z.array(z.object({
+    company: z.string(),
+    position: z.string(),
+    start_date: z.string(),
+    end_date: z.string().nullable().optional(),
+    is_current: z.boolean().optional(),
+    description: z.string().optional(),
+  })).optional(),
+  family_members: z.array(familyMemberSchema).optional(),
+  legal_documents: z.array(legalDocumentSchema).optional(),
+  legalDocuments: z.array(legalDocumentSchema).optional(),
+  resume: resumeDocumentSchema.optional(),
+  offering_letter: offeringLetterSchema.optional(),
+  // interview: interviewSchema.optional(),
+  salary: salarySchema.optional(),
+  discrepancies: z.array(discrepancySchema).optional(),
+})
+
 export type Candidate = z.infer<typeof candidateSchema>
+export type Employee = z.infer<typeof employeeSchema>
 export type KartuKeluargaStructured = z.infer<typeof kartuKeluargaStructuredSchema>
 export type KtpStructured = z.infer<typeof ktpStructuredSchema>
 export type FamilyMemberDetail = z.infer<typeof familyMemberDetailSchema>

@@ -79,17 +79,17 @@ const statusSteps = computed(() => {
   } else {
     steps.push({ value: 'decision', label: 'Hired / Rejected' })
   }
-  
+
   return steps
 })
 
 const currentStatusIndex = computed(() => {
   if (!candidate.value?.status) return 0
   const status = candidate.value.status
-  
+
   if (status === 'hired') return 5
   if (status === 'rejected') return 4
-  
+
   const index = statusSteps.value.findIndex(s => s.value === status)
   return index !== -1 ? index : 0
 })
@@ -160,18 +160,18 @@ const getDocumentIcon = (docType: string) => {
 
 const documentCompletion = computed(() => {
   if (!candidate.value) return { progress: 0, missing: [] }
-  
+
   const uploadedTypes = candidate.value.legal_documents?.map(d => d.type) || []
-  
+
   // Check if offering letter exists and include it in the count
   if (Object.keys(candidate.value.offering_letter || {}).length > 0) {
     console.log('Offering letter found, adding to uploaded types')
     uploadedTypes.push('Signed Offer Letter')
   }
-  
+
   const missing = requiredDocuments.filter(doc => !uploadedTypes.includes(doc))
   const progress = Math.round(((requiredDocuments.length - missing.length) / requiredDocuments.length) * 100)
-  
+
   return { progress, missing }
 })
 
@@ -192,11 +192,11 @@ const calculateAge = (dateString: string) => {
   const birthDate = new Date(dateString)
   let age = today.getFullYear() - birthDate.getFullYear()
   const monthDiff = today.getMonth() - birthDate.getMonth()
-  
+
   if (monthDiff < 0 || (monthDiff === 0 && today.getDate() < birthDate.getDate())) {
     age--
   }
-  
+
   return age
 }
 
@@ -225,7 +225,7 @@ const getSignalColor = (signal: string, index?: number) => {
     'bg-indigo-100 text-indigo-800 border-indigo-200 dark:bg-indigo-900/40 dark:text-indigo-300 dark:border-indigo-900/60',
     'bg-cyan-100 text-cyan-800 border-cyan-200 dark:bg-cyan-900/40 dark:text-cyan-300 dark:border-cyan-900/60',
   ]
-  
+
   // If index is provided, use it; otherwise use hash-based index
   let colorIndex = 0
   if (index !== undefined) {
@@ -238,7 +238,7 @@ const getSignalColor = (signal: string, index?: number) => {
     }
     colorIndex = Math.abs(hash) % colors.length
   }
-  
+
   return colors[colorIndex]
 }
 </script>
@@ -265,30 +265,34 @@ const getSignalColor = (signal: string, index?: number) => {
     <!-- Content -->
     <div v-else-if="candidate" class="max-w-7xl mx-auto p-6">
       <div class="grid grid-cols-1 lg:grid-cols-12 gap-6">
-        
+
         <!-- Left Column (Main Content) -->
         <div class="lg:col-span-8 space-y-6">
-          
+
           <!-- Profile Header -->
           <div class="flex flex-col sm:flex-row gap-6 items-start">
             <div class="relative">
               <Avatar class="h-24 w-24 border-4 border-background shadow-sm">
-                <AvatarImage :src="candidate?.photo_url ?? `https://api.dicebear.com/7.x/avataaars/svg?seed=${candidate?.name}`" :alt="candidate?.name" class="object-cover" />
+                <AvatarImage
+                  :src="candidate?.photo_url ?? `https://api.dicebear.com/7.x/avataaars/svg?seed=${candidate?.name}`"
+                  :alt="candidate?.name" class="object-cover" />
                 <AvatarFallback>{{ candidate?.name?.charAt(0) }}</AvatarFallback>
               </Avatar>
-              <Badge v-if="candidate?.rating" class="absolute -bottom-2 -right-2 bg-green-100 text-green-700 hover:bg-green-100 border-green-200 px-2 py-0.5 text-sm font-bold shadow-sm">
+              <Badge v-if="candidate?.rating"
+                class="absolute -bottom-2 -right-2 bg-green-100 text-green-700 hover:bg-green-100 border-green-200 px-2 py-0.5 text-sm font-bold shadow-sm">
                 {{ candidate.rating }}/5
               </Badge>
             </div>
-            
+
             <div class="flex-1 space-y-2">
               <div class="flex justify-between items-start">
                 <div class="flex flex-col sm:flex-row sm:items-center gap-2 sm:gap-4">
                   <h1 class="text-3xl font-bold tracking-tight text-foreground">{{ candidate?.name }}</h1>
-                  <span class="text-lg text-muted-foreground">for <span class="inline-block font-semibold">{{ candidate?.position }}</span></span>
+                  <span class="text-lg text-muted-foreground">for <span class="inline-block font-semibold">{{
+                      candidate?.position }}</span></span>
                 </div>
               </div>
-              
+
               <div class="flex flex-wrap gap-4 text-sm text-muted-foreground">
                 <div class="flex items-center gap-1.5">
                   <MapPin class="h-4 w-4" />
@@ -297,7 +301,8 @@ const getSignalColor = (signal: string, index?: number) => {
 
                 <div class="flex items-center gap-1.5">
                   <Calendar class="h-4 w-4" />
-                  Applied {{ Math.floor((Date.now() - new Date(candidate?.applied_date ?? Date.now()).getTime()) / (1000 * 3600 * 24)) }} days ago
+                  Applied {{ Math.floor((Date.now() - new Date(candidate?.applied_date ?? Date.now()).getTime()) / (1000
+                  * 3600 * 24)) }} days ago
                 </div>
 
               </div>
@@ -305,35 +310,31 @@ const getSignalColor = (signal: string, index?: number) => {
               <!-- Status Stepper -->
               <div class="w-full mt-6">
                 <Stepper :model-value="currentStatusIndex" class="flex w-full items-start gap-2">
-                  <StepperItem
-                    v-for="(step, index) in statusSteps"
-                    :key="step.value"
-                    :step="index"
-                    class="relative flex flex-col flex-1 group"
-                    :class="{
+                  <StepperItem v-for="(step, index) in statusSteps" :key="step.value" :step="index"
+                    class="relative flex flex-col flex-1 group" :class="{
                       'items-start': index === 0,
                       'items-center': index !== 0 && index !== statusSteps.length - 1,
                       'items-end': index === statusSteps.length - 1
-                    }"
-                  >
-                    <StepperTrigger class="flex flex-col items-center gap-2 p-2 rounded-md hover:bg-muted/50 transition-colors">
-                      <StepperIndicator class="h-8 w-8 rounded-full flex items-center justify-center border-2 transition-all duration-300 group-data-[state=active]:bg-primary group-data-[state=active]:border-primary group-data-[state=active]:text-primary-foreground group-data-[state=completed]:bg-primary/20 group-data-[state=completed]:border-primary/20 group-data-[state=completed]:text-primary">
+                    }">
+                    <StepperTrigger
+                      class="flex flex-col items-center gap-2 p-2 rounded-md hover:bg-muted/50 transition-colors">
+                      <StepperIndicator
+                        class="h-8 w-8 rounded-full flex items-center justify-center border-2 transition-all duration-300 group-data-[state=active]:bg-primary group-data-[state=active]:border-primary group-data-[state=active]:text-primary-foreground group-data-[state=completed]:bg-primary/20 group-data-[state=completed]:border-primary/20 group-data-[state=completed]:text-primary">
                         <CheckCircle2 v-if="index < currentStatusIndex" class="h-4 w-4" />
                         <span v-else class="text-sm font-medium">{{ index + 1 }}</span>
                       </StepperIndicator>
                       <div class="flex flex-col items-center text-center">
-                        <StepperTitle class="text-sm font-medium transition-colors group-data-[state=active]:text-primary group-data-[state=completed]:text-muted-foreground">{{ step.label }}</StepperTitle>
+                        <StepperTitle
+                          class="text-sm font-medium transition-colors group-data-[state=active]:text-primary group-data-[state=completed]:text-muted-foreground">
+                          {{ step.label }}</StepperTitle>
                       </div>
                     </StepperTrigger>
-                    <StepperSeparator 
-                      v-if="index !== statusSteps.length - 1" 
-                      class="absolute top-6 h-0.5 bg-muted group-data-[state=completed]:bg-primary/20"
-                      :class="{
+                    <StepperSeparator v-if="index !== statusSteps.length - 1"
+                      class="absolute top-6 h-0.5 bg-muted group-data-[state=completed]:bg-primary/20" :class="{
                         'left-[calc(50%+20px)] right-[calc(-50%+20px)]': index !== 0 && index !== statusSteps.length - 2,
                         'left-11 right-[calc(-50%+20px)]': index === 0,
                         'left-[calc(50%+20px)] right-[calc(-100%+44px)]': index === statusSteps.length - 2
-                      }"
-                    />
+                      }" />
                   </StepperItem>
                 </Stepper>
               </div>
@@ -346,11 +347,8 @@ const getSignalColor = (signal: string, index?: number) => {
               <Send class="h-4 w-4" />
               Send Mail
             </Button>
-            <Button 
-              v-if="candidate?.status === 'hired'"
-              class="bg-green-600 hover:bg-green-700 text-white gap-2"
-              @click="router.push(`/candidates/email-payroll/${candidateId}`)"
-            >
+            <Button v-if="candidate?.status === 'hired'" class="bg-green-600 hover:bg-green-700 text-white gap-2"
+              @click="router.push(`/candidates/email-payroll/${candidateId}`)">
               <Mail class="h-4 w-4" />
               Email to Payroll
             </Button>
@@ -374,13 +372,8 @@ const getSignalColor = (signal: string, index?: number) => {
           <div class="space-y-3">
             <h3 class="text-sm font-semibold text-muted-foreground">Signals</h3>
             <div class="flex flex-wrap gap-3">
-              <Badge 
-                v-for="(signal, index) in candidate?.interview?.signals" 
-                :key="signal" 
-                variant="outline"
-                :class="getSignalColor(signal, index)"
-                class="p-2"
-              >
+              <Badge v-for="(signal, index) in candidate?.interview?.signals" :key="signal" variant="outline"
+                :class="getSignalColor(signal, index)" class="p-2">
                 {{ signal }}
               </Badge>
             </div>
@@ -398,9 +391,11 @@ const getSignalColor = (signal: string, index?: number) => {
           <div class="space-y-3">
             <h3 class="text-sm font-semibold text-muted-foreground">Score</h3>
             <div class="grid grid-cols-1 sm:grid-cols-3 gap-4">
-              <Card v-for="(score, index) in candidate?.interview?.score_details" :key="index" class="bg-green-50/50 dark:bg-green-900/10 border-green-100 dark:border-green-900/20">
+              <Card v-for="(score, index) in candidate?.interview?.score_details" :key="index"
+                class="bg-green-50/50 dark:bg-green-900/10 border-green-100 dark:border-green-900/20">
                 <CardContent class="p-4 flex items-center gap-4">
-                  <div class="h-10 w-10 rounded-full bg-background flex items-center justify-center shadow-sm text-green-600 dark:text-green-400">
+                  <div
+                    class="h-10 w-10 rounded-full bg-background flex items-center justify-center shadow-sm text-green-600 dark:text-green-400">
                     <Headphones class="h-5 w-5" />
                   </div>
                   <div>
@@ -424,10 +419,8 @@ const getSignalColor = (signal: string, index?: number) => {
                   <span class="text-sm font-bold text-foreground">{{ score.value }}</span>
                 </div>
                 <div class="w-full bg-muted rounded-full h-2">
-                  <div
-                    class="h-2 rounded-full transition-all duration-500 bg-green-500"
-                    :style="{ width: `${(score.value / 10) * 100}%` }"
-                  />
+                  <div class="h-2 rounded-full transition-all duration-500 bg-green-500"
+                    :style="{ width: `${(score.value / 10) * 100}%` }" />
                 </div>
               </div>
             </CardContent>
@@ -454,10 +447,11 @@ const getSignalColor = (signal: string, index?: number) => {
                 </div>
                 <div class="space-y-1">
                   <span class="text-xs text-muted-foreground">Market Range</span>
-                  <div class="font-bold text-lg text-muted-foreground">{{ formatMarketRange(candidate.salary.market_range) }}</div>
+                  <div class="font-bold text-lg text-muted-foreground">{{
+                    formatMarketRange(candidate.salary.market_range) }}</div>
                 </div>
               </div>
-              
+
               <div class="bg-muted/30 rounded-lg p-3 space-y-2">
                 <div class="flex items-center gap-2 text-sm font-medium">
                   <Sparkles class="h-4 w-4 text-purple-500" />
@@ -469,7 +463,8 @@ const getSignalColor = (signal: string, index?: number) => {
               </div>
 
               <div class="grid grid-cols-3 gap-2 pt-2">
-                <div v-for="factor in candidate.salary.factors" :key="factor.name" class="text-center p-2 border rounded-md bg-background">
+                <div v-for="factor in candidate.salary.factors" :key="factor.name"
+                  class="text-center p-2 border rounded-md bg-background">
                   <div class="text-xs text-muted-foreground mb-1">{{ factor.name }}</div>
                   <div class="font-medium text-sm" :class="getFactorColor(factor.value)">{{ factor.value }}</div>
                 </div>
@@ -479,277 +474,291 @@ const getSignalColor = (signal: string, index?: number) => {
 
 
 
-            <!-- Contact Info -->
-            <Card>
-              <CardHeader class="pb-3">
-                <CardTitle class="text-sm font-medium text-muted-foreground">Contact Info</CardTitle>
-              </CardHeader>
-              <CardContent class="space-y-4">
-                <div class="grid grid-cols-[80px_1fr] gap-2 text-sm">
-                  <span class="text-muted-foreground">Name</span>
-                  <span class="font-medium text-right">{{ candidate?.name }}</span>
+          <!-- Contact Info -->
+          <Card>
+            <CardHeader class="pb-3">
+              <CardTitle class="text-sm font-medium text-muted-foreground">Contact Info</CardTitle>
+            </CardHeader>
+            <CardContent class="space-y-4">
+              <div class="grid grid-cols-[80px_1fr] gap-2 text-sm">
+                <span class="text-muted-foreground">Name</span>
+                <span class="font-medium text-right">{{ candidate?.name }}</span>
+              </div>
+              <Separator />
+              <div class="grid grid-cols-[80px_1fr] gap-2 text-sm">
+                <span class="text-muted-foreground">Phone</span>
+                <span class="font-medium text-right">{{ candidate?.phone || '-' }}</span>
+              </div>
+              <Separator />
+              <div class="grid grid-cols-[80px_1fr] gap-2 text-sm">
+                <span class="text-muted-foreground">Email</span>
+                <span class="font-medium text-right truncate text-blue-600">{{ candidate?.email }}</span>
+              </div>
+              <Separator />
+              <div class="grid grid-cols-[80px_1fr] gap-2 text-sm">
+                <span class="text-muted-foreground">Gender</span>
+                <span class="font-medium text-right">{{ candidate?.gender || '-' }}</span>
+              </div>
+              <Separator />
+              <div class="grid grid-cols-[80px_1fr] gap-2 text-sm">
+                <span class="text-muted-foreground">Birthday</span>
+                <span class="font-medium text-right" v-if="candidate?.date_of_birth">{{
+                  formatDate(candidate.date_of_birth) }} ({{ calculateAge(candidate.date_of_birth) }} years old)</span>
+                <span v-else class="font-medium text-right text-muted-foreground">-</span>
+              </div>
+              <Separator />
+              <div class="grid grid-cols-[80px_1fr] gap-2 text-sm">
+                <span class="text-muted-foreground">Address</span>
+                <div class="text-right">
+                  <div class="font-medium">{{ candidate?.address?.detail || '-' }}</div>
+                  <div class="text-muted-foreground text-xs">
+                    {{ [candidate?.address?.city, candidate?.address?.country,
+                    candidate?.address?.zip].filter(Boolean).join(', ') }}
+                  </div>
                 </div>
-                <Separator />
-                <div class="grid grid-cols-[80px_1fr] gap-2 text-sm">
-                  <span class="text-muted-foreground">Phone</span>
-                  <span class="font-medium text-right">{{ candidate?.phone || '-' }}</span>
+              </div>
+            </CardContent>
+          </Card>
+
+          <!-- Family Members -->
+          <Card v-if="candidate?.family_members && candidate.family_members.length > 0">
+            <CardHeader class="pb-3">
+              <CardTitle class="text-sm font-medium text-muted-foreground flex items-center gap-2">
+                <Users class="h-4 w-4" />
+                Family Members
+              </CardTitle>
+            </CardHeader>
+            <CardContent class="space-y-3">
+              <div v-for="(member, i) in candidate.family_members" :key="i" class="border rounded-lg p-3 bg-muted/30">
+                <div class="flex justify-between items-start">
+                  <div>
+                    <div class="font-medium text-sm">{{ member.name }}</div>
+                    <div class="text-xs text-muted-foreground">{{ member.relationship }}</div>
+                  </div>
+                  <div v-if="member.date_of_birth" class="text-xs text-muted-foreground">
+                    {{ formatDate(member.date_of_birth) }}
+                  </div>
                 </div>
-                <Separator />
-                <div class="grid grid-cols-[80px_1fr] gap-2 text-sm">
-                  <span class="text-muted-foreground">Email</span>
-                  <span class="font-medium text-right truncate text-blue-600">{{ candidate?.email }}</span>
-                </div>
-                <Separator />
-                <div class="grid grid-cols-[80px_1fr] gap-2 text-sm">
-                  <span class="text-muted-foreground">Gender</span>
-                  <span class="font-medium text-right">{{ candidate?.gender || '-' }}</span>
-                </div>
-                <Separator />
-                <div class="grid grid-cols-[80px_1fr] gap-2 text-sm">
-                  <span class="text-muted-foreground">Birthday</span>
-                  <span class="font-medium text-right" v-if="candidate?.date_of_birth">{{ formatDate(candidate.date_of_birth) }} ({{ calculateAge(candidate.date_of_birth) }} years old)</span>
-                  <span v-else class="font-medium text-right text-muted-foreground">-</span>
-                </div>
-                <Separator />
-                <div class="grid grid-cols-[80px_1fr] gap-2 text-sm">
-                  <span class="text-muted-foreground">Address</span>
+                <div v-if="member.brief_data" class="mt-2 text-xs text-muted-foreground grid grid-cols-2 gap-2">
+                  <div>
+                    <span v-if="member.brief_data.occupation">
+                      <span class="font-semibold">Occupation:</span> {{ member.brief_data.occupation }}
+                    </span>
+                  </div>
                   <div class="text-right">
-                    <div class="font-medium">{{ candidate?.address?.detail || '-' }}</div>
-                    <div class="text-muted-foreground text-xs">
-                      {{ [candidate?.address?.city, candidate?.address?.country, candidate?.address?.zip].filter(Boolean).join(', ') }}
-                    </div>
+                    <span v-if="member.brief_data.contact">
+                      <span class="font-semibold">Contact:</span> {{ member.brief_data.contact }}
+                    </span>
                   </div>
                 </div>
-              </CardContent>
-            </Card>
+              </div>
+            </CardContent>
+          </Card>
 
-            <!-- Family Members -->
-            <Card v-if="candidate?.family_members && candidate.family_members.length > 0">
-              <CardHeader class="pb-3">
-                <CardTitle class="text-sm font-medium text-muted-foreground flex items-center gap-2">
-                  <Users class="h-4 w-4" />
-                  Family Members
-                </CardTitle>
-              </CardHeader>
-              <CardContent class="space-y-3">
-                <div v-for="(member, i) in candidate.family_members" :key="i" class="border rounded-lg p-3 bg-muted/30">
-                  <div class="flex justify-between items-start">
-                    <div>
-                      <div class="font-medium text-sm">{{ member.name }}</div>
-                      <div class="text-xs text-muted-foreground">{{ member.relationship }}</div>
+          <!-- Experience -->
+          <Card>
+            <CardHeader class="pb-3">
+              <CardTitle class="text-sm font-medium text-muted-foreground flex items-center gap-2">
+                <Briefcase class="h-4 w-4" />
+                Experience
+              </CardTitle>
+            </CardHeader>
+            <CardContent class="space-y-3">
+              <div v-for="(exp, i) in candidate?.work_experiences" :key="i"
+                class="border rounded-lg p-4 bg-linear-to-br from-purple-50/50 to-transparent dark:from-purple-950/20 hover:shadow-sm transition-all">
+                <div class="space-y-3">
+                  <!-- Top row: Position and Duration -->
+                  <div class="flex items-start justify-between gap-3">
+                    <div class="flex-1">
+                      <div class="font-semibold text-sm text-foreground">{{ exp.position }}</div>
                     </div>
-                    <div v-if="member.date_of_birth" class="text-xs text-muted-foreground">
-                      {{ formatDate(member.date_of_birth) }}
-                    </div>
+                    <Badge
+                      class="bg-purple-100 text-purple-700 border-purple-200 dark:bg-purple-900/40 dark:text-purple-300 dark:border-purple-900/60 shrink-0 text-xs">
+                      {{(() => {
+                        const totalMonths = Math.ceil((new Date(exp.end_date || new Date()).getTime() - new
+                          Date(exp.start_date).getTime()) / (1000 * 60 * 60 * 24 * 30.44))
+                        const years = Math.floor(totalMonths / 12)
+                        const months = totalMonths % 12
+                        return years > 0 ? `${years} year${years > 1 ? 's' : ''} ${months} month${months !== 1 ? 's' :
+                          ''}` : `${months} month${months !== 1 ? 's' : ''}`
+                      })() }}
+                    </Badge>
                   </div>
-                  <div v-if="member.brief_data" class="mt-2 text-xs text-muted-foreground grid grid-cols-2 gap-2">
-                    <div>
-                      <span v-if="member.brief_data.occupation">
-                        <span class="font-semibold">Occupation:</span> {{ member.brief_data.occupation }}
-                      </span>
-                    </div>
-                    <div class="text-right">
-                      <span v-if="member.brief_data.contact">
-                        <span class="font-semibold">Contact:</span> {{ member.brief_data.contact }}
-                      </span>
-                    </div>
-                  </div>
-                </div>
-              </CardContent>
-            </Card>
 
-            <!-- Experience -->
-            <Card>
-              <CardHeader class="pb-3">
-                <CardTitle class="text-sm font-medium text-muted-foreground flex items-center gap-2">
-                  <Briefcase class="h-4 w-4" />
-                  Experience
-                </CardTitle>
-              </CardHeader>
-              <CardContent class="space-y-3">
-                <div v-for="(exp, i) in candidate?.work_experiences" :key="i" class="border rounded-lg p-4 bg-linear-to-br from-purple-50/50 to-transparent dark:from-purple-950/20 hover:shadow-sm transition-all">
-                  <div class="space-y-3">
-                    <!-- Top row: Position and Duration -->
-                    <div class="flex items-start justify-between gap-3">
-                      <div class="flex-1">
-                        <div class="font-semibold text-sm text-foreground">{{ exp.position }}</div>
-                      </div>
-                      <Badge class="bg-purple-100 text-purple-700 border-purple-200 dark:bg-purple-900/40 dark:text-purple-300 dark:border-purple-900/60 shrink-0 text-xs">
-                        {{ (() => {
-                          const totalMonths = Math.ceil((new Date(exp.end_date || new Date()).getTime() - new Date(exp.start_date).getTime()) / (1000 * 60 * 60 * 24 * 30.44))
-                          const years = Math.floor(totalMonths / 12)
-                          const months = totalMonths % 12
-                          return years > 0 ? `${years} year${years > 1 ? 's' : ''} ${months} month${months !== 1 ? 's' : ''}` : `${months} month${months !== 1 ? 's' : ''}`
-                        })() }}
-                      </Badge>
-                    </div>
-                    
-                    <!-- Company -->
-                    <div>
-                      <div class="text-xs font-medium text-muted-foreground uppercase tracking-wide">Company</div>
-                      <div class="text-sm text-foreground font-medium mt-1">{{ exp.company }}</div>
-                    </div>
-                    
-                    <!-- Duration -->
-                    <div class="pt-2 border-t border-border">
-                      <div class="flex items-center gap-2 text-sm text-muted-foreground">
-                        <Clock class="h-3.5 w-3.5" />
-                        <span>{{ formatDate(exp.start_date) }} - {{ exp.end_date ? formatDate(exp.end_date) : 'Present' }}</span>
-                      </div>
-                    </div>
+                  <!-- Company -->
+                  <div>
+                    <div class="text-xs font-medium text-muted-foreground uppercase tracking-wide">Company</div>
+                    <div class="text-sm text-foreground font-medium mt-1">{{ exp.company }}</div>
                   </div>
-                </div>
-              </CardContent>
-            </Card>
 
-            <!-- Education -->
-            <Card>
-              <CardHeader class="">
-                <CardTitle class="text-sm font-medium text-muted-foreground flex items-center gap-2">
-                  <GraduationCap class="h-4 w-4" />
-                  Education
-                </CardTitle>
-              </CardHeader>
-              <CardContent class="space-y-3">
-                <div v-for="(edu, i) in candidate?.education" :key="i" class="border rounded-lg p-4 bg-linear-to-br from-blue-50/50 to-transparent dark:from-blue-950/20 hover:shadow-sm transition-all">
-                  <div class="space-y-3">
-                    <!-- Top row: Degree and Graduation Year -->
-                    <div class="flex items-start justify-between gap-3">
-                      <div class="flex-1">
-                        <div class="font-semibold text-sm text-foreground">{{ edu.degree }}</div>
-                      </div>
-                      <Badge class="bg-blue-100 text-blue-700 border-blue-200 dark:bg-blue-900/40 dark:text-blue-300 dark:border-blue-900/60 shrink-0">
-                        {{ edu.graduation_year }}
-                      </Badge>
-                    </div>
-                    
-                    <!-- Institution -->
-                    <div>
-                      <div class="text-xs font-medium text-muted-foreground uppercase tracking-wide">Institution</div>
-                      <div class="text-sm text-foreground font-medium mt-1">{{ edu.institution }}</div>
-                    </div>
-                    
-                    <!-- Field of Study -->
-                    <div>
-                      <div class="text-xs font-medium text-muted-foreground uppercase tracking-wide">Field of Study</div>
-                      <div class="text-sm text-foreground mt-1">{{ edu.field_of_study }}</div>
-                    </div>
-                    
-                    <!-- GPA -->
-                    <div class="pt-2 border-t border-border">
-                      <div class="flex items-center justify-between">
-                        <span class="text-xs font-medium text-muted-foreground uppercase tracking-wide">GPA</span>
-                        <div class="bg-green-100 text-green-700 dark:bg-green-900/40 dark:text-green-300 px-2.5 py-1 rounded font-bold text-sm">{{ edu.gpa }}</div>
-                      </div>
+                  <!-- Duration -->
+                  <div class="pt-2 border-t border-border">
+                    <div class="flex items-center gap-2 text-sm text-muted-foreground">
+                      <Clock class="h-3.5 w-3.5" />
+                      <span>{{ formatDate(exp.start_date) }} - {{ exp.end_date ? formatDate(exp.end_date) : 'Present'
+                        }}</span>
                     </div>
                   </div>
                 </div>
-              </CardContent>
-            </Card>
+              </div>
+            </CardContent>
+          </Card>
 
-            <!-- Resume -->
-            <Card>
-              <CardHeader class="pb-3">
-                <CardTitle class="text-sm font-medium text-muted-foreground">Résumé</CardTitle>
-              </CardHeader>
-              <CardContent>
-                <div class="border rounded-lg p-3 flex items-center justify-between bg-muted/50">
-                  <div class="flex items-center gap-3 overflow-hidden">
-                    <div class="h-8 w-8 bg-background rounded border flex items-center justify-center shrink-0">
-                      <FileText class="h-4 w-4 text-red-500" />
+          <!-- Education -->
+          <Card>
+            <CardHeader class="">
+              <CardTitle class="text-sm font-medium text-muted-foreground flex items-center gap-2">
+                <GraduationCap class="h-4 w-4" />
+                Education
+              </CardTitle>
+            </CardHeader>
+            <CardContent class="space-y-3">
+              <div v-for="(edu, i) in candidate?.education" :key="i"
+                class="border rounded-lg p-4 bg-linear-to-br from-blue-50/50 to-transparent dark:from-blue-950/20 hover:shadow-sm transition-all">
+                <div class="space-y-3">
+                  <!-- Top row: Degree and Graduation Year -->
+                  <div class="flex items-start justify-between gap-3">
+                    <div class="flex-1">
+                      <div class="font-semibold text-sm text-foreground">{{ edu.degree }}</div>
                     </div>
-                    <div class="flex flex-col overflow-hidden">
-                      <span class="text-sm font-medium truncate">resume_{{ candidate.name.toLowerCase().split(' ')[0] }}.pdf</span>
-                      <span class="text-xs text-muted-foreground">PDF Document</span>
-                    </div>
+                    <Badge
+                      class="bg-blue-100 text-blue-700 border-blue-200 dark:bg-blue-900/40 dark:text-blue-300 dark:border-blue-900/60 shrink-0">
+                      {{ edu.graduation_year }}
+                    </Badge>
                   </div>
-                  <Button variant="ghost" size="icon" class="h-8 w-8" @click="downloadCV">
-                    <ExternalLink class="h-4 w-4 text-muted-foreground" />
-                  </Button>
-                </div>
-                
-                <!-- Resume Preview Image (Mock) -->
-                <div class="mt-3 border rounded-lg overflow-hidden bg-background h-32 flex items-center justify-center relative group cursor-pointer" @click="downloadCV">
-                  <div class="absolute inset-0 bg-muted/30 flex flex-col items-center justify-center p-4">
-                    <div class="w-full h-full bg-background shadow-sm p-2 text-[6px] text-muted-foreground overflow-hidden">
-                        <div class="font-bold text-foreground text-[8px] mb-1">{{ candidate.name }}</div>
-                        <div class="mb-1">PRODUCT DESIGNER</div>
-                        <div class="space-y-1">
-                          <div class="h-1 bg-muted w-full"></div>
-                          <div class="h-1 bg-muted w-3/4"></div>
-                          <div class="h-1 bg-muted w-5/6"></div>
-                          <div class="h-1 bg-muted w-full"></div>
-                          <div class="h-1 bg-muted w-1/2"></div>
-                        </div>
-                    </div>
-                  </div>
-                  <div class="absolute inset-0 bg-black/0 group-hover:bg-black/5 transition-colors flex items-center justify-center">
-                    <ExternalLink class="h-6 w-6 text-muted-foreground opacity-0 group-hover:opacity-100 transition-opacity" />
-                  </div>
-                </div>
-              </CardContent>
-            </Card>
 
-            <!-- Signed Offering Letter -->
-            <Card v-if="Object.keys(candidate?.offering_letter || {}).length > 0">
-              <CardHeader class="pb-3">
-                <CardTitle class="text-sm font-medium text-muted-foreground">Signed Offering Letter</CardTitle>
-              </CardHeader>
-              <CardContent class="space-y-3">
-                <div 
-                  class="border rounded-lg p-3 flex items-center justify-between bg-muted/50 cursor-pointer hover:bg-muted/80 transition-colors"
-                  @click="isOfferingLetterModalOpen = true"
-                >
-                  <div class="flex items-center gap-3 overflow-hidden">
-                    <div class="h-8 w-8 bg-background rounded border flex items-center justify-center shrink-0">
-                      <component :is="getDocumentIcon('Signed Offer Letter')" class="h-4 w-4 text-green-500" />
-                    </div>
-                    <div class="flex flex-col overflow-hidden">
-                      <span class="text-sm font-medium truncate">{{ candidate.offering_letter?.name }}</span>
-                      <span class="text-xs text-muted-foreground">{{ candidate.offering_letter?.type }}</span>
-                    </div>
+                  <!-- Institution -->
+                  <div>
+                    <div class="text-xs font-medium text-muted-foreground uppercase tracking-wide">Institution</div>
+                    <div class="text-sm text-foreground font-medium mt-1">{{ edu.institution }}</div>
                   </div>
-                  <Button variant="ghost" size="icon" class="h-8 w-8" @click.stop="isOfferingLetterModalOpen = true">
-                    <ExternalLink class="h-4 w-4 text-muted-foreground" />
-                  </Button>
-                </div>
-              </CardContent>
-            </Card>
 
-            <!-- Legal Documents -->
-            <Card>
-              <CardHeader class="pb-3">
-                <CardTitle class="text-sm font-medium text-muted-foreground">Legal Documents</CardTitle>
-              </CardHeader>
-              <CardContent class="space-y-3">
-                <div 
-                  v-for="doc in candidate?.legal_documents" 
-                  :key="doc.type" 
-                  class="border rounded-lg p-3 flex items-center justify-between bg-muted/50 cursor-pointer hover:bg-muted/80 transition-colors"
-                  @click="handleDocumentClick(doc)"
-                >
-                  <div class="flex items-center gap-3 overflow-hidden">
-                    <div class="h-8 w-8 bg-background rounded border flex items-center justify-center shrink-0">
-                      <component :is="getDocumentIcon(doc.type)" class="h-4 w-4 text-blue-500" />
-                    </div>
-                    <div class="flex flex-col overflow-hidden">
-                      <span class="text-sm font-medium truncate">{{ doc.name }}</span>
-                      <span class="text-xs text-muted-foreground">{{ doc.type }}</span>
+                  <!-- Field of Study -->
+                  <div>
+                    <div class="text-xs font-medium text-muted-foreground uppercase tracking-wide">Field of Study</div>
+                    <div class="text-sm text-foreground mt-1">{{ edu.field_of_study }}</div>
+                  </div>
+
+                  <!-- GPA -->
+                  <div class="pt-2 border-t border-border">
+                    <div class="flex items-center justify-between">
+                      <span class="text-xs font-medium text-muted-foreground uppercase tracking-wide">GPA</span>
+                      <div
+                        class="bg-green-100 text-green-700 dark:bg-green-900/40 dark:text-green-300 px-2.5 py-1 rounded font-bold text-sm">
+                        {{ edu.gpa }}</div>
                     </div>
                   </div>
-                  <Button variant="ghost" size="icon" class="h-8 w-8" @click.stop="handleDocumentClick(doc)">
-                    <ExternalLink class="h-4 w-4 text-muted-foreground" />
-                  </Button>
                 </div>
-              </CardContent>
-            </Card>
+              </div>
+            </CardContent>
+          </Card>
+
+          <!-- Resume -->
+          <Card>
+            <CardHeader class="pb-3">
+              <CardTitle class="text-sm font-medium text-muted-foreground">Résumé</CardTitle>
+            </CardHeader>
+            <CardContent>
+              <div class="border rounded-lg p-3 flex items-center justify-between bg-muted/50">
+                <div class="flex items-center gap-3 overflow-hidden">
+                  <div class="h-8 w-8 bg-background rounded border flex items-center justify-center shrink-0">
+                    <FileText class="h-4 w-4 text-red-500" />
+                  </div>
+                  <div class="flex flex-col overflow-hidden">
+                    <span class="text-sm font-medium truncate">resume_{{ candidate.name.toLowerCase().split(' ')[0]
+                      }}.pdf</span>
+                    <span class="text-xs text-muted-foreground">PDF Document</span>
+                  </div>
+                </div>
+                <Button variant="ghost" size="icon" class="h-8 w-8" @click="downloadCV">
+                  <ExternalLink class="h-4 w-4 text-muted-foreground" />
+                </Button>
+              </div>
+
+              <!-- Resume Preview Image (Mock) -->
+              <div
+                class="mt-3 border rounded-lg overflow-hidden bg-background h-32 flex items-center justify-center relative group cursor-pointer"
+                @click="downloadCV">
+                <div class="absolute inset-0 bg-muted/30 flex flex-col items-center justify-center p-4">
+                  <div
+                    class="w-full h-full bg-background shadow-sm p-2 text-[6px] text-muted-foreground overflow-hidden">
+                    <div class="font-bold text-foreground text-[8px] mb-1">{{ candidate.name }}</div>
+                    <div class="mb-1">PRODUCT DESIGNER</div>
+                    <div class="space-y-1">
+                      <div class="h-1 bg-muted w-full"></div>
+                      <div class="h-1 bg-muted w-3/4"></div>
+                      <div class="h-1 bg-muted w-5/6"></div>
+                      <div class="h-1 bg-muted w-full"></div>
+                      <div class="h-1 bg-muted w-1/2"></div>
+                    </div>
+                  </div>
+                </div>
+                <div
+                  class="absolute inset-0 bg-black/0 group-hover:bg-black/5 transition-colors flex items-center justify-center">
+                  <ExternalLink
+                    class="h-6 w-6 text-muted-foreground opacity-0 group-hover:opacity-100 transition-opacity" />
+                </div>
+              </div>
+            </CardContent>
+          </Card>
+
+          <!-- Signed Offering Letter -->
+          <Card v-if="Object.keys(candidate?.offering_letter || {}).length > 0">
+            <CardHeader class="pb-3">
+              <CardTitle class="text-sm font-medium text-muted-foreground">Signed Offering Letter</CardTitle>
+            </CardHeader>
+            <CardContent class="space-y-3">
+              <div
+                class="border rounded-lg p-3 flex items-center justify-between bg-muted/50 cursor-pointer hover:bg-muted/80 transition-colors"
+                @click="isOfferingLetterModalOpen = true">
+                <div class="flex items-center gap-3 overflow-hidden">
+                  <div class="h-8 w-8 bg-background rounded border flex items-center justify-center shrink-0">
+                    <component :is="getDocumentIcon('Signed Offer Letter')" class="h-4 w-4 text-green-500" />
+                  </div>
+                  <div class="flex flex-col overflow-hidden">
+                    <span class="text-sm font-medium truncate">{{ candidate.offering_letter?.name }}</span>
+                    <span class="text-xs text-muted-foreground">{{ candidate.offering_letter?.type }}</span>
+                  </div>
+                </div>
+                <Button variant="ghost" size="icon" class="h-8 w-8" @click.stop="isOfferingLetterModalOpen = true">
+                  <ExternalLink class="h-4 w-4 text-muted-foreground" />
+                </Button>
+              </div>
+            </CardContent>
+          </Card>
+
+          <!-- Legal Documents -->
+          <Card>
+            <CardHeader class="pb-3">
+              <CardTitle class="text-sm font-medium text-muted-foreground">Legal Documents</CardTitle>
+            </CardHeader>
+            <CardContent class="space-y-3">
+              <div v-for="doc in candidate?.legal_documents" :key="doc.type"
+                class="border rounded-lg p-3 flex items-center justify-between bg-muted/50 cursor-pointer hover:bg-muted/80 transition-colors"
+                @click="handleDocumentClick(doc)">
+                <div class="flex items-center gap-3 overflow-hidden">
+                  <div class="h-8 w-8 bg-background rounded border flex items-center justify-center shrink-0">
+                    <component :is="getDocumentIcon(doc.type)" class="h-4 w-4 text-blue-500" />
+                  </div>
+                  <div class="flex flex-col overflow-hidden">
+                    <span class="text-sm font-medium truncate">{{ doc.name }}</span>
+                    <span class="text-xs text-muted-foreground">{{ doc.type }}</span>
+                  </div>
+                </div>
+                <Button variant="ghost" size="icon" class="h-8 w-8" @click.stop="handleDocumentClick(doc)">
+                  <ExternalLink class="h-4 w-4 text-muted-foreground" />
+                </Button>
+              </div>
+            </CardContent>
+          </Card>
         </div>
 
         <!-- Right Column (Sidebar) -->
         <div class="lg:col-span-4 space-y-6">
-          
+
           <!-- Document Completion Card -->
-          <Card v-if="candidate?.status === 'hired'" :class="{ 'border-blue-600 dark:border-blue-400 shadow-md ring-1 ring-blue-600 dark:ring-blue-400': candidate?.status === 'hired' }">
+          <Card v-if="candidate?.status === 'hired'"
+            :class="{ 'border-blue-600 dark:border-blue-400 shadow-md ring-1 ring-blue-600 dark:ring-blue-400': candidate?.status === 'hired' }">
             <CardHeader class="pb-3">
               <CardTitle class="text-sm font-medium text-muted-foreground">Document Completion</CardTitle>
             </CardHeader>
@@ -757,23 +766,27 @@ const getSignalColor = (signal: string, index?: number) => {
               <div class="space-y-2">
                 <div class="flex justify-between text-sm">
                   <span class="font-medium">{{ documentCompletion.progress }}% Complete</span>
-                  <span class="text-muted-foreground">{{ candidate?.legal_documents?.length }}/{{ requiredDocuments.length }}</span>
+                  <span class="text-muted-foreground">{{ candidate?.legal_documents?.length }}/{{
+                    requiredDocuments.length }}</span>
                 </div>
                 <div class="h-2 bg-muted rounded-full overflow-hidden">
-                  <div class="h-full bg-blue-600 rounded-full transition-all duration-500" :style="{ width: `${documentCompletion.progress}%` }"></div>
+                  <div class="h-full bg-blue-600 rounded-full transition-all duration-500"
+                    :style="{ width: `${documentCompletion.progress}%` }"></div>
                 </div>
               </div>
 
               <div v-if="documentCompletion.missing.length > 0" class="space-y-2">
                 <p class="text-xs font-medium text-muted-foreground">Missing Documents:</p>
                 <div class="space-y-1">
-                  <div v-for="doc in documentCompletion.missing" :key="doc" class="flex items-center gap-2 text-sm text-amber-600 dark:text-amber-500 bg-amber-50 dark:bg-amber-900/20 px-2 py-1.5 rounded border border-amber-100 dark:border-amber-900/30">
+                  <div v-for="doc in documentCompletion.missing" :key="doc"
+                    class="flex items-center gap-2 text-sm text-amber-600 dark:text-amber-500 bg-amber-50 dark:bg-amber-900/20 px-2 py-1.5 rounded border border-amber-100 dark:border-amber-900/30">
                     <AlertCircle class="h-3.5 w-3.5" />
                     <span>{{ doc }}</span>
                   </div>
                 </div>
               </div>
-              <div v-else class="flex items-center gap-2 text-sm text-green-600 bg-green-50 dark:bg-green-900/20 px-2 py-1.5 rounded border border-green-100 dark:border-green-900/30">
+              <div v-else
+                class="flex items-center gap-2 text-sm text-green-600 bg-green-50 dark:bg-green-900/20 px-2 py-1.5 rounded border border-green-100 dark:border-green-900/30">
                 <CheckCircle2 class="h-4 w-4" />
                 <span>All documents submitted</span>
               </div>
@@ -781,7 +794,8 @@ const getSignalColor = (signal: string, index?: number) => {
           </Card>
 
           <!-- Discrepancies Warning Card -->
-          <Card v-if="candidate?.discrepancies && candidate.discrepancies.length > 0" class="border-amber-200 bg-amber-50/50 dark:bg-amber-950/10">
+          <Card v-if="candidate?.discrepancies && candidate.discrepancies.length > 0"
+            class="border-amber-200 bg-amber-50/50 dark:bg-amber-950/10">
             <CardHeader class="pb-3">
               <div class="flex items-center justify-between">
                 <CardTitle class="text-base font-medium flex items-center gap-2 text-amber-900 dark:text-amber-200">
@@ -794,9 +808,8 @@ const getSignalColor = (signal: string, index?: number) => {
               </div>
             </CardHeader>
             <CardContent class="space-y-4">
-              <div v-for="(discrepancy, index) in candidate.discrepancies" :key="index" 
-                class="group relative bg-card rounded-lg border shadow-sm overflow-hidden transition-all hover:shadow-md"
-              >
+              <div v-for="(discrepancy, index) in candidate.discrepancies" :key="index"
+                class="group relative bg-card rounded-lg border shadow-sm overflow-hidden transition-all hover:shadow-md">
                 <!-- Severity Strip -->
                 <div class="absolute left-0 top-0 bottom-0 w-1.5" :class="{
                   'bg-blue-500': discrepancy.severity === 'low',
@@ -810,7 +823,8 @@ const getSignalColor = (signal: string, index?: number) => {
                     <div class="space-y-1">
                       <div class="flex items-center gap-2">
                         <h4 class="font-semibold text-sm text-foreground">{{ discrepancy.field }}</h4>
-                        <Badge v-if="discrepancy.category" variant="secondary" class="text-[10px] px-1.5 h-5 font-medium text-muted-foreground bg-muted">
+                        <Badge v-if="discrepancy.category" variant="secondary"
+                          class="text-[10px] px-1.5 h-5 font-medium text-muted-foreground bg-muted">
                           {{ discrepancy.category }}
                         </Badge>
                       </div>
@@ -825,10 +839,12 @@ const getSignalColor = (signal: string, index?: number) => {
                   </div>
 
                   <!-- Comparison Box -->
-                  <div class="grid grid-cols-[1fr_auto_1fr] gap-2 items-center bg-muted/30 rounded-md p-3 mb-3 border border-muted/50">
+                  <div
+                    class="grid grid-cols-[1fr_auto_1fr] gap-2 items-center bg-muted/30 rounded-md p-3 mb-3 border border-muted/50">
                     <!-- Target Side (Applicant Data) -->
                     <div class="space-y-1">
-                      <div class="flex items-center gap-1.5 text-[10px] uppercase tracking-wider text-muted-foreground font-semibold">
+                      <div
+                        class="flex items-center gap-1.5 text-[10px] uppercase tracking-wider text-muted-foreground font-semibold">
                         <Edit class="h-3 w-3" />
                         {{ discrepancy.target?.type || 'Application' }}
                       </div>
@@ -844,7 +860,8 @@ const getSignalColor = (signal: string, index?: number) => {
 
                     <!-- Source Side (Document Data) -->
                     <div class="space-y-1 text-right">
-                      <div class="flex items-center justify-end gap-1.5 text-[10px] uppercase tracking-wider text-muted-foreground font-semibold">
+                      <div
+                        class="flex items-center justify-end gap-1.5 text-[10px] uppercase tracking-wider text-muted-foreground font-semibold">
                         {{ discrepancy.source?.type || 'Document' }}
                         <FileText class="h-3 w-3" />
                       </div>
@@ -857,14 +874,17 @@ const getSignalColor = (signal: string, index?: number) => {
                   <!-- Footer Info -->
                   <div class="space-y-2">
                     <!-- Note -->
-                    <div v-if="discrepancy.note" class="flex gap-2 text-xs text-muted-foreground bg-amber-50/50 dark:bg-amber-900/10 p-2 rounded border border-amber-100 dark:border-amber-900/20">
+                    <div v-if="discrepancy.note"
+                      class="flex gap-2 text-xs text-muted-foreground bg-amber-50/50 dark:bg-amber-900/10 p-2 rounded border border-amber-100 dark:border-amber-900/20">
                       <Info class="h-4 w-4 text-amber-600 shrink-0 mt-0.5" />
                       <span class="leading-relaxed">{{ discrepancy.note }}</span>
                     </div>
 
                     <!-- Source -->
                     <div v-if="discrepancy.source?.name" class="flex items-center justify-end">
-                      <div class="inline-flex items-center gap-1.5 text-[10px] text-muted-foreground bg-muted/50 px-2 py-1 rounded-full border hover:bg-muted transition-colors cursor-help" :title="discrepancy.source.name">
+                      <div
+                        class="inline-flex items-center gap-1.5 text-[10px] text-muted-foreground bg-muted/50 px-2 py-1 rounded-full border hover:bg-muted transition-colors cursor-help"
+                        :title="discrepancy.source.name">
                         <FileText class="h-3 w-3" />
                         <span class="font-medium truncate max-w-[150px]">
                           {{ discrepancy.source.name }}
@@ -879,22 +899,14 @@ const getSignalColor = (signal: string, index?: number) => {
 
           <!-- Tabs -->
           <div class="bg-muted/20 rounded-lg border p-1 flex gap-1">
-            <Button 
-              variant="ghost" 
-              size="sm" 
-              class="flex-1 transition-all"
+            <Button variant="ghost" size="sm" class="flex-1 transition-all"
               :class="activeTab === 'notes' ? 'bg-background text-foreground shadow-sm' : 'text-muted-foreground hover:text-foreground'"
-              @click="activeTab = 'notes'"
-            >
+              @click="activeTab = 'notes'">
               <MessageSquare class="h-4 w-4" />
             </Button>
-            <Button 
-              variant="ghost" 
-              size="sm" 
-              class="flex-1 transition-all"
+            <Button variant="ghost" size="sm" class="flex-1 transition-all"
               :class="activeTab === 'activity' ? 'bg-background text-foreground shadow-sm' : 'text-muted-foreground hover:text-foreground'"
-              @click="activeTab = 'activity'"
-            >
+              @click="activeTab = 'activity'">
               <Activity class="h-4 w-4" />
             </Button>
           </div>
@@ -919,7 +931,7 @@ const getSignalColor = (signal: string, index?: number) => {
                     <p class="text-sm text-foreground bg-muted/50 p-2 rounded-md mt-1">{{ note.message }}</p>
                   </div>
                 </div>
-                
+
                 <div class="pt-2">
                   <Button variant="outline" class="w-full text-xs h-8">Add Note</Button>
                 </div>
@@ -936,7 +948,8 @@ const getSignalColor = (signal: string, index?: number) => {
               <CardContent>
                 <div class="ml-2 border-l border-border space-y-8 my-2">
                   <div v-for="(activity, i) in activities" :key="i" class="relative pl-6">
-                    <span class="absolute -left-[6.5px] top-1.5 h-3 w-3 rounded-full bg-primary ring-4 ring-background"></span>
+                    <span
+                      class="absolute -left-[6.5px] top-1.5 h-3 w-3 rounded-full bg-primary ring-4 ring-background"></span>
                     <div class="flex flex-col gap-1">
                       <div class="flex items-center justify-between">
                         <span class="text-sm font-medium text-foreground">{{ activity.title }}</span>
@@ -955,10 +968,7 @@ const getSignalColor = (signal: string, index?: number) => {
     </div>
 
     <!-- Modals -->
-    <KartuKeluargaModal 
-      v-model:open="isKKModalOpen" 
-      :data="selectedKKData" 
-    />
+    <KartuKeluargaModal v-model:open="isKKModalOpen" :data="selectedKKData" />
 
     <!-- Signed Offering Letter Modal -->
     <OfferingLetterModal 
