@@ -19,6 +19,11 @@ export const navMenu: NavMenu[] = [
         icon: 'i-lucide-book-open',
         link: '/jobs',
       },
+      // {
+      //   title: 'Applicants',
+      //   icon: 'i-lucide-file-user',
+      //   link: '/applicants',
+      // },
       {
         title: 'Candidates',
         icon: 'i-lucide-users',
