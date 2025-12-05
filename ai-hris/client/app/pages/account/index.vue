@@ -859,13 +859,13 @@ const saveCandidate = async () => {
         </DialogContent>
       </Dialog>
 
-      <Card v-if="form.legal_documents.length > 0">
+      <Card v-if="form.legal_documents.length >= 0">
         <CardHeader>
           <CardTitle>Legal Documents</CardTitle>
           <CardDescription>Manage your legal documents. Ensure all uploads are clear and legible to avoid verification issues.</CardDescription>
         </CardHeader>
         <CardContent class="space-y-4">
-          <div class="space-y-2">
+          <div v-if="form.legal_documents.length > 0" class="space-y-2">
             <div 
               v-for="(doc, index) in form.legal_documents" 
               :key="index" 
@@ -883,6 +883,9 @@ const saveCandidate = async () => {
                 <Trash2 class="h-4 w-4" />
               </Button>
             </div>
+          </div>
+          <div v-else class="text-sm text-muted-foreground text-center py-4 border border-dashed rounded-md">
+            No legal documents uploaded yet.
           </div>
 
           <div class="flex justify-end">

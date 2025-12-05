@@ -21,15 +21,15 @@ defineEmits<{
 
 <template>
   <Dialog :open="open" @update:open="$emit('update:open', $event)">
-    <DialogContent class="max-w-3xl max-h-[90vh] overflow-y-auto">
-      <DialogHeader>
+    <DialogContent class="w-[95vw] max-w-none! h-[95vh] flex flex-col p-6">
+      <DialogHeader class="shrink-0">
         <DialogTitle>Document Details</DialogTitle>
         <DialogDescription>
           Extracted information from KTP document.
         </DialogDescription>
       </DialogHeader>
       
-      <div class="py-4">
+      <div class="flex-1 min-h-0 py-4">
         <KtpContent :data="data" />
       </div>
     </DialogContent>
