@@ -154,6 +154,10 @@ class CandidateService:
             else:
                 item_to_save = updated_data_camel
             
+            # Insert discrepancy results into discrepancies field
+            if discrepancy_results and "discrepancies" in discrepancy_results:
+                item_to_save["discrepancies"] = discrepancy_results["discrepancies"]
+            
             # Save to DB using raw update to preserve structure
             self.candidate_repo.update_item(item=item_to_save)
             

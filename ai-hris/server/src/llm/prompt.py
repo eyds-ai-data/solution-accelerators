@@ -312,3 +312,36 @@ def _get_discrepancy_analysis_prompt():
     - Use `null` for missing fields and ensure the output is a valid JSON array of objects.
 
     """
+
+def _get_offering_letter_content_analysis_prompt():
+    return f"""
+    You're a helpful assistant. Your task is to analyze the provided offering letter content and extract the content of the offering letter.
+
+    # Data to extract:
+    1. **position**: The job position being offered.
+    2. **start_date**: The start date of the job in ISO 8601 format (`YYYY-MM-DD`).
+    3. **salary**: The salary offered for the position.
+    4. **benefits**: The benefits included in the offering letter (if available; use `null` if not applicable).
+
+    # Guidelines:
+    - Normalize fields such as dates (`YYYY-MM-DD`) and ensure consistency in formatting.
+    - If a field is not explicitly mentioned in the offering letter, return `null` for that attribute.
+    - Use `null` for missing fields and ensure the output is a valid JSON object.
+    - Return only the JSON object without any additional text.
+
+    # Output Format:
+    ```json
+    {{
+        "position": "<str>",
+        "start_date": "<str>",
+        "salary": "<str>",
+        "benefits": ["<str>", "..."] // Array of benefits or null if not applicable
+    }}
+    ```
+
+    # Remember:
+    - Be objective and consistent in your evaluations.
+    - Base your assessments on the evidence provided in the offering letter content.
+    - Ensure the output is a valid JSON object.
+
+    """

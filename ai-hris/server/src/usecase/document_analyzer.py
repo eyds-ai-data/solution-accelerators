@@ -1,7 +1,7 @@
 from src.repository.document_intelligence import DocumentIntelligenceRepository
 from loguru import logger
 from src.llm.llm_sk import LLMService
-from src.domain.document_analyzer import KartuKeluargaResponse, KartuKeluargaBoundingBox, OfferingSignatureResponse, BukuTabungan, LegalDocumentResponse, KartuKeluarga
+from src.domain.document_analyzer import KartuKeluargaResponse, KartuKeluargaBoundingBox, BukuTabungan, LegalDocumentResponse, KartuKeluarga, DocumentResponse, OfferingLetterContent, OfferingLetterData, ExtractedDocumentContent
 from src.domain.document_classification import ClassificationResult
 import numpy as np
 from src.common.const import DocumentType
@@ -69,8 +69,9 @@ class DocumentAnalyzer:
             logger.error(f"Error in classify_legal_document use case: {e}")
             raise
 
-    async def upload_document(self, document_path: str, candidate_id: str = None) -> dict:
+    async def upload_document(self, document_path: str, candidate_id: str = None) -> LegalDocumentResponse:
         try:
+            # flow: extract content -> classify document -> extract structured data based on type
             # extract raw content
             document_content = self.doc_intel_repo.analyze_read(document_path=document_path)
 
@@ -82,28 +83,31 @@ class DocumentAnalyzer:
                 # bounding_boxes = self._extract_bounding_boxes(document_content)
                 kartu_keluarga_structured: KartuKeluarga = await self.llm_service.kartu_keluarga_extractor(document_content.content)
                 response = LegalDocumentResponse(
-                    raw_content=document_content.content,
+                    type=DocumentType.KK.value,
+                    name="",
+                    last_updated="",
+                    url="",
                     structured_data=kartu_keluarga_structured,
-                    document_type=DocumentType.KK.value,
-                    bounding_boxes=[]
                 )
                 return response
             elif doc_type and doc_type == DocumentType.BukuTabungan.value:
                 buku_tabungan_structured: BukuTabungan = await self.llm_service.buku_tabungan_extractor(document_content.content)
                 response = LegalDocumentResponse(
-                    raw_content=document_content.content,
+                    type=DocumentType.BukuTabungan.value,
+                    name="",
+                    last_updated="",
+                    url="",
                     structured_data=buku_tabungan_structured,
-                    document_type=DocumentType.BukuTabungan.value,
-                    bounding_boxes=[]
                 )
                 return response
             elif doc_type and doc_type == DocumentType.KTP.value:
                 ktp_structured = await self.llm_service.ktp_extractor(document_content.content)
                 response = LegalDocumentResponse(
-                    raw_content=document_content.content,
+                    type=DocumentType.KTP.value,
+                    name="",
+                    last_updated="",
+                    url="",
                     structured_data=ktp_structured,
-                    document_type=DocumentType.KTP.value,
-                    bounding_boxes=[]
                 )
                 return response
             else:
@@ -115,19 +119,34 @@ class DocumentAnalyzer:
             logger.error(f"Error in upload_document use case: {e}")
             raise
 
-    async def analyze_document_layout(self, document_path: str) -> dict:
+    async def analyze_offering_letter(self, document_path: str) -> DocumentResponse:
         try:
             is_signed = False
             content = ""
             result = self.doc_intel_repo.analyze_layout(document_path=document_path)
 
+            content = result.content
             if result.styles and len(result.styles) > 0:
                 is_signed = result.styles[0].is_handwritten
-                content = result.content
 
-            response = OfferingSignatureResponse(
-                exists=is_signed,
-                signed_content=content
+            content = await self.llm_service.offering_letter_content_analysis(offering_letter_content=content)
+
+            response = DocumentResponse(
+                type=DocumentType.SignedOfferLetter.value,
+                name="",
+                last_updated="",
+                url="",
+                extracted_content=ExtractedDocumentContent(
+                    bounding_boxes=[],
+                    content=result.content,
+                    structured_data={
+                        "is_signed": is_signed,
+                        "position": content.get('position', ''),
+                        "start_date": content.get('start_date', ''),
+                        "salary": content.get('salary', ''),
+                        "benefits": content.get('benefits', []),
+                    }
+                )
             )
 
             return response
