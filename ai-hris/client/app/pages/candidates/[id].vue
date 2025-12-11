@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import { ref, computed } from 'vue'
 import { useRoute, useRouter } from 'vue-router'
+import { toast } from 'vue-sonner'
 import type { Candidate, KartuKeluargaStructured, LegalDocument } from '@/components/candidates/data/schema'
 import KartuKeluargaModal from '@/components/candidates/KartuKeluargaModal.vue'
 import OfferingLetterModal from '@/components/candidates/OfferingLetterModal.vue'
@@ -203,6 +204,12 @@ const calculateAge = (dateString: string) => {
 const isKKModalOpen = ref(false)
 const selectedKKData = ref<LegalDocument | undefined>(undefined)
 const isOfferingLetterModalOpen = ref(false)
+const isSubmittedToPayroll = ref(false)
+
+const handleSubmitToPayroll = () => {
+  isSubmittedToPayroll.value = true
+  toast.success('Data is successfully submitted to payroll')
+}
 
 const handleDocumentClick = (doc: any) => {
   console.log('Document clicked:', doc)
@@ -347,11 +354,11 @@ const getSignalColor = (signal: string, index?: number) => {
               <Send class="h-4 w-4" />
               Send Mail
             </Button>
-            <Button v-if="candidate?.status === 'hired'" class="bg-green-600 hover:bg-green-700 text-white gap-2"
+            <!-- <Button v-if="candidate?.status === 'hired'" class="bg-green-600 hover:bg-green-700 text-white gap-2"
               @click="router.push(`/candidates/email-payroll/${candidateId}`)">
               <Mail class="h-4 w-4" />
               Email to Payroll
-            </Button>
+            </Button> -->
             <Button variant="outline" class="gap-2" @click="router.push(`/candidates/edit/${candidateId}`)">
               <Edit class="h-4 w-4" />
               Edit Profile
@@ -785,10 +792,20 @@ const getSignalColor = (signal: string, index?: number) => {
                   </div>
                 </div>
               </div>
-              <div v-else
-                class="flex items-center gap-2 text-sm text-green-600 bg-green-50 dark:bg-green-900/20 px-2 py-1.5 rounded border border-green-100 dark:border-green-900/30">
-                <CheckCircle2 class="h-4 w-4" />
-                <span>All documents submitted</span>
+              <div v-else class="space-y-3">
+                <div
+                  class="flex items-center gap-2 text-sm text-green-600 bg-green-50 dark:bg-green-900/20 px-2 py-1.5 rounded border border-green-100 dark:border-green-900/30">
+                  <CheckCircle2 class="h-4 w-4" />
+                  <span>All documents submitted</span>
+                </div>
+                <Button 
+                  class="w-full gap-2"
+                  :class="isSubmittedToPayroll ? 'bg-muted text-muted-foreground hover:bg-muted' : 'bg-green-600 hover:bg-green-700 text-white'"
+                  :disabled="isSubmittedToPayroll"
+                  @click="handleSubmitToPayroll">
+                  <Mail class="h-4 w-4" />
+                  {{ isSubmittedToPayroll ? 'Submitted to Payroll' : 'Submit to Payroll' }}
+                </Button>
               </div>
             </CardContent>
           </Card>
