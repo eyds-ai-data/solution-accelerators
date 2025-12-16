@@ -26,3 +26,11 @@ class AppConfig:
     CONTENT_UNDERSTANDING_ENDPOINT: str = os.getenv('CONTENT_UNDERSTANDING_ENDPOINT', '')
     CONTENT_UNDERSTANDING_API_KEY: str = os.getenv('CONTENT_UNDERSTANDING_API_KEY', '')
     CONTENT_UNDERSTANDING_API_VERSION: str = os.getenv('CONTENT_UNDERSTANDING_API_VERSION', '2025-11-01')
+
+    MINIO_ROOT_USER: str = os.getenv('MINIO_ROOT_USER', 'minioadmin')
+    MINIO_ROOT_PASSWORD: str = os.getenv('MINIO_ROOT_PASSWORD', 'minioadmin123')
+
+    RABBITMQ_DEFAULT_USER: str = os.getenv('RABBITMQ_DEFAULT_USER', 'admin')
+    RABBITMQ_DEFAULT_PASS: str = os.getenv('RABBITMQ_DEFAULT_PASS', 'admin123')
+
+    ENV: str = os.getenv('ENV', 'development')

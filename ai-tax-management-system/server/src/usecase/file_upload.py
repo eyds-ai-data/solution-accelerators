@@ -4,8 +4,13 @@ from src.repository.storage import MinioStorageRepository
 from src.repository.storage import AzureBlobStorageRepository
 from src.repository.messaging import RabbitMQRepository
 from loguru import logger
+from src.domain.file_upload import FileUploadResponse
+from src.common.const import Environment
 
-class ContentExtraction:
+import os
+IS_PRODUCTION = os.getenv("ENV") == Environment.Production.value
+
+class FileUpload:
     def __init__(
         self, 
         content_understanding_repo: ContentUnderstandingRepository,
@@ -27,13 +32,13 @@ class ContentExtraction:
         self.rabbitmq_repo = rabbitmq_repo
         self.minio_storage_repo = minio_storage_repo
 
-    def extract_content(self, file, upload_id: str, original_filename: str) -> Dict[str, Any]:
+    def upload(self, file, file_id: str, original_filename: str, activity_id: str = None) -> Dict[str, Any]:
         """
         Extract content from a document by uploading to blob storage and analyzing with Content Understanding API
         
         Args:
             file: File object to extract content from
-            upload_id: ID of the case to associate with the file
+            file_id: ID of the case to associate with the file
             original_filename: Original name of the file
             
         Returns:
@@ -43,11 +48,29 @@ class ContentExtraction:
             Exception: If upload or analysis fails
         """
         try:
-            file_info = self.minio_storage_repo.upload_file(
-                file=file, case_id=upload_id, original_filename=original_filename
-            )
+            if IS_PRODUCTION:
+                file_info = self.azure_blob_storage_repo.upload_file(
+                    file=file, 
+                    file_id=file_id, 
+                    original_filename=original_filename,
+                    activity_id=activity_id
+                )
+            else:
+                file_info = self.minio_storage_repo.upload_file(
+                    file=file, 
+                    file_id=file_id, 
+                    original_filename=original_filename,
+                    activity_id=activity_id
+                )
 
-            return None
+            return FileUploadResponse(
+                file_id=file_id,
+                activity_id=activity_id,
+                file_name=original_filename,
+                file_size=file_info.get("size", 0),
+                content_type=file_info.get("content_type"),
+                status="processing"
+            )
         
         except Exception as e:
             logger.error(f"Error extracting content from {original_filename}: {e}")

@@ -10,8 +10,12 @@ from src.delivery.status_routes import router as status_router
 from src.config.dependencies import (
     get_app_config,
     get_content_understanding_repository,
-    get_blob_storage_repository
+    get_azure_blob_storage_repository,
+    get_rabbitmq_repository,
+    get_minio_storage_repository
 )
+
+from src.common.const import Environment
 
 
 # Worker function
@@ -46,11 +50,21 @@ async def lifespan(app: FastAPI):
     logger.info("Application starting up...")
     
     # Initialize singletons at startup to fail fast and reduce first request latency
-    logger.info("Initializing Azure client singletons...")
+    logger.info("Initializing client singletons...")
     config = get_app_config()
     get_content_understanding_repository(config)
-    get_blob_storage_repository(config)
-    logger.info("Azure client singletons initialized successfully")
+    get_azure_blob_storage_repository(config)
+    
+    # Initialize RabbitMQ and MinIO only in development environment
+    if config.ENV.lower() == Environment.Development.value:
+        logger.info("Development environment detected - initializing RabbitMQ and MinIO...")
+        get_rabbitmq_repository(config)
+        get_minio_storage_repository(config)
+        logger.info("RabbitMQ and MinIO initialized")
+    else:
+        logger.info(f"Skipping RabbitMQ and MinIO initialization (ENV={config.ENV})")
+    
+    logger.info("All client singletons initialized successfully")
     
     # Start the worker task only if running in 'both' mode
     # (when running http-only, worker won't start here)

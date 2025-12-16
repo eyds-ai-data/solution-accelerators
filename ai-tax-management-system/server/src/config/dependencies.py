@@ -12,13 +12,17 @@ from loguru import logger
 
 from src.config.env import AppConfig
 from src.repository.content_understanding import ContentUnderstandingRepository
-from src.repository.blob_storage import BlobStorageRepository
+from src.repository.messaging import RabbitMQRepository
+from src.repository.storage import MinioStorageRepository, AzureBlobStorageRepository
 from src.usecase.content_extraction import ContentExtraction
+from src.usecase.file_upload import FileUpload
 
 
 # Module-level singleton instances
 _content_understanding_repo: Optional[ContentUnderstandingRepository] = None
-_blob_storage_repo: Optional[BlobStorageRepository] = None
+_azure_blob_storage_repo: Optional[AzureBlobStorageRepository] = None
+_rabbitmq_repo: Optional[RabbitMQRepository] = None
+_minio_storage_repo: Optional[MinioStorageRepository] = None
 
 
 @lru_cache
@@ -56,11 +60,11 @@ def get_content_understanding_repository(
     return _content_understanding_repo
 
 
-def get_blob_storage_repository(
+def get_azure_blob_storage_repository(
     config: Annotated[AppConfig, Depends(get_app_config)]
-) -> BlobStorageRepository:
+) -> AzureBlobStorageRepository:
     """
-    Create and return BlobStorageRepository instance (singleton).
+    Create and return AzureBlobStorageRepository instance (singleton).
     
     This repository wraps Azure Blob Storage client which is thread-safe and
     maintains internal connection pooling. Creating once at startup and reusing
@@ -72,14 +76,70 @@ def get_blob_storage_repository(
     Returns:
         BlobStorageRepository singleton instance
     """
-    global _blob_storage_repo
-    if _blob_storage_repo is None:
-        logger.info("Creating BlobStorageRepository singleton")
-        _blob_storage_repo = BlobStorageRepository(
+    global _azure_blob_storage_repo
+    if _azure_blob_storage_repo is None:
+        logger.info("Creating AzureBlobStorageRepository singleton")
+        _azure_blob_storage_repo = AzureBlobStorageRepository(
             connection_string=config.AZURE_STORAGE_CONNECTION_STRING,
             container_name="tax-documents"
         )
-    return _blob_storage_repo
+    return _azure_blob_storage_repo
+
+def get_rabbitmq_repository(
+    config: Annotated[AppConfig, Depends(get_app_config)]
+) -> Optional[RabbitMQRepository]:
+    """
+    Create and return RabbitMQRepository instance (singleton).
+    
+    RabbitMQ client maintains connection pooling and should be reused.
+    Only initialized in development environment. Returns None in production.
+    
+    Args:
+        config: Application configuration dependency
+        
+    Returns:
+        RabbitMQRepository singleton instance or None if not initialized
+    """
+    global _rabbitmq_repo
+    # In production, this will remain None if not initialized at startup
+    if _rabbitmq_repo is None and config.ENV.lower() == "development":
+        logger.info("Creating RabbitMQRepository singleton")
+        _rabbitmq_repo = RabbitMQRepository(
+            host="localhost",
+            port=5672,
+            username=config.RABBITMQ_DEFAULT_USER,
+            password=config.RABBITMQ_DEFAULT_PASS
+        )
+    return _rabbitmq_repo
+
+
+def get_minio_storage_repository(
+    config: Annotated[AppConfig, Depends(get_app_config)]
+) -> Optional[MinioStorageRepository]:
+    """
+    Create and return MinioStorageRepository instance (singleton).
+    
+    MinIO client is thread-safe and maintains internal connection pooling.
+    Only initialized in development environment. Returns None in production.
+    
+    Args:
+        config: Application configuration dependency
+        
+    Returns:
+        MinioStorageRepository singleton instance or None if not initialized
+    """
+    global _minio_storage_repo
+    # In production, this will remain None if not initialized at startup
+    if _minio_storage_repo is None and config.ENV.lower() == "development":
+        logger.info("Creating MinioStorageRepository singleton")
+        _minio_storage_repo = MinioStorageRepository(
+            endpoint="localhost:9100",
+            access_key=config.MINIO_ROOT_USER,
+            secret_key=config.MINIO_ROOT_PASSWORD,
+            bucket_name="tax-documents",
+            secure=False
+        )
+    return _minio_storage_repo
 
 
 def get_content_extraction_service(
@@ -88,16 +148,29 @@ def get_content_extraction_service(
         Depends(get_content_understanding_repository)
     ],
     blob_storage_repo: Annotated[
-        BlobStorageRepository, 
-        Depends(get_blob_storage_repository)
+        AzureBlobStorageRepository, 
+        Depends(get_azure_blob_storage_repository)
+    ],
+    rabbitmq_repo: Annotated[
+        Optional[RabbitMQRepository],
+        Depends(get_rabbitmq_repository)
+    ],
+    minio_storage_repo: Annotated[
+        Optional[MinioStorageRepository],
+        Depends(get_minio_storage_repository)
     ]
 ) -> ContentExtraction:
     """
     Create and return ContentExtraction use case with all dependencies.
     
+    RabbitMQ and MinIO are optional and only available in development environment.
+    In production, they will be None and Azure services will be used instead.
+    
     Args:
         content_understanding_repo: Content Understanding repository dependency
         blob_storage_repo: Blob Storage repository dependency
+        rabbitmq_repo: Optional RabbitMQ repository (development only)
+        minio_storage_repo: Optional MinIO storage repository (development only)
         
     Returns:
         ContentExtraction use case instance
@@ -105,10 +178,41 @@ def get_content_extraction_service(
     logger.debug("Creating ContentExtraction use case")
     return ContentExtraction(
         content_understanding_repo=content_understanding_repo,
-        blob_storage_repo=blob_storage_repo
+        blob_storage_repo=blob_storage_repo,
+        rabbitmq_repo=rabbitmq_repo,
+        minio_storage_repo=minio_storage_repo
+    )
+
+def get_file_upload_service(
+    content_understanding_repo: Annotated[
+        ContentUnderstandingRepository, 
+        Depends(get_content_understanding_repository)
+    ],
+    azure_blob_storage_repo: Annotated[
+        AzureBlobStorageRepository, 
+        Depends(get_azure_blob_storage_repository)
+    ],
+    rabbitmq_repo: Annotated[
+        Optional[RabbitMQRepository],
+        Depends(get_rabbitmq_repository)
+    ],
+    minio_storage_repo: Annotated[
+        Optional[MinioStorageRepository],
+        Depends(get_minio_storage_repository)
+    ]
+) -> FileUpload:
+    logger.debug("Creating FileUpload use case")
+    return FileUpload(
+        content_understanding_repo=content_understanding_repo,
+        rabbitmq_repo=rabbitmq_repo,
+        minio_storage_repo=minio_storage_repo,
+        azure_blob_storage_repo=azure_blob_storage_repo
     )
 
 
 # Type aliases for cleaner route signatures
 ContentExtractionDep = Annotated[ContentExtraction, Depends(get_content_extraction_service)]
+FileUploadDep = Annotated[FileUpload, Depends(get_file_upload_service)]
+RabbitMQDep = Annotated[Optional[RabbitMQRepository], Depends(get_rabbitmq_repository)]
+MinioStorageDep = Annotated[Optional[MinioStorageRepository], Depends(get_minio_storage_repository)]
 AppConfigDep = Annotated[AppConfig, Depends(get_app_config)]
