@@ -14,6 +14,7 @@ from src.config.env import AppConfig
 from src.repository.content_understanding import ContentUnderstandingRepository
 from src.repository.messaging import RabbitMQRepository
 from src.repository.storage import MinioStorageRepository, AzureBlobStorageRepository
+from src.repository.database import AzureCosmosDBRepository
 from src.usecase.content_extraction import ContentExtraction
 from src.usecase.file_upload import FileUpload
 
@@ -21,6 +22,7 @@ from src.usecase.file_upload import FileUpload
 # Module-level singleton instances
 _content_understanding_repo: Optional[ContentUnderstandingRepository] = None
 _azure_blob_storage_repo: Optional[AzureBlobStorageRepository] = None
+_cosmos_repo: Optional[AzureCosmosDBRepository] = None
 _rabbitmq_repo: Optional[RabbitMQRepository] = None
 _minio_storage_repo: Optional[MinioStorageRepository] = None
 
@@ -84,6 +86,36 @@ def get_azure_blob_storage_repository(
             container_name="tax-documents"
         )
     return _azure_blob_storage_repo
+
+
+def get_cosmos_repository(
+    config: Annotated[AppConfig, Depends(get_app_config)]
+) -> Optional[AzureCosmosDBRepository]:
+    """
+    Create and return AzureCosmosDBRepository instance (singleton).
+    
+    Cosmos DB client is thread-safe and maintains internal connection pooling.
+    
+    Args:
+        config: Application configuration dependency
+        
+    Returns:
+        AzureCosmosDBRepository singleton instance or None if not configured
+    """
+    global _cosmos_repo
+    if _cosmos_repo is None and config.COSMOSDB_CONNECTION_STRING:
+        logger.info("Creating AzureCosmosDBRepository singleton")
+        try:
+            _cosmos_repo = AzureCosmosDBRepository(
+                connection_string=config.COSMOSDB_CONNECTION_STRING,
+                database_id=config.COSMOSDB_DATABASE,
+                container_id=config.COSMOSDB_CONTAINER
+            )
+        except Exception as e:
+            logger.error(f"Failed to initialize Cosmos DB repository: {e}")
+            return None
+    return _cosmos_repo
+
 
 def get_rabbitmq_repository(
     config: Annotated[AppConfig, Depends(get_app_config)]
@@ -192,6 +224,10 @@ def get_file_upload_service(
         AzureBlobStorageRepository, 
         Depends(get_azure_blob_storage_repository)
     ],
+    cosmos_repo: Annotated[
+        Optional[AzureCosmosDBRepository],
+        Depends(get_cosmos_repository)
+    ],
     rabbitmq_repo: Annotated[
         Optional[RabbitMQRepository],
         Depends(get_rabbitmq_repository)
@@ -204,15 +240,17 @@ def get_file_upload_service(
     logger.debug("Creating FileUpload use case")
     return FileUpload(
         content_understanding_repo=content_understanding_repo,
+        azure_blob_storage_repo=azure_blob_storage_repo,
+        cosmos_repo=cosmos_repo,
         rabbitmq_repo=rabbitmq_repo,
-        minio_storage_repo=minio_storage_repo,
-        azure_blob_storage_repo=azure_blob_storage_repo
+        minio_storage_repo=minio_storage_repo
     )
 
 
 # Type aliases for cleaner route signatures
 ContentExtractionDep = Annotated[ContentExtraction, Depends(get_content_extraction_service)]
 FileUploadDep = Annotated[FileUpload, Depends(get_file_upload_service)]
+CosmosRepoDep = Annotated[Optional[AzureCosmosDBRepository], Depends(get_cosmos_repository)]
 RabbitMQDep = Annotated[Optional[RabbitMQRepository], Depends(get_rabbitmq_repository)]
 MinioStorageDep = Annotated[Optional[MinioStorageRepository], Depends(get_minio_storage_repository)]
 AppConfigDep = Annotated[AppConfig, Depends(get_app_config)]

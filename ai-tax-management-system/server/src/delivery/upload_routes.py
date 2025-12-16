@@ -10,18 +10,18 @@ router = APIRouter(prefix="/api/v1/upload", tags=["upload"])
 
 @router.post("/file")
 async def upload_file(
-    file: UploadFile = File(..., description="The document file to upload and analyze"),
+    file: UploadFile = File(..., description="The PDF document file to upload and analyze. Only PDF files are accepted."),
     activity_id: Optional[str] = Form(None, description="Activity ID to associate with the upload. If not provided, a new UUID will be generated."),
     file_upload_service: FileUploadDep = None
 ) -> Dict[str, Any]:
     """
-    Upload and process a document file
+    Upload and process a PDF document file
     
-    This endpoint accepts a document file upload along with an optional activity ID.
-    The file will be stored and processed for content extraction.
+    This endpoint accepts only PDF file uploads along with an optional activity ID.
+    Multi-page PDFs will be split into individual pages and stored separately.
     
     Args:
-        file: The document file to upload and analyze
+        file: The PDF document file to upload and analyze (must be .pdf extension)
         activity_id: Optional activity ID. If omitted, a UUID will be auto-generated.
         file_upload_service: Injected FileUpload service
         
@@ -29,15 +29,33 @@ async def upload_file(
         Dictionary containing status, file_id, file metadata, and processing status
         
     Raises:
+        HTTPException: 400 if file is not a PDF
         HTTPException: 500 if file upload or processing fails
     """
     try:
+        # Validate PDF file
+        if not file.filename:
+            raise HTTPException(status_code=400, detail="Filename is required")
+            
+        if not file.filename.lower().endswith('.pdf'):
+            raise HTTPException(
+                status_code=400, 
+                detail=f"Only PDF files are accepted. Received: {file.filename}"
+            )
+        
+        # Validate content type (optional but recommended)
+        if file.content_type and file.content_type not in ['application/pdf', 'application/x-pdf']:
+            logger.warning(
+                f"Content type mismatch for {file.filename}: {file.content_type}. "
+                "Proceeding based on file extension."
+            )
+        
         # Generate unique file ID
         file_id = str(uuid.uuid4())
 
         activity_id = activity_id if activity_id else str(uuid.uuid4())
         
-        logger.info(f"Received file upload: {file.filename} with file_id {file_id} and activity_id {activity_id}")
+        logger.info(f"Received PDF upload: {file.filename} with file_id {file_id} and activity_id {activity_id}")
         
         # Extract content using the injected service
         result = file_upload_service.upload(
@@ -47,7 +65,7 @@ async def upload_file(
             original_filename=file.filename
         )
         
-        logger.info(f"Successfully processed file upload for file_id {file_id} and activity_id {activity_id}")
+        logger.info(f"Successfully processed PDF upload for file_id {file_id} and activity_id {activity_id}")
         
         return {
             "status": "success",
