@@ -33,17 +33,3 @@ async def check_status(upload_id: str) -> Dict[str, Any]:
     except Exception as e:
         logger.error(f"Error checking status for upload_id {upload_id}: {e}")
         raise HTTPException(status_code=500, detail=f"Error checking status: {str(e)}")
-
-
-@router.get("/health")
-async def health_check() -> Dict[str, str]:
-    """
-    Health check endpoint
-    
-    Returns:
-        Dictionary indicating service health
-    """
-    return {
-        "status": "healthy",
-        "service": "ai-tax-management-system"
-    }

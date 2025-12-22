@@ -109,3 +109,9 @@ class CaseDocument(CosmosDocument):
                 "updated_at": "2025-12-16T12:00:00.000Z"
             }
         }
+
+class TaxInvoice(BaseModel):
+    """Model for tax invoice details"""
+    model_config = ConfigDict(populate_by_name=True)
+    
+    tax_invoice_id: str = Field(..., description="Unique tax invoice identifier")

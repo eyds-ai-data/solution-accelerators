@@ -247,8 +247,7 @@ class FileUpload:
                         "total_pages": len(uploaded_files) if is_pdf and len(uploaded_files) > 1 else 1,
                         "is_multi_page": len(uploaded_files) > 1,
                         "files": uploaded_files,
-                        "status": "uploaded",
-                        "processing_status": "pending",
+                        "status": "pending",
                         "uploaded_at": datetime.utcnow().isoformat()
                     }
                     

@@ -7,6 +7,7 @@ import uvicorn
 
 from src.delivery.upload_routes import router as upload_router
 from src.delivery.status_routes import router as status_router
+from src.delivery.tax_management import router as tax_management_router
 from src.config.dependencies import (
     get_app_config,
     get_content_understanding_repository,
@@ -191,6 +192,7 @@ if __name__ == "__main__":
         )
         app_http_only.include_router(upload_router)
         app_http_only.include_router(status_router)
+        app_http_only.include_router(tax_management_router)
         
         @app_http_only.get("/")
         async def root():

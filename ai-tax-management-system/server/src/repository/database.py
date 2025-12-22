@@ -96,12 +96,55 @@ class AzureCosmosDBRepository:
         query_filter: Optional[str] = None,
         parameters: Optional[List[Dict[str, Any]]] = None,
         order_by: str = "created_at DESC",
-        max_items: Optional[int] = None
+        max_items: Optional[int] = None,
+        container_id: Optional[str] = None
     ) -> List[Dict[str, Any]]:
         """
         Query documents with optional filters
         
-        Args:document(self, document_id: str, partition_key: Optional[str] = None) -> bool:
+        Args:
+            document_type: Filter by document type
+            query_filter: Additional SQL WHERE clause (without WHERE keyword)
+            parameters: Query parameters for parameterized queries
+            order_by: ORDER BY clause (without ORDER BY keyword)
+            max_items: Maximum number of items to return
+            
+        Returns:
+            List of matching documents
+        """
+        try:
+            container = self.database.get_container_client(container_id) if container_id else self.container
+            
+            # Build query
+            query = "SELECT * FROM c"
+            
+            conditions = []
+            if document_type:
+                conditions.append(f"c.type = '{document_type}'")
+            if query_filter:
+                conditions.append(query_filter)
+            
+            if conditions:
+                query += " WHERE " + " AND ".join(conditions)
+            
+            if order_by:
+                query += f" ORDER BY c.{order_by}"
+            
+            # Execute query
+            items = list(container.query_items(
+                query=query,
+                parameters=parameters,
+                enable_cross_partition_query=True,
+                max_item_count=max_items
+            ))
+            
+            logger.info(f"Retrieved {len(items)} documents (type: {document_type or 'all'})")
+            return items
+        except Exception as e:
+            logger.error(f"Error querying documents: {e}")
+            raise
+
+    def delete_document(self, document_id: str, partition_key: Optional[str] = None) -> bool:
         """
         Delete a document from Cosmos DB
         
@@ -121,37 +164,10 @@ class AzureCosmosDBRepository:
             logger.warning(f"Document not found for deletion: {document_id}")
             raise
         except Exception as e:
-            logger.error(f"Error deleting document {document
-            List of matching documents
-        """
-        try:
-            # Build query
-            query = "SELECT * FROM c"
-            
-            conditions = []
-            if document_type:
-                conditions.append(f"c.type = '{document_type}'")
-            if query_filter:
-                conditions.append(query_filter)
-            
-            if conditions:
-                query += " WHERE " + " AND ".join(conditions)
-            
-            if order_by:
-                query += f" ORDER BY c.{order_by}"
-            
-            # Execute query
-            items = list(self.container.query_items(
-                query=query,
-                parameters=parameters,
-                enable_cross_partition_query=True,
-                max_item_count=max_items
-            ))
-            
-            logger.info(f"Retrieved {len(items)} documents (type: {document_type or 'all'})")
-            return items
-        except Exception as e:
-            logdocument(
+            logger.error(f"Error deleting document {document_id}: {e}")
+            raise
+
+    def update_document(
         self, 
         document_id: str, 
         update_data: Dict[str, Any],
@@ -220,18 +236,5 @@ class AzureCosmosDBRepository:
             logger.info(f"Upserted document: {document_data.get('id')}")
             return upserted
         except Exception as e:
-            logger.error(f"Error upserting document
-            
-            # Update fields
-            for key, value in case_data.items():
-                if key not in ["id", "created_at"]:
-                    existing_case[key] = value
-            
-            existing_case["updated_at"] = datetime.utcnow().isoformat()
-            
-            self.container.upsert_item(body=existing_case)
-            logger.info(f"Updated case: {case_id}")
-            return existing_case
-        except Exception as e:
-            logger.error(f"Error updating case {case_id}: {e}")
+            logger.error(f"Error upserting document: {e}")
             raise

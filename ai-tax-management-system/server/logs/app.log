@@ -334,3 +334,553 @@ activity_id
 2025-12-16 14:20:47.487 | INFO     | src.repository.storage:upload_file:208 - Uploaded file 7603485268_page_5.pdf for case c7119404-cf94-4292-9bc2-7c9ba36dbc6e, object: 88fc0e07-21c1-4567-8ce5-6248e9139da2/c7119404-cf94-4292-9bc2-7c9ba36dbc6e/7603485268_page_5.pdf
 2025-12-16 14:20:47.502 | INFO     | src.repository.messaging:send_message:73 - Message sent to RabbitMQ queue file_upload_queue: {'file_id': 'c7119404-cf94-4292-9bc2-7c9ba36dbc6e', 'blob_name': '88fc0e07-21c1-4567-8ce5-6248e9139da2/c7119404-cf94-4292-9bc2-7c9ba36dbc6e/7603485268_page_5.pdf', 'original_filename': '7603485268_page_5.pdf', 'page_number': 5}
 2025-12-16 14:20:47.506 | INFO     | src.delivery.upload_routes:upload_file:50 - Successfully processed file upload for file_id c7119404-cf94-4292-9bc2-7c9ba36dbc6e and activity_id 88fc0e07-21c1-4567-8ce5-6248e9139da2
+2025-12-16 14:53:33.496 | INFO     | __main__:<module>:178 - Starting application in 'http' mode
+2025-12-16 14:54:47.449 | INFO     | src.config.dependencies:get_app_config:38 - Initializing application configuration
+2025-12-16 14:54:47.449 | INFO     | src.config.dependencies:get_content_understanding_repository:60 - Creating ContentUnderstandingRepository singleton
+2025-12-16 14:54:47.449 | INFO     | src.config.dependencies:get_azure_blob_storage_repository:83 - Creating AzureBlobStorageRepository singleton
+2025-12-16 14:54:48.181 | INFO     | src.repository.storage:__init__:21 - Blob container already exists: tax-documents
+2025-12-16 14:54:48.182 | INFO     | src.repository.storage:__init__:25 - Connected to Blob Storage, container: tax-documents
+2025-12-16 14:54:48.182 | INFO     | src.config.dependencies:get_azure_cosmos_repository:107 - Creating AzureCosmosDBRepository singleton
+2025-12-16 14:54:49.470 | INFO     | src.repository.database:__init__:27 - Connected to Cosmos DB database 'tax-management-system', container 'tax-documents'
+2025-12-16 14:54:49.472 | INFO     | src.config.dependencies:get_rabbitmq_repository:138 - Creating RabbitMQRepository singleton
+2025-12-16 14:54:49.473 | INFO     | src.repository.messaging:__init__:44 - RabbitMQ repository initialized for localhost:5672
+2025-12-16 14:54:49.474 | INFO     | src.config.dependencies:get_minio_storage_repository:166 - Creating MinioStorageRepository singleton
+2025-12-16 14:54:49.496 | INFO     | src.repository.storage:__init__:156 - MinIO bucket already exists: tax-documents
+2025-12-16 14:54:49.496 | INFO     | src.repository.storage:__init__:158 - Connected to MinIO at localhost:9100, bucket: tax-documents
+2025-12-16 14:54:49.498 | INFO     | src.delivery.upload_routes:upload_file:58 - Received PDF upload: 7603485268.pdf with file_id 266c8b53-874c-49fc-99ee-cf8f63d2751c and activity_id cd36310a-b427-4e97-8ca5-0be56894624f
+2025-12-16 14:54:49.547 | INFO     | src.usecase.file_upload:_split_pdf_pages:115 - Splitting PDF 7603485268.pdf into 5 pages
+2025-12-16 14:54:49.552 | INFO     | src.usecase.file_upload:_split_pdf_pages:131 - Successfully split 7603485268.pdf into 5 pages
+2025-12-16 14:54:49.552 | INFO     | src.usecase.file_upload:upload:201 - Uploading 5 pages from PDF 7603485268.pdf
+2025-12-16 14:54:49.561 | INFO     | src.repository.storage:upload_file:208 - Uploaded file 7603485268_page_1.pdf for case 266c8b53-874c-49fc-99ee-cf8f63d2751c, object: cd36310a-b427-4e97-8ca5-0be56894624f/266c8b53-874c-49fc-99ee-cf8f63d2751c/7603485268_page_1.pdf
+2025-12-16 14:54:49.583 | INFO     | src.repository.messaging:send_message:73 - Message sent to RabbitMQ queue file_upload_queue: {'file_id': '266c8b53-874c-49fc-99ee-cf8f63d2751c', 'blob_name': 'cd36310a-b427-4e97-8ca5-0be56894624f/266c8b53-874c-49fc-99ee-cf8f63d2751c/7603485268_page_1.pdf', 'original_filename': '7603485268_page_1.pdf', 'page_number': 1}
+2025-12-16 14:54:49.596 | INFO     | src.repository.storage:upload_file:208 - Uploaded file 7603485268_page_2.pdf for case 266c8b53-874c-49fc-99ee-cf8f63d2751c, object: cd36310a-b427-4e97-8ca5-0be56894624f/266c8b53-874c-49fc-99ee-cf8f63d2751c/7603485268_page_2.pdf
+2025-12-16 14:54:49.609 | INFO     | src.repository.messaging:send_message:73 - Message sent to RabbitMQ queue file_upload_queue: {'file_id': '266c8b53-874c-49fc-99ee-cf8f63d2751c', 'blob_name': 'cd36310a-b427-4e97-8ca5-0be56894624f/266c8b53-874c-49fc-99ee-cf8f63d2751c/7603485268_page_2.pdf', 'original_filename': '7603485268_page_2.pdf', 'page_number': 2}
+2025-12-16 14:54:49.621 | INFO     | src.repository.storage:upload_file:208 - Uploaded file 7603485268_page_3.pdf for case 266c8b53-874c-49fc-99ee-cf8f63d2751c, object: cd36310a-b427-4e97-8ca5-0be56894624f/266c8b53-874c-49fc-99ee-cf8f63d2751c/7603485268_page_3.pdf
+2025-12-16 14:54:49.634 | INFO     | src.repository.messaging:send_message:73 - Message sent to RabbitMQ queue file_upload_queue: {'file_id': '266c8b53-874c-49fc-99ee-cf8f63d2751c', 'blob_name': 'cd36310a-b427-4e97-8ca5-0be56894624f/266c8b53-874c-49fc-99ee-cf8f63d2751c/7603485268_page_3.pdf', 'original_filename': '7603485268_page_3.pdf', 'page_number': 3}
+2025-12-16 14:54:49.644 | INFO     | src.repository.storage:upload_file:208 - Uploaded file 7603485268_page_4.pdf for case 266c8b53-874c-49fc-99ee-cf8f63d2751c, object: cd36310a-b427-4e97-8ca5-0be56894624f/266c8b53-874c-49fc-99ee-cf8f63d2751c/7603485268_page_4.pdf
+2025-12-16 14:54:49.658 | INFO     | src.repository.messaging:send_message:73 - Message sent to RabbitMQ queue file_upload_queue: {'file_id': '266c8b53-874c-49fc-99ee-cf8f63d2751c', 'blob_name': 'cd36310a-b427-4e97-8ca5-0be56894624f/266c8b53-874c-49fc-99ee-cf8f63d2751c/7603485268_page_4.pdf', 'original_filename': '7603485268_page_4.pdf', 'page_number': 4}
+2025-12-16 14:54:49.669 | INFO     | src.repository.storage:upload_file:208 - Uploaded file 7603485268_page_5.pdf for case 266c8b53-874c-49fc-99ee-cf8f63d2751c, object: cd36310a-b427-4e97-8ca5-0be56894624f/266c8b53-874c-49fc-99ee-cf8f63d2751c/7603485268_page_5.pdf
+2025-12-16 14:54:49.681 | INFO     | src.repository.messaging:send_message:73 - Message sent to RabbitMQ queue file_upload_queue: {'file_id': '266c8b53-874c-49fc-99ee-cf8f63d2751c', 'blob_name': 'cd36310a-b427-4e97-8ca5-0be56894624f/266c8b53-874c-49fc-99ee-cf8f63d2751c/7603485268_page_5.pdf', 'original_filename': '7603485268_page_5.pdf', 'page_number': 5}
+2025-12-16 14:54:59.489 | INFO     | src.repository.database:create_document:61 - Created upload document with ID: 266c8b53-874c-49fc-99ee-cf8f63d2751c
+2025-12-16 14:55:00.744 | INFO     | src.usecase.file_upload:upload:260 - Stored upload metadata in Cosmos DB for file_id: 266c8b53-874c-49fc-99ee-cf8f63d2751c
+2025-12-16 14:55:37.662 | INFO     | src.delivery.upload_routes:upload_file:68 - Successfully processed PDF upload for file_id 266c8b53-874c-49fc-99ee-cf8f63d2751c and activity_id cd36310a-b427-4e97-8ca5-0be56894624f
+2025-12-22 15:18:13.426 | INFO     | __main__:<module>:178 - Starting application in 'http' mode
+2025-12-22 15:21:59.307 | INFO     | __main__:<module>:179 - Starting application in 'http' mode
+2025-12-22 15:27:32.641 | INFO     | src.config.dependencies:get_app_config:31 - Initializing application configuration
+2025-12-22 15:27:32.643 | INFO     | src.config.dependencies:get_azure_cosmos_repository:100 - Creating AzureCosmosDBRepository singleton
+2025-12-22 15:27:33.941 | INFO     | src.repository.database:__init__:27 - Connected to Cosmos DB database 'tax-management-system', container 'gl-transactions'
+2025-12-22 15:27:52.439 | INFO     | src.repository.database:query_documents:141 - Retrieved 2 documents (type: all)
+2025-12-22 15:28:08.438 | ERROR    | src.usecase.tax_management:get_gl_transactions:17 - Error retrieving G/L transactions: 15 validation errors for GLTransaction
+gl_transaction_id
+  Field required [type=missing, input_value={'id': '3a7b9c44-2d61-4f8...ts/', '_ts': 1766376964}, input_type=dict]
+    For further information visit https://errors.pydantic.dev/2.11/v/missing
+year_month
+  Field required [type=missing, input_value={'id': '3a7b9c44-2d61-4f8...ts/', '_ts': 1766376964}, input_type=dict]
+    For further information visit https://errors.pydantic.dev/2.11/v/missing
+reference_number
+  Field required [type=missing, input_value={'id': '3a7b9c44-2d61-4f8...ts/', '_ts': 1766376964}, input_type=dict]
+    For further information visit https://errors.pydantic.dev/2.11/v/missing
+document_number
+  Field required [type=missing, input_value={'id': '3a7b9c44-2d61-4f8...ts/', '_ts': 1766376964}, input_type=dict]
+    For further information visit https://errors.pydantic.dev/2.11/v/missing
+po_number
+  Field required [type=missing, input_value={'id': '3a7b9c44-2d61-4f8...ts/', '_ts': 1766376964}, input_type=dict]
+    For further information visit https://errors.pydantic.dev/2.11/v/missing
+tax_based
+  Field required [type=missing, input_value={'id': '3a7b9c44-2d61-4f8...ts/', '_ts': 1766376964}, input_type=dict]
+    For further information visit https://errors.pydantic.dev/2.11/v/missing
+tax_rate
+  Field required [type=missing, input_value={'id': '3a7b9c44-2d61-4f8...ts/', '_ts': 1766376964}, input_type=dict]
+    For further information visit https://errors.pydantic.dev/2.11/v/missing
+document_date
+  Field required [type=missing, input_value={'id': '3a7b9c44-2d61-4f8...ts/', '_ts': 1766376964}, input_type=dict]
+    For further information visit https://errors.pydantic.dev/2.11/v/missing
+posting_date
+  Field required [type=missing, input_value={'id': '3a7b9c44-2d61-4f8...ts/', '_ts': 1766376964}, input_type=dict]
+    For further information visit https://errors.pydantic.dev/2.11/v/missing
+document_currency
+  Field required [type=missing, input_value={'id': '3a7b9c44-2d61-4f8...ts/', '_ts': 1766376964}, input_type=dict]
+    For further information visit https://errors.pydantic.dev/2.11/v/missing
+amount_in_document_currency
+  Field required [type=missing, input_value={'id': '3a7b9c44-2d61-4f8...ts/', '_ts': 1766376964}, input_type=dict]
+    For further information visit https://errors.pydantic.dev/2.11/v/missing
+local_currency
+  Field required [type=missing, input_value={'id': '3a7b9c44-2d61-4f8...ts/', '_ts': 1766376964}, input_type=dict]
+    For further information visit https://errors.pydantic.dev/2.11/v/missing
+amount_in_local_currency
+  Field required [type=missing, input_value={'id': '3a7b9c44-2d61-4f8...ts/', '_ts': 1766376964}, input_type=dict]
+    For further information visit https://errors.pydantic.dev/2.11/v/missing
+vendor_id
+  Field required [type=missing, input_value={'id': '3a7b9c44-2d61-4f8...ts/', '_ts': 1766376964}, input_type=dict]
+    For further information visit https://errors.pydantic.dev/2.11/v/missing
+gl_transaction_status_id
+  Field required [type=missing, input_value={'id': '3a7b9c44-2d61-4f8...ts/', '_ts': 1766376964}, input_type=dict]
+    For further information visit https://errors.pydantic.dev/2.11/v/missing
+2025-12-22 15:28:08.438 | ERROR    | src.delivery.tax_management:get_all_gl_transactions:25 - Error retrieving G/L transactions: 15 validation errors for GLTransaction
+gl_transaction_id
+  Field required [type=missing, input_value={'id': '3a7b9c44-2d61-4f8...ts/', '_ts': 1766376964}, input_type=dict]
+    For further information visit https://errors.pydantic.dev/2.11/v/missing
+year_month
+  Field required [type=missing, input_value={'id': '3a7b9c44-2d61-4f8...ts/', '_ts': 1766376964}, input_type=dict]
+    For further information visit https://errors.pydantic.dev/2.11/v/missing
+reference_number
+  Field required [type=missing, input_value={'id': '3a7b9c44-2d61-4f8...ts/', '_ts': 1766376964}, input_type=dict]
+    For further information visit https://errors.pydantic.dev/2.11/v/missing
+document_number
+  Field required [type=missing, input_value={'id': '3a7b9c44-2d61-4f8...ts/', '_ts': 1766376964}, input_type=dict]
+    For further information visit https://errors.pydantic.dev/2.11/v/missing
+po_number
+  Field required [type=missing, input_value={'id': '3a7b9c44-2d61-4f8...ts/', '_ts': 1766376964}, input_type=dict]
+    For further information visit https://errors.pydantic.dev/2.11/v/missing
+tax_based
+  Field required [type=missing, input_value={'id': '3a7b9c44-2d61-4f8...ts/', '_ts': 1766376964}, input_type=dict]
+    For further information visit https://errors.pydantic.dev/2.11/v/missing
+tax_rate
+  Field required [type=missing, input_value={'id': '3a7b9c44-2d61-4f8...ts/', '_ts': 1766376964}, input_type=dict]
+    For further information visit https://errors.pydantic.dev/2.11/v/missing
+document_date
+  Field required [type=missing, input_value={'id': '3a7b9c44-2d61-4f8...ts/', '_ts': 1766376964}, input_type=dict]
+    For further information visit https://errors.pydantic.dev/2.11/v/missing
+posting_date
+  Field required [type=missing, input_value={'id': '3a7b9c44-2d61-4f8...ts/', '_ts': 1766376964}, input_type=dict]
+    For further information visit https://errors.pydantic.dev/2.11/v/missing
+document_currency
+  Field required [type=missing, input_value={'id': '3a7b9c44-2d61-4f8...ts/', '_ts': 1766376964}, input_type=dict]
+    For further information visit https://errors.pydantic.dev/2.11/v/missing
+amount_in_document_currency
+  Field required [type=missing, input_value={'id': '3a7b9c44-2d61-4f8...ts/', '_ts': 1766376964}, input_type=dict]
+    For further information visit https://errors.pydantic.dev/2.11/v/missing
+local_currency
+  Field required [type=missing, input_value={'id': '3a7b9c44-2d61-4f8...ts/', '_ts': 1766376964}, input_type=dict]
+    For further information visit https://errors.pydantic.dev/2.11/v/missing
+amount_in_local_currency
+  Field required [type=missing, input_value={'id': '3a7b9c44-2d61-4f8...ts/', '_ts': 1766376964}, input_type=dict]
+    For further information visit https://errors.pydantic.dev/2.11/v/missing
+vendor_id
+  Field required [type=missing, input_value={'id': '3a7b9c44-2d61-4f8...ts/', '_ts': 1766376964}, input_type=dict]
+    For further information visit https://errors.pydantic.dev/2.11/v/missing
+gl_transaction_status_id
+  Field required [type=missing, input_value={'id': '3a7b9c44-2d61-4f8...ts/', '_ts': 1766376964}, input_type=dict]
+    For further information visit https://errors.pydantic.dev/2.11/v/missing
+2025-12-22 15:34:42.542 | INFO     | __main__:<module>:179 - Starting application in 'http' mode
+2025-12-22 15:35:47.313 | INFO     | src.config.dependencies:get_app_config:31 - Initializing application configuration
+2025-12-22 15:35:47.313 | INFO     | src.config.dependencies:get_azure_cosmos_repository:100 - Creating AzureCosmosDBRepository singleton
+2025-12-22 15:35:48.580 | INFO     | src.repository.database:__init__:27 - Connected to Cosmos DB database 'tax-management-system', container 'gl-transactions'
+2025-12-22 15:35:55.760 | INFO     | src.repository.database:query_documents:141 - Retrieved 2 documents (type: all)
+2025-12-22 15:35:57.795 | ERROR    | src.usecase.tax_management:get_gl_transactions:17 - Error retrieving G/L transactions: 1 validation error for GLTransaction
+glReconItem.0.diffNormal
+  Field required [type=missing, input_value={'itemName': 'Constructio... 'Outsourcing Services'}, input_type=dict]
+    For further information visit https://errors.pydantic.dev/2.11/v/missing
+2025-12-22 15:35:57.796 | ERROR    | src.delivery.tax_management:get_all_gl_transactions:25 - Error retrieving G/L transactions: 1 validation error for GLTransaction
+glReconItem.0.diffNormal
+  Field required [type=missing, input_value={'itemName': 'Constructio... 'Outsourcing Services'}, input_type=dict]
+    For further information visit https://errors.pydantic.dev/2.11/v/missing
+2025-12-22 15:53:05.639 | INFO     | __main__:<module>:179 - Starting application in 'http' mode
+2025-12-22 15:53:25.450 | INFO     | src.config.dependencies:get_app_config:31 - Initializing application configuration
+2025-12-22 15:53:25.452 | INFO     | src.config.dependencies:get_azure_cosmos_repository:100 - Creating AzureCosmosDBRepository singleton
+2025-12-22 15:53:26.823 | INFO     | src.repository.database:__init__:27 - Connected to Cosmos DB database 'tax-management-system', container 'gl-transactions'
+2025-12-22 15:53:35.242 | INFO     | src.repository.database:query_documents:141 - Retrieved 2 documents (type: all)
+2025-12-22 15:53:36.781 | INFO     | src.delivery.tax_management:get_all_gl_transactions:17 - Retrieved 2 G/L transactions
+2025-12-22 15:55:28.312 | INFO     | src.repository.database:query_documents:141 - Retrieved 1 documents (type: all)
+2025-12-22 15:55:46.722 | INFO     | src.delivery.tax_management:get_all_gl_transactions:17 - Retrieved 1 G/L transactions
+2025-12-22 15:57:15.876 | INFO     | __main__:<module>:179 - Starting application in 'http' mode
+2025-12-22 15:58:07.194 | INFO     | src.config.dependencies:get_app_config:31 - Initializing application configuration
+2025-12-22 15:58:07.199 | INFO     | src.config.dependencies:get_azure_cosmos_repository:100 - Creating AzureCosmosDBRepository singleton
+2025-12-22 15:58:08.676 | INFO     | src.repository.database:__init__:27 - Connected to Cosmos DB database 'tax-management-system', container 'gl-transactions'
+2025-12-22 15:58:15.495 | INFO     | src.repository.database:query_documents:141 - Retrieved 1 documents (type: all)
+2025-12-22 15:58:17.139 | INFO     | src.delivery.tax_management:get_all_gl_transactions:17 - Retrieved 1 G/L transactions
+2025-12-22 15:59:40.569 | INFO     | __main__:<module>:179 - Starting application in 'http' mode
+2025-12-22 16:00:21.736 | INFO     | src.config.dependencies:get_app_config:31 - Initializing application configuration
+2025-12-22 16:00:21.738 | INFO     | src.config.dependencies:get_azure_cosmos_repository:100 - Creating AzureCosmosDBRepository singleton
+2025-12-22 16:00:23.194 | INFO     | src.repository.database:__init__:27 - Connected to Cosmos DB database 'tax-management-system', container 'gl-transactions'
+2025-12-22 16:00:27.676 | INFO     | src.repository.database:query_documents:141 - Retrieved 1 documents (type: all)
+2025-12-22 16:00:27.677 | INFO     | src.delivery.tax_management:get_all_gl_transactions:17 - Retrieved 1 G/L transactions
+2025-12-22 16:04:12.198 | INFO     | src.repository.database:query_documents:141 - Retrieved 1 documents (type: all)
+2025-12-22 16:04:12.199 | INFO     | src.delivery.tax_management:get_all_gl_transactions:17 - Retrieved 1 G/L transactions
+2025-12-22 16:08:44.381 | INFO     | __main__:<module>:179 - Starting application in 'http' mode
+2025-12-22 16:08:57.189 | INFO     | src.config.dependencies:get_app_config:31 - Initializing application configuration
+2025-12-22 16:08:57.192 | INFO     | src.config.dependencies:get_azure_cosmos_repository:100 - Creating AzureCosmosDBRepository singleton
+2025-12-22 16:08:58.519 | INFO     | src.repository.database:__init__:27 - Connected to Cosmos DB database 'tax-management-system', container 'gl-transactions'
+2025-12-22 16:09:00.662 | INFO     | src.repository.database:query_documents:141 - Retrieved 2 documents (type: all)
+2025-12-22 16:09:00.662 | INFO     | src.delivery.tax_management:get_all_gl_transactions:18 - Retrieved 2 G/L transactions
+2025-12-22 16:09:00.663 | ERROR    | src.delivery.tax_management:get_all_gl_transactions:29 - Error retrieving G/L transactions: Object of type Response is not JSON serializable
+2025-12-22 16:09:31.087 | INFO     | __main__:<module>:179 - Starting application in 'http' mode
+2025-12-22 16:10:25.126 | INFO     | src.config.dependencies:get_app_config:31 - Initializing application configuration
+2025-12-22 16:10:25.129 | INFO     | src.config.dependencies:get_azure_cosmos_repository:100 - Creating AzureCosmosDBRepository singleton
+2025-12-22 16:10:26.483 | INFO     | src.repository.database:__init__:27 - Connected to Cosmos DB database 'tax-management-system', container 'gl-transactions'
+2025-12-22 16:10:28.836 | INFO     | src.repository.database:query_documents:141 - Retrieved 2 documents (type: all)
+2025-12-22 16:10:28.837 | INFO     | src.delivery.tax_management:get_all_gl_transactions:18 - Retrieved 2 G/L transactions
+2025-12-22 16:13:00.615 | INFO     | __main__:<module>:179 - Starting application in 'http' mode
+2025-12-22 16:13:24.715 | INFO     | src.config.dependencies:get_app_config:31 - Initializing application configuration
+2025-12-22 16:13:24.717 | INFO     | src.config.dependencies:get_azure_cosmos_repository:100 - Creating AzureCosmosDBRepository singleton
+2025-12-22 16:13:26.098 | INFO     | src.repository.database:__init__:27 - Connected to Cosmos DB database 'tax-management-system', container 'gl-transactions'
+2025-12-22 16:13:28.573 | INFO     | src.repository.database:query_documents:141 - Retrieved 2 documents (type: all)
+2025-12-22 16:13:28.573 | ERROR    | src.usecase.tax_management:get_tax_invoices:25 - Error retrieving tax invoices: 15 validation errors for TaxInvoice
+tax_invoice_id
+  Field required [type=missing, input_value={'taxInvoiceId': '9c2f7b1...fa6', '_ts': 1766377051}, input_type=dict]
+    For further information visit https://errors.pydantic.dev/2.11/v/missing
+tax_invoice_number
+  Field required [type=missing, input_value={'taxInvoiceId': '9c2f7b1...fa6', '_ts': 1766377051}, input_type=dict]
+    For further information visit https://errors.pydantic.dev/2.11/v/missing
+invoice_number
+  Field required [type=missing, input_value={'taxInvoiceId': '9c2f7b1...fa6', '_ts': 1766377051}, input_type=dict]
+    For further information visit https://errors.pydantic.dev/2.11/v/missing
+tax_invoice_date
+  Field required [type=missing, input_value={'taxInvoiceId': '9c2f7b1...fa6', '_ts': 1766377051}, input_type=dict]
+    For further information visit https://errors.pydantic.dev/2.11/v/missing
+nama_pengusaha_kena_pajak
+  Field required [type=missing, input_value={'taxInvoiceId': '9c2f7b1...fa6', '_ts': 1766377051}, input_type=dict]
+    For further information visit https://errors.pydantic.dev/2.11/v/missing
+alamat_pengusaha_kena_pajak
+  Field required [type=missing, input_value={'taxInvoiceId': '9c2f7b1...fa6', '_ts': 1766377051}, input_type=dict]
+    For further information visit https://errors.pydantic.dev/2.11/v/missing
+npwp_pengusaha_kena_pajak
+  Field required [type=missing, input_value={'taxInvoiceId': '9c2f7b1...fa6', '_ts': 1766377051}, input_type=dict]
+    For further information visit https://errors.pydantic.dev/2.11/v/missing
+nama_pembeli_kena_pajak
+  Field required [type=missing, input_value={'taxInvoiceId': '9c2f7b1...fa6', '_ts': 1766377051}, input_type=dict]
+    For further information visit https://errors.pydantic.dev/2.11/v/missing
+alamat_pembeli_kena_pajak
+  Field required [type=missing, input_value={'taxInvoiceId': '9c2f7b1...fa6', '_ts': 1766377051}, input_type=dict]
+    For further information visit https://errors.pydantic.dev/2.11/v/missing
+email_pembeli_kena_pajak
+  Field required [type=missing, input_value={'taxInvoiceId': '9c2f7b1...fa6', '_ts': 1766377051}, input_type=dict]
+    For further information visit https://errors.pydantic.dev/2.11/v/missing
+tax_invoice_detail
+  Field required [type=missing, input_value={'taxInvoiceId': '9c2f7b1...fa6', '_ts': 1766377051}, input_type=dict]
+    For further information visit https://errors.pydantic.dev/2.11/v/missing
+total_tax_base_wht
+  Field required [type=missing, input_value={'taxInvoiceId': '9c2f7b1...fa6', '_ts': 1766377051}, input_type=dict]
+    For further information visit https://errors.pydantic.dev/2.11/v/missing
+dasar_pengenaan_pajak
+  Field required [type=missing, input_value={'taxInvoiceId': '9c2f7b1...fa6', '_ts': 1766377051}, input_type=dict]
+    For further information visit https://errors.pydantic.dev/2.11/v/missing
+created_at
+  Field required [type=missing, input_value={'taxInvoiceId': '9c2f7b1...fa6', '_ts': 1766377051}, input_type=dict]
+    For further information visit https://errors.pydantic.dev/2.11/v/missing
+updated_at
+  Field required [type=missing, input_value={'taxInvoiceId': '9c2f7b1...fa6', '_ts': 1766377051}, input_type=dict]
+    For further information visit https://errors.pydantic.dev/2.11/v/missing
+2025-12-22 16:13:28.575 | ERROR    | src.delivery.tax_management:get_all_tax_invoices:51 - Error retrieving tax invoices: 15 validation errors for TaxInvoice
+tax_invoice_id
+  Field required [type=missing, input_value={'taxInvoiceId': '9c2f7b1...fa6', '_ts': 1766377051}, input_type=dict]
+    For further information visit https://errors.pydantic.dev/2.11/v/missing
+tax_invoice_number
+  Field required [type=missing, input_value={'taxInvoiceId': '9c2f7b1...fa6', '_ts': 1766377051}, input_type=dict]
+    For further information visit https://errors.pydantic.dev/2.11/v/missing
+invoice_number
+  Field required [type=missing, input_value={'taxInvoiceId': '9c2f7b1...fa6', '_ts': 1766377051}, input_type=dict]
+    For further information visit https://errors.pydantic.dev/2.11/v/missing
+tax_invoice_date
+  Field required [type=missing, input_value={'taxInvoiceId': '9c2f7b1...fa6', '_ts': 1766377051}, input_type=dict]
+    For further information visit https://errors.pydantic.dev/2.11/v/missing
+nama_pengusaha_kena_pajak
+  Field required [type=missing, input_value={'taxInvoiceId': '9c2f7b1...fa6', '_ts': 1766377051}, input_type=dict]
+    For further information visit https://errors.pydantic.dev/2.11/v/missing
+alamat_pengusaha_kena_pajak
+  Field required [type=missing, input_value={'taxInvoiceId': '9c2f7b1...fa6', '_ts': 1766377051}, input_type=dict]
+    For further information visit https://errors.pydantic.dev/2.11/v/missing
+npwp_pengusaha_kena_pajak
+  Field required [type=missing, input_value={'taxInvoiceId': '9c2f7b1...fa6', '_ts': 1766377051}, input_type=dict]
+    For further information visit https://errors.pydantic.dev/2.11/v/missing
+nama_pembeli_kena_pajak
+  Field required [type=missing, input_value={'taxInvoiceId': '9c2f7b1...fa6', '_ts': 1766377051}, input_type=dict]
+    For further information visit https://errors.pydantic.dev/2.11/v/missing
+alamat_pembeli_kena_pajak
+  Field required [type=missing, input_value={'taxInvoiceId': '9c2f7b1...fa6', '_ts': 1766377051}, input_type=dict]
+    For further information visit https://errors.pydantic.dev/2.11/v/missing
+email_pembeli_kena_pajak
+  Field required [type=missing, input_value={'taxInvoiceId': '9c2f7b1...fa6', '_ts': 1766377051}, input_type=dict]
+    For further information visit https://errors.pydantic.dev/2.11/v/missing
+tax_invoice_detail
+  Field required [type=missing, input_value={'taxInvoiceId': '9c2f7b1...fa6', '_ts': 1766377051}, input_type=dict]
+    For further information visit https://errors.pydantic.dev/2.11/v/missing
+total_tax_base_wht
+  Field required [type=missing, input_value={'taxInvoiceId': '9c2f7b1...fa6', '_ts': 1766377051}, input_type=dict]
+    For further information visit https://errors.pydantic.dev/2.11/v/missing
+dasar_pengenaan_pajak
+  Field required [type=missing, input_value={'taxInvoiceId': '9c2f7b1...fa6', '_ts': 1766377051}, input_type=dict]
+    For further information visit https://errors.pydantic.dev/2.11/v/missing
+created_at
+  Field required [type=missing, input_value={'taxInvoiceId': '9c2f7b1...fa6', '_ts': 1766377051}, input_type=dict]
+    For further information visit https://errors.pydantic.dev/2.11/v/missing
+updated_at
+  Field required [type=missing, input_value={'taxInvoiceId': '9c2f7b1...fa6', '_ts': 1766377051}, input_type=dict]
+    For further information visit https://errors.pydantic.dev/2.11/v/missing
+2025-12-22 16:13:31.206 | INFO     | src.repository.database:query_documents:141 - Retrieved 2 documents (type: all)
+2025-12-22 16:13:31.207 | ERROR    | src.usecase.tax_management:get_tax_invoices:25 - Error retrieving tax invoices: 15 validation errors for TaxInvoice
+tax_invoice_id
+  Field required [type=missing, input_value={'taxInvoiceId': '9c2f7b1...fa6', '_ts': 1766377051}, input_type=dict]
+    For further information visit https://errors.pydantic.dev/2.11/v/missing
+tax_invoice_number
+  Field required [type=missing, input_value={'taxInvoiceId': '9c2f7b1...fa6', '_ts': 1766377051}, input_type=dict]
+    For further information visit https://errors.pydantic.dev/2.11/v/missing
+invoice_number
+  Field required [type=missing, input_value={'taxInvoiceId': '9c2f7b1...fa6', '_ts': 1766377051}, input_type=dict]
+    For further information visit https://errors.pydantic.dev/2.11/v/missing
+tax_invoice_date
+  Field required [type=missing, input_value={'taxInvoiceId': '9c2f7b1...fa6', '_ts': 1766377051}, input_type=dict]
+    For further information visit https://errors.pydantic.dev/2.11/v/missing
+nama_pengusaha_kena_pajak
+  Field required [type=missing, input_value={'taxInvoiceId': '9c2f7b1...fa6', '_ts': 1766377051}, input_type=dict]
+    For further information visit https://errors.pydantic.dev/2.11/v/missing
+alamat_pengusaha_kena_pajak
+  Field required [type=missing, input_value={'taxInvoiceId': '9c2f7b1...fa6', '_ts': 1766377051}, input_type=dict]
+    For further information visit https://errors.pydantic.dev/2.11/v/missing
+npwp_pengusaha_kena_pajak
+  Field required [type=missing, input_value={'taxInvoiceId': '9c2f7b1...fa6', '_ts': 1766377051}, input_type=dict]
+    For further information visit https://errors.pydantic.dev/2.11/v/missing
+nama_pembeli_kena_pajak
+  Field required [type=missing, input_value={'taxInvoiceId': '9c2f7b1...fa6', '_ts': 1766377051}, input_type=dict]
+    For further information visit https://errors.pydantic.dev/2.11/v/missing
+alamat_pembeli_kena_pajak
+  Field required [type=missing, input_value={'taxInvoiceId': '9c2f7b1...fa6', '_ts': 1766377051}, input_type=dict]
+    For further information visit https://errors.pydantic.dev/2.11/v/missing
+email_pembeli_kena_pajak
+  Field required [type=missing, input_value={'taxInvoiceId': '9c2f7b1...fa6', '_ts': 1766377051}, input_type=dict]
+    For further information visit https://errors.pydantic.dev/2.11/v/missing
+tax_invoice_detail
+  Field required [type=missing, input_value={'taxInvoiceId': '9c2f7b1...fa6', '_ts': 1766377051}, input_type=dict]
+    For further information visit https://errors.pydantic.dev/2.11/v/missing
+total_tax_base_wht
+  Field required [type=missing, input_value={'taxInvoiceId': '9c2f7b1...fa6', '_ts': 1766377051}, input_type=dict]
+    For further information visit https://errors.pydantic.dev/2.11/v/missing
+dasar_pengenaan_pajak
+  Field required [type=missing, input_value={'taxInvoiceId': '9c2f7b1...fa6', '_ts': 1766377051}, input_type=dict]
+    For further information visit https://errors.pydantic.dev/2.11/v/missing
+created_at
+  Field required [type=missing, input_value={'taxInvoiceId': '9c2f7b1...fa6', '_ts': 1766377051}, input_type=dict]
+    For further information visit https://errors.pydantic.dev/2.11/v/missing
+updated_at
+  Field required [type=missing, input_value={'taxInvoiceId': '9c2f7b1...fa6', '_ts': 1766377051}, input_type=dict]
+    For further information visit https://errors.pydantic.dev/2.11/v/missing
+2025-12-22 16:13:31.208 | ERROR    | src.delivery.tax_management:get_all_tax_invoices:51 - Error retrieving tax invoices: 15 validation errors for TaxInvoice
+tax_invoice_id
+  Field required [type=missing, input_value={'taxInvoiceId': '9c2f7b1...fa6', '_ts': 1766377051}, input_type=dict]
+    For further information visit https://errors.pydantic.dev/2.11/v/missing
+tax_invoice_number
+  Field required [type=missing, input_value={'taxInvoiceId': '9c2f7b1...fa6', '_ts': 1766377051}, input_type=dict]
+    For further information visit https://errors.pydantic.dev/2.11/v/missing
+invoice_number
+  Field required [type=missing, input_value={'taxInvoiceId': '9c2f7b1...fa6', '_ts': 1766377051}, input_type=dict]
+    For further information visit https://errors.pydantic.dev/2.11/v/missing
+tax_invoice_date
+  Field required [type=missing, input_value={'taxInvoiceId': '9c2f7b1...fa6', '_ts': 1766377051}, input_type=dict]
+    For further information visit https://errors.pydantic.dev/2.11/v/missing
+nama_pengusaha_kena_pajak
+  Field required [type=missing, input_value={'taxInvoiceId': '9c2f7b1...fa6', '_ts': 1766377051}, input_type=dict]
+    For further information visit https://errors.pydantic.dev/2.11/v/missing
+alamat_pengusaha_kena_pajak
+  Field required [type=missing, input_value={'taxInvoiceId': '9c2f7b1...fa6', '_ts': 1766377051}, input_type=dict]
+    For further information visit https://errors.pydantic.dev/2.11/v/missing
+npwp_pengusaha_kena_pajak
+  Field required [type=missing, input_value={'taxInvoiceId': '9c2f7b1...fa6', '_ts': 1766377051}, input_type=dict]
+    For further information visit https://errors.pydantic.dev/2.11/v/missing
+nama_pembeli_kena_pajak
+  Field required [type=missing, input_value={'taxInvoiceId': '9c2f7b1...fa6', '_ts': 1766377051}, input_type=dict]
+    For further information visit https://errors.pydantic.dev/2.11/v/missing
+alamat_pembeli_kena_pajak
+  Field required [type=missing, input_value={'taxInvoiceId': '9c2f7b1...fa6', '_ts': 1766377051}, input_type=dict]
+    For further information visit https://errors.pydantic.dev/2.11/v/missing
+email_pembeli_kena_pajak
+  Field required [type=missing, input_value={'taxInvoiceId': '9c2f7b1...fa6', '_ts': 1766377051}, input_type=dict]
+    For further information visit https://errors.pydantic.dev/2.11/v/missing
+tax_invoice_detail
+  Field required [type=missing, input_value={'taxInvoiceId': '9c2f7b1...fa6', '_ts': 1766377051}, input_type=dict]
+    For further information visit https://errors.pydantic.dev/2.11/v/missing
+total_tax_base_wht
+  Field required [type=missing, input_value={'taxInvoiceId': '9c2f7b1...fa6', '_ts': 1766377051}, input_type=dict]
+    For further information visit https://errors.pydantic.dev/2.11/v/missing
+dasar_pengenaan_pajak
+  Field required [type=missing, input_value={'taxInvoiceId': '9c2f7b1...fa6', '_ts': 1766377051}, input_type=dict]
+    For further information visit https://errors.pydantic.dev/2.11/v/missing
+created_at
+  Field required [type=missing, input_value={'taxInvoiceId': '9c2f7b1...fa6', '_ts': 1766377051}, input_type=dict]
+    For further information visit https://errors.pydantic.dev/2.11/v/missing
+updated_at
+  Field required [type=missing, input_value={'taxInvoiceId': '9c2f7b1...fa6', '_ts': 1766377051}, input_type=dict]
+    For further information visit https://errors.pydantic.dev/2.11/v/missing
+2025-12-22 16:14:00.111 | INFO     | src.repository.database:query_documents:141 - Retrieved 2 documents (type: all)
+2025-12-22 16:14:00.112 | ERROR    | src.usecase.tax_management:get_tax_invoices:25 - Error retrieving tax invoices: 15 validation errors for TaxInvoice
+tax_invoice_id
+  Field required [type=missing, input_value={'taxInvoiceId': '9c2f7b1...fa6', '_ts': 1766377051}, input_type=dict]
+    For further information visit https://errors.pydantic.dev/2.11/v/missing
+tax_invoice_number
+  Field required [type=missing, input_value={'taxInvoiceId': '9c2f7b1...fa6', '_ts': 1766377051}, input_type=dict]
+    For further information visit https://errors.pydantic.dev/2.11/v/missing
+invoice_number
+  Field required [type=missing, input_value={'taxInvoiceId': '9c2f7b1...fa6', '_ts': 1766377051}, input_type=dict]
+    For further information visit https://errors.pydantic.dev/2.11/v/missing
+tax_invoice_date
+  Field required [type=missing, input_value={'taxInvoiceId': '9c2f7b1...fa6', '_ts': 1766377051}, input_type=dict]
+    For further information visit https://errors.pydantic.dev/2.11/v/missing
+nama_pengusaha_kena_pajak
+  Field required [type=missing, input_value={'taxInvoiceId': '9c2f7b1...fa6', '_ts': 1766377051}, input_type=dict]
+    For further information visit https://errors.pydantic.dev/2.11/v/missing
+alamat_pengusaha_kena_pajak
+  Field required [type=missing, input_value={'taxInvoiceId': '9c2f7b1...fa6', '_ts': 1766377051}, input_type=dict]
+    For further information visit https://errors.pydantic.dev/2.11/v/missing
+npwp_pengusaha_kena_pajak
+  Field required [type=missing, input_value={'taxInvoiceId': '9c2f7b1...fa6', '_ts': 1766377051}, input_type=dict]
+    For further information visit https://errors.pydantic.dev/2.11/v/missing
+nama_pembeli_kena_pajak
+  Field required [type=missing, input_value={'taxInvoiceId': '9c2f7b1...fa6', '_ts': 1766377051}, input_type=dict]
+    For further information visit https://errors.pydantic.dev/2.11/v/missing
+alamat_pembeli_kena_pajak
+  Field required [type=missing, input_value={'taxInvoiceId': '9c2f7b1...fa6', '_ts': 1766377051}, input_type=dict]
+    For further information visit https://errors.pydantic.dev/2.11/v/missing
+email_pembeli_kena_pajak
+  Field required [type=missing, input_value={'taxInvoiceId': '9c2f7b1...fa6', '_ts': 1766377051}, input_type=dict]
+    For further information visit https://errors.pydantic.dev/2.11/v/missing
+tax_invoice_detail
+  Field required [type=missing, input_value={'taxInvoiceId': '9c2f7b1...fa6', '_ts': 1766377051}, input_type=dict]
+    For further information visit https://errors.pydantic.dev/2.11/v/missing
+total_tax_base_wht
+  Field required [type=missing, input_value={'taxInvoiceId': '9c2f7b1...fa6', '_ts': 1766377051}, input_type=dict]
+    For further information visit https://errors.pydantic.dev/2.11/v/missing
+dasar_pengenaan_pajak
+  Field required [type=missing, input_value={'taxInvoiceId': '9c2f7b1...fa6', '_ts': 1766377051}, input_type=dict]
+    For further information visit https://errors.pydantic.dev/2.11/v/missing
+created_at
+  Field required [type=missing, input_value={'taxInvoiceId': '9c2f7b1...fa6', '_ts': 1766377051}, input_type=dict]
+    For further information visit https://errors.pydantic.dev/2.11/v/missing
+updated_at
+  Field required [type=missing, input_value={'taxInvoiceId': '9c2f7b1...fa6', '_ts': 1766377051}, input_type=dict]
+    For further information visit https://errors.pydantic.dev/2.11/v/missing
+2025-12-22 16:14:02.343 | ERROR    | src.delivery.tax_management:get_all_tax_invoices:51 - Error retrieving tax invoices: 15 validation errors for TaxInvoice
+tax_invoice_id
+  Field required [type=missing, input_value={'taxInvoiceId': '9c2f7b1...fa6', '_ts': 1766377051}, input_type=dict]
+    For further information visit https://errors.pydantic.dev/2.11/v/missing
+tax_invoice_number
+  Field required [type=missing, input_value={'taxInvoiceId': '9c2f7b1...fa6', '_ts': 1766377051}, input_type=dict]
+    For further information visit https://errors.pydantic.dev/2.11/v/missing
+invoice_number
+  Field required [type=missing, input_value={'taxInvoiceId': '9c2f7b1...fa6', '_ts': 1766377051}, input_type=dict]
+    For further information visit https://errors.pydantic.dev/2.11/v/missing
+tax_invoice_date
+  Field required [type=missing, input_value={'taxInvoiceId': '9c2f7b1...fa6', '_ts': 1766377051}, input_type=dict]
+    For further information visit https://errors.pydantic.dev/2.11/v/missing
+nama_pengusaha_kena_pajak
+  Field required [type=missing, input_value={'taxInvoiceId': '9c2f7b1...fa6', '_ts': 1766377051}, input_type=dict]
+    For further information visit https://errors.pydantic.dev/2.11/v/missing
+alamat_pengusaha_kena_pajak
+  Field required [type=missing, input_value={'taxInvoiceId': '9c2f7b1...fa6', '_ts': 1766377051}, input_type=dict]
+    For further information visit https://errors.pydantic.dev/2.11/v/missing
+npwp_pengusaha_kena_pajak
+  Field required [type=missing, input_value={'taxInvoiceId': '9c2f7b1...fa6', '_ts': 1766377051}, input_type=dict]
+    For further information visit https://errors.pydantic.dev/2.11/v/missing
+nama_pembeli_kena_pajak
+  Field required [type=missing, input_value={'taxInvoiceId': '9c2f7b1...fa6', '_ts': 1766377051}, input_type=dict]
+    For further information visit https://errors.pydantic.dev/2.11/v/missing
+alamat_pembeli_kena_pajak
+  Field required [type=missing, input_value={'taxInvoiceId': '9c2f7b1...fa6', '_ts': 1766377051}, input_type=dict]
+    For further information visit https://errors.pydantic.dev/2.11/v/missing
+email_pembeli_kena_pajak
+  Field required [type=missing, input_value={'taxInvoiceId': '9c2f7b1...fa6', '_ts': 1766377051}, input_type=dict]
+    For further information visit https://errors.pydantic.dev/2.11/v/missing
+tax_invoice_detail
+  Field required [type=missing, input_value={'taxInvoiceId': '9c2f7b1...fa6', '_ts': 1766377051}, input_type=dict]
+    For further information visit https://errors.pydantic.dev/2.11/v/missing
+total_tax_base_wht
+  Field required [type=missing, input_value={'taxInvoiceId': '9c2f7b1...fa6', '_ts': 1766377051}, input_type=dict]
+    For further information visit https://errors.pydantic.dev/2.11/v/missing
+dasar_pengenaan_pajak
+  Field required [type=missing, input_value={'taxInvoiceId': '9c2f7b1...fa6', '_ts': 1766377051}, input_type=dict]
+    For further information visit https://errors.pydantic.dev/2.11/v/missing
+created_at
+  Field required [type=missing, input_value={'taxInvoiceId': '9c2f7b1...fa6', '_ts': 1766377051}, input_type=dict]
+    For further information visit https://errors.pydantic.dev/2.11/v/missing
+updated_at
+  Field required [type=missing, input_value={'taxInvoiceId': '9c2f7b1...fa6', '_ts': 1766377051}, input_type=dict]
+    For further information visit https://errors.pydantic.dev/2.11/v/missing
+2025-12-22 16:14:22.087 | INFO     | src.repository.database:query_documents:141 - Retrieved 2 documents (type: all)
+2025-12-22 16:18:57.102 | INFO     | __main__:<module>:179 - Starting application in 'http' mode
+2025-12-22 16:19:09.445 | INFO     | src.config.dependencies:get_app_config:31 - Initializing application configuration
+2025-12-22 16:19:09.445 | INFO     | src.config.dependencies:get_azure_cosmos_repository:100 - Creating AzureCosmosDBRepository singleton
+2025-12-22 16:19:10.761 | INFO     | src.repository.database:__init__:27 - Connected to Cosmos DB database 'tax-management-system', container 'gl-transactions'
+2025-12-22 16:19:20.683 | INFO     | src.repository.database:query_documents:141 - Retrieved 2 documents (type: all)
+2025-12-22 16:19:20.683 | ERROR    | src.usecase.tax_management:get_tax_invoices:25 - Error retrieving tax invoices: 2 validation errors for TaxInvoice
+npwpPengusahaKenaPajak
+  String should match pattern '^[0-9]{16}$' [type=string_pattern_mismatch, input_value='20587168058000', input_type=str]
+    For further information visit https://errors.pydantic.dev/2.11/v/string_pattern_mismatch
+nikPembeliKenaPajak
+  String should match pattern '^[0-9]{16}$' [type=string_pattern_mismatch, input_value='-', input_type=str]
+    For further information visit https://errors.pydantic.dev/2.11/v/string_pattern_mismatch
+2025-12-22 16:19:20.683 | ERROR    | src.delivery.tax_management:get_all_tax_invoices:51 - Error retrieving tax invoices: 2 validation errors for TaxInvoice
+npwpPengusahaKenaPajak
+  String should match pattern '^[0-9]{16}$' [type=string_pattern_mismatch, input_value='20587168058000', input_type=str]
+    For further information visit https://errors.pydantic.dev/2.11/v/string_pattern_mismatch
+nikPembeliKenaPajak
+  String should match pattern '^[0-9]{16}$' [type=string_pattern_mismatch, input_value='-', input_type=str]
+    For further information visit https://errors.pydantic.dev/2.11/v/string_pattern_mismatch
+2025-12-22 16:19:51.189 | INFO     | src.repository.database:query_documents:141 - Retrieved 2 documents (type: all)
+2025-12-22 16:19:51.192 | ERROR    | src.usecase.tax_management:get_tax_invoices:25 - Error retrieving tax invoices: 2 validation errors for TaxInvoice
+npwpPengusahaKenaPajak
+  String should match pattern '^[0-9]{16}$' [type=string_pattern_mismatch, input_value='20587168058000', input_type=str]
+    For further information visit https://errors.pydantic.dev/2.11/v/string_pattern_mismatch
+nikPembeliKenaPajak
+  String should match pattern '^[0-9]{16}$' [type=string_pattern_mismatch, input_value='-', input_type=str]
+    For further information visit https://errors.pydantic.dev/2.11/v/string_pattern_mismatch
+2025-12-22 16:19:51.192 | ERROR    | src.delivery.tax_management:get_all_tax_invoices:51 - Error retrieving tax invoices: 2 validation errors for TaxInvoice
+npwpPengusahaKenaPajak
+  String should match pattern '^[0-9]{16}$' [type=string_pattern_mismatch, input_value='20587168058000', input_type=str]
+    For further information visit https://errors.pydantic.dev/2.11/v/string_pattern_mismatch
+nikPembeliKenaPajak
+  String should match pattern '^[0-9]{16}$' [type=string_pattern_mismatch, input_value='-', input_type=str]
+    For further information visit https://errors.pydantic.dev/2.11/v/string_pattern_mismatch
+2025-12-22 16:20:07.752 | INFO     | src.repository.database:query_documents:141 - Retrieved 2 documents (type: all)
+2025-12-22 16:20:07.752 | ERROR    | src.usecase.tax_management:get_tax_invoices:25 - Error retrieving tax invoices: 2 validation errors for TaxInvoice
+npwpPengusahaKenaPajak
+  String should match pattern '^[0-9]{16}$' [type=string_pattern_mismatch, input_value='20587168058000', input_type=str]
+    For further information visit https://errors.pydantic.dev/2.11/v/string_pattern_mismatch
+nikPembeliKenaPajak
+  String should match pattern '^[0-9]{16}$' [type=string_pattern_mismatch, input_value='-', input_type=str]
+    For further information visit https://errors.pydantic.dev/2.11/v/string_pattern_mismatch
+2025-12-22 16:20:09.876 | ERROR    | src.delivery.tax_management:get_all_tax_invoices:51 - Error retrieving tax invoices: 2 validation errors for TaxInvoice
+npwpPengusahaKenaPajak
+  String should match pattern '^[0-9]{16}$' [type=string_pattern_mismatch, input_value='20587168058000', input_type=str]
+    For further information visit https://errors.pydantic.dev/2.11/v/string_pattern_mismatch
+nikPembeliKenaPajak
+  String should match pattern '^[0-9]{16}$' [type=string_pattern_mismatch, input_value='-', input_type=str]
+    For further information visit https://errors.pydantic.dev/2.11/v/string_pattern_mismatch
+2025-12-22 16:21:04.891 | INFO     | __main__:<module>:179 - Starting application in 'http' mode
+2025-12-22 16:22:51.587 | INFO     | src.config.dependencies:get_app_config:31 - Initializing application configuration
+2025-12-22 16:22:51.603 | INFO     | src.config.dependencies:get_azure_cosmos_repository:100 - Creating AzureCosmosDBRepository singleton
+2025-12-22 16:22:52.920 | INFO     | src.repository.database:__init__:27 - Connected to Cosmos DB database 'tax-management-system', container 'gl-transactions'
+2025-12-22 16:22:58.347 | INFO     | src.repository.database:query_documents:141 - Retrieved 2 documents (type: all)
+2025-12-22 16:23:00.205 | INFO     | src.delivery.tax_management:get_all_tax_invoices:40 - Retrieved 2 tax invoices
+2025-12-22 16:23:26.773 | INFO     | src.repository.database:query_documents:141 - Retrieved 2 documents (type: all)
+2025-12-22 16:23:26.773 | INFO     | src.delivery.tax_management:get_all_tax_invoices:40 - Retrieved 2 tax invoices
+2025-12-22 16:25:07.939 | INFO     | src.repository.database:query_documents:141 - Retrieved 2 documents (type: all)
+2025-12-22 16:25:09.396 | INFO     | src.delivery.tax_management:get_all_invoices:62 - Retrieved 2 invoices
+2025-12-22 16:38:00.120 | INFO     | __main__:<module>:179 - Starting application in 'http' mode
+2025-12-22 16:38:55.360 | INFO     | __main__:<module>:179 - Starting application in 'http' mode
+2025-12-22 16:39:09.948 | INFO     | src.config.dependencies:get_app_config:31 - Initializing application configuration
+2025-12-22 16:39:09.948 | INFO     | src.config.dependencies:get_azure_cosmos_repository:100 - Creating AzureCosmosDBRepository singleton
+2025-12-22 16:39:11.344 | INFO     | src.repository.database:__init__:27 - Connected to Cosmos DB database 'tax-management-system', container 'gl-transactions'
+2025-12-22 16:39:11.350 | ERROR    | src.repository.database:query_documents:144 - Error querying documents: sequence item 0: expected str instance, dict found
+2025-12-22 16:39:11.350 | ERROR    | src.usecase.tax_management:get_tax_invoices_by_urn:36 - Error retrieving tax invoices by URN 7603501881: sequence item 0: expected str instance, dict found
+2025-12-22 16:39:11.351 | ERROR    | src.delivery.tax_management:get_all_tax_invoices:55 - Error retrieving tax invoices: sequence item 0: expected str instance, dict found
+2025-12-22 16:39:27.051 | ERROR    | src.repository.database:query_documents:144 - Error querying documents: sequence item 0: expected str instance, dict found
+2025-12-22 16:39:28.283 | ERROR    | src.usecase.tax_management:get_tax_invoices_by_urn:36 - Error retrieving tax invoices by URN 7603501881: sequence item 0: expected str instance, dict found
+2025-12-22 16:39:35.040 | ERROR    | src.delivery.tax_management:get_all_tax_invoices:55 - Error retrieving tax invoices: sequence item 0: expected str instance, dict found
+2025-12-22 16:40:26.450 | INFO     | __main__:<module>:179 - Starting application in 'http' mode
+2025-12-22 16:40:32.006 | INFO     | src.config.dependencies:get_app_config:31 - Initializing application configuration
+2025-12-22 16:40:32.007 | INFO     | src.config.dependencies:get_azure_cosmos_repository:100 - Creating AzureCosmosDBRepository singleton
+2025-12-22 16:40:33.383 | INFO     | src.repository.database:__init__:27 - Connected to Cosmos DB database 'tax-management-system', container 'gl-transactions'
+2025-12-22 16:40:39.880 | INFO     | src.repository.database:query_documents:141 - Retrieved 1 documents (type: all)
+2025-12-22 16:40:39.880 | INFO     | src.delivery.tax_management:get_all_tax_invoices:44 - Retrieved 1 tax invoices
+2025-12-22 16:41:19.734 | INFO     | src.repository.database:query_documents:141 - Retrieved 2 documents (type: all)
+2025-12-22 16:41:19.735 | INFO     | src.delivery.tax_management:get_all_tax_invoices:44 - Retrieved 2 tax invoices
+2025-12-22 16:42:43.653 | INFO     | __main__:<module>:179 - Starting application in 'http' mode
+2025-12-22 16:43:22.881 | INFO     | src.config.dependencies:get_app_config:31 - Initializing application configuration
+2025-12-22 16:43:22.882 | INFO     | src.config.dependencies:get_azure_cosmos_repository:100 - Creating AzureCosmosDBRepository singleton
+2025-12-22 16:43:24.240 | INFO     | src.repository.database:__init__:27 - Connected to Cosmos DB database 'tax-management-system', container 'gl-transactions'
+2025-12-22 16:43:26.645 | INFO     | src.repository.database:query_documents:141 - Retrieved 1 documents (type: all)
+2025-12-22 16:43:26.646 | INFO     | src.delivery.tax_management:get_all_invoices:70 - Retrieved 1 invoices
+2025-12-22 16:45:50.616 | INFO     | __main__:<module>:179 - Starting application in 'http' mode
+2025-12-22 16:46:08.322 | INFO     | src.config.dependencies:get_app_config:31 - Initializing application configuration
+2025-12-22 16:46:08.324 | INFO     | src.config.dependencies:get_azure_cosmos_repository:100 - Creating AzureCosmosDBRepository singleton
+2025-12-22 16:46:09.661 | INFO     | src.repository.database:__init__:27 - Connected to Cosmos DB database 'tax-management-system', container 'gl-transactions'
+2025-12-22 16:46:11.423 | INFO     | src.repository.database:query_documents:141 - Retrieved 1 documents (type: all)
+2025-12-22 16:46:11.423 | INFO     | src.delivery.tax_management:get_all_gl_transactions:19 - Retrieved 1 G/L transactions

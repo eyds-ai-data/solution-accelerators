@@ -1,10 +1,3 @@
-"""
-Dependency injection container for FastAPI routes.
-
-This module provides dependency functions that initialize and inject
-repositories and use cases into route handlers.
-"""
-
 from functools import lru_cache
 from typing import Annotated, Optional
 from fastapi import Depends
@@ -17,12 +10,12 @@ from src.repository.storage import MinioStorageRepository, AzureBlobStorageRepos
 from src.repository.database import AzureCosmosDBRepository
 from src.usecase.content_extraction import ContentExtraction
 from src.usecase.file_upload import FileUpload
-
+from src.usecase.tax_management import TaxManagementUseCase
 
 # Module-level singleton instances
 _content_understanding_repo: Optional[ContentUnderstandingRepository] = None
 _azure_blob_storage_repo: Optional[AzureBlobStorageRepository] = None
-_cosmos_repo: Optional[AzureCosmosDBRepository] = None
+_azure_cosmos_repo: Optional[AzureCosmosDBRepository] = None
 _rabbitmq_repo: Optional[RabbitMQRepository] = None
 _minio_storage_repo: Optional[MinioStorageRepository] = None
 
@@ -88,7 +81,7 @@ def get_azure_blob_storage_repository(
     return _azure_blob_storage_repo
 
 
-def get_cosmos_repository(
+def get_azure_cosmos_repository(
     config: Annotated[AppConfig, Depends(get_app_config)]
 ) -> Optional[AzureCosmosDBRepository]:
     """
@@ -102,11 +95,11 @@ def get_cosmos_repository(
     Returns:
         AzureCosmosDBRepository singleton instance or None if not configured
     """
-    global _cosmos_repo
-    if _cosmos_repo is None and config.COSMOSDB_CONNECTION_STRING:
+    global _azure_cosmos_repo
+    if _azure_cosmos_repo is None and config.COSMOSDB_CONNECTION_STRING:
         logger.info("Creating AzureCosmosDBRepository singleton")
         try:
-            _cosmos_repo = AzureCosmosDBRepository(
+            _azure_cosmos_repo = AzureCosmosDBRepository(
                 connection_string=config.COSMOSDB_CONNECTION_STRING,
                 database_id=config.COSMOSDB_DATABASE,
                 container_id=config.COSMOSDB_CONTAINER
@@ -114,7 +107,7 @@ def get_cosmos_repository(
         except Exception as e:
             logger.error(f"Failed to initialize Cosmos DB repository: {e}")
             return None
-    return _cosmos_repo
+    return _azure_cosmos_repo
 
 
 def get_rabbitmq_repository(
@@ -224,9 +217,9 @@ def get_file_upload_service(
         AzureBlobStorageRepository, 
         Depends(get_azure_blob_storage_repository)
     ],
-    cosmos_repo: Annotated[
+    azure_cosmos_repo: Annotated[
         Optional[AzureCosmosDBRepository],
-        Depends(get_cosmos_repository)
+        Depends(get_azure_cosmos_repository)
     ],
     rabbitmq_repo: Annotated[
         Optional[RabbitMQRepository],
@@ -241,16 +234,25 @@ def get_file_upload_service(
     return FileUpload(
         content_understanding_repo=content_understanding_repo,
         azure_blob_storage_repo=azure_blob_storage_repo,
-        cosmos_repo=cosmos_repo,
+        azure_cosmos_repo=azure_cosmos_repo,
         rabbitmq_repo=rabbitmq_repo,
         minio_storage_repo=minio_storage_repo
     )
 
+def get_tax_management_service(
+    azure_cosmos_repo: Annotated[
+        Optional[AzureCosmosDBRepository],
+        Depends(get_azure_cosmos_repository)
+    ]
+) -> TaxManagementUseCase:
+    return TaxManagementUseCase(
+        azure_cosmos_repo=azure_cosmos_repo
+    )
 
-# Type aliases for cleaner route signatures
+TaxManagementDep = Annotated[TaxManagementUseCase, Depends(get_tax_management_service)]
 ContentExtractionDep = Annotated[ContentExtraction, Depends(get_content_extraction_service)]
 FileUploadDep = Annotated[FileUpload, Depends(get_file_upload_service)]
-CosmosRepoDep = Annotated[Optional[AzureCosmosDBRepository], Depends(get_cosmos_repository)]
+AzureCosmosRepoDep = Annotated[Optional[AzureCosmosDBRepository], Depends(get_azure_cosmos_repository)]
 RabbitMQDep = Annotated[Optional[RabbitMQRepository], Depends(get_rabbitmq_repository)]
 MinioStorageDep = Annotated[Optional[MinioStorageRepository], Depends(get_minio_storage_repository)]
 AppConfigDep = Annotated[AppConfig, Depends(get_app_config)]
