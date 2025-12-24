@@ -22,20 +22,8 @@ class AzureServiceBusRepository:
             raise
 
 class RabbitMQRepository:
-    """
-    Simple RabbitMQ messaging repository for sending messages to queues.
-    """
-    
     def __init__(self, host: str = "localhost", port: int = 5672, username: str = "guest", password: str = "guest"):
-        """
-        Initialize RabbitMQ connection parameters.
-        
-        Args:
-            host: RabbitMQ server hostname
-            port: RabbitMQ server port
-            username: RabbitMQ username
-            password: RabbitMQ password
-        """
+
         self.connection_params = pika.ConnectionParameters(
             host=host,
             port=port,

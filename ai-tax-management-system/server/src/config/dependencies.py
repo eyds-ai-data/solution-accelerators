@@ -5,7 +5,7 @@ from loguru import logger
 
 from src.config.env import AppConfig
 from src.repository.content_understanding import ContentUnderstandingRepository
-from src.repository.messaging import RabbitMQRepository
+from src.repository.messaging import RabbitMQRepository, AzureServiceBusRepository
 from src.repository.storage import MinioStorageRepository, AzureBlobStorageRepository
 from src.repository.database import AzureCosmosDBRepository
 from src.usecase.content_extraction import ContentExtraction
@@ -18,6 +18,7 @@ _azure_blob_storage_repo: Optional[AzureBlobStorageRepository] = None
 _azure_cosmos_repo: Optional[AzureCosmosDBRepository] = None
 _rabbitmq_repo: Optional[RabbitMQRepository] = None
 _minio_storage_repo: Optional[MinioStorageRepository] = None
+_azure_service_bus_repo: Optional[AzureServiceBusRepository] = None
 
 
 @lru_cache
@@ -166,6 +167,26 @@ def get_minio_storage_repository(
         )
     return _minio_storage_repo
 
+def get_azure_service_bus_repository(
+    config: Annotated[AppConfig, Depends(get_app_config)]
+) -> Optional[AzureServiceBusRepository]:
+    """
+    Create and return AzureServiceBusRepository instance (singleton).
+    
+    Service Bus client is thread-safe and maintains internal connection pooling.
+    
+    Args:
+        config: Application configuration dependency
+    Returns:
+        AzureServiceBusRepository singleton instance or None if not configured
+    """
+    if not config.SERVICE_BUS_CONNECTION_STRING:
+        return None
+    logger.info("Creating AzureServiceBusRepository singleton")
+    return AzureServiceBusRepository(
+        connection_string=config.SERVICE_BUS_CONNECTION_STRING
+    )
+
 
 def get_content_extraction_service(
     content_understanding_repo: Annotated[
@@ -228,6 +249,10 @@ def get_file_upload_service(
     minio_storage_repo: Annotated[
         Optional[MinioStorageRepository],
         Depends(get_minio_storage_repository)
+    ],
+    azure_service_bus_repo: Annotated[
+        Optional[AzureServiceBusRepository],
+        Depends(get_azure_service_bus_repository)
     ]
 ) -> FileUpload:
     logger.debug("Creating FileUpload use case")
@@ -236,7 +261,8 @@ def get_file_upload_service(
         azure_blob_storage_repo=azure_blob_storage_repo,
         azure_cosmos_repo=azure_cosmos_repo,
         rabbitmq_repo=rabbitmq_repo,
-        minio_storage_repo=minio_storage_repo
+        minio_storage_repo=minio_storage_repo,
+        azure_service_bus_repo=azure_service_bus_repo
     )
 
 def get_tax_management_service(

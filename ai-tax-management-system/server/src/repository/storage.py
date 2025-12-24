@@ -27,14 +27,16 @@ class AzureBlobStorageRepository:
             logger.error(f"Failed to connect to Blob Storage: {e}")
             raise
 
-    def upload_file(self, file, file_id: str, original_filename: str, activity_id: str) -> dict:
+    def upload_file(self, file, file_id: str, original_filename: str, activity_id: str, content_type: str = None) -> dict:
         """
         Upload a file to Blob Storage
         
         Args:
-            file: File object from Flask request
+            file: File object from Flask request or BytesIO
             file_id: ID of the case to associate with the file
             original_filename: Original name of the file
+            activity_id: Activity ID to group related files
+            content_type: MIME type of the file (optional)
             
         Returns:
             Dictionary with file metadata
@@ -56,12 +58,16 @@ class AzureBlobStorageRepository:
             # Get blob properties
             blob_properties = blob_client.get_blob_properties()
             
+            # Use provided content_type or get from file object
+            if content_type is None:
+                content_type = getattr(file, 'content_type', 'application/octet-stream')
+            
             file_info = {
                 "blob_name": object_name,
                 "original_filename": original_filename,
                 "file_id": file_id,
                 "size": blob_properties.size,
-                "content_type": file.content_type,
+                "content_type": content_type,
                 "uploaded_at": datetime.utcnow().isoformat(),
                 "url": blob_client.url
             }
@@ -160,7 +166,7 @@ class MinioStorageRepository:
             logger.error(f"Failed to connect to MinIO: {e}")
             raise
 
-    def upload_file(self, file, file_id: str, original_filename: str, activity_id: str) -> dict:
+    def upload_file(self, file, file_id: str, original_filename: str, activity_id: str, content_type: str = None) -> dict:
         """
         Upload a file to MinIO
         
@@ -168,6 +174,8 @@ class MinioStorageRepository:
             file: File object to upload
             file_id: ID of the case to associate with the file
             original_filename: Original name of the file
+            activity_id: Activity ID to group related files
+            content_type: MIME type of the file (optional)
             
         Returns:
             Dictionary with file metadata
@@ -182,13 +190,17 @@ class MinioStorageRepository:
             file_content = file.read()
             file_size = len(file_content)
             
+            # Use provided content_type or get from file object
+            if content_type is None:
+                content_type = getattr(file, 'content_type', 'application/octet-stream')
+            
             # Upload to MinIO
             self.client.put_object(
                 bucket_name=self.bucket_name,
                 object_name=object_name,
                 data=BytesIO(file_content),
                 length=file_size,
-                content_type=getattr(file, 'content_type', 'application/octet-stream')
+                content_type=content_type
             )
             
             # Construct URL based on secure flag
@@ -200,7 +212,7 @@ class MinioStorageRepository:
                 "original_filename": original_filename,
                 "file_id": file_id,
                 "size": file_size,
-                "content_type": getattr(file, 'content_type', 'application/octet-stream'),
+                "content_type": content_type,
                 "uploaded_at": datetime.utcnow().isoformat(),
                 "url": url
             }

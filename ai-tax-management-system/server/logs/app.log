@@ -904,3 +904,59 @@ nikPembeliKenaPajak
 2025-12-22 17:25:11.290 | INFO     | src.repository.database:query_documents:140 - Retrieved 1 documents (type: all)
 2025-12-22 17:26:36.258 | INFO     | src.delivery.status_routes:check_status:17 - Checking status for document_id: 84cffe18-1b7c-41cc-ad01-881b885d7894
 2025-12-22 17:26:38.381 | INFO     | src.repository.database:query_documents:140 - Retrieved 1 documents (type: all)
+2025-12-23 15:16:26.125 | INFO     | __main__:<module>:179 - Starting application in 'http' mode
+2025-12-23 15:17:14.165 | INFO     | src.config.dependencies:get_app_config:31 - Initializing application configuration
+2025-12-23 15:17:14.170 | INFO     | src.config.dependencies:get_content_understanding_repository:53 - Creating ContentUnderstandingRepository singleton
+2025-12-23 15:17:14.170 | INFO     | src.config.dependencies:get_azure_blob_storage_repository:76 - Creating AzureBlobStorageRepository singleton
+2025-12-23 15:17:14.976 | INFO     | src.repository.storage:__init__:21 - Blob container already exists: tax-documents
+2025-12-23 15:17:14.981 | INFO     | src.repository.storage:__init__:25 - Connected to Blob Storage, container: tax-documents
+2025-12-23 15:17:14.981 | INFO     | src.config.dependencies:get_azure_cosmos_repository:100 - Creating AzureCosmosDBRepository singleton
+2025-12-23 15:17:16.312 | INFO     | src.repository.database:__init__:27 - Connected to Cosmos DB database 'tax-management-system', container 'gl-transactions'
+2025-12-23 15:17:16.320 | INFO     | src.delivery.upload_routes:upload_file:40 - Received PDF upload: Print.pdf with file_id a8fec53b-46f0-4d83-8804-a0dc0b248d96 and activity_id string
+2025-12-23 15:17:22.435 | INFO     | src.usecase.file_upload:_split_pdf_pages:115 - Splitting PDF Print.pdf into 3 pages
+2025-12-23 15:17:22.442 | INFO     | src.usecase.file_upload:_split_pdf_pages:131 - Successfully split Print.pdf into 3 pages
+2025-12-23 15:17:26.212 | INFO     | src.usecase.file_upload:upload:183 - Uploading 3 pages from PDF Print.pdf
+2025-12-23 15:18:05.390 | ERROR    | src.repository.storage:upload_file:73 - Error uploading file: '_io.BytesIO' object has no attribute 'content_type'
+2025-12-23 15:18:05.390 | WARNING  | src.usecase.file_upload:upload:196 - Failed to split PDF, uploading as single file: '_io.BytesIO' object has no attribute 'content_type'
+2025-12-23 15:18:05.595 | ERROR    | src.repository.storage:upload_file:73 - Error uploading file: '_io.BytesIO' object has no attribute 'content_type'
+2025-12-23 15:18:05.595 | ERROR    | src.usecase.file_upload:upload:249 - Error uploading file Print.pdf: '_io.BytesIO' object has no attribute 'content_type'
+2025-12-23 15:18:05.595 | ERROR    | src.delivery.upload_routes:upload_file:60 - Error uploading file: '_io.BytesIO' object has no attribute 'content_type'
+2025-12-23 17:07:13.937 | INFO     | __main__:<module>:179 - Starting application in 'http' mode
+2025-12-23 17:07:25.365 | INFO     | src.config.dependencies:get_app_config:31 - Initializing application configuration
+2025-12-23 17:07:25.367 | INFO     | src.config.dependencies:get_azure_cosmos_repository:100 - Creating AzureCosmosDBRepository singleton
+2025-12-23 17:07:26.808 | INFO     | src.repository.database:__init__:27 - Connected to Cosmos DB database 'tax-management-system', container 'gl-transactions'
+2025-12-23 17:07:29.373 | INFO     | src.repository.database:query_documents:140 - Retrieved 3 documents (type: all)
+2025-12-23 17:07:29.377 | INFO     | src.delivery.tax_management:get_all_gl_transactions:19 - Retrieved 3 G/L transactions
+2025-12-23 17:09:20.043 | INFO     | src.repository.database:query_documents:140 - Retrieved 1 documents (type: all)
+2025-12-23 17:09:20.045 | INFO     | src.delivery.tax_management:get_all_tax_invoices:42 - Retrieved 1 tax invoices
+2025-12-23 17:10:25.646 | INFO     | src.repository.database:query_documents:140 - Retrieved 0 documents (type: all)
+2025-12-23 17:10:25.646 | INFO     | src.delivery.tax_management:get_all_invoices:65 - Retrieved 0 invoices
+2025-12-23 17:10:47.784 | INFO     | src.repository.database:query_documents:140 - Retrieved 2 documents (type: all)
+2025-12-23 17:10:47.785 | INFO     | src.delivery.tax_management:get_all_invoices:65 - Retrieved 2 invoices
+2025-12-24 10:09:49.711 | INFO     | __main__:<module>:179 - Starting application in 'http' mode
+2025-12-24 13:23:29.711 | INFO     | src.config.dependencies:get_app_config:31 - Initializing application configuration
+2025-12-24 13:23:29.714 | INFO     | src.config.dependencies:get_content_understanding_repository:53 - Creating ContentUnderstandingRepository singleton
+2025-12-24 13:23:29.715 | INFO     | src.config.dependencies:get_azure_blob_storage_repository:76 - Creating AzureBlobStorageRepository singleton
+2025-12-24 13:23:30.537 | INFO     | src.repository.storage:__init__:21 - Blob container already exists: tax-documents
+2025-12-24 13:23:30.537 | INFO     | src.repository.storage:__init__:25 - Connected to Blob Storage, container: tax-documents
+2025-12-24 13:23:30.538 | INFO     | src.config.dependencies:get_azure_cosmos_repository:100 - Creating AzureCosmosDBRepository singleton
+2025-12-24 13:23:31.828 | INFO     | src.repository.database:__init__:27 - Connected to Cosmos DB database 'tax-management-system', container 'gl-transactions'
+2025-12-24 13:23:31.838 | INFO     | src.delivery.upload_routes:upload_file:40 - Received PDF upload: 7603480352.pdf with file_id 2eefd1fd-844d-4367-a9ce-db1aeed9b286 and activity_id string
+2025-12-24 13:23:42.020 | INFO     | src.usecase.file_upload:_split_pdf_pages:118 - Splitting PDF 7603480352.pdf into 1 pages
+2025-12-24 13:23:42.024 | INFO     | src.usecase.file_upload:_split_pdf_pages:134 - Successfully split 7603480352.pdf into 1 pages
+2025-12-24 13:23:42.437 | INFO     | src.usecase.file_upload:upload:190 - Uploading 1 pages from PDF 7603480352.pdf
+2025-12-24 13:23:59.228 | INFO     | src.repository.storage:upload_file:75 - Uploaded file 7603480352_page_1.pdf for case 2eefd1fd-844d-4367-a9ce-db1aeed9b286, blob: string/2eefd1fd-844d-4367-a9ce-db1aeed9b286/7603480352_page_1.pdf
+2025-12-24 14:32:42.841 | INFO     | __main__:<module>:179 - Starting application in 'http' mode
+2025-12-24 14:34:02.966 | INFO     | src.config.dependencies:get_app_config:32 - Initializing application configuration
+2025-12-24 14:34:02.969 | INFO     | src.config.dependencies:get_content_understanding_repository:54 - Creating ContentUnderstandingRepository singleton
+2025-12-24 14:34:02.970 | INFO     | src.config.dependencies:get_azure_blob_storage_repository:77 - Creating AzureBlobStorageRepository singleton
+2025-12-24 14:34:04.017 | INFO     | src.repository.storage:__init__:21 - Blob container already exists: tax-documents
+2025-12-24 14:34:04.017 | INFO     | src.repository.storage:__init__:25 - Connected to Blob Storage, container: tax-documents
+2025-12-24 14:34:04.018 | INFO     | src.config.dependencies:get_azure_cosmos_repository:101 - Creating AzureCosmosDBRepository singleton
+2025-12-24 14:34:05.380 | INFO     | src.repository.database:__init__:27 - Connected to Cosmos DB database 'tax-management-system', container 'gl-transactions'
+2025-12-24 14:34:05.387 | INFO     | src.delivery.upload_routes:upload_file:40 - Received PDF upload: 7603480352.pdf with file_id a8b0b951-8273-4ede-90d4-d686a37cd5ce and activity_id string
+2025-12-24 14:34:05.391 | INFO     | src.usecase.file_upload:_split_pdf_pages:80 - Splitting PDF 7603480352.pdf into 1 pages
+2025-12-24 14:34:05.394 | INFO     | src.usecase.file_upload:_split_pdf_pages:96 - Successfully split 7603480352.pdf into 1 pages
+2025-12-24 14:34:05.394 | INFO     | src.usecase.file_upload:upload:139 - Uploading 1 pages from PDF 7603480352.pdf
+2025-12-24 14:34:09.613 | INFO     | src.repository.storage:upload_file:75 - Uploaded file 7603480352_page_1.pdf for case a8b0b951-8273-4ede-90d4-d686a37cd5ce, blob: string/a8b0b951-8273-4ede-90d4-d686a37cd5ce/7603480352_page_1.pdf
+2025-12-24 14:34:37.195 | INFO     | src.delivery.upload_routes:upload_file:50 - Successfully processed PDF upload for file_id a8b0b951-8273-4ede-90d4-d686a37cd5ce and activity_id string

@@ -13,25 +13,7 @@ async def upload_file(
     file: UploadFile = File(..., description="The PDF document file to upload and analyze. Only PDF files are accepted."),
     activity_id: Optional[str] = Form(None, description="Activity ID to associate with the upload. If not provided, a new UUID will be generated."),
     file_upload_service: FileUploadDep = None
-) -> Dict[str, Any]:
-    """
-    Upload and process a PDF document file
-    
-    This endpoint accepts only PDF file uploads along with an optional activity ID.
-    Multi-page PDFs will be split into individual pages and stored separately.
-    
-    Args:
-        file: The PDF document file to upload and analyze (must be .pdf extension)
-        activity_id: Optional activity ID. If omitted, a UUID will be auto-generated.
-        file_upload_service: Injected FileUpload service
-        
-    Returns:
-        Dictionary containing status, file_id, file metadata, and processing status
-        
-    Raises:
-        HTTPException: 400 if file is not a PDF
-        HTTPException: 500 if file upload or processing fails
-    """
+):
     try:
         # Validate PDF file
         if not file.filename:
