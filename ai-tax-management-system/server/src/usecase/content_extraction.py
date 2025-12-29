@@ -13,35 +13,14 @@ class ContentExtraction:
         rabbitmq_repo: Optional[RabbitMQRepository] = None,
         minio_storage_repo: Optional[MinioStorageRepository] = None
     ):
-        """
-        Initialize the content extraction usecase
         
-        Args:
-            content_understanding_repo: Repository for Azure AI Content Understanding API
-            azure_blob_storage_repo: Repository for Azure Blob Storage
-            rabbitmq_repo: Optional RabbitMQ repository for messaging (development only)
-            minio_storage_repo: Optional MinIO repository for object storage (development only)
-        """
         self.content_understanding_repo = content_understanding_repo
         self.azure_blob_storage_repo = azure_blob_storage_repo
         self.rabbitmq_repo = rabbitmq_repo
         self.minio_storage_repo = minio_storage_repo
 
     def extract_content(self, file, upload_id: str, original_filename: str) -> Dict[str, Any]:
-        """
-        Extract content from a document by uploading to blob storage and analyzing with Content Understanding API
-        
-        Args:
-            file: File object to extract content from
-            upload_id: ID of the case to associate with the file
-            original_filename: Original name of the file
-            
-        Returns:
-            Dictionary containing the analysis results
-            
-        Raises:
-            Exception: If upload or analysis fails
-        """
+
         try:
             file_info = self.minio_storage_repo.upload_file(
                 file=file, case_id=upload_id, original_filename=original_filename

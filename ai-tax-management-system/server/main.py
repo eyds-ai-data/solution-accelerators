@@ -13,7 +13,8 @@ from src.config.dependencies import (
     get_content_understanding_repository,
     get_azure_blob_storage_repository,
     get_rabbitmq_repository,
-    get_minio_storage_repository
+    get_minio_storage_repository,
+    get_azure_service_bus_repository
 )
 
 from src.common.const import Environment
@@ -21,10 +22,11 @@ from src.common.const import Environment
 
 # Worker function
 async def run_worker():
-    """
-    Background worker for processing tasks
-    """
+
     logger.info("Worker started")
+
+    client = get_azure_service_bus_repository(get_app_config())
+
     try:
         while True:
             # TODO: Implement your worker logic here

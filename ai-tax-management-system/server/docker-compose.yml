@@ -40,6 +40,16 @@ services:
       timeout: 5s
       retries: 5
 
+  tax-svc:
+    build: .
+    ports:
+      - "8000:8000"
+    env_file:
+      - .env
+    volumes:
+      - ./.env:/app/.env:ro
+    restart: unless-stopped
+
 volumes:
   rabbitmq_data:
   minio_data:

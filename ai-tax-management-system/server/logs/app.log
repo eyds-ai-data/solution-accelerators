@@ -960,3 +960,18 @@ nikPembeliKenaPajak
 2025-12-24 14:34:05.394 | INFO     | src.usecase.file_upload:upload:139 - Uploading 1 pages from PDF 7603480352.pdf
 2025-12-24 14:34:09.613 | INFO     | src.repository.storage:upload_file:75 - Uploaded file 7603480352_page_1.pdf for case a8b0b951-8273-4ede-90d4-d686a37cd5ce, blob: string/a8b0b951-8273-4ede-90d4-d686a37cd5ce/7603480352_page_1.pdf
 2025-12-24 14:34:37.195 | INFO     | src.delivery.upload_routes:upload_file:50 - Successfully processed PDF upload for file_id a8b0b951-8273-4ede-90d4-d686a37cd5ce and activity_id string
+2025-12-29 09:01:36.236 | INFO     | __main__:<module>:179 - Starting application in 'http' mode
+2025-12-29 09:02:58.257 | INFO     | src.config.dependencies:get_app_config:32 - Initializing application configuration
+2025-12-29 09:02:58.258 | INFO     | src.config.dependencies:get_content_understanding_repository:54 - Creating ContentUnderstandingRepository singleton
+2025-12-29 09:02:58.258 | INFO     | src.config.dependencies:get_azure_blob_storage_repository:77 - Creating AzureBlobStorageRepository singleton
+2025-12-29 09:02:59.190 | INFO     | src.repository.storage:__init__:21 - Blob container already exists: tax-documents
+2025-12-29 09:02:59.191 | INFO     | src.repository.storage:__init__:25 - Connected to Blob Storage, container: tax-documents
+2025-12-29 09:02:59.192 | INFO     | src.config.dependencies:get_azure_cosmos_repository:101 - Creating AzureCosmosDBRepository singleton
+2025-12-29 09:03:00.702 | INFO     | src.repository.database:__init__:27 - Connected to Cosmos DB database 'tax-management-system', container 'gl-transactions'
+2025-12-29 09:03:00.709 | INFO     | src.delivery.upload_routes:upload_file:40 - Received PDF upload: table (2).pdf with file_id 4052b127-96d3-4ce2-a212-54e39ccaa171 and activity_id string
+2025-12-29 09:03:00.712 | INFO     | src.usecase.file_upload:_split_pdf_pages:80 - Splitting PDF table (2).pdf into 2 pages
+2025-12-29 09:03:00.717 | INFO     | src.usecase.file_upload:_split_pdf_pages:96 - Successfully split table (2).pdf into 2 pages
+2025-12-29 09:03:00.717 | INFO     | src.usecase.file_upload:upload:139 - Uploading 2 pages from PDF table (2).pdf
+2025-12-29 09:03:00.840 | INFO     | src.repository.storage:upload_file:75 - Uploaded file table (2)_page_1.pdf for case 4052b127-96d3-4ce2-a212-54e39ccaa171, blob: string/4052b127-96d3-4ce2-a212-54e39ccaa171/table (2)_page_1.pdf
+2025-12-29 09:03:00.931 | INFO     | src.repository.storage:upload_file:75 - Uploaded file table (2)_page_2.pdf for case 4052b127-96d3-4ce2-a212-54e39ccaa171, blob: string/4052b127-96d3-4ce2-a212-54e39ccaa171/table (2)_page_2.pdf
+2025-12-29 09:03:25.872 | INFO     | src.delivery.upload_routes:upload_file:50 - Successfully processed PDF upload for file_id 4052b127-96d3-4ce2-a212-54e39ccaa171 and activity_id string
