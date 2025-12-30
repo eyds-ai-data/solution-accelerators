@@ -1,6 +1,5 @@
 from typing import Dict, Any, Optional, List
 import asyncio
-import time
 import re
 from src.repository.content_understanding import ContentUnderstandingRepository
 from src.repository.storage import MinioStorageRepository
@@ -172,12 +171,12 @@ class ContentExtraction:
                     # Still processing, wait and retry
                     retry_count += 1
                     logger.debug(f"Analysis still running, retrying... ({retry_count}/{max_retries})")
-                    time.sleep(retry_interval)
+                    await asyncio.sleep(retry_interval)
                     continue
                 else:
                     logger.warning(f"Unknown analysis status: {status}")
                     retry_count += 1
-                    time.sleep(retry_interval)
+                    await asyncio.sleep(retry_interval)
                     continue
                     
             except Exception as e:
@@ -188,6 +187,7 @@ class ContentExtraction:
         raise TimeoutError(f"Analysis did not complete within {max_retries * retry_interval} seconds for request {request_id}")
 
     async def process_documents_in_folder(self, file_id: str) -> List[Dict[str, Any]]:
+        SUPPORTED_EXTENSIONS = {'pdf', 'jpg', 'jpeg', 'png', 'tiff', 'bmp'}
 
         try:
             logger.info(f"Processing documents in folder: {file_id}")
@@ -208,10 +208,9 @@ class ContentExtraction:
                     continue
                 
                 # Check if file is a document (PDF, image, etc.)
-                file_extension = blob_name.split('.')[-1].lower() if '.' in blob_name else ''
-                supported_extensions = ['pdf', 'jpg', 'jpeg', 'png', 'tiff', 'bmp']
+                file_extension = blob_name.rsplit('.', 1)[-1].lower() if '.' in blob_name else ''
                 
-                if file_extension not in supported_extensions:
+                if file_extension not in SUPPORTED_EXTENSIONS:
                     logger.debug(f"Skipping unsupported file type: {blob_name}")
                     continue
                 
@@ -270,6 +269,7 @@ class ContentExtraction:
 
     async def process_message(self, message: Dict[str, Any]) -> None:
         try:
+            # file_id in status
             document_id = message.get("document_id")
             if not document_id:
                 logger.error("Message missing 'document_id'")
@@ -278,6 +278,16 @@ class ContentExtraction:
             logger.info(f"Processing content extraction for document ID: {document_id}")
 
             result = await self.process_documents_in_folder(file_id=document_id)
+
+            self.azure_cosmos_repo.update_document(
+                document_id=document_id,
+                update_data={
+                    "urn": next((res.get('analysis_result', {}).get('urn') for res in result if res.get('analysis_result') and res.get('analysis_result', {}).get('urn')), None),
+                    "status": "completed"
+                },
+                container_id="uploads",
+                partial_update=True
+            )
 
             logger.info(f"Successfully processed content extraction for document ID: {document_id}")
 

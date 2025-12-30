@@ -65,7 +65,7 @@ class AzureCosmosDBRepository:
         except Exception as e:
             raise
 
-    def get_document_by_id(self, document_id: str, partition_key: Optional[str] = None) -> Dict[str, Any]:
+    def get_document_by_id(self, document_id: str, partition_key: Optional[str] = None, container_id: Optional[str] = None) -> Dict[str, Any]:
         """
         Get a specific document by ID
         
@@ -77,8 +77,9 @@ class AzureCosmosDBRepository:
             Retrieved document
         """
         try:
+            container = self.database.get_container_client(container_id) if container_id else self.container
             pk = partition_key if partition_key else document_id
-            item = self.container.read_item(item=document_id, partition_key=pk)
+            item = container.read_item(item=document_id, partition_key=pk)
             logger.info(f"Retrieved document: {document_id}")
             return item
         except exceptions.CosmosResourceNotFoundError:
@@ -169,7 +170,8 @@ class AzureCosmosDBRepository:
         document_id: str, 
         update_data: Dict[str, Any],
         partition_key: Optional[str] = None,
-        partial_update: bool = True
+        partial_update: bool = True,
+        container_id: Optional[str] = None
     ) -> Dict[str, Any]:
         """
         Update an existing document
@@ -184,11 +186,12 @@ class AzureCosmosDBRepository:
             Updated document
         """
         try:
+            container = self.database.get_container_client(container_id) if container_id else self.container
             pk = partition_key if partition_key else document_id
             
             if partial_update:
                 # Get existing document and merge
-                existing = self.get_document_by_id(document_id, partition_key)
+                existing = self.get_document_by_id(document_id, partition_key, container_id)
                 
                 # Update fields (preserve id and created_at)
                 for key, value in update_data.items():
@@ -206,7 +209,7 @@ class AzureCosmosDBRepository:
             # Update timestamp
             document["updated_at"] = datetime.utcnow().isoformat()
             
-            updated = self.container.upsert_item(body=document)
+            updated = container.upsert_item(body=document)
             logger.info(f"Updated document: {document_id}")
             return updated
         except Exception as e:

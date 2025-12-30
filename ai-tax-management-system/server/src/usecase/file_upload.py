@@ -168,8 +168,8 @@ class FileUpload:
             total_size = sum(f["size"] for f in uploaded_files)
             
             upload_result = {
+                "id": file_id,
                 "documentId": file_id,
-                "activityId": activity_id,
                 "originalFilename": original_filename,
                 "totalSize": total_size,
                 "totalPages": len(uploaded_files) if is_pdf and len(uploaded_files) > 1 else 1,
@@ -177,6 +177,7 @@ class FileUpload:
                 "status": "processing"
             }
 
+            # Store upload metadata in database
             self.azure_cosmos_repo.create_document(
                 container_id="uploads",
                 document_data=upload_result
@@ -184,7 +185,15 @@ class FileUpload:
             
             self._send_processing_message(file_id)
             
-            return upload_result
+            # Return as snake_case
+            return {
+                "document_id": upload_result["documentId"],
+                "original_filename": upload_result["originalFilename"],
+                "total_size": upload_result["totalSize"],
+                "total_pages": upload_result["totalPages"],
+                "uploaded_files": upload_result["uploadedFiles"],
+                "status": upload_result["status"]
+            }
         
         except Exception as e:
             logger.error(f"Error uploading file {original_filename}: {e}")
