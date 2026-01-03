@@ -10547,3 +10547,180 @@ Message: Entity with the specified id does not exist in the system. More info: h
 2026-01-01 22:42:06.033 | INFO     | src.usecase.content_extraction:process_documents_in_folder:251 - Analysis initiated for ffc26089-d86e-4e3f-9c30-1dd0046f66ad/7603475539_1.pdf, request ID: 5dad7e8c-7b39-48fa-bbcf-3b0a51d7fc70
 2026-01-01 22:42:17.556 | INFO     | src.usecase.content_extraction:_wait_for_analysis_result:117 - Analysis completed successfully: 5dad7e8c-7b39-48fa-bbcf-3b0a51d7fc70
 2026-01-01 22:42:17.558 | INFO     | src.usecase.content_extraction:_extract_urn_from_content:74 - Extracted URN from content: 7603475539
+2026-01-02 10:43:28.894 | INFO     | __main__:<module>:246 - Starting application in 'http' mode
+2026-01-02 13:23:54.742 | INFO     | __main__:<module>:246 - Starting application in 'http' mode
+2026-01-02 13:38:34.295 | INFO     | src.config.dependencies:get_app_config:35 - Initializing application configuration
+2026-01-02 13:38:34.295 | INFO     | src.config.dependencies:get_content_understanding_repository:57 - Creating ContentUnderstandingRepository singleton
+2026-01-02 13:38:34.295 | INFO     | src.config.dependencies:get_azure_blob_storage_repository:80 - Creating AzureBlobStorageRepository singleton
+2026-01-02 13:38:35.095 | INFO     | src.repository.storage:__init__:21 - Blob container already exists: tax-documents
+2026-01-02 13:38:35.095 | INFO     | src.repository.storage:__init__:25 - Connected to Blob Storage, container: tax-documents
+2026-01-02 13:38:35.095 | INFO     | src.config.dependencies:get_azure_cosmos_repository:104 - Creating AzureCosmosDBRepository singleton
+2026-01-02 13:38:36.467 | INFO     | src.repository.database:__init__:27 - Connected to Cosmos DB database 'tax-management-system', container 'gl-transactions'
+2026-01-02 13:38:36.467 | INFO     | src.config.dependencies:get_azure_service_bus_repository:188 - Creating AzureServiceBusRepository singleton
+2026-01-02 13:38:36.479 | ERROR    | src.delivery.upload_routes:upload_file:111 - Error uploading file: cannot access local variable 'activity_id' where it is not associated with a value
+2026-01-02 13:39:03.405 | INFO     | src.config.dependencies:get_azure_service_bus_repository:188 - Creating AzureServiceBusRepository singleton
+2026-01-02 13:39:07.911 | ERROR    | src.delivery.upload_routes:upload_file:111 - Error uploading file: cannot access local variable 'activity_id' where it is not associated with a value
+2026-01-02 13:41:11.903 | INFO     | __main__:<module>:246 - Starting application in 'http' mode
+2026-01-02 14:08:32.164 | INFO     | src.config.dependencies:get_app_config:35 - Initializing application configuration
+2026-01-02 14:08:32.164 | INFO     | src.config.dependencies:get_content_understanding_repository:57 - Creating ContentUnderstandingRepository singleton
+2026-01-02 14:08:32.164 | INFO     | src.config.dependencies:get_azure_blob_storage_repository:80 - Creating AzureBlobStorageRepository singleton
+2026-01-02 14:08:32.808 | INFO     | src.repository.storage:__init__:21 - Blob container already exists: tax-documents
+2026-01-02 14:08:32.808 | INFO     | src.repository.storage:__init__:25 - Connected to Blob Storage, container: tax-documents
+2026-01-02 14:08:32.808 | INFO     | src.config.dependencies:get_azure_cosmos_repository:104 - Creating AzureCosmosDBRepository singleton
+2026-01-02 14:08:34.069 | INFO     | src.repository.database:__init__:27 - Connected to Cosmos DB database 'tax-management-system', container 'gl-transactions'
+2026-01-02 14:08:34.074 | INFO     | src.config.dependencies:get_azure_service_bus_repository:188 - Creating AzureServiceBusRepository singleton
+2026-01-02 14:09:14.471 | INFO     | src.usecase.gl_upload:_read_xlsx_rows:183 - XLSX headers: [None, None, None, None, None, None, None, None, None, None, None, None, None, None, None]
+2026-01-02 14:09:59.755 | INFO     | src.usecase.gl_upload:_read_xlsx_rows:194 - Successfully read 561 rows from XLSX file
+2026-01-02 14:09:59.755 | INFO     | src.usecase.gl_upload:upload:154 - Read 561 rows from MOI - Sampling Documents + Update Tax Rate FY2025.xlsx
+2026-01-02 14:10:51.646 | INFO     | src.config.dependencies:get_azure_service_bus_repository:188 - Creating AzureServiceBusRepository singleton
+2026-01-02 14:11:02.164 | INFO     | src.usecase.gl_upload:_read_xlsx_rows:183 - XLSX headers: [None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None]
+2026-01-02 14:11:49.811 | INFO     | src.usecase.gl_upload:_read_xlsx_rows:194 - Successfully read 18 rows from XLSX file
+2026-01-02 14:11:49.811 | INFO     | src.usecase.gl_upload:upload:154 - Read 18 rows from testing_gl.xlsx
+2026-01-02 14:18:54.103 | INFO     | __main__:<module>:246 - Starting application in 'http' mode
+2026-01-02 14:19:08.347 | INFO     | src.config.dependencies:get_app_config:35 - Initializing application configuration
+2026-01-02 14:19:08.348 | INFO     | src.config.dependencies:get_content_understanding_repository:57 - Creating ContentUnderstandingRepository singleton
+2026-01-02 14:19:08.349 | INFO     | src.config.dependencies:get_azure_blob_storage_repository:80 - Creating AzureBlobStorageRepository singleton
+2026-01-02 14:19:09.053 | INFO     | src.repository.storage:__init__:21 - Blob container already exists: tax-documents
+2026-01-02 14:19:09.053 | INFO     | src.repository.storage:__init__:25 - Connected to Blob Storage, container: tax-documents
+2026-01-02 14:19:09.053 | INFO     | src.config.dependencies:get_azure_cosmos_repository:104 - Creating AzureCosmosDBRepository singleton
+2026-01-02 14:19:10.236 | INFO     | src.repository.database:__init__:27 - Connected to Cosmos DB database 'tax-management-system', container 'gl-transactions'
+2026-01-02 14:19:10.249 | INFO     | src.config.dependencies:get_azure_service_bus_repository:188 - Creating AzureServiceBusRepository singleton
+2026-01-02 14:19:21.650 | INFO     | src.usecase.gl_upload:_read_xlsx_rows:183 - XLSX headers: [None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None, None]
+2026-01-02 14:20:55.082 | INFO     | src.usecase.gl_upload:_read_xlsx_rows:194 - Successfully read 16 rows from XLSX file
+2026-01-02 14:20:55.082 | INFO     | src.usecase.gl_upload:upload:154 - Read 16 rows from testing_gl.xlsx
+2026-01-02 14:42:55.742 | INFO     | __main__:<module>:246 - Starting application in 'http' mode
+2026-01-02 14:46:34.934 | INFO     | src.config.dependencies:get_app_config:35 - Initializing application configuration
+2026-01-02 14:46:34.938 | INFO     | src.config.dependencies:get_content_understanding_repository:57 - Creating ContentUnderstandingRepository singleton
+2026-01-02 14:46:34.938 | INFO     | src.config.dependencies:get_azure_blob_storage_repository:80 - Creating AzureBlobStorageRepository singleton
+2026-01-02 14:46:35.621 | INFO     | src.repository.storage:__init__:21 - Blob container already exists: tax-documents
+2026-01-02 14:46:35.621 | INFO     | src.repository.storage:__init__:25 - Connected to Blob Storage, container: tax-documents
+2026-01-02 14:46:35.630 | INFO     | src.config.dependencies:get_azure_cosmos_repository:104 - Creating AzureCosmosDBRepository singleton
+2026-01-02 14:46:36.904 | INFO     | src.repository.database:__init__:27 - Connected to Cosmos DB database 'tax-management-system', container 'gl-transactions'
+2026-01-02 14:46:36.912 | INFO     | src.config.dependencies:get_azure_service_bus_repository:188 - Creating AzureServiceBusRepository singleton
+2026-01-02 14:46:45.003 | INFO     | src.usecase.gl_upload:_read_xlsx_rows:183 - XLSX headers: ['CoCd', 'G/L', 'Year/month', 'Type', 'Reference', 'DocumentNo', 'Supplier', 'Supplier Name', 'PO Number', 'Tax Based', 'WHT', 'Tax Rate ', 'URN', 'User Name', 'Text', 'Clrng doc.', 'Doc. Date', 'Pstng Date', 'Doc Curr', 'Amount in doc. curr.', 'Loc Curr', 'Amount in \nlocal cur.', None, 'Ref', 'WHT Review', '1st Voucing', '2nd Reviewer', 'Type of Tax', 'Document Type', 'Vendor Name', 'Tax ID', 'Address', 'Invoice Number', 'Invoice Date / \nDocument date', 'invoice date (text)', 'Posting date', 'Doc Curr', 'Gross Amount\nin original currency per GL', 'Tax Base WHT (IDR)\nNormal', 'Rate', 'WHT\nNormal', 'Client GL', 'Diff\nNormal', 'Remarks', 'Kode BP', 'WHT Slip No.', None, 'Description on Invoice', 'Description on Tax Invoice']
+2026-01-02 14:47:15.043 | INFO     | src.usecase.gl_upload:_read_xlsx_rows:196 - Successfully read 10 rows from XLSX file
+2026-01-02 14:47:15.044 | INFO     | src.usecase.gl_upload:upload:154 - Read 10 rows from testing_gl.xlsx
+2026-01-02 16:50:34.180 | INFO     | __main__:<module>:246 - Starting application in 'http' mode
+2026-01-02 16:52:34.503 | INFO     | src.config.dependencies:get_app_config:35 - Initializing application configuration
+2026-01-02 16:52:34.505 | INFO     | src.config.dependencies:get_content_understanding_repository:57 - Creating ContentUnderstandingRepository singleton
+2026-01-02 16:52:34.506 | INFO     | src.config.dependencies:get_azure_blob_storage_repository:80 - Creating AzureBlobStorageRepository singleton
+2026-01-02 16:52:35.271 | INFO     | src.repository.storage:__init__:21 - Blob container already exists: tax-documents
+2026-01-02 16:52:35.272 | INFO     | src.repository.storage:__init__:25 - Connected to Blob Storage, container: tax-documents
+2026-01-02 16:52:35.273 | INFO     | src.config.dependencies:get_azure_cosmos_repository:104 - Creating AzureCosmosDBRepository singleton
+2026-01-02 16:52:47.662 | INFO     | src.repository.database:__init__:27 - Connected to Cosmos DB database 'tax-management-system', container 'gl-transactions'
+2026-01-02 16:52:47.669 | INFO     | src.config.dependencies:get_azure_service_bus_repository:188 - Creating AzureServiceBusRepository singleton
+2026-01-02 16:53:01.407 | INFO     | src.usecase.gl_upload:_read_xlsx_rows:192 - XLSX headers: ['CoCd', 'G/L', 'Year/month', 'Type', 'Reference', 'DocumentNo', 'Supplier', 'Supplier Name', 'PO Number', 'Tax Based', 'WHT', 'Tax Rate ', 'URN', 'User Name', 'Text', 'Clrng doc.', 'Doc. Date', 'Pstng Date', 'Doc Curr', 'Amount in doc. curr.', 'Loc Curr', 'Amount in \nlocal cur.', None, 'Ref', 'WHT Review', '1st Voucing', '2nd Reviewer', 'Type of Tax', 'Document Type', 'Vendor Name', 'Tax ID', 'Address', 'Invoice Number', 'Invoice Date / \nDocument date', 'invoice date (text)', 'Posting date', 'Doc Curr', 'Gross Amount\nin original currency per GL', 'Tax Base WHT (IDR)\nNormal', 'Rate', 'WHT\nNormal', 'Client GL', 'Diff\nNormal', 'Remarks', 'Kode BP', 'WHT Slip No.', None, 'Description on Invoice', 'Description on Tax Invoice']
+2026-01-02 16:56:29.450 | INFO     | src.usecase.gl_upload:_read_xlsx_rows:218 - Successfully read 10 rows from XLSX file
+2026-01-02 16:56:29.450 | INFO     | src.usecase.gl_upload:upload:163 - Read 10 rows from testing_gl.xlsx
+2026-01-02 17:03:32.898 | INFO     | __main__:<module>:246 - Starting application in 'http' mode
+2026-01-03 15:36:31.285 | INFO     | src.config.dependencies:get_app_config:35 - Initializing application configuration
+2026-01-03 15:36:31.285 | INFO     | src.config.dependencies:get_content_understanding_repository:57 - Creating ContentUnderstandingRepository singleton
+2026-01-03 15:36:31.285 | INFO     | src.config.dependencies:get_azure_blob_storage_repository:80 - Creating AzureBlobStorageRepository singleton
+2026-01-03 15:36:33.063 | INFO     | src.repository.storage:__init__:21 - Blob container already exists: tax-documents
+2026-01-03 15:36:33.063 | INFO     | src.repository.storage:__init__:25 - Connected to Blob Storage, container: tax-documents
+2026-01-03 15:36:33.063 | INFO     | src.config.dependencies:get_azure_cosmos_repository:104 - Creating AzureCosmosDBRepository singleton
+2026-01-03 15:36:34.773 | INFO     | src.repository.database:__init__:27 - Connected to Cosmos DB database 'tax-management-system', container 'gl-transactions'
+2026-01-03 15:36:34.779 | INFO     | src.config.dependencies:get_azure_service_bus_repository:188 - Creating AzureServiceBusRepository singleton
+2026-01-03 15:36:35.252 | INFO     | src.usecase.gl_upload:_read_xlsx_rows:192 - XLSX headers: ['CoCd', 'G/L', 'Year/month', 'Type', 'Reference', 'DocumentNo', 'Supplier', 'Supplier Name', 'PO Number', 'Tax Based', 'WHT', 'Tax Rate ', 'URN', 'User Name', 'Text', 'Clrng doc.', 'Doc. Date', 'Pstng Date', 'Doc Curr', 'Amount in doc. curr.', 'Loc Curr', 'Amount in \nlocal cur.', None, 'Ref', 'WHT Review', '1st Voucing', '2nd Reviewer', 'Type of Tax', 'Document Type', 'Vendor Name', 'Tax ID', 'Address', 'Invoice Number', 'Invoice Date / \nDocument date', 'invoice date (text)', 'Posting date', 'Doc Curr', 'Gross Amount\nin original currency per GL', 'Tax Base WHT (IDR)\nNormal', 'Rate', 'WHT\nNormal', 'Client GL', 'Diff\nNormal', 'Remarks', 'Kode BP', 'WHT Slip No.', None, 'Description on Invoice', 'Description on Tax Invoice']
+2026-01-03 15:44:11.397 | INFO     | src.usecase.gl_upload:_read_xlsx_rows:222 - Successfully read 10 rows from XLSX file
+2026-01-03 15:44:11.397 | INFO     | src.usecase.gl_upload:upload:163 - Read 10 rows from testing_gl.xlsx
+2026-01-03 15:44:16.960 | INFO     | src.config.dependencies:get_azure_service_bus_repository:188 - Creating AzureServiceBusRepository singleton
+2026-01-03 15:44:17.475 | INFO     | src.usecase.gl_upload:_read_xlsx_rows:192 - XLSX headers: ['CoCd', 'G/L', 'Year/month', 'Type', 'Reference', 'DocumentNo', 'Supplier', 'Supplier Name', 'PO Number', 'Tax Based', 'WHT', 'Tax Rate ', 'URN', 'User Name', 'Text', 'Clrng doc.', 'Doc. Date', 'Pstng Date', 'Doc Curr', 'Amount in doc. curr.', 'Loc Curr', 'Amount in \nlocal cur.', None, 'Ref', 'WHT Review', '1st Voucing', '2nd Reviewer', 'Type of Tax', 'Document Type', 'Vendor Name', 'Tax ID', 'Address', 'Invoice Number', 'Invoice Date / \nDocument date', 'invoice date (text)', 'Posting date', 'Doc Curr', 'Gross Amount\nin original currency per GL', 'Tax Base WHT (IDR)\nNormal', 'Rate', 'WHT\nNormal', 'Client GL', 'Diff\nNormal', 'Remarks', 'Kode BP', 'WHT Slip No.', None, 'Description on Invoice', 'Description on Tax Invoice']
+2026-01-03 15:44:36.876 | INFO     | src.usecase.gl_upload:_read_xlsx_rows:222 - Successfully read 10 rows from XLSX file
+2026-01-03 15:44:36.876 | INFO     | src.usecase.gl_upload:upload:163 - Read 10 rows from testing_gl.xlsx
+2026-01-03 15:44:44.564 | INFO     | src.config.dependencies:get_azure_service_bus_repository:188 - Creating AzureServiceBusRepository singleton
+2026-01-03 15:44:44.854 | INFO     | src.usecase.gl_upload:_read_xlsx_rows:192 - XLSX headers: ['CoCd', 'G/L', 'Year/month', 'Type', 'Reference', 'DocumentNo', 'Supplier', 'Supplier Name', 'PO Number', 'Tax Based', 'WHT', 'Tax Rate ', 'URN', 'User Name', 'Text', 'Clrng doc.', 'Doc. Date', 'Pstng Date', 'Doc Curr', 'Amount in doc. curr.', 'Loc Curr', 'Amount in \nlocal cur.', None, 'Ref', 'WHT Review', '1st Voucing', '2nd Reviewer', 'Type of Tax', 'Document Type', 'Vendor Name', 'Tax ID', 'Address', 'Invoice Number', 'Invoice Date / \nDocument date', 'invoice date (text)', 'Posting date', 'Doc Curr', 'Gross Amount\nin original currency per GL', 'Tax Base WHT (IDR)\nNormal', 'Rate', 'WHT\nNormal', 'Client GL', 'Diff\nNormal', 'Remarks', 'Kode BP', 'WHT Slip No.', None, 'Description on Invoice', 'Description on Tax Invoice']
+2026-01-03 15:52:34.539 | INFO     | src.usecase.gl_upload:_read_xlsx_rows:222 - Successfully read 10 rows from XLSX file
+2026-01-03 15:52:34.539 | INFO     | src.usecase.gl_upload:upload:163 - Read 10 rows from testing_gl.xlsx
+2026-01-03 15:53:36.015 | INFO     | __main__:<module>:246 - Starting application in 'http' mode
+2026-01-03 15:53:55.132 | INFO     | src.config.dependencies:get_app_config:35 - Initializing application configuration
+2026-01-03 15:53:55.133 | INFO     | src.config.dependencies:get_content_understanding_repository:57 - Creating ContentUnderstandingRepository singleton
+2026-01-03 15:53:55.134 | INFO     | src.config.dependencies:get_azure_blob_storage_repository:80 - Creating AzureBlobStorageRepository singleton
+2026-01-03 15:53:55.964 | INFO     | src.repository.storage:__init__:21 - Blob container already exists: tax-documents
+2026-01-03 15:53:55.965 | INFO     | src.repository.storage:__init__:25 - Connected to Blob Storage, container: tax-documents
+2026-01-03 15:53:55.966 | INFO     | src.config.dependencies:get_azure_cosmos_repository:104 - Creating AzureCosmosDBRepository singleton
+2026-01-03 15:53:57.262 | INFO     | src.repository.database:__init__:27 - Connected to Cosmos DB database 'tax-management-system', container 'gl-transactions'
+2026-01-03 15:53:57.265 | INFO     | src.config.dependencies:get_azure_service_bus_repository:188 - Creating AzureServiceBusRepository singleton
+2026-01-03 15:53:57.540 | INFO     | src.usecase.gl_upload:_read_xlsx_rows:192 - XLSX headers: ['CoCd', 'G/L', 'Year/month', 'Type', 'Reference', 'DocumentNo', 'Supplier', 'Supplier Name', 'PO Number', 'Tax Based', 'WHT', 'Tax Rate ', 'URN', 'User Name', 'Text', 'Clrng doc.', 'Doc. Date', 'Pstng Date', 'Doc Curr', 'Amount in doc. curr.', 'Loc Curr', 'Amount in \nlocal cur.', None, 'Ref', 'WHT Review', '1st Voucing', '2nd Reviewer', 'Type of Tax', 'Document Type', 'Vendor Name', 'Tax ID', 'Address', 'Invoice Number', 'Invoice Date / \nDocument date', 'invoice date (text)', 'Posting date', 'Doc Curr', 'Gross Amount\nin original currency per GL', 'Tax Base WHT (IDR)\nNormal', 'Rate', 'WHT\nNormal', 'Client GL', 'Diff\nNormal', 'Remarks', 'Kode BP', 'WHT Slip No.', None, 'Description on Invoice', 'Description on Tax Invoice']
+2026-01-03 15:53:57.543 | INFO     | src.usecase.gl_upload:_read_xlsx_rows:222 - Successfully read 10 rows from XLSX file
+2026-01-03 15:53:57.543 | INFO     | src.usecase.gl_upload:upload:163 - Read 10 rows from testing_gl.xlsx
+2026-01-03 15:54:06.912 | INFO     | src.config.dependencies:get_azure_service_bus_repository:188 - Creating AzureServiceBusRepository singleton
+2026-01-03 15:54:07.222 | INFO     | src.usecase.gl_upload:_read_xlsx_rows:192 - XLSX headers: ['CoCd', 'G/L', 'Year/month', 'Type', 'Reference', 'DocumentNo', 'Supplier', 'Supplier Name', 'PO Number', 'Tax Based', 'WHT', 'Tax Rate ', 'URN', 'User Name', 'Text', 'Clrng doc.', 'Doc. Date', 'Pstng Date', 'Doc Curr', 'Amount in doc. curr.', 'Loc Curr', 'Amount in \nlocal cur.', None, 'Ref', 'WHT Review', '1st Voucing', '2nd Reviewer', 'Type of Tax', 'Document Type', 'Vendor Name', 'Tax ID', 'Address', 'Invoice Number', 'Invoice Date / \nDocument date', 'invoice date (text)', 'Posting date', 'Doc Curr', 'Gross Amount\nin original currency per GL', 'Tax Base WHT (IDR)\nNormal', 'Rate', 'WHT\nNormal', 'Client GL', 'Diff\nNormal', 'Remarks', 'Kode BP', 'WHT Slip No.', None, 'Description on Invoice', 'Description on Tax Invoice']
+2026-01-03 16:08:30.647 | INFO     | __main__:<module>:246 - Starting application in 'http' mode
+2026-01-03 16:09:12.249 | INFO     | src.config.dependencies:get_app_config:35 - Initializing application configuration
+2026-01-03 16:09:12.249 | INFO     | src.config.dependencies:get_content_understanding_repository:57 - Creating ContentUnderstandingRepository singleton
+2026-01-03 16:09:12.252 | INFO     | src.config.dependencies:get_azure_blob_storage_repository:80 - Creating AzureBlobStorageRepository singleton
+2026-01-03 16:09:13.182 | INFO     | src.repository.storage:__init__:21 - Blob container already exists: tax-documents
+2026-01-03 16:09:13.186 | INFO     | src.repository.storage:__init__:25 - Connected to Blob Storage, container: tax-documents
+2026-01-03 16:09:13.186 | INFO     | src.config.dependencies:get_azure_cosmos_repository:104 - Creating AzureCosmosDBRepository singleton
+2026-01-03 16:09:14.674 | INFO     | src.repository.database:__init__:27 - Connected to Cosmos DB database 'tax-management-system', container 'gl-transactions'
+2026-01-03 16:09:14.679 | INFO     | src.config.dependencies:get_azure_service_bus_repository:188 - Creating AzureServiceBusRepository singleton
+2026-01-03 16:09:15.155 | INFO     | src.usecase.gl_upload:_read_xlsx_rows:197 - XLSX headers: ['CoCd', 'G/L', 'Year/month', 'Type', 'Reference', 'DocumentNo', 'Supplier', 'Supplier Name', 'PO Number', 'Tax Based', 'WHT', 'Tax Rate ', 'URN', 'User Name', 'Text', 'Clrng doc.', 'Doc. Date', 'Pstng Date', 'Doc Curr', 'Amount in doc. curr.', 'Loc Curr', 'Amount in \nlocal cur.', None, 'Ref', 'WHT Review', '1st Voucing', '2nd Reviewer', 'Type of Tax', 'Document Type', 'Vendor Name', 'Tax ID', 'Address', 'Invoice Number', 'Invoice Date / \nDocument date', 'invoice date (text)', 'Posting date', 'Doc Curr', 'Gross Amount\nin original currency per GL', 'Tax Base WHT (IDR)\nNormal', 'Rate', 'WHT\nNormal', 'Client GL', 'Diff\nNormal', 'Remarks', 'Kode BP', 'WHT Slip No.', None, 'Description on Invoice', 'Description on Tax Invoice']
+2026-01-03 16:30:52.866 | INFO     | __main__:<module>:246 - Starting application in 'http' mode
+2026-01-03 16:31:00.502 | INFO     | src.config.dependencies:get_app_config:35 - Initializing application configuration
+2026-01-03 16:31:00.503 | INFO     | src.config.dependencies:get_content_understanding_repository:57 - Creating ContentUnderstandingRepository singleton
+2026-01-03 16:31:00.505 | INFO     | src.config.dependencies:get_azure_blob_storage_repository:80 - Creating AzureBlobStorageRepository singleton
+2026-01-03 16:31:01.344 | INFO     | src.repository.storage:__init__:21 - Blob container already exists: tax-documents
+2026-01-03 16:31:01.345 | INFO     | src.repository.storage:__init__:25 - Connected to Blob Storage, container: tax-documents
+2026-01-03 16:31:01.346 | INFO     | src.config.dependencies:get_azure_cosmos_repository:104 - Creating AzureCosmosDBRepository singleton
+2026-01-03 16:31:02.647 | INFO     | src.repository.database:__init__:27 - Connected to Cosmos DB database 'tax-management-system', container 'gl-transactions'
+2026-01-03 16:31:02.658 | INFO     | src.config.dependencies:get_azure_service_bus_repository:188 - Creating AzureServiceBusRepository singleton
+2026-01-03 16:31:03.130 | INFO     | src.usecase.gl_upload:_read_xlsx_rows:197 - XLSX headers: ['CoCd', 'G/L', 'Year/month', 'Type', 'Reference', 'DocumentNo', 'Supplier', 'Supplier Name', 'PO Number', 'Tax Based', 'WHT', 'Tax Rate ', 'URN', 'User Name', 'Text', 'Clrng doc.', 'Doc. Date', 'Pstng Date', 'Doc Curr', 'Amount in doc. curr.', 'Loc Curr', 'Amount in \nlocal cur.', None, 'Ref', 'WHT Review', '1st Voucing', '2nd Reviewer', 'Type of Tax', 'Document Type', 'Vendor Name', 'Tax ID', 'Address', 'Invoice Number', 'Invoice Date / \nDocument date', 'invoice date (text)', 'Posting date', 'Doc Curr', 'Gross Amount\nin original currency per GL', 'Tax Base WHT (IDR)\nNormal', 'Rate', 'WHT\nNormal', 'Client GL', 'Diff\nNormal', 'Remarks', 'Kode BP', 'WHT Slip No.', None, 'Description on Invoice', 'Description on Tax Invoice']
+2026-01-03 16:31:03.130 | INFO     | src.usecase.gl_upload:_read_xlsx_rows:227 - Successfully read 10 rows from XLSX file
+2026-01-03 16:31:03.130 | INFO     | src.usecase.gl_upload:upload:168 - Read 10 rows from testing_gl.xlsx
+2026-01-03 16:34:47.657 | INFO     | __main__:<module>:246 - Starting application in 'http' mode
+2026-01-03 16:36:48.077 | INFO     | src.config.dependencies:get_app_config:35 - Initializing application configuration
+2026-01-03 16:36:48.092 | INFO     | src.config.dependencies:get_content_understanding_repository:57 - Creating ContentUnderstandingRepository singleton
+2026-01-03 16:36:48.093 | INFO     | src.config.dependencies:get_azure_blob_storage_repository:80 - Creating AzureBlobStorageRepository singleton
+2026-01-03 16:36:48.793 | INFO     | src.repository.storage:__init__:21 - Blob container already exists: tax-documents
+2026-01-03 16:36:48.793 | INFO     | src.repository.storage:__init__:25 - Connected to Blob Storage, container: tax-documents
+2026-01-03 16:36:48.793 | INFO     | src.config.dependencies:get_azure_cosmos_repository:104 - Creating AzureCosmosDBRepository singleton
+2026-01-03 16:36:50.109 | INFO     | src.repository.database:__init__:27 - Connected to Cosmos DB database 'tax-management-system', container 'gl-transactions'
+2026-01-03 16:36:50.125 | INFO     | src.config.dependencies:get_azure_service_bus_repository:188 - Creating AzureServiceBusRepository singleton
+2026-01-03 16:36:50.609 | INFO     | src.usecase.gl_upload:_read_xlsx_rows:197 - XLSX headers: ['CoCd', 'G/L', 'Year/month', 'Type', 'Reference', 'DocumentNo', 'Supplier', 'Supplier Name', 'PO Number', 'Tax Based', 'WHT', 'Tax Rate ', 'URN', 'User Name', 'Text', 'Clrng doc.', 'Doc. Date', 'Pstng Date', 'Doc Curr', 'Amount in doc. curr.', 'Loc Curr', 'Amount in \nlocal cur.', None, 'Ref', 'WHT Review', '1st Voucing', '2nd Reviewer', 'Type of Tax', 'Document Type', 'Vendor Name', 'Tax ID', 'Address', 'Invoice Number', 'Invoice Date / \nDocument date', 'invoice date (text)', 'Posting date', 'Doc Curr', 'Gross Amount\nin original currency per GL', 'Tax Base WHT (IDR)\nNormal', 'Rate', 'WHT\nNormal', 'Client GL', 'Diff\nNormal', 'Remarks', 'Kode BP', 'WHT Slip No.', None, 'Description on Invoice', 'Description on Tax Invoice']
+2026-01-03 16:36:50.609 | INFO     | src.usecase.gl_upload:_read_xlsx_rows:227 - Successfully read 10 rows from XLSX file
+2026-01-03 16:36:50.609 | INFO     | src.usecase.gl_upload:upload:168 - Read 10 rows from testing_gl.xlsx
+2026-01-03 16:38:54.446 | INFO     | src.config.dependencies:get_azure_service_bus_repository:188 - Creating AzureServiceBusRepository singleton
+2026-01-03 16:38:54.448 | INFO     | src.delivery.upload_routes:upload_file:40 - Received PDF upload: 7603475539.pdf with file_id 7f151de6-d093-4cd4-81b6-0e991fece452 and activity_id 9966df30-8487-4917-a1f7-28944d4e4d76
+2026-01-03 16:38:54.510 | INFO     | src.usecase.file_upload:_split_pdf_pages:81 - Splitting PDF 7603475539.pdf into 37 pages
+2026-01-03 16:38:54.549 | INFO     | src.usecase.file_upload:_split_pdf_pages:97 - Successfully split 7603475539.pdf into 37 pages
+2026-01-03 16:38:54.550 | INFO     | src.usecase.file_upload:upload:140 - Uploading 37 pages from PDF 7603475539.pdf
+2026-01-03 16:38:54.697 | INFO     | src.repository.storage:upload_file:75 - Uploaded file 7603475539_1.pdf for case 7f151de6-d093-4cd4-81b6-0e991fece452, blob: 7f151de6-d093-4cd4-81b6-0e991fece452/7603475539_1.pdf
+2026-01-03 16:38:54.810 | INFO     | src.repository.storage:upload_file:75 - Uploaded file 7603475539_2.pdf for case 7f151de6-d093-4cd4-81b6-0e991fece452, blob: 7f151de6-d093-4cd4-81b6-0e991fece452/7603475539_2.pdf
+2026-01-03 16:38:54.911 | INFO     | src.repository.storage:upload_file:75 - Uploaded file 7603475539_3.pdf for case 7f151de6-d093-4cd4-81b6-0e991fece452, blob: 7f151de6-d093-4cd4-81b6-0e991fece452/7603475539_3.pdf
+2026-01-03 16:38:55.012 | INFO     | src.repository.storage:upload_file:75 - Uploaded file 7603475539_4.pdf for case 7f151de6-d093-4cd4-81b6-0e991fece452, blob: 7f151de6-d093-4cd4-81b6-0e991fece452/7603475539_4.pdf
+2026-01-03 16:38:55.113 | INFO     | src.repository.storage:upload_file:75 - Uploaded file 7603475539_5.pdf for case 7f151de6-d093-4cd4-81b6-0e991fece452, blob: 7f151de6-d093-4cd4-81b6-0e991fece452/7603475539_5.pdf
+2026-01-03 16:38:55.221 | INFO     | src.repository.storage:upload_file:75 - Uploaded file 7603475539_6.pdf for case 7f151de6-d093-4cd4-81b6-0e991fece452, blob: 7f151de6-d093-4cd4-81b6-0e991fece452/7603475539_6.pdf
+2026-01-03 16:38:55.323 | INFO     | src.repository.storage:upload_file:75 - Uploaded file 7603475539_7.pdf for case 7f151de6-d093-4cd4-81b6-0e991fece452, blob: 7f151de6-d093-4cd4-81b6-0e991fece452/7603475539_7.pdf
+2026-01-03 16:38:55.420 | INFO     | src.repository.storage:upload_file:75 - Uploaded file 7603475539_8.pdf for case 7f151de6-d093-4cd4-81b6-0e991fece452, blob: 7f151de6-d093-4cd4-81b6-0e991fece452/7603475539_8.pdf
+2026-01-03 16:38:55.519 | INFO     | src.repository.storage:upload_file:75 - Uploaded file 7603475539_9.pdf for case 7f151de6-d093-4cd4-81b6-0e991fece452, blob: 7f151de6-d093-4cd4-81b6-0e991fece452/7603475539_9.pdf
+2026-01-03 16:38:55.613 | INFO     | src.repository.storage:upload_file:75 - Uploaded file 7603475539_10.pdf for case 7f151de6-d093-4cd4-81b6-0e991fece452, blob: 7f151de6-d093-4cd4-81b6-0e991fece452/7603475539_10.pdf
+2026-01-03 16:38:55.710 | INFO     | src.repository.storage:upload_file:75 - Uploaded file 7603475539_11.pdf for case 7f151de6-d093-4cd4-81b6-0e991fece452, blob: 7f151de6-d093-4cd4-81b6-0e991fece452/7603475539_11.pdf
+2026-01-03 16:38:55.812 | INFO     | src.repository.storage:upload_file:75 - Uploaded file 7603475539_12.pdf for case 7f151de6-d093-4cd4-81b6-0e991fece452, blob: 7f151de6-d093-4cd4-81b6-0e991fece452/7603475539_12.pdf
+2026-01-03 16:38:55.921 | INFO     | src.repository.storage:upload_file:75 - Uploaded file 7603475539_13.pdf for case 7f151de6-d093-4cd4-81b6-0e991fece452, blob: 7f151de6-d093-4cd4-81b6-0e991fece452/7603475539_13.pdf
+2026-01-03 16:38:56.019 | INFO     | src.repository.storage:upload_file:75 - Uploaded file 7603475539_14.pdf for case 7f151de6-d093-4cd4-81b6-0e991fece452, blob: 7f151de6-d093-4cd4-81b6-0e991fece452/7603475539_14.pdf
+2026-01-03 16:38:56.121 | INFO     | src.repository.storage:upload_file:75 - Uploaded file 7603475539_15.pdf for case 7f151de6-d093-4cd4-81b6-0e991fece452, blob: 7f151de6-d093-4cd4-81b6-0e991fece452/7603475539_15.pdf
+2026-01-03 16:38:56.241 | INFO     | src.repository.storage:upload_file:75 - Uploaded file 7603475539_16.pdf for case 7f151de6-d093-4cd4-81b6-0e991fece452, blob: 7f151de6-d093-4cd4-81b6-0e991fece452/7603475539_16.pdf
+2026-01-03 16:38:56.345 | INFO     | src.repository.storage:upload_file:75 - Uploaded file 7603475539_17.pdf for case 7f151de6-d093-4cd4-81b6-0e991fece452, blob: 7f151de6-d093-4cd4-81b6-0e991fece452/7603475539_17.pdf
+2026-01-03 16:38:56.447 | INFO     | src.repository.storage:upload_file:75 - Uploaded file 7603475539_18.pdf for case 7f151de6-d093-4cd4-81b6-0e991fece452, blob: 7f151de6-d093-4cd4-81b6-0e991fece452/7603475539_18.pdf
+2026-01-03 16:38:56.557 | INFO     | src.repository.storage:upload_file:75 - Uploaded file 7603475539_19.pdf for case 7f151de6-d093-4cd4-81b6-0e991fece452, blob: 7f151de6-d093-4cd4-81b6-0e991fece452/7603475539_19.pdf
+2026-01-03 16:38:56.719 | INFO     | src.repository.storage:upload_file:75 - Uploaded file 7603475539_20.pdf for case 7f151de6-d093-4cd4-81b6-0e991fece452, blob: 7f151de6-d093-4cd4-81b6-0e991fece452/7603475539_20.pdf
+2026-01-03 16:38:56.906 | INFO     | src.repository.storage:upload_file:75 - Uploaded file 7603475539_21.pdf for case 7f151de6-d093-4cd4-81b6-0e991fece452, blob: 7f151de6-d093-4cd4-81b6-0e991fece452/7603475539_21.pdf
+2026-01-03 16:38:57.054 | INFO     | src.repository.storage:upload_file:75 - Uploaded file 7603475539_22.pdf for case 7f151de6-d093-4cd4-81b6-0e991fece452, blob: 7f151de6-d093-4cd4-81b6-0e991fece452/7603475539_22.pdf
+2026-01-03 16:38:57.191 | INFO     | src.repository.storage:upload_file:75 - Uploaded file 7603475539_23.pdf for case 7f151de6-d093-4cd4-81b6-0e991fece452, blob: 7f151de6-d093-4cd4-81b6-0e991fece452/7603475539_23.pdf
+2026-01-03 16:38:57.329 | INFO     | src.repository.storage:upload_file:75 - Uploaded file 7603475539_24.pdf for case 7f151de6-d093-4cd4-81b6-0e991fece452, blob: 7f151de6-d093-4cd4-81b6-0e991fece452/7603475539_24.pdf
+2026-01-03 16:38:57.467 | INFO     | src.repository.storage:upload_file:75 - Uploaded file 7603475539_25.pdf for case 7f151de6-d093-4cd4-81b6-0e991fece452, blob: 7f151de6-d093-4cd4-81b6-0e991fece452/7603475539_25.pdf
+2026-01-03 16:38:57.605 | INFO     | src.repository.storage:upload_file:75 - Uploaded file 7603475539_26.pdf for case 7f151de6-d093-4cd4-81b6-0e991fece452, blob: 7f151de6-d093-4cd4-81b6-0e991fece452/7603475539_26.pdf
+2026-01-03 16:38:57.744 | INFO     | src.repository.storage:upload_file:75 - Uploaded file 7603475539_27.pdf for case 7f151de6-d093-4cd4-81b6-0e991fece452, blob: 7f151de6-d093-4cd4-81b6-0e991fece452/7603475539_27.pdf
+2026-01-03 16:38:57.884 | INFO     | src.repository.storage:upload_file:75 - Uploaded file 7603475539_28.pdf for case 7f151de6-d093-4cd4-81b6-0e991fece452, blob: 7f151de6-d093-4cd4-81b6-0e991fece452/7603475539_28.pdf
+2026-01-03 16:38:58.025 | INFO     | src.repository.storage:upload_file:75 - Uploaded file 7603475539_29.pdf for case 7f151de6-d093-4cd4-81b6-0e991fece452, blob: 7f151de6-d093-4cd4-81b6-0e991fece452/7603475539_29.pdf
+2026-01-03 16:38:58.162 | INFO     | src.repository.storage:upload_file:75 - Uploaded file 7603475539_30.pdf for case 7f151de6-d093-4cd4-81b6-0e991fece452, blob: 7f151de6-d093-4cd4-81b6-0e991fece452/7603475539_30.pdf
+2026-01-03 16:38:58.300 | INFO     | src.repository.storage:upload_file:75 - Uploaded file 7603475539_31.pdf for case 7f151de6-d093-4cd4-81b6-0e991fece452, blob: 7f151de6-d093-4cd4-81b6-0e991fece452/7603475539_31.pdf
+2026-01-03 16:38:58.453 | INFO     | src.repository.storage:upload_file:75 - Uploaded file 7603475539_32.pdf for case 7f151de6-d093-4cd4-81b6-0e991fece452, blob: 7f151de6-d093-4cd4-81b6-0e991fece452/7603475539_32.pdf
+2026-01-03 16:38:58.585 | INFO     | src.repository.storage:upload_file:75 - Uploaded file 7603475539_33.pdf for case 7f151de6-d093-4cd4-81b6-0e991fece452, blob: 7f151de6-d093-4cd4-81b6-0e991fece452/7603475539_33.pdf
+2026-01-03 16:38:58.720 | INFO     | src.repository.storage:upload_file:75 - Uploaded file 7603475539_34.pdf for case 7f151de6-d093-4cd4-81b6-0e991fece452, blob: 7f151de6-d093-4cd4-81b6-0e991fece452/7603475539_34.pdf
+2026-01-03 16:38:58.859 | INFO     | src.repository.storage:upload_file:75 - Uploaded file 7603475539_35.pdf for case 7f151de6-d093-4cd4-81b6-0e991fece452, blob: 7f151de6-d093-4cd4-81b6-0e991fece452/7603475539_35.pdf
+2026-01-03 16:38:58.991 | INFO     | src.repository.storage:upload_file:75 - Uploaded file 7603475539_36.pdf for case 7f151de6-d093-4cd4-81b6-0e991fece452, blob: 7f151de6-d093-4cd4-81b6-0e991fece452/7603475539_36.pdf
+2026-01-03 16:38:59.139 | INFO     | src.repository.storage:upload_file:75 - Uploaded file 7603475539_37.pdf for case 7f151de6-d093-4cd4-81b6-0e991fece452, blob: 7f151de6-d093-4cd4-81b6-0e991fece452/7603475539_37.pdf
+2026-01-03 16:39:03.128 | INFO     | src.repository.messaging:send_message:18 - Message sent to queue document-uploads: {'document_id': '7f151de6-d093-4cd4-81b6-0e991fece452', 'timestamp': '2026-01-03T09:38:59.954692Z'}
+2026-01-03 16:39:03.128 | INFO     | src.delivery.upload_routes:upload_file:50 - Successfully processed PDF upload for file_id 7f151de6-d093-4cd4-81b6-0e991fece452 and activity_id 9966df30-8487-4917-a1f7-28944d4e4d76

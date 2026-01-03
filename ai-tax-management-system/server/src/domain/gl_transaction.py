@@ -15,6 +15,8 @@ class GLReconItem(BaseModel):
 class GLTransaction(BaseModel):
     model_config = ConfigDict(populate_by_name=True)   
 
+    id: Optional[str] = Field(None, description="Cosmos DB document ID")
+    urn: str = Field(..., description="URN / unique reference number")
     gl_transaction_id: str = Field(..., alias="glTransactionId", description="Primary G/L transaction ID")
     cocd: str = Field(..., description="Company Code (CoCd)")
     gl: str = Field(..., description="G/L account number")
@@ -26,7 +28,6 @@ class GLTransaction(BaseModel):
     tax_based: float = Field(..., alias="taxBased", description="Tax base amount")
     wht: float = Field(..., description="Withholding tax amount")
     tax_rate: float = Field(..., alias="taxRate", description="Tax rate in decimal format (e.g., 0.0265)")
-    urn: str = Field(..., description="URN / unique reference number")
     username: str = Field(..., description="User name who posted/created the transaction")
     text: str = Field(..., description="Description / text")
     clearing_document: Optional[str] = Field(None, alias="clearingDocument", description="Clearing document reference")
@@ -40,10 +41,9 @@ class GLTransaction(BaseModel):
     vendor_id: str = Field(..., alias="vendorId", description="Foreign key reference to Vendor")
     gl_transaction_status_id: int = Field(..., alias="glTransactionStatusId", description="Foreign key reference to G/L Transaction Status")
     ref: Optional[str] = Field(None, description="Optional internal reference")
-    first_vouching: Optional[str] = Field(None, alias="firstVouching", description="First vouching (review/approval) user or note")
+    first_voucing: Optional[str] = Field(None, alias="firstVoucing", description="First vouching (review/approval) user or note")
     second_reviewer: Optional[str] = Field(None, alias="secondReviewer", description="Second reviewer")
     wht_normal: Optional[float] = Field(None, alias="whtNormal", description="Normal withholding tax amount")
-    wht_slip_number: Optional[str] = Field(None, alias="whtSlipNumber", description="Withholding tax slip number")
     diff_normal: Optional[float] = Field(None, alias="diffNormal", description="Difference from normal/expected value")
 
     tax_invoices: Optional[List[str]] = Field(None, alias="taxInvoices", description="List of associated Tax Invoice IDs")
