@@ -10919,3 +10919,193 @@ amountInLocalCurrency
 2026-01-05 11:29:20.731 | INFO     | src.usecase.gl_upload:_read_xlsx_rows:196 - XLSX headers: ['CoCd', 'G/L', 'Year/month', 'Type', 'Reference', 'DocumentNo', 'Supplier', 'Supplier Name', 'PO Number', 'Tax Based', 'WHT', 'Tax Rate ', 'URN', 'User Name', 'Text', 'Clrng doc.', 'Doc. Date', 'Pstng Date', 'Doc Curr', 'Amount in doc. curr.', 'Loc Curr', 'Amount in \nlocal cur.', None, 'Ref', 'WHT Review', '1st Voucing', '2nd Reviewer', 'Type of Tax', 'Document Type', 'Vendor Name', 'Tax ID', 'Address', 'Invoice Number', 'Invoice Date / \nDocument date', 'invoice date (text)', 'Posting date', 'Doc Curr', 'Gross Amount\nin original currency per GL', 'Tax Base WHT (IDR)\nNormal', 'Rate', 'WHT\nNormal', 'Client GL', 'Diff\nNormal', 'Remarks', 'Kode BP', 'WHT Slip No.', None, 'Description on Invoice', 'Description on Tax Invoice']
 2026-01-05 11:29:20.731 | INFO     | src.usecase.gl_upload:_read_xlsx_rows:229 - Successfully read 10 rows from XLSX file
 2026-01-05 11:29:20.731 | INFO     | src.usecase.gl_upload:upload:144 - Read 10 rows from testing_gl.xlsx
+2026-01-05 11:42:22.820 | INFO     | __main__:<module>:256 - Starting application in 'http' mode
+2026-01-05 11:42:32.183 | INFO     | src.config.dependencies:get_app_config:35 - Initializing application configuration
+2026-01-05 11:42:32.183 | INFO     | src.config.dependencies:get_content_understanding_repository:57 - Creating ContentUnderstandingRepository singleton
+2026-01-05 11:42:32.183 | INFO     | src.config.dependencies:get_azure_blob_storage_repository:80 - Creating AzureBlobStorageRepository singleton
+2026-01-05 11:42:33.085 | INFO     | src.repository.storage:__init__:21 - Blob container already exists: tax-documents
+2026-01-05 11:42:33.085 | INFO     | src.repository.storage:__init__:25 - Connected to Blob Storage, container: tax-documents
+2026-01-05 11:42:33.085 | INFO     | src.config.dependencies:get_azure_cosmos_repository:104 - Creating AzureCosmosDBRepository singleton
+2026-01-05 11:42:34.550 | INFO     | src.repository.database:__init__:22 - Connected to Cosmos DB database 'tax-management-system', container 'gl-transactions'
+2026-01-05 11:42:34.550 | INFO     | src.config.dependencies:get_azure_service_bus_repository:188 - Creating AzureServiceBusRepository singleton
+2026-01-05 11:42:34.764 | INFO     | src.repository.storage:upload_file:75 - Uploaded file testing_gl.xlsx for case 8bd24f4e-1cd5-45ec-81ae-9223c9036702, blob: 8bd24f4e-1cd5-45ec-81ae-9223c9036702/testing_gl.xlsx
+2026-01-05 11:42:34.764 | INFO     | src.usecase.gl_upload:upload:139 - File uploaded successfully: {'filename': 'testing_gl.xlsx', 'size': 219318, 'object_name': '8bd24f4e-1cd5-45ec-81ae-9223c9036702/testing_gl.xlsx'}
+2026-01-05 11:42:35.267 | INFO     | src.usecase.gl_upload:_read_xlsx_rows:196 - XLSX headers: ['CoCd', 'G/L', 'Year/month', 'Type', 'Reference', 'DocumentNo', 'Supplier', 'Supplier Name', 'PO Number', 'Tax Based', 'WHT', 'Tax Rate ', 'URN', 'User Name', 'Text', 'Clrng doc.', 'Doc. Date', 'Pstng Date', 'Doc Curr', 'Amount in doc. curr.', 'Loc Curr', 'Amount in \nlocal cur.', None, 'Ref', 'WHT Review', '1st Voucing', '2nd Reviewer', 'Type of Tax', 'Document Type', 'Vendor Name', 'Tax ID', 'Address', 'Invoice Number', 'Invoice Date / \nDocument date', 'invoice date (text)', 'Posting date', 'Doc Curr', 'Gross Amount\nin original currency per GL', 'Tax Base WHT (IDR)\nNormal', 'Rate', 'WHT\nNormal', 'Client GL', 'Diff\nNormal', 'Remarks', 'Kode BP', 'WHT Slip No.', None, 'Description on Invoice', 'Description on Tax Invoice']
+2026-01-05 11:42:35.282 | INFO     | src.usecase.gl_upload:_read_xlsx_rows:229 - Successfully read 10 rows from XLSX file
+2026-01-05 11:42:35.283 | INFO     | src.usecase.gl_upload:upload:144 - Read 10 rows from testing_gl.xlsx
+2026-01-05 13:37:55.273 | INFO     | src.config.dependencies:get_azure_service_bus_repository:188 - Creating AzureServiceBusRepository singleton
+2026-01-05 13:37:55.273 | INFO     | src.delivery.upload_routes:upload_file:40 - Received PDF upload: 7603485268.pdf with file_id 85646649-bfe3-4892-a98b-62989ff0468c and activity_id ac9e5389-3c50-453d-972a-21a5220fd9ef
+2026-01-05 13:37:55.382 | INFO     | src.usecase.file_upload:_split_pdf_pages:81 - Splitting PDF 7603485268.pdf into 5 pages
+2026-01-05 13:37:55.394 | INFO     | src.usecase.file_upload:_split_pdf_pages:97 - Successfully split 7603485268.pdf into 5 pages
+2026-01-05 13:37:55.405 | INFO     | src.usecase.file_upload:upload:140 - Uploading 5 pages from PDF 7603485268.pdf
+2026-01-05 13:37:56.141 | INFO     | src.repository.storage:upload_file:75 - Uploaded file 7603485268_1.pdf for case 85646649-bfe3-4892-a98b-62989ff0468c, blob: 85646649-bfe3-4892-a98b-62989ff0468c/7603485268_1.pdf
+2026-01-05 13:37:56.257 | INFO     | src.repository.storage:upload_file:75 - Uploaded file 7603485268_2.pdf for case 85646649-bfe3-4892-a98b-62989ff0468c, blob: 85646649-bfe3-4892-a98b-62989ff0468c/7603485268_2.pdf
+2026-01-05 13:37:56.373 | INFO     | src.repository.storage:upload_file:75 - Uploaded file 7603485268_3.pdf for case 85646649-bfe3-4892-a98b-62989ff0468c, blob: 85646649-bfe3-4892-a98b-62989ff0468c/7603485268_3.pdf
+2026-01-05 13:37:56.473 | INFO     | src.repository.storage:upload_file:75 - Uploaded file 7603485268_4.pdf for case 85646649-bfe3-4892-a98b-62989ff0468c, blob: 85646649-bfe3-4892-a98b-62989ff0468c/7603485268_4.pdf
+2026-01-05 13:37:56.590 | INFO     | src.repository.storage:upload_file:75 - Uploaded file 7603485268_5.pdf for case 85646649-bfe3-4892-a98b-62989ff0468c, blob: 85646649-bfe3-4892-a98b-62989ff0468c/7603485268_5.pdf
+2026-01-05 13:38:03.714 | INFO     | src.repository.messaging:send_message:18 - Message sent to queue document-uploads: {'document_id': '85646649-bfe3-4892-a98b-62989ff0468c', 'timestamp': '2026-01-05T06:37:59.223635Z'}
+2026-01-05 13:38:03.714 | INFO     | src.delivery.upload_routes:upload_file:50 - Successfully processed PDF upload for file_id 85646649-bfe3-4892-a98b-62989ff0468c and activity_id ac9e5389-3c50-453d-972a-21a5220fd9ef
+2026-01-05 13:46:11.174 | INFO     | __main__:<module>:256 - Starting application in 'http' mode
+2026-01-05 13:47:28.251 | INFO     | src.config.dependencies:get_app_config:35 - Initializing application configuration
+2026-01-05 13:47:28.253 | INFO     | src.config.dependencies:get_content_understanding_repository:57 - Creating ContentUnderstandingRepository singleton
+2026-01-05 13:47:28.254 | INFO     | src.config.dependencies:get_azure_blob_storage_repository:80 - Creating AzureBlobStorageRepository singleton
+2026-01-05 13:47:29.376 | INFO     | src.repository.storage:__init__:21 - Blob container already exists: tax-documents
+2026-01-05 13:47:29.377 | INFO     | src.repository.storage:__init__:25 - Connected to Blob Storage, container: tax-documents
+2026-01-05 13:47:29.378 | INFO     | src.config.dependencies:get_azure_cosmos_repository:104 - Creating AzureCosmosDBRepository singleton
+2026-01-05 13:47:31.139 | INFO     | src.repository.database:__init__:22 - Connected to Cosmos DB database 'tax-management-system', container 'gl-transactions'
+2026-01-05 13:47:31.150 | INFO     | src.config.dependencies:get_azure_service_bus_repository:188 - Creating AzureServiceBusRepository singleton
+2026-01-05 13:47:34.333 | INFO     | src.repository.database:query_documents:134 - Retrieved 9 documents (type: all)
+2026-01-05 13:49:06.233 | INFO     | src.config.dependencies:get_azure_service_bus_repository:188 - Creating AzureServiceBusRepository singleton
+2026-01-05 13:49:06.856 | INFO     | src.repository.database:query_documents:134 - Retrieved 9 documents (type: all)
+2026-01-05 13:50:43.909 | INFO     | src.config.dependencies:get_azure_service_bus_repository:188 - Creating AzureServiceBusRepository singleton
+2026-01-05 13:50:44.534 | INFO     | src.repository.database:query_documents:134 - Retrieved 9 documents (type: all)
+2026-01-05 13:50:44.542 | INFO     | src.config.dependencies:get_azure_service_bus_repository:188 - Creating AzureServiceBusRepository singleton
+2026-01-05 13:50:45.199 | INFO     | src.repository.database:query_documents:134 - Retrieved 9 documents (type: all)
+2026-01-05 13:52:00.427 | INFO     | __main__:<module>:256 - Starting application in 'http' mode
+2026-01-05 13:53:45.479 | INFO     | src.config.dependencies:get_app_config:35 - Initializing application configuration
+2026-01-05 13:53:45.481 | INFO     | src.config.dependencies:get_content_understanding_repository:57 - Creating ContentUnderstandingRepository singleton
+2026-01-05 13:53:45.481 | INFO     | src.config.dependencies:get_azure_blob_storage_repository:80 - Creating AzureBlobStorageRepository singleton
+2026-01-05 13:53:46.117 | INFO     | src.repository.storage:__init__:21 - Blob container already exists: tax-documents
+2026-01-05 13:53:46.117 | INFO     | src.repository.storage:__init__:25 - Connected to Blob Storage, container: tax-documents
+2026-01-05 13:53:46.117 | INFO     | src.config.dependencies:get_azure_cosmos_repository:104 - Creating AzureCosmosDBRepository singleton
+2026-01-05 13:53:47.417 | INFO     | src.repository.database:__init__:22 - Connected to Cosmos DB database 'tax-management-system', container 'gl-transactions'
+2026-01-05 13:53:47.427 | INFO     | src.config.dependencies:get_azure_service_bus_repository:188 - Creating AzureServiceBusRepository singleton
+2026-01-05 13:53:50.018 | INFO     | src.repository.database:query_documents:134 - Retrieved 8 documents (type: all)
+2026-01-05 13:54:41.973 | INFO     | src.config.dependencies:get_azure_service_bus_repository:188 - Creating AzureServiceBusRepository singleton
+2026-01-05 13:54:42.585 | INFO     | src.repository.database:query_documents:134 - Retrieved 8 documents (type: all)
+2026-01-05 13:54:42.596 | INFO     | src.config.dependencies:get_azure_service_bus_repository:188 - Creating AzureServiceBusRepository singleton
+2026-01-05 13:54:43.217 | INFO     | src.repository.database:query_documents:134 - Retrieved 8 documents (type: all)
+2026-01-05 13:54:58.274 | INFO     | src.config.dependencies:get_azure_service_bus_repository:188 - Creating AzureServiceBusRepository singleton
+2026-01-05 13:54:58.889 | INFO     | src.repository.database:query_documents:134 - Retrieved 8 documents (type: all)
+2026-01-05 13:54:58.915 | INFO     | src.config.dependencies:get_azure_service_bus_repository:188 - Creating AzureServiceBusRepository singleton
+2026-01-05 13:54:59.526 | INFO     | src.repository.database:query_documents:134 - Retrieved 8 documents (type: all)
+2026-01-05 13:55:40.308 | INFO     | src.config.dependencies:get_azure_service_bus_repository:188 - Creating AzureServiceBusRepository singleton
+2026-01-05 13:55:40.944 | INFO     | src.repository.database:query_documents:134 - Retrieved 9 documents (type: all)
+2026-01-05 13:56:10.898 | INFO     | src.config.dependencies:get_azure_service_bus_repository:188 - Creating AzureServiceBusRepository singleton
+2026-01-05 13:56:11.518 | INFO     | src.repository.database:query_documents:134 - Retrieved 8 documents (type: all)
+2026-01-05 13:56:11.527 | INFO     | src.config.dependencies:get_azure_service_bus_repository:188 - Creating AzureServiceBusRepository singleton
+2026-01-05 13:56:12.137 | INFO     | src.repository.database:query_documents:134 - Retrieved 8 documents (type: all)
+2026-01-05 13:57:16.982 | INFO     | src.config.dependencies:get_azure_service_bus_repository:188 - Creating AzureServiceBusRepository singleton
+2026-01-05 13:57:17.869 | INFO     | src.repository.database:query_documents:134 - Retrieved 8 documents (type: all)
+2026-01-05 13:57:17.878 | INFO     | src.config.dependencies:get_azure_service_bus_repository:188 - Creating AzureServiceBusRepository singleton
+2026-01-05 13:57:18.509 | INFO     | src.repository.database:query_documents:134 - Retrieved 8 documents (type: all)
+2026-01-05 13:57:21.456 | INFO     | src.config.dependencies:get_azure_service_bus_repository:188 - Creating AzureServiceBusRepository singleton
+2026-01-05 13:57:22.093 | INFO     | src.repository.database:query_documents:134 - Retrieved 9 documents (type: all)
+2026-01-05 13:57:22.466 | INFO     | src.config.dependencies:get_azure_service_bus_repository:188 - Creating AzureServiceBusRepository singleton
+2026-01-05 13:57:23.142 | INFO     | src.repository.database:query_documents:134 - Retrieved 9 documents (type: all)
+2026-01-05 13:57:27.100 | INFO     | src.config.dependencies:get_azure_service_bus_repository:188 - Creating AzureServiceBusRepository singleton
+2026-01-05 13:57:27.742 | INFO     | src.repository.database:query_documents:134 - Retrieved 9 documents (type: all)
+2026-01-05 13:57:27.746 | INFO     | src.config.dependencies:get_azure_service_bus_repository:188 - Creating AzureServiceBusRepository singleton
+2026-01-05 13:57:28.363 | INFO     | src.repository.database:query_documents:134 - Retrieved 9 documents (type: all)
+2026-01-05 13:59:37.257 | INFO     | src.config.dependencies:get_azure_service_bus_repository:188 - Creating AzureServiceBusRepository singleton
+2026-01-05 13:59:37.897 | INFO     | src.repository.database:query_documents:134 - Retrieved 9 documents (type: all)
+2026-01-05 13:59:37.905 | INFO     | src.config.dependencies:get_azure_service_bus_repository:188 - Creating AzureServiceBusRepository singleton
+2026-01-05 13:59:38.524 | INFO     | src.repository.database:query_documents:134 - Retrieved 9 documents (type: all)
+2026-01-05 13:59:43.495 | INFO     | src.config.dependencies:get_azure_service_bus_repository:188 - Creating AzureServiceBusRepository singleton
+2026-01-05 13:59:44.146 | INFO     | src.repository.database:query_documents:134 - Retrieved 9 documents (type: all)
+2026-01-05 13:59:44.456 | INFO     | src.config.dependencies:get_azure_service_bus_repository:188 - Creating AzureServiceBusRepository singleton
+2026-01-05 13:59:45.062 | INFO     | src.repository.database:query_documents:134 - Retrieved 9 documents (type: all)
+2026-01-05 14:02:27.605 | INFO     | src.config.dependencies:get_azure_service_bus_repository:188 - Creating AzureServiceBusRepository singleton
+2026-01-05 14:02:29.532 | INFO     | src.repository.database:query_documents:134 - Retrieved 9 documents (type: all)
+2026-01-05 14:04:50.694 | INFO     | __main__:<module>:256 - Starting application in 'http' mode
+2026-01-05 14:05:05.674 | INFO     | src.config.dependencies:get_app_config:35 - Initializing application configuration
+2026-01-05 14:05:05.675 | INFO     | src.config.dependencies:get_content_understanding_repository:57 - Creating ContentUnderstandingRepository singleton
+2026-01-05 14:05:05.675 | INFO     | src.config.dependencies:get_azure_blob_storage_repository:80 - Creating AzureBlobStorageRepository singleton
+2026-01-05 14:05:06.486 | INFO     | src.repository.storage:__init__:21 - Blob container already exists: tax-documents
+2026-01-05 14:05:06.487 | INFO     | src.repository.storage:__init__:25 - Connected to Blob Storage, container: tax-documents
+2026-01-05 14:05:06.488 | INFO     | src.config.dependencies:get_azure_cosmos_repository:104 - Creating AzureCosmosDBRepository singleton
+2026-01-05 14:05:07.895 | INFO     | src.repository.database:__init__:22 - Connected to Cosmos DB database 'tax-management-system', container 'gl-transactions'
+2026-01-05 14:05:07.901 | INFO     | src.config.dependencies:get_azure_service_bus_repository:188 - Creating AzureServiceBusRepository singleton
+2026-01-05 14:05:10.286 | INFO     | src.repository.database:query_documents:141 - Retrieved 1 documents (type: all)
+2026-01-05 14:06:39.968 | INFO     | src.config.dependencies:get_azure_service_bus_repository:188 - Creating AzureServiceBusRepository singleton
+2026-01-05 14:06:40.738 | INFO     | src.repository.database:query_documents:141 - Retrieved 9 documents (type: all)
+2026-01-05 14:06:41.398 | INFO     | src.config.dependencies:get_azure_service_bus_repository:188 - Creating AzureServiceBusRepository singleton
+2026-01-05 14:06:42.032 | INFO     | src.repository.database:query_documents:141 - Retrieved 9 documents (type: all)
+2026-01-05 14:06:54.884 | INFO     | src.config.dependencies:get_azure_service_bus_repository:188 - Creating AzureServiceBusRepository singleton
+2026-01-05 14:06:55.500 | INFO     | src.repository.database:query_documents:141 - Retrieved 9 documents (type: all)
+2026-01-05 14:07:31.152 | INFO     | src.config.dependencies:get_azure_service_bus_repository:188 - Creating AzureServiceBusRepository singleton
+2026-01-05 14:07:31.950 | INFO     | src.repository.database:query_documents:141 - Retrieved 9 documents (type: all)
+2026-01-05 14:07:32.585 | INFO     | src.config.dependencies:get_azure_service_bus_repository:188 - Creating AzureServiceBusRepository singleton
+2026-01-05 14:07:33.237 | INFO     | src.repository.database:query_documents:141 - Retrieved 9 documents (type: all)
+2026-01-05 14:07:38.976 | INFO     | src.config.dependencies:get_azure_service_bus_repository:188 - Creating AzureServiceBusRepository singleton
+2026-01-05 14:07:39.600 | INFO     | src.repository.database:query_documents:141 - Retrieved 9 documents (type: all)
+2026-01-05 14:07:40.291 | INFO     | src.config.dependencies:get_azure_service_bus_repository:188 - Creating AzureServiceBusRepository singleton
+2026-01-05 14:07:40.947 | INFO     | src.repository.database:query_documents:141 - Retrieved 9 documents (type: all)
+2026-01-05 14:10:29.120 | INFO     | __main__:<module>:256 - Starting application in 'http' mode
+2026-01-05 14:13:50.476 | INFO     | src.config.dependencies:get_app_config:35 - Initializing application configuration
+2026-01-05 14:13:50.479 | INFO     | src.config.dependencies:get_content_understanding_repository:57 - Creating ContentUnderstandingRepository singleton
+2026-01-05 14:13:50.480 | INFO     | src.config.dependencies:get_azure_blob_storage_repository:80 - Creating AzureBlobStorageRepository singleton
+2026-01-05 14:13:51.202 | INFO     | src.repository.storage:__init__:21 - Blob container already exists: tax-documents
+2026-01-05 14:13:51.202 | INFO     | src.repository.storage:__init__:25 - Connected to Blob Storage, container: tax-documents
+2026-01-05 14:13:51.202 | INFO     | src.config.dependencies:get_azure_cosmos_repository:104 - Creating AzureCosmosDBRepository singleton
+2026-01-05 14:13:52.447 | INFO     | src.repository.database:__init__:22 - Connected to Cosmos DB database 'tax-management-system', container 'gl-transactions'
+2026-01-05 14:13:52.448 | INFO     | src.config.dependencies:get_azure_service_bus_repository:188 - Creating AzureServiceBusRepository singleton
+2026-01-05 14:13:54.901 | INFO     | src.repository.database:query_documents:141 - Retrieved 9 documents (type: all)
+2026-01-05 14:20:24.313 | INFO     | src.config.dependencies:get_azure_service_bus_repository:188 - Creating AzureServiceBusRepository singleton
+2026-01-05 14:20:26.569 | INFO     | src.repository.database:query_documents:141 - Retrieved 9 documents (type: all)
+2026-01-05 14:22:56.219 | INFO     | src.config.dependencies:get_azure_service_bus_repository:188 - Creating AzureServiceBusRepository singleton
+2026-01-05 14:22:58.142 | INFO     | src.repository.database:query_documents:141 - Retrieved 9 documents (type: all)
+2026-01-05 14:23:42.177 | INFO     | src.config.dependencies:get_azure_service_bus_repository:188 - Creating AzureServiceBusRepository singleton
+2026-01-05 14:23:42.777 | INFO     | src.repository.database:query_documents:141 - Retrieved 9 documents (type: all)
+2026-01-05 14:23:55.656 | INFO     | src.config.dependencies:get_azure_service_bus_repository:188 - Creating AzureServiceBusRepository singleton
+2026-01-05 14:23:56.256 | INFO     | src.repository.database:query_documents:141 - Retrieved 5 documents (type: all)
+2026-01-05 14:23:59.377 | INFO     | src.config.dependencies:get_azure_service_bus_repository:188 - Creating AzureServiceBusRepository singleton
+2026-01-05 14:24:00.015 | INFO     | src.repository.database:query_documents:141 - Retrieved 4 documents (type: all)
+2026-01-05 14:24:00.615 | INFO     | src.config.dependencies:get_azure_service_bus_repository:188 - Creating AzureServiceBusRepository singleton
+2026-01-05 14:24:01.348 | INFO     | src.repository.database:query_documents:141 - Retrieved 5 documents (type: all)
+2026-01-05 14:24:01.956 | INFO     | src.config.dependencies:get_azure_service_bus_repository:188 - Creating AzureServiceBusRepository singleton
+2026-01-05 14:24:01.956 | INFO     | src.config.dependencies:get_azure_service_bus_repository:188 - Creating AzureServiceBusRepository singleton
+2026-01-05 14:24:02.563 | INFO     | src.repository.database:query_documents:141 - Retrieved 5 documents (type: all)
+2026-01-05 14:24:03.767 | INFO     | src.repository.database:query_documents:141 - Retrieved 4 documents (type: all)
+2026-01-05 14:24:04.377 | INFO     | src.config.dependencies:get_azure_service_bus_repository:188 - Creating AzureServiceBusRepository singleton
+2026-01-05 14:24:04.996 | INFO     | src.repository.database:query_documents:141 - Retrieved 4 documents (type: all)
+2026-01-05 14:24:05.693 | INFO     | src.config.dependencies:get_azure_service_bus_repository:188 - Creating AzureServiceBusRepository singleton
+2026-01-05 14:24:06.305 | INFO     | src.repository.database:query_documents:141 - Retrieved 5 documents (type: all)
+2026-01-05 14:24:09.330 | INFO     | src.config.dependencies:get_azure_service_bus_repository:188 - Creating AzureServiceBusRepository singleton
+2026-01-05 14:24:09.977 | INFO     | src.repository.database:query_documents:141 - Retrieved 4 documents (type: all)
+2026-01-05 14:26:06.506 | INFO     | src.config.dependencies:get_azure_service_bus_repository:188 - Creating AzureServiceBusRepository singleton
+2026-01-05 14:26:07.286 | INFO     | src.repository.database:query_documents:141 - Retrieved 5 documents (type: all)
+2026-01-05 14:26:14.223 | INFO     | src.config.dependencies:get_azure_service_bus_repository:188 - Creating AzureServiceBusRepository singleton
+2026-01-05 14:26:14.985 | INFO     | src.repository.database:query_documents:141 - Retrieved 4 documents (type: all)
+2026-01-05 14:26:22.803 | INFO     | src.config.dependencies:get_azure_service_bus_repository:188 - Creating AzureServiceBusRepository singleton
+2026-01-05 14:26:23.737 | INFO     | src.repository.database:query_documents:141 - Retrieved 5 documents (type: all)
+2026-01-05 14:28:06.710 | INFO     | src.config.dependencies:get_azure_service_bus_repository:188 - Creating AzureServiceBusRepository singleton
+2026-01-05 14:28:07.326 | INFO     | src.repository.database:query_documents:141 - Retrieved 5 documents (type: all)
+2026-01-05 14:28:56.352 | INFO     | src.config.dependencies:get_azure_service_bus_repository:188 - Creating AzureServiceBusRepository singleton
+2026-01-05 14:28:56.947 | INFO     | src.repository.database:query_documents:141 - Retrieved 4 documents (type: all)
+2026-01-05 14:29:05.792 | INFO     | src.config.dependencies:get_azure_service_bus_repository:188 - Creating AzureServiceBusRepository singleton
+2026-01-05 14:29:06.411 | INFO     | src.repository.database:query_documents:141 - Retrieved 5 documents (type: all)
+2026-01-05 14:30:23.677 | INFO     | src.config.dependencies:get_azure_service_bus_repository:188 - Creating AzureServiceBusRepository singleton
+2026-01-05 14:30:24.293 | INFO     | src.repository.database:query_documents:141 - Retrieved 5 documents (type: all)
+2026-01-05 14:30:28.775 | INFO     | src.config.dependencies:get_azure_service_bus_repository:188 - Creating AzureServiceBusRepository singleton
+2026-01-05 14:30:29.407 | INFO     | src.repository.database:query_documents:141 - Retrieved 5 documents (type: all)
+2026-01-05 14:35:02.594 | INFO     | src.config.dependencies:get_azure_service_bus_repository:188 - Creating AzureServiceBusRepository singleton
+2026-01-05 14:35:04.777 | INFO     | src.repository.database:query_documents:141 - Retrieved 5 documents (type: all)
+2026-01-05 14:35:07.006 | INFO     | src.config.dependencies:get_azure_service_bus_repository:188 - Creating AzureServiceBusRepository singleton
+2026-01-05 14:35:07.647 | INFO     | src.repository.database:query_documents:141 - Retrieved 4 documents (type: all)
+2026-01-05 14:35:10.019 | INFO     | src.config.dependencies:get_azure_service_bus_repository:188 - Creating AzureServiceBusRepository singleton
+2026-01-05 14:35:10.671 | INFO     | src.repository.database:query_documents:141 - Retrieved 5 documents (type: all)
+2026-01-05 14:35:13.200 | INFO     | src.config.dependencies:get_azure_service_bus_repository:188 - Creating AzureServiceBusRepository singleton
+2026-01-05 14:35:13.833 | INFO     | src.repository.database:query_documents:141 - Retrieved 4 documents (type: all)
+2026-01-05 14:35:16.462 | INFO     | src.config.dependencies:get_azure_service_bus_repository:188 - Creating AzureServiceBusRepository singleton
+2026-01-05 14:35:17.104 | INFO     | src.repository.database:query_documents:141 - Retrieved 5 documents (type: all)
+2026-01-05 14:35:27.890 | INFO     | src.config.dependencies:get_azure_service_bus_repository:188 - Creating AzureServiceBusRepository singleton
+2026-01-05 14:35:27.892 | INFO     | src.delivery.upload_routes:upload_file:40 - Received PDF upload: 7603480352.pdf with file_id cf013e0f-c0a4-4d24-a346-8a5702c8ee89 and activity_id 37caf70e-b2a3-436e-a155-81e6d2d7020d
+2026-01-05 14:35:27.963 | INFO     | src.usecase.file_upload:_split_pdf_pages:119 - Splitting PDF 7603480352.pdf into 5 pages
+2026-01-05 14:35:27.972 | INFO     | src.usecase.file_upload:_split_pdf_pages:135 - Successfully split 7603480352.pdf into 5 pages
+2026-01-05 14:35:27.973 | INFO     | src.usecase.file_upload:upload:178 - Uploading 5 pages from PDF 7603480352.pdf
+2026-01-05 14:35:28.689 | INFO     | src.repository.storage:upload_file:75 - Uploaded file 7603480352_1.pdf for case cf013e0f-c0a4-4d24-a346-8a5702c8ee89, blob: cf013e0f-c0a4-4d24-a346-8a5702c8ee89/7603480352_1.pdf
+2026-01-05 14:35:28.797 | INFO     | src.repository.storage:upload_file:75 - Uploaded file 7603480352_2.pdf for case cf013e0f-c0a4-4d24-a346-8a5702c8ee89, blob: cf013e0f-c0a4-4d24-a346-8a5702c8ee89/7603480352_2.pdf
+2026-01-05 14:35:28.896 | INFO     | src.repository.storage:upload_file:75 - Uploaded file 7603480352_3.pdf for case cf013e0f-c0a4-4d24-a346-8a5702c8ee89, blob: cf013e0f-c0a4-4d24-a346-8a5702c8ee89/7603480352_3.pdf
+2026-01-05 14:35:28.994 | INFO     | src.repository.storage:upload_file:75 - Uploaded file 7603480352_4.pdf for case cf013e0f-c0a4-4d24-a346-8a5702c8ee89, blob: cf013e0f-c0a4-4d24-a346-8a5702c8ee89/7603480352_4.pdf
+2026-01-05 14:35:29.100 | INFO     | src.repository.storage:upload_file:75 - Uploaded file 7603480352_5.pdf for case cf013e0f-c0a4-4d24-a346-8a5702c8ee89, blob: cf013e0f-c0a4-4d24-a346-8a5702c8ee89/7603480352_5.pdf
+2026-01-05 14:35:32.574 | INFO     | src.repository.messaging:send_message:18 - Message sent to queue document-uploads: {'document_id': 'cf013e0f-c0a4-4d24-a346-8a5702c8ee89', 'timestamp': '2026-01-05T07:35:29.308481Z'}
+2026-01-05 14:35:32.575 | INFO     | src.delivery.upload_routes:upload_file:50 - Successfully processed PDF upload for file_id cf013e0f-c0a4-4d24-a346-8a5702c8ee89 and activity_id 37caf70e-b2a3-436e-a155-81e6d2d7020d
+2026-01-05 14:35:37.478 | INFO     | src.config.dependencies:get_azure_service_bus_repository:188 - Creating AzureServiceBusRepository singleton
+2026-01-05 14:35:38.107 | INFO     | src.repository.database:query_documents:141 - Retrieved 5 documents (type: all)
+2026-01-05 14:36:28.439 | INFO     | src.config.dependencies:get_azure_service_bus_repository:188 - Creating AzureServiceBusRepository singleton
+2026-01-05 14:36:29.059 | INFO     | src.repository.database:query_documents:141 - Retrieved 5 documents (type: all)
+2026-01-05 14:46:23.171 | INFO     | src.config.dependencies:get_azure_service_bus_repository:188 - Creating AzureServiceBusRepository singleton
+2026-01-05 14:46:25.280 | INFO     | src.repository.database:query_documents:141 - Retrieved 5 documents (type: all)
+2026-01-05 14:46:30.324 | INFO     | src.config.dependencies:get_azure_service_bus_repository:188 - Creating AzureServiceBusRepository singleton
+2026-01-05 14:46:31.007 | INFO     | src.repository.database:query_documents:141 - Retrieved 5 documents (type: all)

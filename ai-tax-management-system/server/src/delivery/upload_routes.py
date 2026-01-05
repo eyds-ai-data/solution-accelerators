@@ -61,6 +61,24 @@ async def upload_file(
         raise HTTPException(status_code=500, detail=f"Error uploading file: {str(e)}")
     
 
+@router.get("/list")
+async def list_files(
+    status: Optional[str] = None,
+    page: int = 1,
+    page_size: int = 10,
+    file_upload_service: FileUploadDep = None
+):
+    try:
+        result = file_upload_service.list_files(status=status, page=page, page_size=page_size)
+        return {
+            "status": "success",
+            "data": result
+        }
+    except Exception as e:
+        logger.error(f"Error listing files: {e}")
+        raise HTTPException(status_code=500, detail=f"Error listing files: {str(e)}")
+
+
 @router.post("/file/gl")
 def upload_gl_file(
     file: UploadFile = File(..., description="The PDF document file to upload and analyze. Only PDF files are accepted."),

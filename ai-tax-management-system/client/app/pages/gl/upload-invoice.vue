@@ -1,10 +1,56 @@
 <script setup lang="ts">
-import { ArrowLeft, UploadCloud, Loader2 } from 'lucide-vue-next'
+import { ArrowLeft, UploadCloud, Loader2, RefreshCw } from 'lucide-vue-next'
 import { toast } from 'vue-sonner'
+import {
+  Table,
+  TableBody,
+  TableCaption,
+  TableCell,
+  TableHead,
+  TableHeader,
+  TableRow,
+} from '@/components/ui/table'
+import { Badge } from '@/components/ui/badge'
+import {
+  Pagination,
+  PaginationContent,
+  PaginationEllipsis,
+  PaginationItem,
+  PaginationNext,
+  PaginationPrevious,
+} from '@/components/ui/pagination'
 
 const router = useRouter()
 const fileInput = ref<HTMLInputElement | null>(null)
 const isUploading = ref(false)
+
+interface UploadedFile {
+  id: string
+  originalFilename: string
+  created_at: string
+  status: string
+  urn?: string
+}
+
+const page = ref(1)
+const pageSize = ref(5)
+
+const { data, status, error, refresh } = await useFetch('http://localhost:8000/api/v1/upload/list', {
+  query: computed(() => ({
+    page: page.value,
+    page_size: pageSize.value,
+  })),
+})
+
+const uploadedFiles = computed<UploadedFile[]>(() => {
+  const responseData = data.value as any
+  return responseData?.data?.items || []
+})
+
+const total = computed(() => {
+  const responseData = data.value as any
+  return responseData?.data?.total || 0
+})
 
 const goBack = () => {
   router.back()
@@ -49,9 +95,7 @@ const uploadFile = async (file: File) => {
     }
 
     toast.success('File uploaded successfully')
-    setTimeout(() => {
-      router.push('/gl')
-    }, 1000)
+    await refresh()
   }
   catch (err: any) {
     toast.error(`Upload failed: ${err.message}`)
@@ -73,7 +117,7 @@ const uploadFile = async (file: File) => {
         <ArrowLeft class="h-4 w-4" />
       </Button>
       <div>
-        <h2 class="text-3xl font-bold tracking-tight">
+        <h2 class="text-2xl font-bold tracking-tight">
           Upload Tax Invoices/Invoices
         </h2>
         <p class="text-muted-foreground mt-1">
@@ -110,6 +154,84 @@ const uploadFile = async (file: File) => {
       <Button class="mt-4" :disabled="isUploading">
         {{ isUploading ? 'Uploading...' : 'Select File' }}
       </Button>
+    </div>
+
+    <!-- Uploaded Files List -->
+    <div class="mt-8 space-y-4">
+      <div class="flex items-center justify-between">
+        <div>
+          <h3 class="text-xl font-semibold">
+            Uploaded Documents
+          </h3>
+          <p class="text-sm text-muted-foreground">
+            Refresh the list to see the latest status updates.
+          </p>
+        </div>
+        <Button variant="outline" size="sm" :disabled="status === 'pending'" @click="refresh">
+          <RefreshCw class="h-4 w-4 mr-2" :class="{ 'animate-spin': status === 'pending' }" />
+          Refresh
+        </Button>
+      </div>
+      <div class="border rounded-md">
+        <Table>
+          <TableHeader>
+            <TableRow>
+              <TableHead>Filename</TableHead>
+              <TableHead>Uploaded At</TableHead>
+              <TableHead>Status</TableHead>
+              <TableHead>URN</TableHead>
+            </TableRow>
+          </TableHeader>
+          <TableBody>
+            <TableRow v-for="file in uploadedFiles" :key="file.id">
+              <TableCell>{{ file.originalFilename }}</TableCell>
+              <TableCell>{{ file.created_at ? new Date(file.created_at).toLocaleString() : '-' }}</TableCell>
+              <TableCell>
+                <Badge
+                  variant="outline"
+                  :class="{
+                    'bg-yellow-100 text-yellow-800 border-yellow-200': file.status === 'processing',
+                    'bg-green-100 text-green-800 border-green-200': file.status === 'done',
+                    'bg-gray-100 text-gray-800 border-gray-200': !['processing', 'done'].includes(file.status),
+                  }"
+                >
+                  {{ file.status || 'Uploaded' }}
+                </Badge>
+              </TableCell>
+              <TableCell>
+                <span v-if="file.urn" class="font-mono text-sm">{{ file.urn }}</span>
+                <span v-else class="text-muted-foreground">-</span>
+              </TableCell>
+            </TableRow>
+            <TableRow v-if="uploadedFiles.length === 0">
+              <TableCell colspan="4" class="text-center text-muted-foreground h-24">
+                No documents uploaded yet.
+              </TableCell>
+            </TableRow>
+          </TableBody>
+        </Table>
+      </div>
+
+      <div class="mt-4 flex justify-end">
+        <Pagination v-if="total > 0" v-model:page="page" :total="total" :items-per-page="pageSize" :sibling-count="1" show-edges>
+          <PaginationContent v-slot="{ items }">
+            <PaginationItem class="w-auto h-auto p-0 bg-transparent border-none hover:bg-transparent">
+              <PaginationPrevious />
+            </PaginationItem>
+
+            <template v-for="(item, index) in items">
+              <PaginationItem v-if="item.type === 'page'" :key="index" :value="item.value" :is-active="item.value === page">
+                {{ item.value }}
+              </PaginationItem>
+              <PaginationEllipsis v-else :key="item.type" :index="index" />
+            </template>
+
+            <PaginationItem class="w-auto h-auto p-0 bg-transparent border-none hover:bg-transparent">
+              <PaginationNext />
+            </PaginationItem>
+          </PaginationContent>
+        </Pagination>
+      </div>
     </div>
   </div>
 </template>

@@ -47,10 +47,12 @@ const uploadFile = async (file: File) => {
       throw new Error(error.value.message)
     }
 
-    toast.success('File uploaded successfully')
+    toast.success('File uploaded successfully', {
+      description: 'Redirecting to GL page...',
+    })
     setTimeout(() => {
       router.push('/gl')
-    }, 1000)
+    }, 2000)
   }
   catch (err: any) {
     toast.error(`Upload failed: ${err.message}`)
