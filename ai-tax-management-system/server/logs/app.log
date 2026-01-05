@@ -10772,3 +10772,150 @@ Message: Entity with the specified id does not exist in the system. More info: h
 2026-01-05 10:28:36.551 | INFO     | src.usecase.gl_upload:_read_xlsx_rows:197 - XLSX headers: ['CoCd', 'G/L', 'Year/month', 'Type', 'Reference', 'DocumentNo', 'Supplier', 'Supplier Name', 'PO Number', 'Tax Based', 'WHT', 'Tax Rate ', 'URN', 'User Name', 'Text', 'Clrng doc.', 'Doc. Date', 'Pstng Date', 'Doc Curr', 'Amount in doc. curr.', 'Loc Curr', 'Amount in \nlocal cur.', None, 'Ref', 'WHT Review', '1st Voucing', '2nd Reviewer', 'Type of Tax', 'Document Type', 'Vendor Name', 'Tax ID', 'Address', 'Invoice Number', 'Invoice Date / \nDocument date', 'invoice date (text)', 'Posting date', 'Doc Curr', 'Gross Amount\nin original currency per GL', 'Tax Base WHT (IDR)\nNormal', 'Rate', 'WHT\nNormal', 'Client GL', 'Diff\nNormal', 'Remarks', 'Kode BP', 'WHT Slip No.', None, 'Description on Invoice', 'Description on Tax Invoice']
 2026-01-05 10:28:36.554 | INFO     | src.usecase.gl_upload:_read_xlsx_rows:227 - Successfully read 10 rows from XLSX file
 2026-01-05 10:28:36.554 | INFO     | src.usecase.gl_upload:upload:168 - Read 10 rows from testing_gl.xlsx
+2026-01-05 10:37:26.160 | INFO     | src.config.dependencies:get_azure_service_bus_repository:188 - Creating AzureServiceBusRepository singleton
+2026-01-05 10:37:26.511 | INFO     | src.usecase.gl_upload:_read_xlsx_rows:197 - XLSX headers: ['CoCd', 'G/L', 'Year/month', 'Type', 'Reference', 'DocumentNo', 'Supplier', 'Supplier Name', 'PO Number', 'Tax Based', 'WHT', 'Tax Rate ', 'URN', 'User Name', 'Text', 'Clrng doc.', 'Doc. Date', 'Pstng Date', 'Doc Curr', 'Amount in doc. curr.', 'Loc Curr', 'Amount in \nlocal cur.', None, 'Ref', 'WHT Review', '1st Voucing', '2nd Reviewer', 'Type of Tax', 'Document Type', 'Vendor Name', 'Tax ID', 'Address', 'Invoice Number', 'Invoice Date / \nDocument date', 'invoice date (text)', 'Posting date', 'Doc Curr', 'Gross Amount\nin original currency per GL', 'Tax Base WHT (IDR)\nNormal', 'Rate', 'WHT\nNormal', 'Client GL', 'Diff\nNormal', 'Remarks', 'Kode BP', 'WHT Slip No.', None, 'Description on Invoice', 'Description on Tax Invoice']
+2026-01-05 10:37:26.511 | INFO     | src.usecase.gl_upload:_read_xlsx_rows:227 - Successfully read 10 rows from XLSX file
+2026-01-05 10:37:26.511 | INFO     | src.usecase.gl_upload:upload:168 - Read 10 rows from testing_gl.xlsx
+2026-01-05 10:38:40.017 | INFO     | src.config.dependencies:get_azure_service_bus_repository:188 - Creating AzureServiceBusRepository singleton
+2026-01-05 10:40:27.731 | INFO     | __main__:<module>:256 - Starting application in 'http' mode
+2026-01-05 10:41:16.879 | INFO     | src.config.dependencies:get_app_config:35 - Initializing application configuration
+2026-01-05 10:41:16.881 | INFO     | src.config.dependencies:get_content_understanding_repository:57 - Creating ContentUnderstandingRepository singleton
+2026-01-05 10:41:16.882 | INFO     | src.config.dependencies:get_azure_blob_storage_repository:80 - Creating AzureBlobStorageRepository singleton
+2026-01-05 10:41:17.750 | INFO     | src.repository.storage:__init__:21 - Blob container already exists: tax-documents
+2026-01-05 10:41:17.750 | INFO     | src.repository.storage:__init__:25 - Connected to Blob Storage, container: tax-documents
+2026-01-05 10:41:17.751 | INFO     | src.config.dependencies:get_azure_cosmos_repository:104 - Creating AzureCosmosDBRepository singleton
+2026-01-05 10:41:19.257 | INFO     | src.repository.database:__init__:27 - Connected to Cosmos DB database 'tax-management-system', container 'gl-transactions'
+2026-01-05 10:41:19.262 | INFO     | src.config.dependencies:get_azure_service_bus_repository:188 - Creating AzureServiceBusRepository singleton
+2026-01-05 10:41:23.663 | INFO     | src.repository.storage:upload_file:75 - Uploaded file testing_gl.xlsx for case db2a5fb1-ddcc-4226-9e10-12d55575c40d, blob: db2a5fb1-ddcc-4226-9e10-12d55575c40d/testing_gl.xlsx
+2026-01-05 10:41:23.663 | INFO     | src.usecase.gl_upload:upload:139 - File uploaded successfully: {'filename': 'testing_gl.xlsx', 'size': 219318, 'object_name': 'db2a5fb1-ddcc-4226-9e10-12d55575c40d/testing_gl.xlsx'}
+2026-01-05 10:41:27.889 | INFO     | src.usecase.gl_upload:_read_xlsx_rows:173 - XLSX headers: ['CoCd', 'G/L', 'Year/month', 'Type', 'Reference', 'DocumentNo', 'Supplier', 'Supplier Name', 'PO Number', 'Tax Based', 'WHT', 'Tax Rate ', 'URN', 'User Name', 'Text', 'Clrng doc.', 'Doc. Date', 'Pstng Date', 'Doc Curr', 'Amount in doc. curr.', 'Loc Curr', 'Amount in \nlocal cur.', None, 'Ref', 'WHT Review', '1st Voucing', '2nd Reviewer', 'Type of Tax', 'Document Type', 'Vendor Name', 'Tax ID', 'Address', 'Invoice Number', 'Invoice Date / \nDocument date', 'invoice date (text)', 'Posting date', 'Doc Curr', 'Gross Amount\nin original currency per GL', 'Tax Base WHT (IDR)\nNormal', 'Rate', 'WHT\nNormal', 'Client GL', 'Diff\nNormal', 'Remarks', 'Kode BP', 'WHT Slip No.', None, 'Description on Invoice', 'Description on Tax Invoice']
+2026-01-05 10:41:27.894 | INFO     | src.usecase.gl_upload:_read_xlsx_rows:203 - Successfully read 10 rows from XLSX file
+2026-01-05 10:49:44.184 | INFO     | __main__:<module>:256 - Starting application in 'http' mode
+2026-01-05 10:50:14.488 | INFO     | src.config.dependencies:get_app_config:35 - Initializing application configuration
+2026-01-05 10:50:14.488 | INFO     | src.config.dependencies:get_content_understanding_repository:57 - Creating ContentUnderstandingRepository singleton
+2026-01-05 10:50:14.488 | INFO     | src.config.dependencies:get_azure_blob_storage_repository:80 - Creating AzureBlobStorageRepository singleton
+2026-01-05 10:50:15.371 | INFO     | src.repository.storage:__init__:21 - Blob container already exists: tax-documents
+2026-01-05 10:50:15.371 | INFO     | src.repository.storage:__init__:25 - Connected to Blob Storage, container: tax-documents
+2026-01-05 10:50:15.371 | INFO     | src.config.dependencies:get_azure_cosmos_repository:104 - Creating AzureCosmosDBRepository singleton
+2026-01-05 10:50:16.850 | INFO     | src.repository.database:__init__:27 - Connected to Cosmos DB database 'tax-management-system', container 'gl-transactions'
+2026-01-05 10:50:16.853 | INFO     | src.config.dependencies:get_azure_service_bus_repository:188 - Creating AzureServiceBusRepository singleton
+2026-01-05 10:50:17.067 | INFO     | src.repository.storage:upload_file:75 - Uploaded file testing_gl.xlsx for case 57b4b9d0-4263-4764-969f-ef3404783882, blob: 57b4b9d0-4263-4764-969f-ef3404783882/testing_gl.xlsx
+2026-01-05 10:50:17.067 | INFO     | src.usecase.gl_upload:upload:139 - File uploaded successfully: {'filename': 'testing_gl.xlsx', 'size': 219318, 'object_name': '57b4b9d0-4263-4764-969f-ef3404783882/testing_gl.xlsx'}
+2026-01-05 10:50:17.575 | INFO     | src.usecase.gl_upload:_read_xlsx_rows:188 - XLSX headers: ['CoCd', 'G/L', 'Year/month', 'Type', 'Reference', 'DocumentNo', 'Supplier', 'Supplier Name', 'PO Number', 'Tax Based', 'WHT', 'Tax Rate ', 'URN', 'User Name', 'Text', 'Clrng doc.', 'Doc. Date', 'Pstng Date', 'Doc Curr', 'Amount in doc. curr.', 'Loc Curr', 'Amount in \nlocal cur.', None, 'Ref', 'WHT Review', '1st Voucing', '2nd Reviewer', 'Type of Tax', 'Document Type', 'Vendor Name', 'Tax ID', 'Address', 'Invoice Number', 'Invoice Date / \nDocument date', 'invoice date (text)', 'Posting date', 'Doc Curr', 'Gross Amount\nin original currency per GL', 'Tax Base WHT (IDR)\nNormal', 'Rate', 'WHT\nNormal', 'Client GL', 'Diff\nNormal', 'Remarks', 'Kode BP', 'WHT Slip No.', None, 'Description on Invoice', 'Description on Tax Invoice']
+2026-01-05 10:50:17.575 | INFO     | src.usecase.gl_upload:_read_xlsx_rows:218 - Successfully read 10 rows from XLSX file
+2026-01-05 10:50:17.575 | INFO     | src.usecase.gl_upload:upload:144 - Read 10 rows from testing_gl.xlsx
+2026-01-05 10:50:37.546 | ERROR    | src.usecase.gl_upload:upload:156 - Error inserting rows to Cosmos DB: (NotFound) Message: {"Errors":["Resource Not Found. Learn more: https://aka.ms/cosmosdb-tsg-not-found"]}
+ActivityId: 1d5a5d77-579d-431f-beff-17c4a91aa4a6, Request URI: /apps/b9e3398a-677f-4c08-8cc2-a9b6425236b2/services/e511fa7c-f1e7-4474-ae49-53323359b4ed/partitions/c95fe06a-a2ca-414d-846d-f37fc5f9a138/replicas/133994256053911996s, RequestStats: , SDK: Microsoft.Azure.Documents.Common/2.14.0
+Code: NotFound
+Message: Message: {"Errors":["Resource Not Found. Learn more: https://aka.ms/cosmosdb-tsg-not-found"]}
+ActivityId: 1d5a5d77-579d-431f-beff-17c4a91aa4a6, Request URI: /apps/b9e3398a-677f-4c08-8cc2-a9b6425236b2/services/e511fa7c-f1e7-4474-ae49-53323359b4ed/partitions/c95fe06a-a2ca-414d-846d-f37fc5f9a138/replicas/133994256053911996s, RequestStats: , SDK: Microsoft.Azure.Documents.Common/2.14.0
+2026-01-05 10:50:47.500 | ERROR    | src.usecase.gl_upload:upload:171 - Error uploading file testing_gl.xlsx: (NotFound) Message: {"Errors":["Resource Not Found. Learn more: https://aka.ms/cosmosdb-tsg-not-found"]}
+ActivityId: 1d5a5d77-579d-431f-beff-17c4a91aa4a6, Request URI: /apps/b9e3398a-677f-4c08-8cc2-a9b6425236b2/services/e511fa7c-f1e7-4474-ae49-53323359b4ed/partitions/c95fe06a-a2ca-414d-846d-f37fc5f9a138/replicas/133994256053911996s, RequestStats: , SDK: Microsoft.Azure.Documents.Common/2.14.0
+Code: NotFound
+Message: Message: {"Errors":["Resource Not Found. Learn more: https://aka.ms/cosmosdb-tsg-not-found"]}
+ActivityId: 1d5a5d77-579d-431f-beff-17c4a91aa4a6, Request URI: /apps/b9e3398a-677f-4c08-8cc2-a9b6425236b2/services/e511fa7c-f1e7-4474-ae49-53323359b4ed/partitions/c95fe06a-a2ca-414d-846d-f37fc5f9a138/replicas/133994256053911996s, RequestStats: , SDK: Microsoft.Azure.Documents.Common/2.14.0
+2026-01-05 10:50:47.500 | ERROR    | src.delivery.upload_routes:upload_gl_file:105 - Error uploading file: (NotFound) Message: {"Errors":["Resource Not Found. Learn more: https://aka.ms/cosmosdb-tsg-not-found"]}
+ActivityId: 1d5a5d77-579d-431f-beff-17c4a91aa4a6, Request URI: /apps/b9e3398a-677f-4c08-8cc2-a9b6425236b2/services/e511fa7c-f1e7-4474-ae49-53323359b4ed/partitions/c95fe06a-a2ca-414d-846d-f37fc5f9a138/replicas/133994256053911996s, RequestStats: , SDK: Microsoft.Azure.Documents.Common/2.14.0
+Code: NotFound
+Message: Message: {"Errors":["Resource Not Found. Learn more: https://aka.ms/cosmosdb-tsg-not-found"]}
+ActivityId: 1d5a5d77-579d-431f-beff-17c4a91aa4a6, Request URI: /apps/b9e3398a-677f-4c08-8cc2-a9b6425236b2/services/e511fa7c-f1e7-4474-ae49-53323359b4ed/partitions/c95fe06a-a2ca-414d-846d-f37fc5f9a138/replicas/133994256053911996s, RequestStats: , SDK: Microsoft.Azure.Documents.Common/2.14.0
+2026-01-05 10:50:52.892 | INFO     | src.config.dependencies:get_azure_service_bus_repository:188 - Creating AzureServiceBusRepository singleton
+2026-01-05 10:50:53.096 | INFO     | src.repository.storage:upload_file:75 - Uploaded file testing_gl.xlsx for case 8e8e15ec-59e4-49ce-a90e-f6bd0232ba64, blob: 8e8e15ec-59e4-49ce-a90e-f6bd0232ba64/testing_gl.xlsx
+2026-01-05 10:50:53.096 | INFO     | src.usecase.gl_upload:upload:139 - File uploaded successfully: {'filename': 'testing_gl.xlsx', 'size': 219318, 'object_name': '8e8e15ec-59e4-49ce-a90e-f6bd0232ba64/testing_gl.xlsx'}
+2026-01-05 10:50:53.392 | INFO     | src.usecase.gl_upload:_read_xlsx_rows:188 - XLSX headers: ['CoCd', 'G/L', 'Year/month', 'Type', 'Reference', 'DocumentNo', 'Supplier', 'Supplier Name', 'PO Number', 'Tax Based', 'WHT', 'Tax Rate ', 'URN', 'User Name', 'Text', 'Clrng doc.', 'Doc. Date', 'Pstng Date', 'Doc Curr', 'Amount in doc. curr.', 'Loc Curr', 'Amount in \nlocal cur.', None, 'Ref', 'WHT Review', '1st Voucing', '2nd Reviewer', 'Type of Tax', 'Document Type', 'Vendor Name', 'Tax ID', 'Address', 'Invoice Number', 'Invoice Date / \nDocument date', 'invoice date (text)', 'Posting date', 'Doc Curr', 'Gross Amount\nin original currency per GL', 'Tax Base WHT (IDR)\nNormal', 'Rate', 'WHT\nNormal', 'Client GL', 'Diff\nNormal', 'Remarks', 'Kode BP', 'WHT Slip No.', None, 'Description on Invoice', 'Description on Tax Invoice']
+2026-01-05 10:50:53.395 | INFO     | src.usecase.gl_upload:_read_xlsx_rows:218 - Successfully read 10 rows from XLSX file
+2026-01-05 10:50:53.395 | INFO     | src.usecase.gl_upload:upload:144 - Read 10 rows from testing_gl.xlsx
+2026-01-05 10:52:32.757 | INFO     | __main__:<module>:256 - Starting application in 'http' mode
+2026-01-05 10:52:39.546 | INFO     | src.config.dependencies:get_app_config:35 - Initializing application configuration
+2026-01-05 10:52:39.548 | INFO     | src.config.dependencies:get_content_understanding_repository:57 - Creating ContentUnderstandingRepository singleton
+2026-01-05 10:52:39.549 | INFO     | src.config.dependencies:get_azure_blob_storage_repository:80 - Creating AzureBlobStorageRepository singleton
+2026-01-05 10:52:40.199 | INFO     | src.repository.storage:__init__:21 - Blob container already exists: tax-documents
+2026-01-05 10:52:40.199 | INFO     | src.repository.storage:__init__:25 - Connected to Blob Storage, container: tax-documents
+2026-01-05 10:52:40.200 | INFO     | src.config.dependencies:get_azure_cosmos_repository:104 - Creating AzureCosmosDBRepository singleton
+2026-01-05 10:52:41.278 | INFO     | src.repository.database:__init__:27 - Connected to Cosmos DB database 'tax-management-system', container 'gl-transactions'
+2026-01-05 10:52:41.278 | INFO     | src.config.dependencies:get_azure_service_bus_repository:188 - Creating AzureServiceBusRepository singleton
+2026-01-05 10:52:41.484 | INFO     | src.repository.storage:upload_file:75 - Uploaded file testing_gl.xlsx for case 067efb4e-4abe-43a9-a931-a2d7ca736dce, blob: 067efb4e-4abe-43a9-a931-a2d7ca736dce/testing_gl.xlsx
+2026-01-05 10:52:41.484 | INFO     | src.usecase.gl_upload:upload:139 - File uploaded successfully: {'filename': 'testing_gl.xlsx', 'size': 219318, 'object_name': '067efb4e-4abe-43a9-a931-a2d7ca736dce/testing_gl.xlsx'}
+2026-01-05 10:52:41.791 | INFO     | src.usecase.gl_upload:_read_xlsx_rows:188 - XLSX headers: ['CoCd', 'G/L', 'Year/month', 'Type', 'Reference', 'DocumentNo', 'Supplier', 'Supplier Name', 'PO Number', 'Tax Based', 'WHT', 'Tax Rate ', 'URN', 'User Name', 'Text', 'Clrng doc.', 'Doc. Date', 'Pstng Date', 'Doc Curr', 'Amount in doc. curr.', 'Loc Curr', 'Amount in \nlocal cur.', None, 'Ref', 'WHT Review', '1st Voucing', '2nd Reviewer', 'Type of Tax', 'Document Type', 'Vendor Name', 'Tax ID', 'Address', 'Invoice Number', 'Invoice Date / \nDocument date', 'invoice date (text)', 'Posting date', 'Doc Curr', 'Gross Amount\nin original currency per GL', 'Tax Base WHT (IDR)\nNormal', 'Rate', 'WHT\nNormal', 'Client GL', 'Diff\nNormal', 'Remarks', 'Kode BP', 'WHT Slip No.', None, 'Description on Invoice', 'Description on Tax Invoice']
+2026-01-05 10:52:41.793 | INFO     | src.usecase.gl_upload:_read_xlsx_rows:218 - Successfully read 10 rows from XLSX file
+2026-01-05 10:52:41.793 | INFO     | src.usecase.gl_upload:upload:144 - Read 10 rows from testing_gl.xlsx
+2026-01-05 10:53:22.099 | ERROR    | src.usecase.gl_upload:upload:156 - Error inserting rows to Cosmos DB: Object of type datetime is not JSON serializable
+2026-01-05 10:53:22.099 | ERROR    | src.usecase.gl_upload:upload:171 - Error uploading file testing_gl.xlsx: Object of type datetime is not JSON serializable
+2026-01-05 10:53:22.100 | ERROR    | src.delivery.upload_routes:upload_gl_file:105 - Error uploading file: Object of type datetime is not JSON serializable
+2026-01-05 10:55:52.624 | INFO     | __main__:<module>:256 - Starting application in 'http' mode
+2026-01-05 10:59:26.876 | INFO     | src.config.dependencies:get_app_config:35 - Initializing application configuration
+2026-01-05 10:59:26.876 | INFO     | src.config.dependencies:get_content_understanding_repository:57 - Creating ContentUnderstandingRepository singleton
+2026-01-05 10:59:26.876 | INFO     | src.config.dependencies:get_azure_blob_storage_repository:80 - Creating AzureBlobStorageRepository singleton
+2026-01-05 10:59:27.643 | INFO     | src.repository.storage:__init__:21 - Blob container already exists: tax-documents
+2026-01-05 10:59:27.643 | INFO     | src.repository.storage:__init__:25 - Connected to Blob Storage, container: tax-documents
+2026-01-05 10:59:27.643 | INFO     | src.config.dependencies:get_azure_cosmos_repository:104 - Creating AzureCosmosDBRepository singleton
+2026-01-05 10:59:28.961 | INFO     | src.repository.database:__init__:27 - Connected to Cosmos DB database 'tax-management-system', container 'gl-transactions'
+2026-01-05 10:59:28.967 | INFO     | src.config.dependencies:get_azure_service_bus_repository:188 - Creating AzureServiceBusRepository singleton
+2026-01-05 10:59:29.211 | INFO     | src.repository.storage:upload_file:75 - Uploaded file testing_gl.xlsx for case 8f416c1a-ccc9-4361-af7f-aa136f212828, blob: 8f416c1a-ccc9-4361-af7f-aa136f212828/testing_gl.xlsx
+2026-01-05 10:59:29.211 | INFO     | src.usecase.gl_upload:upload:139 - File uploaded successfully: {'filename': 'testing_gl.xlsx', 'size': 219318, 'object_name': '8f416c1a-ccc9-4361-af7f-aa136f212828/testing_gl.xlsx'}
+2026-01-05 10:59:29.667 | INFO     | src.usecase.gl_upload:_read_xlsx_rows:188 - XLSX headers: ['CoCd', 'G/L', 'Year/month', 'Type', 'Reference', 'DocumentNo', 'Supplier', 'Supplier Name', 'PO Number', 'Tax Based', 'WHT', 'Tax Rate ', 'URN', 'User Name', 'Text', 'Clrng doc.', 'Doc. Date', 'Pstng Date', 'Doc Curr', 'Amount in doc. curr.', 'Loc Curr', 'Amount in \nlocal cur.', None, 'Ref', 'WHT Review', '1st Voucing', '2nd Reviewer', 'Type of Tax', 'Document Type', 'Vendor Name', 'Tax ID', 'Address', 'Invoice Number', 'Invoice Date / \nDocument date', 'invoice date (text)', 'Posting date', 'Doc Curr', 'Gross Amount\nin original currency per GL', 'Tax Base WHT (IDR)\nNormal', 'Rate', 'WHT\nNormal', 'Client GL', 'Diff\nNormal', 'Remarks', 'Kode BP', 'WHT Slip No.', None, 'Description on Invoice', 'Description on Tax Invoice']
+2026-01-05 10:59:29.668 | INFO     | src.usecase.gl_upload:_read_xlsx_rows:218 - Successfully read 10 rows from XLSX file
+2026-01-05 10:59:29.669 | INFO     | src.usecase.gl_upload:upload:144 - Read 10 rows from testing_gl.xlsx
+2026-01-05 11:04:30.006 | INFO     | __main__:<module>:256 - Starting application in 'http' mode
+2026-01-05 11:07:41.011 | INFO     | src.config.dependencies:get_app_config:35 - Initializing application configuration
+2026-01-05 11:07:41.013 | INFO     | src.config.dependencies:get_content_understanding_repository:57 - Creating ContentUnderstandingRepository singleton
+2026-01-05 11:07:41.014 | INFO     | src.config.dependencies:get_azure_blob_storage_repository:80 - Creating AzureBlobStorageRepository singleton
+2026-01-05 11:07:41.793 | INFO     | src.repository.storage:__init__:21 - Blob container already exists: tax-documents
+2026-01-05 11:07:41.793 | INFO     | src.repository.storage:__init__:25 - Connected to Blob Storage, container: tax-documents
+2026-01-05 11:07:41.793 | INFO     | src.config.dependencies:get_azure_cosmos_repository:104 - Creating AzureCosmosDBRepository singleton
+2026-01-05 11:07:43.111 | INFO     | src.repository.database:__init__:27 - Connected to Cosmos DB database 'tax-management-system', container 'gl-transactions'
+2026-01-05 11:07:43.118 | INFO     | src.config.dependencies:get_azure_service_bus_repository:188 - Creating AzureServiceBusRepository singleton
+2026-01-05 11:07:43.430 | INFO     | src.repository.storage:upload_file:75 - Uploaded file testing_gl.xlsx for case 4010f8b1-6b33-45f2-be33-7711cc13d6d8, blob: 4010f8b1-6b33-45f2-be33-7711cc13d6d8/testing_gl.xlsx
+2026-01-05 11:07:43.430 | INFO     | src.usecase.gl_upload:upload:139 - File uploaded successfully: {'filename': 'testing_gl.xlsx', 'size': 219318, 'object_name': '4010f8b1-6b33-45f2-be33-7711cc13d6d8/testing_gl.xlsx'}
+2026-01-05 11:07:43.720 | INFO     | src.usecase.gl_upload:_read_xlsx_rows:192 - XLSX headers: ['CoCd', 'G/L', 'Year/month', 'Type', 'Reference', 'DocumentNo', 'Supplier', 'Supplier Name', 'PO Number', 'Tax Based', 'WHT', 'Tax Rate ', 'URN', 'User Name', 'Text', 'Clrng doc.', 'Doc. Date', 'Pstng Date', 'Doc Curr', 'Amount in doc. curr.', 'Loc Curr', 'Amount in \nlocal cur.', None, 'Ref', 'WHT Review', '1st Voucing', '2nd Reviewer', 'Type of Tax', 'Document Type', 'Vendor Name', 'Tax ID', 'Address', 'Invoice Number', 'Invoice Date / \nDocument date', 'invoice date (text)', 'Posting date', 'Doc Curr', 'Gross Amount\nin original currency per GL', 'Tax Base WHT (IDR)\nNormal', 'Rate', 'WHT\nNormal', 'Client GL', 'Diff\nNormal', 'Remarks', 'Kode BP', 'WHT Slip No.', None, 'Description on Invoice', 'Description on Tax Invoice']
+2026-01-05 11:07:43.726 | INFO     | src.usecase.gl_upload:_read_xlsx_rows:222 - Successfully read 10 rows from XLSX file
+2026-01-05 11:07:43.726 | INFO     | src.usecase.gl_upload:upload:144 - Read 10 rows from testing_gl.xlsx
+2026-01-05 11:07:50.883 | ERROR    | src.usecase.gl_upload:upload:160 - Error inserting rows to Cosmos DB: 2 validation errors for GLTransaction
+taxRate
+  Field required [type=missing, input_value={'cocd': '2274', 'gl': '3..., 'gl_recon_item': None}, input_type=dict]
+    For further information visit https://errors.pydantic.dev/2.11/v/missing
+amountInLocalCurrency
+  Field required [type=missing, input_value={'cocd': '2274', 'gl': '3..., 'gl_recon_item': None}, input_type=dict]
+    For further information visit https://errors.pydantic.dev/2.11/v/missing
+2026-01-05 11:10:05.142 | INFO     | __main__:<module>:256 - Starting application in 'http' mode
+2026-01-05 11:11:04.038 | INFO     | src.config.dependencies:get_app_config:35 - Initializing application configuration
+2026-01-05 11:11:04.040 | INFO     | src.config.dependencies:get_content_understanding_repository:57 - Creating ContentUnderstandingRepository singleton
+2026-01-05 11:11:04.041 | INFO     | src.config.dependencies:get_azure_blob_storage_repository:80 - Creating AzureBlobStorageRepository singleton
+2026-01-05 11:11:04.707 | INFO     | src.repository.storage:__init__:21 - Blob container already exists: tax-documents
+2026-01-05 11:11:04.708 | INFO     | src.repository.storage:__init__:25 - Connected to Blob Storage, container: tax-documents
+2026-01-05 11:11:04.709 | INFO     | src.config.dependencies:get_azure_cosmos_repository:104 - Creating AzureCosmosDBRepository singleton
+2026-01-05 11:11:05.995 | INFO     | src.repository.database:__init__:27 - Connected to Cosmos DB database 'tax-management-system', container 'gl-transactions'
+2026-01-05 11:11:06.001 | INFO     | src.config.dependencies:get_azure_service_bus_repository:188 - Creating AzureServiceBusRepository singleton
+2026-01-05 11:11:06.195 | INFO     | src.repository.storage:upload_file:75 - Uploaded file testing_gl.xlsx for case b98fd5c8-a046-41fa-afea-2c3e9856843d, blob: b98fd5c8-a046-41fa-afea-2c3e9856843d/testing_gl.xlsx
+2026-01-05 11:11:06.195 | INFO     | src.usecase.gl_upload:upload:139 - File uploaded successfully: {'filename': 'testing_gl.xlsx', 'size': 219318, 'object_name': 'b98fd5c8-a046-41fa-afea-2c3e9856843d/testing_gl.xlsx'}
+2026-01-05 11:11:06.600 | INFO     | src.usecase.gl_upload:_read_xlsx_rows:192 - XLSX headers: ['CoCd', 'G/L', 'Year/month', 'Type', 'Reference', 'DocumentNo', 'Supplier', 'Supplier Name', 'PO Number', 'Tax Based', 'WHT', 'Tax Rate ', 'URN', 'User Name', 'Text', 'Clrng doc.', 'Doc. Date', 'Pstng Date', 'Doc Curr', 'Amount in doc. curr.', 'Loc Curr', 'Amount in \nlocal cur.', None, 'Ref', 'WHT Review', '1st Voucing', '2nd Reviewer', 'Type of Tax', 'Document Type', 'Vendor Name', 'Tax ID', 'Address', 'Invoice Number', 'Invoice Date / \nDocument date', 'invoice date (text)', 'Posting date', 'Doc Curr', 'Gross Amount\nin original currency per GL', 'Tax Base WHT (IDR)\nNormal', 'Rate', 'WHT\nNormal', 'Client GL', 'Diff\nNormal', 'Remarks', 'Kode BP', 'WHT Slip No.', None, 'Description on Invoice', 'Description on Tax Invoice']
+2026-01-05 11:11:06.601 | INFO     | src.usecase.gl_upload:_read_xlsx_rows:225 - Successfully read 10 rows from XLSX file
+2026-01-05 11:11:06.602 | INFO     | src.usecase.gl_upload:upload:144 - Read 10 rows from testing_gl.xlsx
+2026-01-05 11:20:17.851 | INFO     | __main__:<module>:256 - Starting application in 'http' mode
+2026-01-05 11:23:41.689 | INFO     | src.config.dependencies:get_app_config:35 - Initializing application configuration
+2026-01-05 11:23:41.690 | INFO     | src.config.dependencies:get_content_understanding_repository:57 - Creating ContentUnderstandingRepository singleton
+2026-01-05 11:23:41.691 | INFO     | src.config.dependencies:get_azure_blob_storage_repository:80 - Creating AzureBlobStorageRepository singleton
+2026-01-05 11:23:42.414 | INFO     | src.repository.storage:__init__:21 - Blob container already exists: tax-documents
+2026-01-05 11:23:42.414 | INFO     | src.repository.storage:__init__:25 - Connected to Blob Storage, container: tax-documents
+2026-01-05 11:23:42.415 | INFO     | src.config.dependencies:get_azure_cosmos_repository:104 - Creating AzureCosmosDBRepository singleton
+2026-01-05 11:23:43.667 | INFO     | src.repository.database:__init__:27 - Connected to Cosmos DB database 'tax-management-system', container 'gl-transactions'
+2026-01-05 11:23:43.671 | INFO     | src.config.dependencies:get_azure_service_bus_repository:188 - Creating AzureServiceBusRepository singleton
+2026-01-05 11:23:43.879 | INFO     | src.repository.storage:upload_file:75 - Uploaded file testing_gl.xlsx for case b4f7d732-f2ae-4861-aecb-26e1a9b4bb9d, blob: b4f7d732-f2ae-4861-aecb-26e1a9b4bb9d/testing_gl.xlsx
+2026-01-05 11:23:43.880 | INFO     | src.usecase.gl_upload:upload:139 - File uploaded successfully: {'filename': 'testing_gl.xlsx', 'size': 219318, 'object_name': 'b4f7d732-f2ae-4861-aecb-26e1a9b4bb9d/testing_gl.xlsx'}
+2026-01-05 11:23:44.173 | INFO     | src.usecase.gl_upload:_read_xlsx_rows:192 - XLSX headers: ['CoCd', 'G/L', 'Year/month', 'Type', 'Reference', 'DocumentNo', 'Supplier', 'Supplier Name', 'PO Number', 'Tax Based', 'WHT', 'Tax Rate ', 'URN', 'User Name', 'Text', 'Clrng doc.', 'Doc. Date', 'Pstng Date', 'Doc Curr', 'Amount in doc. curr.', 'Loc Curr', 'Amount in \nlocal cur.', None, 'Ref', 'WHT Review', '1st Voucing', '2nd Reviewer', 'Type of Tax', 'Document Type', 'Vendor Name', 'Tax ID', 'Address', 'Invoice Number', 'Invoice Date / \nDocument date', 'invoice date (text)', 'Posting date', 'Doc Curr', 'Gross Amount\nin original currency per GL', 'Tax Base WHT (IDR)\nNormal', 'Rate', 'WHT\nNormal', 'Client GL', 'Diff\nNormal', 'Remarks', 'Kode BP', 'WHT Slip No.', None, 'Description on Invoice', 'Description on Tax Invoice']
+2026-01-05 11:23:44.174 | INFO     | src.usecase.gl_upload:_read_xlsx_rows:225 - Successfully read 10 rows from XLSX file
+2026-01-05 11:23:44.174 | INFO     | src.usecase.gl_upload:upload:144 - Read 10 rows from testing_gl.xlsx
+2026-01-05 11:28:54.540 | INFO     | __main__:<module>:256 - Starting application in 'http' mode
+2026-01-05 11:29:18.042 | INFO     | src.config.dependencies:get_app_config:35 - Initializing application configuration
+2026-01-05 11:29:18.043 | INFO     | src.config.dependencies:get_content_understanding_repository:57 - Creating ContentUnderstandingRepository singleton
+2026-01-05 11:29:18.043 | INFO     | src.config.dependencies:get_azure_blob_storage_repository:80 - Creating AzureBlobStorageRepository singleton
+2026-01-05 11:29:18.761 | INFO     | src.repository.storage:__init__:21 - Blob container already exists: tax-documents
+2026-01-05 11:29:18.761 | INFO     | src.repository.storage:__init__:25 - Connected to Blob Storage, container: tax-documents
+2026-01-05 11:29:18.761 | INFO     | src.config.dependencies:get_azure_cosmos_repository:104 - Creating AzureCosmosDBRepository singleton
+2026-01-05 11:29:20.027 | INFO     | src.repository.database:__init__:27 - Connected to Cosmos DB database 'tax-management-system', container 'gl-transactions'
+2026-01-05 11:29:20.027 | INFO     | src.config.dependencies:get_azure_service_bus_repository:188 - Creating AzureServiceBusRepository singleton
+2026-01-05 11:29:20.233 | INFO     | src.repository.storage:upload_file:75 - Uploaded file testing_gl.xlsx for case ee206943-5fe7-461f-89c0-6eb7cf5d7a63, blob: ee206943-5fe7-461f-89c0-6eb7cf5d7a63/testing_gl.xlsx
+2026-01-05 11:29:20.234 | INFO     | src.usecase.gl_upload:upload:139 - File uploaded successfully: {'filename': 'testing_gl.xlsx', 'size': 219318, 'object_name': 'ee206943-5fe7-461f-89c0-6eb7cf5d7a63/testing_gl.xlsx'}
+2026-01-05 11:29:20.731 | INFO     | src.usecase.gl_upload:_read_xlsx_rows:196 - XLSX headers: ['CoCd', 'G/L', 'Year/month', 'Type', 'Reference', 'DocumentNo', 'Supplier', 'Supplier Name', 'PO Number', 'Tax Based', 'WHT', 'Tax Rate ', 'URN', 'User Name', 'Text', 'Clrng doc.', 'Doc. Date', 'Pstng Date', 'Doc Curr', 'Amount in doc. curr.', 'Loc Curr', 'Amount in \nlocal cur.', None, 'Ref', 'WHT Review', '1st Voucing', '2nd Reviewer', 'Type of Tax', 'Document Type', 'Vendor Name', 'Tax ID', 'Address', 'Invoice Number', 'Invoice Date / \nDocument date', 'invoice date (text)', 'Posting date', 'Doc Curr', 'Gross Amount\nin original currency per GL', 'Tax Base WHT (IDR)\nNormal', 'Rate', 'WHT\nNormal', 'Client GL', 'Diff\nNormal', 'Remarks', 'Kode BP', 'WHT Slip No.', None, 'Description on Invoice', 'Description on Tax Invoice']
+2026-01-05 11:29:20.731 | INFO     | src.usecase.gl_upload:_read_xlsx_rows:229 - Successfully read 10 rows from XLSX file
+2026-01-05 11:29:20.731 | INFO     | src.usecase.gl_upload:upload:144 - Read 10 rows from testing_gl.xlsx

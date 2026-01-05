@@ -143,6 +143,29 @@ class GLUpload:
             
             logger.info(f"Read {len(rows_data)} rows from {original_filename}")
             
+            # 3. Insert to Azure Cosmos DB
+            if self.azure_cosmos_repo and rows_data:
+                try:
+                    for row in rows_data:
+                        # Convert to GLTransaction model and serialize with aliases (camelCase)
+                        gl_transaction = GLTransaction(**row)
+                        document_data = gl_transaction.model_dump(by_alias=True)
+                        
+                        # Ensure glReconItem is present as empty array if None
+                        if document_data.get("glReconItem") is None:
+                            document_data["glReconItem"] = []
+                        
+                        # Insert each GL transaction to Cosmos DB with aliased field names
+                        self.azure_cosmos_repo.create_document(
+                            container_id="gl-transactions",
+                            document_data=document_data
+                        )
+                except Exception as e:
+                    logger.error(f"Error inserting rows to Cosmos DB: {e}")
+                    raise
+            else:
+                logger.warning("Azure Cosmos DB repository not configured or no rows to insert")
+            
             # Return as snake_case
             return {
                 "file_id": file_id,
@@ -192,8 +215,11 @@ class GLUpload:
                     # Set default gl_transaction_status_id
                     row_data["gl_transaction_status_id"] = 1
                     
-                    # Initialize empty gl_recon_item list
+                    # Initialize gl_recon_item as None (will be converted to [] during insertion)
                     row_data["gl_recon_item"] = None
+                    
+                    # Set defaults for required fields if missing
+                    self._set_default_values(row_data)
                     
                     # Convert numeric values to appropriate types
                     row_data = self._convert_row_types(row_data)
@@ -206,6 +232,50 @@ class GLUpload:
         except Exception as e:
             logger.error(f"Error reading XLSX file: {e}")
             raise
+    
+    def _set_default_values(self, row_data: Dict[str, Any]) -> None:
+        """Set default values for required fields that are missing"""
+        
+        # Required string fields
+        required_string_fields = {
+            "urn": "",
+            "cocd": "",
+            "gl": "",
+            "year_month": "",
+            "type": "",
+            "reference_number": "",
+            "document_number": "",
+            "po_number": "",
+            "username": "",
+            "text": "",
+            "document_date": "",
+            "posting_date": "",
+            "document_currency": "IDR",
+            "local_currency": "IDR",
+            "vendor_id": "",
+            "first_voucing": ""
+        }
+        
+        # Required numeric fields
+        required_numeric_fields = {
+            "tax_based": 0.0,
+            "wht": 0.0,
+            "tax_rate": 0.0,
+            "amount_in_document_currency": 0.0,
+            "amount_in_local_currency": 0.0,
+            "wht_normal": 0.0,
+            "diff_normal": 0.0
+        }
+        
+        # Set defaults for missing string fields
+        for field, default_value in required_string_fields.items():
+            if field not in row_data or row_data[field] is None:
+                row_data[field] = default_value
+        
+        # Set defaults for missing numeric fields
+        for field, default_value in required_numeric_fields.items():
+            if field not in row_data or row_data[field] is None:
+                row_data[field] = default_value
     
     def _convert_row_types(self, row_data: Dict[str, Any]) -> Dict[str, Any]:
         """Convert row data types to match GLTransaction domain (Cosmos DB)"""
@@ -230,6 +300,11 @@ class GLUpload:
         extra_string_fields = [
             "vendor_name", "wht_review", "type_of_tax", "document_type"
         ]
+        
+        # Convert datetime objects to ISO format strings
+        for key, value in row_data.items():
+            if isinstance(value, datetime):
+                row_data[key] = value.isoformat()
         
         for field in float_fields:
             if field in row_data and row_data[field] is not None:
