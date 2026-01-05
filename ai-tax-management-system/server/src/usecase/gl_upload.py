@@ -90,29 +90,6 @@ class GLUpload:
             content_type=content_type
         )
     
-    def _send_processing_message(
-        self, 
-        file_id: str
-    ) -> None:
-
-        # if IS_PRODUCTION or not self.rabbitmq_repo:
-        #     return
-            
-        payload = {
-            "document_id": file_id,
-            "timestamp": datetime.utcnow().isoformat() + "Z"
-        }
-
-        # self.rabbitmq_repo.send_message(
-        #     queue_name="file_upload_queue",
-        #     message_data=payload
-        # )
-
-        self.azure_service_bus_repo.send_message(
-            queue_name=self.queue_name,
-            message_data=payload
-        )
-
     def _upload_single_file(
         self, 
         file_content: bytes, 
@@ -127,7 +104,6 @@ class GLUpload:
         file_info = self._upload_to_storage(file_buffer, file_id, filename, activity_id, content_type)
         
         object_name = file_info.get("object_name") or file_info.get("blob_name")
-        # self._send_processing_message(file_id, object_name, filename, page_number)
         
         result = {
             "filename": filename,
@@ -152,15 +128,15 @@ class GLUpload:
             activity_id = str(uuid.uuid4())
             
             # 1. Upload xlsx file to storage
-            # upload_info = self._upload_single_file(
-            #     file_content=file_content,
-            #     file_id=file_id,
-            #     filename=original_filename,
-            #     activity_id=activity_id,
-            #     content_type=content_type
-            # )
+            upload_info = self._upload_single_file(
+                file_content=file_content,
+                file_id=file_id,
+                filename=original_filename,
+                activity_id=activity_id,
+                content_type=content_type
+            )
             
-            # logger.info(f"File uploaded successfully: {upload_info}")
+            logger.info(f"File uploaded successfully: {upload_info}")
             
             # 2. Read content by row from xlsx file
             rows_data = self._read_xlsx_rows(file_content)
