@@ -14580,3 +14580,411 @@ amountInLocalCurrency
 2026-01-06 11:15:13.708 | INFO     | __main__:run_worker:70 - Connected to Service Bus queue: document-uploads
 2026-01-06 11:15:18.531 | INFO     | __main__:run_worker:70 - Connected to Service Bus queue: document-uploads
 2026-01-06 11:15:23.162 | INFO     | __main__:run_worker:70 - Connected to Service Bus queue: document-uploads
+2026-01-06 11:15:27.964 | INFO     | __main__:run_worker:70 - Connected to Service Bus queue: document-uploads
+2026-01-06 11:15:32.947 | INFO     | __main__:run_worker:70 - Connected to Service Bus queue: document-uploads
+2026-01-06 11:15:37.486 | INFO     | __main__:run_worker:70 - Connected to Service Bus queue: document-uploads
+2026-01-06 11:15:42.302 | INFO     | __main__:run_worker:70 - Connected to Service Bus queue: document-uploads
+2026-01-06 11:15:46.986 | INFO     | __main__:run_worker:70 - Connected to Service Bus queue: document-uploads
+2026-01-06 11:15:51.999 | INFO     | __main__:run_worker:70 - Connected to Service Bus queue: document-uploads
+2026-01-06 11:15:56.537 | INFO     | __main__:run_worker:70 - Connected to Service Bus queue: document-uploads
+2026-01-06 11:16:01.102 | INFO     | __main__:run_worker:70 - Connected to Service Bus queue: document-uploads
+2026-01-06 11:16:05.923 | INFO     | __main__:run_worker:70 - Connected to Service Bus queue: document-uploads
+2026-01-06 11:16:10.570 | INFO     | __main__:run_worker:70 - Connected to Service Bus queue: document-uploads
+2026-01-06 11:16:15.128 | INFO     | __main__:run_worker:70 - Connected to Service Bus queue: document-uploads
+2026-01-06 11:16:19.624 | INFO     | __main__:run_worker:70 - Connected to Service Bus queue: document-uploads
+2026-01-06 11:16:24.132 | INFO     | __main__:run_worker:70 - Connected to Service Bus queue: document-uploads
+2026-01-06 11:16:28.653 | INFO     | __main__:run_worker:70 - Connected to Service Bus queue: document-uploads
+2026-01-06 11:16:33.319 | INFO     | __main__:run_worker:70 - Connected to Service Bus queue: document-uploads
+2026-01-06 11:16:38.235 | INFO     | __main__:run_worker:70 - Connected to Service Bus queue: document-uploads
+2026-01-06 11:16:43.059 | INFO     | __main__:run_worker:70 - Connected to Service Bus queue: document-uploads
+2026-01-06 11:16:47.514 | INFO     | __main__:run_worker:70 - Connected to Service Bus queue: document-uploads
+2026-01-06 11:16:52.012 | INFO     | __main__:run_worker:70 - Connected to Service Bus queue: document-uploads
+2026-01-06 11:16:56.602 | INFO     | __main__:run_worker:70 - Connected to Service Bus queue: document-uploads
+2026-01-06 11:17:01.122 | INFO     | __main__:run_worker:70 - Connected to Service Bus queue: document-uploads
+2026-01-06 11:17:05.758 | INFO     | __main__:run_worker:70 - Connected to Service Bus queue: document-uploads
+2026-01-06 11:17:10.191 | INFO     | __main__:run_worker:70 - Connected to Service Bus queue: document-uploads
+2026-01-06 11:17:14.703 | INFO     | __main__:run_worker:70 - Connected to Service Bus queue: document-uploads
+2026-01-06 11:17:19.239 | INFO     | __main__:run_worker:70 - Connected to Service Bus queue: document-uploads
+2026-01-06 11:17:23.849 | INFO     | __main__:run_worker:70 - Connected to Service Bus queue: document-uploads
+2026-01-06 11:17:28.310 | INFO     | __main__:run_worker:70 - Connected to Service Bus queue: document-uploads
+2026-01-06 11:17:32.903 | INFO     | __main__:run_worker:70 - Connected to Service Bus queue: document-uploads
+2026-01-06 11:17:37.477 | INFO     | __main__:run_worker:70 - Connected to Service Bus queue: document-uploads
+2026-01-06 11:17:41.969 | INFO     | __main__:run_worker:70 - Connected to Service Bus queue: document-uploads
+2026-01-06 11:17:46.547 | INFO     | __main__:run_worker:70 - Connected to Service Bus queue: document-uploads
+2026-01-06 11:17:50.999 | INFO     | __main__:run_worker:70 - Connected to Service Bus queue: document-uploads
+2026-01-06 11:17:55.529 | INFO     | __main__:run_worker:70 - Connected to Service Bus queue: document-uploads
+2026-01-06 11:18:00.034 | INFO     | __main__:run_worker:70 - Connected to Service Bus queue: document-uploads
+2026-01-06 11:18:04.514 | INFO     | __main__:run_worker:70 - Connected to Service Bus queue: document-uploads
+2026-01-06 11:18:09.188 | INFO     | __main__:run_worker:70 - Connected to Service Bus queue: document-uploads
+2026-01-06 11:18:13.583 | INFO     | __main__:run_worker:70 - Connected to Service Bus queue: document-uploads
+2026-01-06 11:18:18.005 | INFO     | __main__:run_worker:70 - Connected to Service Bus queue: document-uploads
+2026-01-06 11:18:22.586 | INFO     | __main__:run_worker:70 - Connected to Service Bus queue: document-uploads
+2026-01-06 11:18:27.074 | INFO     | __main__:run_worker:70 - Connected to Service Bus queue: document-uploads
+2026-01-06 11:18:31.614 | INFO     | __main__:run_worker:70 - Connected to Service Bus queue: document-uploads
+2026-01-06 11:18:36.081 | INFO     | __main__:run_worker:70 - Connected to Service Bus queue: document-uploads
+2026-01-06 11:18:40.549 | INFO     | __main__:run_worker:70 - Connected to Service Bus queue: document-uploads
+2026-01-06 11:18:45.184 | INFO     | __main__:run_worker:70 - Connected to Service Bus queue: document-uploads
+2026-01-06 11:18:49.580 | INFO     | __main__:run_worker:70 - Connected to Service Bus queue: document-uploads
+2026-01-06 11:18:54.229 | INFO     | __main__:run_worker:70 - Connected to Service Bus queue: document-uploads
+2026-01-06 11:18:58.721 | INFO     | __main__:run_worker:70 - Connected to Service Bus queue: document-uploads
+2026-01-06 11:19:03.138 | INFO     | __main__:run_worker:70 - Connected to Service Bus queue: document-uploads
+2026-01-06 11:19:07.638 | INFO     | __main__:run_worker:70 - Connected to Service Bus queue: document-uploads
+2026-01-06 11:19:12.262 | INFO     | __main__:run_worker:70 - Connected to Service Bus queue: document-uploads
+2026-01-06 11:19:16.792 | INFO     | __main__:run_worker:70 - Connected to Service Bus queue: document-uploads
+2026-01-06 11:19:21.250 | INFO     | __main__:run_worker:70 - Connected to Service Bus queue: document-uploads
+2026-01-06 11:19:25.851 | INFO     | __main__:run_worker:70 - Connected to Service Bus queue: document-uploads
+2026-01-06 11:19:30.415 | INFO     | __main__:run_worker:70 - Connected to Service Bus queue: document-uploads
+2026-01-06 11:19:34.985 | INFO     | __main__:run_worker:70 - Connected to Service Bus queue: document-uploads
+2026-01-06 11:19:39.415 | INFO     | __main__:run_worker:70 - Connected to Service Bus queue: document-uploads
+2026-01-06 11:19:43.988 | INFO     | __main__:run_worker:70 - Connected to Service Bus queue: document-uploads
+2026-01-06 11:19:48.392 | INFO     | __main__:run_worker:70 - Connected to Service Bus queue: document-uploads
+2026-01-06 11:19:53.158 | INFO     | __main__:run_worker:70 - Connected to Service Bus queue: document-uploads
+2026-01-06 11:19:57.896 | INFO     | __main__:run_worker:70 - Connected to Service Bus queue: document-uploads
+2026-01-06 11:20:02.704 | INFO     | __main__:run_worker:70 - Connected to Service Bus queue: document-uploads
+2026-01-06 11:20:07.336 | INFO     | __main__:run_worker:70 - Connected to Service Bus queue: document-uploads
+2026-01-06 11:20:12.066 | INFO     | __main__:run_worker:70 - Connected to Service Bus queue: document-uploads
+2026-01-06 11:20:16.958 | INFO     | __main__:run_worker:70 - Connected to Service Bus queue: document-uploads
+2026-01-06 11:20:21.901 | INFO     | __main__:run_worker:70 - Connected to Service Bus queue: document-uploads
+2026-01-06 11:20:26.605 | INFO     | __main__:run_worker:70 - Connected to Service Bus queue: document-uploads
+2026-01-06 11:20:31.410 | INFO     | __main__:run_worker:70 - Connected to Service Bus queue: document-uploads
+2026-01-06 11:20:36.106 | INFO     | __main__:run_worker:70 - Connected to Service Bus queue: document-uploads
+2026-01-06 11:20:40.858 | INFO     | __main__:run_worker:70 - Connected to Service Bus queue: document-uploads
+2026-01-06 11:20:46.591 | INFO     | __main__:run_worker:70 - Connected to Service Bus queue: document-uploads
+2026-01-06 11:20:51.350 | INFO     | __main__:run_worker:70 - Connected to Service Bus queue: document-uploads
+2026-01-06 11:20:56.005 | INFO     | __main__:run_worker:70 - Connected to Service Bus queue: document-uploads
+2026-01-06 11:21:00.894 | INFO     | __main__:run_worker:70 - Connected to Service Bus queue: document-uploads
+2026-01-06 11:21:05.628 | INFO     | __main__:run_worker:70 - Connected to Service Bus queue: document-uploads
+2026-01-06 11:21:10.441 | INFO     | __main__:run_worker:70 - Connected to Service Bus queue: document-uploads
+2026-01-06 11:21:15.154 | INFO     | __main__:run_worker:70 - Connected to Service Bus queue: document-uploads
+2026-01-06 11:21:19.783 | INFO     | __main__:run_worker:70 - Connected to Service Bus queue: document-uploads
+2026-01-06 11:21:24.458 | INFO     | __main__:run_worker:70 - Connected to Service Bus queue: document-uploads
+2026-01-06 11:21:30.327 | INFO     | __main__:run_worker:70 - Connected to Service Bus queue: document-uploads
+2026-01-06 11:21:35.478 | INFO     | __main__:run_worker:70 - Connected to Service Bus queue: document-uploads
+2026-01-06 11:21:39.880 | INFO     | __main__:run_worker:70 - Connected to Service Bus queue: document-uploads
+2026-01-06 11:21:44.312 | INFO     | __main__:run_worker:70 - Connected to Service Bus queue: document-uploads
+2026-01-06 11:21:48.942 | INFO     | __main__:run_worker:70 - Connected to Service Bus queue: document-uploads
+2026-01-06 11:21:53.431 | INFO     | __main__:run_worker:70 - Connected to Service Bus queue: document-uploads
+2026-01-06 11:21:57.940 | INFO     | __main__:run_worker:70 - Connected to Service Bus queue: document-uploads
+2026-01-06 11:22:02.518 | INFO     | __main__:run_worker:70 - Connected to Service Bus queue: document-uploads
+2026-01-06 11:22:07.026 | INFO     | __main__:run_worker:70 - Connected to Service Bus queue: document-uploads
+2026-01-06 11:22:11.583 | INFO     | __main__:run_worker:70 - Connected to Service Bus queue: document-uploads
+2026-01-06 11:22:16.093 | INFO     | __main__:run_worker:70 - Connected to Service Bus queue: document-uploads
+2026-01-06 11:22:20.594 | INFO     | __main__:run_worker:70 - Connected to Service Bus queue: document-uploads
+2026-01-06 11:22:25.163 | INFO     | __main__:run_worker:70 - Connected to Service Bus queue: document-uploads
+2026-01-06 11:22:30.022 | INFO     | __main__:run_worker:70 - Connected to Service Bus queue: document-uploads
+2026-01-06 11:22:34.716 | INFO     | __main__:run_worker:70 - Connected to Service Bus queue: document-uploads
+2026-01-06 11:22:39.756 | INFO     | __main__:run_worker:70 - Connected to Service Bus queue: document-uploads
+2026-01-06 11:22:44.598 | INFO     | __main__:run_worker:70 - Connected to Service Bus queue: document-uploads
+2026-01-06 11:22:49.216 | INFO     | __main__:run_worker:70 - Connected to Service Bus queue: document-uploads
+2026-01-06 11:22:53.913 | INFO     | __main__:run_worker:70 - Connected to Service Bus queue: document-uploads
+2026-01-06 11:22:58.490 | INFO     | __main__:run_worker:70 - Connected to Service Bus queue: document-uploads
+2026-01-06 11:23:03.120 | INFO     | __main__:run_worker:70 - Connected to Service Bus queue: document-uploads
+2026-01-06 11:23:07.907 | INFO     | __main__:run_worker:70 - Connected to Service Bus queue: document-uploads
+2026-01-06 11:23:12.406 | INFO     | __main__:run_worker:70 - Connected to Service Bus queue: document-uploads
+2026-01-06 11:23:17.085 | INFO     | __main__:run_worker:70 - Connected to Service Bus queue: document-uploads
+2026-01-06 11:23:21.615 | INFO     | __main__:run_worker:70 - Connected to Service Bus queue: document-uploads
+2026-01-06 11:23:26.161 | INFO     | __main__:run_worker:70 - Connected to Service Bus queue: document-uploads
+2026-01-06 11:23:30.730 | INFO     | __main__:run_worker:70 - Connected to Service Bus queue: document-uploads
+2026-01-06 11:23:35.252 | INFO     | __main__:run_worker:70 - Connected to Service Bus queue: document-uploads
+2026-01-06 11:23:39.793 | INFO     | __main__:run_worker:70 - Connected to Service Bus queue: document-uploads
+2026-01-06 11:23:44.737 | INFO     | __main__:run_worker:70 - Connected to Service Bus queue: document-uploads
+2026-01-06 11:23:49.344 | INFO     | __main__:run_worker:70 - Connected to Service Bus queue: document-uploads
+2026-01-06 11:23:53.736 | INFO     | __main__:run_worker:70 - Connected to Service Bus queue: document-uploads
+2026-01-06 11:23:58.366 | INFO     | __main__:run_worker:70 - Connected to Service Bus queue: document-uploads
+2026-01-06 11:24:02.831 | INFO     | __main__:run_worker:70 - Connected to Service Bus queue: document-uploads
+2026-01-06 11:24:07.680 | INFO     | __main__:run_worker:70 - Connected to Service Bus queue: document-uploads
+2026-01-06 11:24:12.544 | INFO     | __main__:run_worker:70 - Connected to Service Bus queue: document-uploads
+2026-01-06 11:24:17.136 | INFO     | __main__:run_worker:70 - Connected to Service Bus queue: document-uploads
+2026-01-06 11:24:21.723 | INFO     | __main__:run_worker:70 - Connected to Service Bus queue: document-uploads
+2026-01-06 11:24:26.156 | INFO     | __main__:run_worker:70 - Connected to Service Bus queue: document-uploads
+2026-01-06 11:24:30.959 | INFO     | __main__:run_worker:70 - Connected to Service Bus queue: document-uploads
+2026-01-06 11:24:35.447 | INFO     | __main__:run_worker:70 - Connected to Service Bus queue: document-uploads
+2026-01-06 11:24:40.045 | INFO     | __main__:run_worker:70 - Connected to Service Bus queue: document-uploads
+2026-01-06 11:24:44.610 | INFO     | __main__:run_worker:70 - Connected to Service Bus queue: document-uploads
+2026-01-06 11:24:49.065 | INFO     | __main__:run_worker:70 - Connected to Service Bus queue: document-uploads
+2026-01-06 11:24:54.545 | INFO     | __main__:run_worker:70 - Connected to Service Bus queue: document-uploads
+2026-01-06 11:24:59.415 | INFO     | __main__:run_worker:70 - Connected to Service Bus queue: document-uploads
+2026-01-06 11:25:04.122 | INFO     | __main__:run_worker:70 - Connected to Service Bus queue: document-uploads
+2026-01-06 11:25:08.834 | INFO     | __main__:run_worker:70 - Connected to Service Bus queue: document-uploads
+2026-01-06 11:25:13.605 | INFO     | __main__:run_worker:70 - Connected to Service Bus queue: document-uploads
+2026-01-06 11:25:18.305 | INFO     | __main__:run_worker:70 - Connected to Service Bus queue: document-uploads
+2026-01-06 11:25:23.552 | INFO     | __main__:run_worker:70 - Connected to Service Bus queue: document-uploads
+2026-01-06 11:25:28.245 | INFO     | __main__:run_worker:70 - Connected to Service Bus queue: document-uploads
+2026-01-06 11:25:32.922 | INFO     | __main__:run_worker:70 - Connected to Service Bus queue: document-uploads
+2026-01-06 11:25:37.499 | INFO     | __main__:run_worker:70 - Connected to Service Bus queue: document-uploads
+2026-01-06 11:25:42.195 | INFO     | __main__:run_worker:70 - Connected to Service Bus queue: document-uploads
+2026-01-06 11:25:47.162 | INFO     | __main__:run_worker:70 - Connected to Service Bus queue: document-uploads
+2026-01-06 11:25:51.649 | INFO     | __main__:run_worker:70 - Connected to Service Bus queue: document-uploads
+2026-01-06 11:25:56.302 | INFO     | __main__:run_worker:70 - Connected to Service Bus queue: document-uploads
+2026-01-06 11:26:01.026 | INFO     | __main__:run_worker:70 - Connected to Service Bus queue: document-uploads
+2026-01-06 11:26:05.770 | INFO     | __main__:run_worker:70 - Connected to Service Bus queue: document-uploads
+2026-01-06 11:26:10.561 | INFO     | __main__:run_worker:70 - Connected to Service Bus queue: document-uploads
+2026-01-06 11:26:15.131 | INFO     | __main__:run_worker:70 - Connected to Service Bus queue: document-uploads
+2026-01-06 11:26:19.778 | INFO     | __main__:run_worker:70 - Connected to Service Bus queue: document-uploads
+2026-01-06 11:26:24.412 | INFO     | __main__:run_worker:70 - Connected to Service Bus queue: document-uploads
+2026-01-06 11:26:29.272 | INFO     | __main__:run_worker:70 - Connected to Service Bus queue: document-uploads
+2026-01-06 11:26:33.957 | INFO     | __main__:run_worker:70 - Connected to Service Bus queue: document-uploads
+2026-01-06 11:26:38.849 | INFO     | __main__:run_worker:70 - Connected to Service Bus queue: document-uploads
+2026-01-06 11:26:43.414 | INFO     | __main__:run_worker:70 - Connected to Service Bus queue: document-uploads
+2026-01-06 11:26:48.015 | INFO     | __main__:run_worker:70 - Connected to Service Bus queue: document-uploads
+2026-01-06 11:26:52.722 | INFO     | __main__:run_worker:70 - Connected to Service Bus queue: document-uploads
+2026-01-06 11:26:57.428 | INFO     | __main__:run_worker:70 - Connected to Service Bus queue: document-uploads
+2026-01-06 11:27:02.154 | INFO     | __main__:run_worker:70 - Connected to Service Bus queue: document-uploads
+2026-01-06 11:27:07.425 | INFO     | __main__:run_worker:70 - Connected to Service Bus queue: document-uploads
+2026-01-06 11:27:11.414 | INFO     | __main__:run_worker:70 - Connected to Service Bus queue: document-uploads
+2026-01-06 11:27:15.934 | INFO     | __main__:run_worker:70 - Connected to Service Bus queue: document-uploads
+2026-01-06 11:27:20.413 | INFO     | __main__:run_worker:70 - Connected to Service Bus queue: document-uploads
+2026-01-06 11:28:38.792 | INFO     | __main__:<module>:256 - Starting application in 'worker' mode
+2026-01-06 11:28:38.792 | INFO     | __main__:run_worker_standalone:192 - Starting worker in standalone mode...
+2026-01-06 11:28:38.792 | INFO     | __main__:run_worker:33 - Worker started
+2026-01-06 11:28:38.792 | INFO     | src.config.dependencies:get_app_config:35 - Initializing application configuration
+2026-01-06 11:28:38.792 | INFO     | src.config.dependencies:get_content_understanding_repository:57 - Creating ContentUnderstandingRepository singleton
+2026-01-06 11:28:38.792 | INFO     | src.config.dependencies:get_azure_blob_storage_repository:80 - Creating AzureBlobStorageRepository singleton
+2026-01-06 11:28:39.477 | INFO     | src.repository.storage:__init__:21 - Blob container already exists: tax-documents
+2026-01-06 11:28:39.478 | INFO     | src.repository.storage:__init__:25 - Connected to Blob Storage, container: tax-documents
+2026-01-06 11:28:39.478 | INFO     | src.config.dependencies:get_llm_service_repository:210 - Creating LLMService singleton
+2026-01-06 11:28:41.261 | INFO     | src.config.dependencies:get_azure_cosmos_repository:104 - Creating AzureCosmosDBRepository singleton
+2026-01-06 11:28:42.922 | INFO     | src.repository.database:__init__:22 - Connected to Cosmos DB database 'tax-management-system', container 'gl-transactions'
+2026-01-06 11:28:46.267 | INFO     | __main__:run_worker:70 - Connected to Service Bus queue: document-uploads
+2026-01-06 11:28:51.200 | INFO     | __main__:run_worker:70 - Connected to Service Bus queue: document-uploads
+2026-01-06 11:28:55.899 | INFO     | __main__:run_worker:70 - Connected to Service Bus queue: document-uploads
+2026-01-06 11:29:00.711 | INFO     | __main__:run_worker:70 - Connected to Service Bus queue: document-uploads
+2026-01-06 11:29:05.267 | INFO     | __main__:run_worker:70 - Connected to Service Bus queue: document-uploads
+2026-01-06 11:29:09.759 | INFO     | __main__:<module>:256 - Starting application in 'http' mode
+2026-01-06 11:29:10.165 | INFO     | __main__:run_worker:70 - Connected to Service Bus queue: document-uploads
+2026-01-06 11:29:15.036 | INFO     | __main__:run_worker:70 - Connected to Service Bus queue: document-uploads
+2026-01-06 11:29:20.202 | INFO     | __main__:run_worker:70 - Connected to Service Bus queue: document-uploads
+2026-01-06 11:29:25.703 | INFO     | __main__:run_worker:70 - Connected to Service Bus queue: document-uploads
+2026-01-06 11:29:31.732 | INFO     | __main__:run_worker:70 - Connected to Service Bus queue: document-uploads
+2026-01-06 11:29:36.489 | INFO     | __main__:run_worker:70 - Connected to Service Bus queue: document-uploads
+2026-01-06 11:29:41.236 | INFO     | __main__:run_worker:70 - Connected to Service Bus queue: document-uploads
+2026-01-06 11:29:46.090 | INFO     | __main__:run_worker:70 - Connected to Service Bus queue: document-uploads
+2026-01-06 11:29:50.930 | INFO     | __main__:run_worker:70 - Connected to Service Bus queue: document-uploads
+2026-01-06 11:29:55.840 | INFO     | __main__:run_worker:70 - Connected to Service Bus queue: document-uploads
+2026-01-06 11:30:00.467 | INFO     | __main__:run_worker:70 - Connected to Service Bus queue: document-uploads
+2026-01-06 11:30:05.426 | INFO     | __main__:run_worker:70 - Connected to Service Bus queue: document-uploads
+2026-01-06 11:30:10.360 | INFO     | __main__:run_worker:70 - Connected to Service Bus queue: document-uploads
+2026-01-06 11:30:15.067 | INFO     | __main__:run_worker:70 - Connected to Service Bus queue: document-uploads
+2026-01-06 11:30:20.143 | INFO     | __main__:run_worker:70 - Connected to Service Bus queue: document-uploads
+2026-01-06 11:30:24.861 | INFO     | __main__:run_worker:70 - Connected to Service Bus queue: document-uploads
+2026-01-06 11:30:29.490 | INFO     | __main__:run_worker:70 - Connected to Service Bus queue: document-uploads
+2026-01-06 11:30:33.928 | INFO     | __main__:run_worker:70 - Connected to Service Bus queue: document-uploads
+2026-01-06 11:30:38.802 | INFO     | __main__:run_worker:70 - Connected to Service Bus queue: document-uploads
+2026-01-06 11:30:43.539 | INFO     | __main__:run_worker:70 - Connected to Service Bus queue: document-uploads
+2026-01-06 11:30:45.728 | INFO     | src.config.dependencies:get_app_config:35 - Initializing application configuration
+2026-01-06 11:30:45.728 | INFO     | src.config.dependencies:get_content_understanding_repository:57 - Creating ContentUnderstandingRepository singleton
+2026-01-06 11:30:45.728 | INFO     | src.config.dependencies:get_azure_blob_storage_repository:80 - Creating AzureBlobStorageRepository singleton
+2026-01-06 11:30:46.411 | INFO     | src.repository.storage:__init__:21 - Blob container already exists: tax-documents
+2026-01-06 11:30:46.411 | INFO     | src.repository.storage:__init__:25 - Connected to Blob Storage, container: tax-documents
+2026-01-06 11:30:46.411 | INFO     | src.config.dependencies:get_azure_cosmos_repository:104 - Creating AzureCosmosDBRepository singleton
+2026-01-06 11:30:48.041 | INFO     | src.repository.database:__init__:22 - Connected to Cosmos DB database 'tax-management-system', container 'gl-transactions'
+2026-01-06 11:30:48.047 | INFO     | src.config.dependencies:get_azure_service_bus_repository:188 - Creating AzureServiceBusRepository singleton
+2026-01-06 11:30:48.048 | INFO     | src.delivery.upload_routes:upload_file:40 - Received PDF upload: 7603497796.pdf with file_id 70377246-b143-4582-a192-feaee2dbd33a and activity_id string
+2026-01-06 11:30:48.124 | INFO     | src.usecase.file_upload:_split_pdf_pages:119 - Splitting PDF 7603497796.pdf into 18 pages
+2026-01-06 11:30:48.151 | INFO     | src.usecase.file_upload:_split_pdf_pages:135 - Successfully split 7603497796.pdf into 18 pages
+2026-01-06 11:30:48.153 | INFO     | src.usecase.file_upload:upload:178 - Uploading 18 pages from PDF 7603497796.pdf
+2026-01-06 11:30:48.260 | INFO     | __main__:run_worker:70 - Connected to Service Bus queue: document-uploads
+2026-01-06 11:30:48.304 | INFO     | src.repository.storage:upload_file:75 - Uploaded file 7603497796_1.pdf for case 70377246-b143-4582-a192-feaee2dbd33a, blob: 70377246-b143-4582-a192-feaee2dbd33a/7603497796_1.pdf
+2026-01-06 11:30:48.411 | INFO     | src.repository.storage:upload_file:75 - Uploaded file 7603497796_2.pdf for case 70377246-b143-4582-a192-feaee2dbd33a, blob: 70377246-b143-4582-a192-feaee2dbd33a/7603497796_2.pdf
+2026-01-06 11:30:48.528 | INFO     | src.repository.storage:upload_file:75 - Uploaded file 7603497796_3.pdf for case 70377246-b143-4582-a192-feaee2dbd33a, blob: 70377246-b143-4582-a192-feaee2dbd33a/7603497796_3.pdf
+2026-01-06 11:30:48.645 | INFO     | src.repository.storage:upload_file:75 - Uploaded file 7603497796_4.pdf for case 70377246-b143-4582-a192-feaee2dbd33a, blob: 70377246-b143-4582-a192-feaee2dbd33a/7603497796_4.pdf
+2026-01-06 11:30:48.805 | INFO     | src.repository.storage:upload_file:75 - Uploaded file 7603497796_5.pdf for case 70377246-b143-4582-a192-feaee2dbd33a, blob: 70377246-b143-4582-a192-feaee2dbd33a/7603497796_5.pdf
+2026-01-06 11:30:48.928 | INFO     | src.repository.storage:upload_file:75 - Uploaded file 7603497796_6.pdf for case 70377246-b143-4582-a192-feaee2dbd33a, blob: 70377246-b143-4582-a192-feaee2dbd33a/7603497796_6.pdf
+2026-01-06 11:30:49.028 | INFO     | src.repository.storage:upload_file:75 - Uploaded file 7603497796_7.pdf for case 70377246-b143-4582-a192-feaee2dbd33a, blob: 70377246-b143-4582-a192-feaee2dbd33a/7603497796_7.pdf
+2026-01-06 11:30:49.128 | INFO     | src.repository.storage:upload_file:75 - Uploaded file 7603497796_8.pdf for case 70377246-b143-4582-a192-feaee2dbd33a, blob: 70377246-b143-4582-a192-feaee2dbd33a/7603497796_8.pdf
+2026-01-06 11:30:49.495 | INFO     | src.repository.storage:upload_file:75 - Uploaded file 7603497796_9.pdf for case 70377246-b143-4582-a192-feaee2dbd33a, blob: 70377246-b143-4582-a192-feaee2dbd33a/7603497796_9.pdf
+2026-01-06 11:30:49.678 | INFO     | src.repository.storage:upload_file:75 - Uploaded file 7603497796_10.pdf for case 70377246-b143-4582-a192-feaee2dbd33a, blob: 70377246-b143-4582-a192-feaee2dbd33a/7603497796_10.pdf
+2026-01-06 11:30:49.778 | INFO     | src.repository.storage:upload_file:75 - Uploaded file 7603497796_11.pdf for case 70377246-b143-4582-a192-feaee2dbd33a, blob: 70377246-b143-4582-a192-feaee2dbd33a/7603497796_11.pdf
+2026-01-06 11:30:49.902 | INFO     | src.repository.storage:upload_file:75 - Uploaded file 7603497796_12.pdf for case 70377246-b143-4582-a192-feaee2dbd33a, blob: 70377246-b143-4582-a192-feaee2dbd33a/7603497796_12.pdf
+2026-01-06 11:30:50.134 | INFO     | src.repository.storage:upload_file:75 - Uploaded file 7603497796_13.pdf for case 70377246-b143-4582-a192-feaee2dbd33a, blob: 70377246-b143-4582-a192-feaee2dbd33a/7603497796_13.pdf
+2026-01-06 11:30:50.257 | INFO     | src.repository.storage:upload_file:75 - Uploaded file 7603497796_14.pdf for case 70377246-b143-4582-a192-feaee2dbd33a, blob: 70377246-b143-4582-a192-feaee2dbd33a/7603497796_14.pdf
+2026-01-06 11:30:50.373 | INFO     | src.repository.storage:upload_file:75 - Uploaded file 7603497796_15.pdf for case 70377246-b143-4582-a192-feaee2dbd33a, blob: 70377246-b143-4582-a192-feaee2dbd33a/7603497796_15.pdf
+2026-01-06 11:30:50.481 | INFO     | src.repository.storage:upload_file:75 - Uploaded file 7603497796_16.pdf for case 70377246-b143-4582-a192-feaee2dbd33a, blob: 70377246-b143-4582-a192-feaee2dbd33a/7603497796_16.pdf
+2026-01-06 11:30:50.606 | INFO     | src.repository.storage:upload_file:75 - Uploaded file 7603497796_17.pdf for case 70377246-b143-4582-a192-feaee2dbd33a, blob: 70377246-b143-4582-a192-feaee2dbd33a/7603497796_17.pdf
+2026-01-06 11:30:50.714 | INFO     | src.repository.storage:upload_file:75 - Uploaded file 7603497796_18.pdf for case 70377246-b143-4582-a192-feaee2dbd33a, blob: 70377246-b143-4582-a192-feaee2dbd33a/7603497796_18.pdf
+2026-01-06 11:30:52.958 | INFO     | __main__:run_worker:70 - Connected to Service Bus queue: document-uploads
+2026-01-06 11:30:54.739 | INFO     | src.repository.messaging:send_message:18 - Message sent to queue document-uploads: {'document_id': '70377246-b143-4582-a192-feaee2dbd33a', 'timestamp': '2026-01-06T04:30:51.268428Z'}
+2026-01-06 11:30:54.740 | INFO     | src.delivery.upload_routes:upload_file:50 - Successfully processed PDF upload for file_id 70377246-b143-4582-a192-feaee2dbd33a and activity_id string
+2026-01-06 11:30:57.688 | INFO     | __main__:run_worker:70 - Connected to Service Bus queue: document-uploads
+2026-01-06 11:30:57.936 | INFO     | __main__:run_worker:73 - Received message: ad0679e3-5d16-40f5-b60e-bf910d92ceed
+2026-01-06 11:30:57.944 | INFO     | src.usecase.content_extraction:process_message:293 - Processing content extraction for document ID: 70377246-b143-4582-a192-feaee2dbd33a
+2026-01-06 11:30:57.944 | INFO     | src.usecase.content_extraction:process_documents_in_folder:190 - Processing documents in folder: 70377246-b143-4582-a192-feaee2dbd33a
+2026-01-06 11:30:58.036 | INFO     | src.repository.storage:list_files:124 - Listed 18 files for case 70377246-b143-4582-a192-feaee2dbd33a
+2026-01-06 11:30:58.037 | INFO     | src.usecase.content_extraction:process_documents_in_folder:194 - Found 18 files in folder 70377246-b143-4582-a192-feaee2dbd33a
+2026-01-06 11:30:58.039 | INFO     | src.usecase.content_extraction:process_documents_in_folder:211 - Files sorted numerically: ['70377246-b143-4582-a192-feaee2dbd33a/7603497796_1.pdf', '70377246-b143-4582-a192-feaee2dbd33a/7603497796_2.pdf', '70377246-b143-4582-a192-feaee2dbd33a/7603497796_3.pdf', '70377246-b143-4582-a192-feaee2dbd33a/7603497796_4.pdf', '70377246-b143-4582-a192-feaee2dbd33a/7603497796_5.pdf', '70377246-b143-4582-a192-feaee2dbd33a/7603497796_6.pdf', '70377246-b143-4582-a192-feaee2dbd33a/7603497796_7.pdf', '70377246-b143-4582-a192-feaee2dbd33a/7603497796_8.pdf', '70377246-b143-4582-a192-feaee2dbd33a/7603497796_9.pdf', '70377246-b143-4582-a192-feaee2dbd33a/7603497796_10.pdf', '70377246-b143-4582-a192-feaee2dbd33a/7603497796_11.pdf', '70377246-b143-4582-a192-feaee2dbd33a/7603497796_12.pdf', '70377246-b143-4582-a192-feaee2dbd33a/7603497796_13.pdf', '70377246-b143-4582-a192-feaee2dbd33a/7603497796_14.pdf', '70377246-b143-4582-a192-feaee2dbd33a/7603497796_15.pdf', '70377246-b143-4582-a192-feaee2dbd33a/7603497796_16.pdf', '70377246-b143-4582-a192-feaee2dbd33a/7603497796_17.pdf', '70377246-b143-4582-a192-feaee2dbd33a/7603497796_18.pdf']
+2026-01-06 11:30:58.039 | INFO     | src.usecase.content_extraction:process_documents_in_folder:233 - Analyzing document: 70377246-b143-4582-a192-feaee2dbd33a/7603497796_1.pdf
+2026-01-06 11:30:59.407 | INFO     | src.usecase.content_extraction:process_documents_in_folder:248 - Analysis initiated for 70377246-b143-4582-a192-feaee2dbd33a/7603497796_1.pdf, request ID: d9d3bff2-b607-444e-8c57-5a86f55e8ab1
+2026-01-06 11:31:14.762 | INFO     | src.usecase.content_extraction:_wait_for_analysis_result:118 - Analysis completed successfully: d9d3bff2-b607-444e-8c57-5a86f55e8ab1
+2026-01-06 11:31:14.763 | INFO     | src.usecase.content_extraction:_extract_urn_from_content:75 - Extracted URN from content: 7603497796
+2026-01-06 11:31:56.952 | INFO     | src.usecase.content_extraction:_wait_for_analysis_result:157 - Content classification completed for d9d3bff2-b607-444e-8c57-5a86f55e8ab1
+2026-01-06 11:31:56.952 | INFO     | src.usecase.content_extraction:process_documents_in_folder:254 - Successfully analyzed: 70377246-b143-4582-a192-feaee2dbd33a/7603497796_1.pdf
+2026-01-06 11:31:56.952 | INFO     | src.usecase.content_extraction:process_documents_in_folder:233 - Analyzing document: 70377246-b143-4582-a192-feaee2dbd33a/7603497796_2.pdf
+2026-01-06 11:31:57.655 | INFO     | src.usecase.content_extraction:process_documents_in_folder:248 - Analysis initiated for 70377246-b143-4582-a192-feaee2dbd33a/7603497796_2.pdf, request ID: faa70052-915e-4573-a0c0-a2b5b2c8b95a
+2026-01-06 11:32:08.849 | INFO     | src.usecase.content_extraction:_wait_for_analysis_result:118 - Analysis completed successfully: faa70052-915e-4573-a0c0-a2b5b2c8b95a
+2026-01-06 11:32:08.849 | INFO     | src.usecase.content_extraction:_extract_urn_from_content:75 - Extracted URN from content: 7603497796
+2026-01-06 11:32:26.798 | INFO     | src.usecase.content_extraction:_wait_for_analysis_result:157 - Content classification completed for faa70052-915e-4573-a0c0-a2b5b2c8b95a
+2026-01-06 11:32:26.799 | INFO     | src.usecase.content_extraction:process_documents_in_folder:254 - Successfully analyzed: 70377246-b143-4582-a192-feaee2dbd33a/7603497796_2.pdf
+2026-01-06 11:32:26.799 | INFO     | src.usecase.content_extraction:process_documents_in_folder:233 - Analyzing document: 70377246-b143-4582-a192-feaee2dbd33a/7603497796_3.pdf
+2026-01-06 11:32:27.531 | INFO     | src.usecase.content_extraction:process_documents_in_folder:248 - Analysis initiated for 70377246-b143-4582-a192-feaee2dbd33a/7603497796_3.pdf, request ID: cd52604a-0cf4-4d41-9da6-c5dc7cd05957
+2026-01-06 11:33:09.563 | INFO     | src.usecase.content_extraction:_wait_for_analysis_result:118 - Analysis completed successfully: cd52604a-0cf4-4d41-9da6-c5dc7cd05957
+2026-01-06 11:33:09.563 | INFO     | src.usecase.content_extraction:_extract_urn_from_content:75 - Extracted URN from content: 7603497796
+2026-01-06 11:34:17.334 | INFO     | src.usecase.content_extraction:_wait_for_analysis_result:157 - Content classification completed for cd52604a-0cf4-4d41-9da6-c5dc7cd05957
+2026-01-06 11:34:17.334 | INFO     | src.usecase.content_extraction:process_documents_in_folder:254 - Successfully analyzed: 70377246-b143-4582-a192-feaee2dbd33a/7603497796_3.pdf
+2026-01-06 11:34:17.334 | INFO     | src.usecase.content_extraction:process_documents_in_folder:233 - Analyzing document: 70377246-b143-4582-a192-feaee2dbd33a/7603497796_4.pdf
+2026-01-06 11:34:18.359 | INFO     | src.usecase.content_extraction:process_documents_in_folder:248 - Analysis initiated for 70377246-b143-4582-a192-feaee2dbd33a/7603497796_4.pdf, request ID: e27fa50d-c603-40a9-afea-260b058f4a0a
+2026-01-06 11:34:26.308 | INFO     | src.usecase.content_extraction:_wait_for_analysis_result:118 - Analysis completed successfully: e27fa50d-c603-40a9-afea-260b058f4a0a
+2026-01-06 11:34:26.308 | INFO     | src.usecase.content_extraction:_extract_urn_from_content:75 - Extracted URN from content: 7603497796
+2026-01-06 11:39:42.872 | INFO     | __main__:<module>:256 - Starting application in 'worker' mode
+2026-01-06 11:39:42.878 | INFO     | __main__:run_worker_standalone:192 - Starting worker in standalone mode...
+2026-01-06 11:39:42.879 | INFO     | __main__:run_worker:33 - Worker started
+2026-01-06 11:39:42.879 | INFO     | src.config.dependencies:get_app_config:35 - Initializing application configuration
+2026-01-06 11:39:42.880 | INFO     | src.config.dependencies:get_content_understanding_repository:57 - Creating ContentUnderstandingRepository singleton
+2026-01-06 11:39:42.880 | INFO     | src.config.dependencies:get_azure_blob_storage_repository:80 - Creating AzureBlobStorageRepository singleton
+2026-01-06 11:39:43.871 | INFO     | src.repository.storage:__init__:21 - Blob container already exists: tax-documents
+2026-01-06 11:39:43.871 | INFO     | src.repository.storage:__init__:25 - Connected to Blob Storage, container: tax-documents
+2026-01-06 11:39:43.871 | INFO     | src.config.dependencies:get_llm_service_repository:210 - Creating LLMService singleton
+2026-01-06 11:39:45.972 | INFO     | src.config.dependencies:get_azure_cosmos_repository:104 - Creating AzureCosmosDBRepository singleton
+2026-01-06 11:39:47.676 | INFO     | src.repository.database:__init__:22 - Connected to Cosmos DB database 'tax-management-system', container 'gl-transactions'
+2026-01-06 11:39:51.693 | INFO     | __main__:run_worker:70 - Connected to Service Bus queue: document-uploads
+2026-01-06 11:39:56.786 | INFO     | __main__:run_worker:70 - Connected to Service Bus queue: document-uploads
+2026-01-06 11:40:01.573 | INFO     | __main__:run_worker:70 - Connected to Service Bus queue: document-uploads
+2026-01-06 11:40:06.183 | INFO     | __main__:run_worker:70 - Connected to Service Bus queue: document-uploads
+2026-01-06 11:40:11.073 | INFO     | __main__:run_worker:70 - Connected to Service Bus queue: document-uploads
+2026-01-06 11:40:15.700 | INFO     | __main__:run_worker:70 - Connected to Service Bus queue: document-uploads
+2026-01-06 11:40:20.516 | INFO     | __main__:run_worker:70 - Connected to Service Bus queue: document-uploads
+2026-01-06 11:40:25.187 | INFO     | __main__:run_worker:70 - Connected to Service Bus queue: document-uploads
+2026-01-06 11:40:29.934 | INFO     | __main__:run_worker:70 - Connected to Service Bus queue: document-uploads
+2026-01-06 11:40:34.670 | INFO     | __main__:run_worker:70 - Connected to Service Bus queue: document-uploads
+2026-01-06 11:40:38.956 | INFO     | src.config.dependencies:get_azure_service_bus_repository:188 - Creating AzureServiceBusRepository singleton
+2026-01-06 11:40:38.964 | INFO     | src.delivery.upload_routes:upload_file:40 - Received PDF upload: 7603497796.pdf with file_id 88adddb6-4c8c-4098-9cf0-a8d3cd349fb0 and activity_id string
+2026-01-06 11:40:38.971 | INFO     | src.usecase.file_upload:_split_pdf_pages:119 - Splitting PDF 7603497796.pdf into 18 pages
+2026-01-06 11:40:38.988 | INFO     | src.usecase.file_upload:_split_pdf_pages:135 - Successfully split 7603497796.pdf into 18 pages
+2026-01-06 11:40:38.988 | INFO     | src.usecase.file_upload:upload:178 - Uploading 18 pages from PDF 7603497796.pdf
+2026-01-06 11:40:39.353 | INFO     | __main__:run_worker:70 - Connected to Service Bus queue: document-uploads
+2026-01-06 11:40:39.679 | INFO     | src.repository.storage:upload_file:75 - Uploaded file 7603497796_1.pdf for case 88adddb6-4c8c-4098-9cf0-a8d3cd349fb0, blob: 88adddb6-4c8c-4098-9cf0-a8d3cd349fb0/7603497796_1.pdf
+2026-01-06 11:40:39.788 | INFO     | src.repository.storage:upload_file:75 - Uploaded file 7603497796_2.pdf for case 88adddb6-4c8c-4098-9cf0-a8d3cd349fb0, blob: 88adddb6-4c8c-4098-9cf0-a8d3cd349fb0/7603497796_2.pdf
+2026-01-06 11:40:39.931 | INFO     | src.repository.storage:upload_file:75 - Uploaded file 7603497796_3.pdf for case 88adddb6-4c8c-4098-9cf0-a8d3cd349fb0, blob: 88adddb6-4c8c-4098-9cf0-a8d3cd349fb0/7603497796_3.pdf
+2026-01-06 11:40:40.038 | INFO     | src.repository.storage:upload_file:75 - Uploaded file 7603497796_4.pdf for case 88adddb6-4c8c-4098-9cf0-a8d3cd349fb0, blob: 88adddb6-4c8c-4098-9cf0-a8d3cd349fb0/7603497796_4.pdf
+2026-01-06 11:40:40.155 | INFO     | src.repository.storage:upload_file:75 - Uploaded file 7603497796_5.pdf for case 88adddb6-4c8c-4098-9cf0-a8d3cd349fb0, blob: 88adddb6-4c8c-4098-9cf0-a8d3cd349fb0/7603497796_5.pdf
+2026-01-06 11:40:40.304 | INFO     | src.repository.storage:upload_file:75 - Uploaded file 7603497796_6.pdf for case 88adddb6-4c8c-4098-9cf0-a8d3cd349fb0, blob: 88adddb6-4c8c-4098-9cf0-a8d3cd349fb0/7603497796_6.pdf
+2026-01-06 11:40:40.436 | INFO     | src.repository.storage:upload_file:75 - Uploaded file 7603497796_7.pdf for case 88adddb6-4c8c-4098-9cf0-a8d3cd349fb0, blob: 88adddb6-4c8c-4098-9cf0-a8d3cd349fb0/7603497796_7.pdf
+2026-01-06 11:40:40.554 | INFO     | src.repository.storage:upload_file:75 - Uploaded file 7603497796_8.pdf for case 88adddb6-4c8c-4098-9cf0-a8d3cd349fb0, blob: 88adddb6-4c8c-4098-9cf0-a8d3cd349fb0/7603497796_8.pdf
+2026-01-06 11:40:40.707 | INFO     | src.repository.storage:upload_file:75 - Uploaded file 7603497796_9.pdf for case 88adddb6-4c8c-4098-9cf0-a8d3cd349fb0, blob: 88adddb6-4c8c-4098-9cf0-a8d3cd349fb0/7603497796_9.pdf
+2026-01-06 11:40:40.843 | INFO     | src.repository.storage:upload_file:75 - Uploaded file 7603497796_10.pdf for case 88adddb6-4c8c-4098-9cf0-a8d3cd349fb0, blob: 88adddb6-4c8c-4098-9cf0-a8d3cd349fb0/7603497796_10.pdf
+2026-01-06 11:40:41.027 | INFO     | src.repository.storage:upload_file:75 - Uploaded file 7603497796_11.pdf for case 88adddb6-4c8c-4098-9cf0-a8d3cd349fb0, blob: 88adddb6-4c8c-4098-9cf0-a8d3cd349fb0/7603497796_11.pdf
+2026-01-06 11:40:41.160 | INFO     | src.repository.storage:upload_file:75 - Uploaded file 7603497796_12.pdf for case 88adddb6-4c8c-4098-9cf0-a8d3cd349fb0, blob: 88adddb6-4c8c-4098-9cf0-a8d3cd349fb0/7603497796_12.pdf
+2026-01-06 11:40:41.310 | INFO     | src.repository.storage:upload_file:75 - Uploaded file 7603497796_13.pdf for case 88adddb6-4c8c-4098-9cf0-a8d3cd349fb0, blob: 88adddb6-4c8c-4098-9cf0-a8d3cd349fb0/7603497796_13.pdf
+2026-01-06 11:40:41.458 | INFO     | src.repository.storage:upload_file:75 - Uploaded file 7603497796_14.pdf for case 88adddb6-4c8c-4098-9cf0-a8d3cd349fb0, blob: 88adddb6-4c8c-4098-9cf0-a8d3cd349fb0/7603497796_14.pdf
+2026-01-06 11:40:41.555 | INFO     | src.repository.storage:upload_file:75 - Uploaded file 7603497796_15.pdf for case 88adddb6-4c8c-4098-9cf0-a8d3cd349fb0, blob: 88adddb6-4c8c-4098-9cf0-a8d3cd349fb0/7603497796_15.pdf
+2026-01-06 11:40:41.704 | INFO     | src.repository.storage:upload_file:75 - Uploaded file 7603497796_16.pdf for case 88adddb6-4c8c-4098-9cf0-a8d3cd349fb0, blob: 88adddb6-4c8c-4098-9cf0-a8d3cd349fb0/7603497796_16.pdf
+2026-01-06 11:40:41.838 | INFO     | src.repository.storage:upload_file:75 - Uploaded file 7603497796_17.pdf for case 88adddb6-4c8c-4098-9cf0-a8d3cd349fb0, blob: 88adddb6-4c8c-4098-9cf0-a8d3cd349fb0/7603497796_17.pdf
+2026-01-06 11:40:41.954 | INFO     | src.repository.storage:upload_file:75 - Uploaded file 7603497796_18.pdf for case 88adddb6-4c8c-4098-9cf0-a8d3cd349fb0, blob: 88adddb6-4c8c-4098-9cf0-a8d3cd349fb0/7603497796_18.pdf
+2026-01-06 11:40:44.370 | INFO     | __main__:run_worker:70 - Connected to Service Bus queue: document-uploads
+2026-01-06 11:40:47.137 | INFO     | src.repository.messaging:send_message:18 - Message sent to queue document-uploads: {'document_id': '88adddb6-4c8c-4098-9cf0-a8d3cd349fb0', 'timestamp': '2026-01-06T04:40:43.605258Z'}
+2026-01-06 11:40:47.137 | INFO     | src.delivery.upload_routes:upload_file:50 - Successfully processed PDF upload for file_id 88adddb6-4c8c-4098-9cf0-a8d3cd349fb0 and activity_id string
+2026-01-06 11:40:48.901 | INFO     | __main__:run_worker:70 - Connected to Service Bus queue: document-uploads
+2026-01-06 11:40:49.151 | INFO     | __main__:run_worker:73 - Received message: cf23b724-3add-4e93-ab1f-ff6c0f7a863c
+2026-01-06 11:40:49.152 | INFO     | src.usecase.content_extraction:process_message:297 - Processing content extraction for document ID: 88adddb6-4c8c-4098-9cf0-a8d3cd349fb0
+2026-01-06 11:40:49.153 | INFO     | src.usecase.content_extraction:process_documents_in_folder:194 - Processing documents in folder: 88adddb6-4c8c-4098-9cf0-a8d3cd349fb0
+2026-01-06 11:40:49.221 | INFO     | src.repository.storage:list_files:124 - Listed 18 files for case 88adddb6-4c8c-4098-9cf0-a8d3cd349fb0
+2026-01-06 11:40:49.222 | INFO     | src.usecase.content_extraction:process_documents_in_folder:198 - Found 18 files in folder 88adddb6-4c8c-4098-9cf0-a8d3cd349fb0
+2026-01-06 11:40:49.223 | INFO     | src.usecase.content_extraction:process_documents_in_folder:215 - Files sorted numerically: ['88adddb6-4c8c-4098-9cf0-a8d3cd349fb0/7603497796_1.pdf', '88adddb6-4c8c-4098-9cf0-a8d3cd349fb0/7603497796_2.pdf', '88adddb6-4c8c-4098-9cf0-a8d3cd349fb0/7603497796_3.pdf', '88adddb6-4c8c-4098-9cf0-a8d3cd349fb0/7603497796_4.pdf', '88adddb6-4c8c-4098-9cf0-a8d3cd349fb0/7603497796_5.pdf', '88adddb6-4c8c-4098-9cf0-a8d3cd349fb0/7603497796_6.pdf', '88adddb6-4c8c-4098-9cf0-a8d3cd349fb0/7603497796_7.pdf', '88adddb6-4c8c-4098-9cf0-a8d3cd349fb0/7603497796_8.pdf', '88adddb6-4c8c-4098-9cf0-a8d3cd349fb0/7603497796_9.pdf', '88adddb6-4c8c-4098-9cf0-a8d3cd349fb0/7603497796_10.pdf', '88adddb6-4c8c-4098-9cf0-a8d3cd349fb0/7603497796_11.pdf', '88adddb6-4c8c-4098-9cf0-a8d3cd349fb0/7603497796_12.pdf', '88adddb6-4c8c-4098-9cf0-a8d3cd349fb0/7603497796_13.pdf', '88adddb6-4c8c-4098-9cf0-a8d3cd349fb0/7603497796_14.pdf', '88adddb6-4c8c-4098-9cf0-a8d3cd349fb0/7603497796_15.pdf', '88adddb6-4c8c-4098-9cf0-a8d3cd349fb0/7603497796_16.pdf', '88adddb6-4c8c-4098-9cf0-a8d3cd349fb0/7603497796_17.pdf', '88adddb6-4c8c-4098-9cf0-a8d3cd349fb0/7603497796_18.pdf']
+2026-01-06 11:40:49.223 | INFO     | src.usecase.content_extraction:process_documents_in_folder:237 - Analyzing document: 88adddb6-4c8c-4098-9cf0-a8d3cd349fb0/7603497796_1.pdf
+2026-01-06 11:40:50.038 | INFO     | src.usecase.content_extraction:process_documents_in_folder:252 - Analysis initiated for 88adddb6-4c8c-4098-9cf0-a8d3cd349fb0/7603497796_1.pdf, request ID: f32f8d8d-fc88-4d4f-b6dc-02baa4568b14
+2026-01-06 11:41:04.938 | INFO     | src.usecase.content_extraction:_wait_for_analysis_result:118 - Analysis completed successfully: f32f8d8d-fc88-4d4f-b6dc-02baa4568b14
+2026-01-06 11:41:04.938 | INFO     | src.usecase.content_extraction:_extract_urn_from_content:75 - Extracted URN from content: 7603497796
+2026-01-06 11:41:32.204 | INFO     | src.usecase.content_extraction:_wait_for_analysis_result:118 - Analysis completed successfully: f32f8d8d-fc88-4d4f-b6dc-02baa4568b14
+2026-01-06 11:41:32.204 | INFO     | src.usecase.content_extraction:_extract_urn_from_content:75 - Extracted URN from content: 7603497796
+2026-01-06 11:41:43.432 | INFO     | src.usecase.content_extraction:_wait_for_analysis_result:118 - Analysis completed successfully: f32f8d8d-fc88-4d4f-b6dc-02baa4568b14
+2026-01-06 11:41:43.432 | INFO     | src.usecase.content_extraction:_extract_urn_from_content:75 - Extracted URN from content: 7603497796
+2026-01-06 11:43:27.968 | INFO     | src.usecase.content_extraction:_wait_for_analysis_result:118 - Analysis completed successfully: f32f8d8d-fc88-4d4f-b6dc-02baa4568b14
+2026-01-06 11:43:27.968 | INFO     | src.usecase.content_extraction:_extract_urn_from_content:75 - Extracted URN from content: 7603497796
+2026-01-06 11:43:50.514 | INFO     | src.usecase.content_extraction:_wait_for_analysis_result:118 - Analysis completed successfully: f32f8d8d-fc88-4d4f-b6dc-02baa4568b14
+2026-01-06 11:43:50.514 | INFO     | src.usecase.content_extraction:_extract_urn_from_content:75 - Extracted URN from content: 7603497796
+2026-01-06 11:45:18.517 | INFO     | __main__:<module>:256 - Starting application in 'worker' mode
+2026-01-06 11:45:18.519 | INFO     | __main__:run_worker_standalone:192 - Starting worker in standalone mode...
+2026-01-06 11:45:18.519 | INFO     | __main__:run_worker:33 - Worker started
+2026-01-06 11:45:18.519 | INFO     | src.config.dependencies:get_app_config:35 - Initializing application configuration
+2026-01-06 11:45:18.519 | INFO     | src.config.dependencies:get_content_understanding_repository:57 - Creating ContentUnderstandingRepository singleton
+2026-01-06 11:45:18.519 | INFO     | src.config.dependencies:get_azure_blob_storage_repository:80 - Creating AzureBlobStorageRepository singleton
+2026-01-06 11:45:19.142 | INFO     | src.repository.storage:__init__:21 - Blob container already exists: tax-documents
+2026-01-06 11:45:19.142 | INFO     | src.repository.storage:__init__:25 - Connected to Blob Storage, container: tax-documents
+2026-01-06 11:45:19.142 | INFO     | src.config.dependencies:get_llm_service_repository:210 - Creating LLMService singleton
+2026-01-06 11:45:19.648 | INFO     | src.config.dependencies:get_azure_cosmos_repository:104 - Creating AzureCosmosDBRepository singleton
+2026-01-06 11:45:20.983 | INFO     | src.repository.database:__init__:22 - Connected to Cosmos DB database 'tax-management-system', container 'gl-transactions'
+2026-01-06 11:45:24.023 | INFO     | __main__:run_worker:70 - Connected to Service Bus queue: document-uploads
+2026-01-06 11:45:28.873 | INFO     | __main__:run_worker:70 - Connected to Service Bus queue: document-uploads
+2026-01-06 11:45:33.465 | INFO     | __main__:run_worker:70 - Connected to Service Bus queue: document-uploads
+2026-01-06 11:45:38.018 | INFO     | __main__:run_worker:70 - Connected to Service Bus queue: document-uploads
+2026-01-06 11:45:42.582 | INFO     | __main__:run_worker:70 - Connected to Service Bus queue: document-uploads
+2026-01-06 11:45:47.125 | INFO     | __main__:run_worker:70 - Connected to Service Bus queue: document-uploads
+2026-01-06 11:45:51.697 | INFO     | __main__:run_worker:70 - Connected to Service Bus queue: document-uploads
+2026-01-06 11:45:56.203 | INFO     | __main__:run_worker:70 - Connected to Service Bus queue: document-uploads
+2026-01-06 11:46:00.862 | INFO     | __main__:run_worker:70 - Connected to Service Bus queue: document-uploads
+2026-01-06 11:46:05.246 | INFO     | __main__:run_worker:70 - Connected to Service Bus queue: document-uploads
+2026-01-06 11:46:09.804 | INFO     | __main__:run_worker:70 - Connected to Service Bus queue: document-uploads
+2026-01-06 11:46:14.379 | INFO     | __main__:run_worker:70 - Connected to Service Bus queue: document-uploads
+2026-01-06 11:46:18.841 | INFO     | __main__:run_worker:70 - Connected to Service Bus queue: document-uploads
+2026-01-06 11:46:23.343 | INFO     | __main__:run_worker:70 - Connected to Service Bus queue: document-uploads
+2026-01-06 11:46:27.959 | INFO     | __main__:run_worker:70 - Connected to Service Bus queue: document-uploads
+2026-01-06 11:46:32.463 | INFO     | __main__:run_worker:70 - Connected to Service Bus queue: document-uploads
+2026-01-06 11:46:36.969 | INFO     | __main__:run_worker:70 - Connected to Service Bus queue: document-uploads
+2026-01-06 11:46:41.434 | INFO     | __main__:run_worker:70 - Connected to Service Bus queue: document-uploads
+2026-01-06 11:46:46.399 | INFO     | __main__:run_worker:70 - Connected to Service Bus queue: document-uploads
+2026-01-06 11:46:50.755 | INFO     | __main__:run_worker:70 - Connected to Service Bus queue: document-uploads
+2026-01-06 11:46:55.613 | INFO     | __main__:run_worker:70 - Connected to Service Bus queue: document-uploads
+2026-01-06 11:46:57.022 | INFO     | src.config.dependencies:get_azure_service_bus_repository:188 - Creating AzureServiceBusRepository singleton
+2026-01-06 11:46:57.023 | INFO     | src.delivery.upload_routes:upload_file:40 - Received PDF upload: 7603497796.pdf with file_id 609dc7db-32f0-4365-a65b-ea8e70332d20 and activity_id string
+2026-01-06 11:46:57.031 | INFO     | src.usecase.file_upload:_split_pdf_pages:119 - Splitting PDF 7603497796.pdf into 18 pages
+2026-01-06 11:46:57.055 | INFO     | src.usecase.file_upload:_split_pdf_pages:135 - Successfully split 7603497796.pdf into 18 pages
+2026-01-06 11:46:57.056 | INFO     | src.usecase.file_upload:upload:178 - Uploading 18 pages from PDF 7603497796.pdf
+2026-01-06 11:46:58.301 | INFO     | src.repository.storage:upload_file:75 - Uploaded file 7603497796_1.pdf for case 609dc7db-32f0-4365-a65b-ea8e70332d20, blob: 609dc7db-32f0-4365-a65b-ea8e70332d20/7603497796_1.pdf
+2026-01-06 11:46:58.431 | INFO     | src.repository.storage:upload_file:75 - Uploaded file 7603497796_2.pdf for case 609dc7db-32f0-4365-a65b-ea8e70332d20, blob: 609dc7db-32f0-4365-a65b-ea8e70332d20/7603497796_2.pdf
+2026-01-06 11:46:58.574 | INFO     | src.repository.storage:upload_file:75 - Uploaded file 7603497796_3.pdf for case 609dc7db-32f0-4365-a65b-ea8e70332d20, blob: 609dc7db-32f0-4365-a65b-ea8e70332d20/7603497796_3.pdf
+2026-01-06 11:46:58.701 | INFO     | src.repository.storage:upload_file:75 - Uploaded file 7603497796_4.pdf for case 609dc7db-32f0-4365-a65b-ea8e70332d20, blob: 609dc7db-32f0-4365-a65b-ea8e70332d20/7603497796_4.pdf
+2026-01-06 11:46:58.825 | INFO     | src.repository.storage:upload_file:75 - Uploaded file 7603497796_5.pdf for case 609dc7db-32f0-4365-a65b-ea8e70332d20, blob: 609dc7db-32f0-4365-a65b-ea8e70332d20/7603497796_5.pdf
+2026-01-06 11:46:58.965 | INFO     | src.repository.storage:upload_file:75 - Uploaded file 7603497796_6.pdf for case 609dc7db-32f0-4365-a65b-ea8e70332d20, blob: 609dc7db-32f0-4365-a65b-ea8e70332d20/7603497796_6.pdf
+2026-01-06 11:46:59.074 | INFO     | src.repository.storage:upload_file:75 - Uploaded file 7603497796_7.pdf for case 609dc7db-32f0-4365-a65b-ea8e70332d20, blob: 609dc7db-32f0-4365-a65b-ea8e70332d20/7603497796_7.pdf
+2026-01-06 11:46:59.180 | INFO     | src.repository.storage:upload_file:75 - Uploaded file 7603497796_8.pdf for case 609dc7db-32f0-4365-a65b-ea8e70332d20, blob: 609dc7db-32f0-4365-a65b-ea8e70332d20/7603497796_8.pdf
+2026-01-06 11:46:59.284 | INFO     | src.repository.storage:upload_file:75 - Uploaded file 7603497796_9.pdf for case 609dc7db-32f0-4365-a65b-ea8e70332d20, blob: 609dc7db-32f0-4365-a65b-ea8e70332d20/7603497796_9.pdf
+2026-01-06 11:46:59.387 | INFO     | src.repository.storage:upload_file:75 - Uploaded file 7603497796_10.pdf for case 609dc7db-32f0-4365-a65b-ea8e70332d20, blob: 609dc7db-32f0-4365-a65b-ea8e70332d20/7603497796_10.pdf
+2026-01-06 11:46:59.498 | INFO     | src.repository.storage:upload_file:75 - Uploaded file 7603497796_11.pdf for case 609dc7db-32f0-4365-a65b-ea8e70332d20, blob: 609dc7db-32f0-4365-a65b-ea8e70332d20/7603497796_11.pdf
+2026-01-06 11:46:59.606 | INFO     | src.repository.storage:upload_file:75 - Uploaded file 7603497796_12.pdf for case 609dc7db-32f0-4365-a65b-ea8e70332d20, blob: 609dc7db-32f0-4365-a65b-ea8e70332d20/7603497796_12.pdf
+2026-01-06 11:46:59.724 | INFO     | src.repository.storage:upload_file:75 - Uploaded file 7603497796_13.pdf for case 609dc7db-32f0-4365-a65b-ea8e70332d20, blob: 609dc7db-32f0-4365-a65b-ea8e70332d20/7603497796_13.pdf
+2026-01-06 11:46:59.832 | INFO     | src.repository.storage:upload_file:75 - Uploaded file 7603497796_14.pdf for case 609dc7db-32f0-4365-a65b-ea8e70332d20, blob: 609dc7db-32f0-4365-a65b-ea8e70332d20/7603497796_14.pdf
+2026-01-06 11:46:59.945 | INFO     | src.repository.storage:upload_file:75 - Uploaded file 7603497796_15.pdf for case 609dc7db-32f0-4365-a65b-ea8e70332d20, blob: 609dc7db-32f0-4365-a65b-ea8e70332d20/7603497796_15.pdf
+2026-01-06 11:47:00.066 | INFO     | src.repository.storage:upload_file:75 - Uploaded file 7603497796_16.pdf for case 609dc7db-32f0-4365-a65b-ea8e70332d20, blob: 609dc7db-32f0-4365-a65b-ea8e70332d20/7603497796_16.pdf
+2026-01-06 11:47:00.193 | INFO     | src.repository.storage:upload_file:75 - Uploaded file 7603497796_17.pdf for case 609dc7db-32f0-4365-a65b-ea8e70332d20, blob: 609dc7db-32f0-4365-a65b-ea8e70332d20/7603497796_17.pdf
+2026-01-06 11:47:00.311 | INFO     | src.repository.storage:upload_file:75 - Uploaded file 7603497796_18.pdf for case 609dc7db-32f0-4365-a65b-ea8e70332d20, blob: 609dc7db-32f0-4365-a65b-ea8e70332d20/7603497796_18.pdf
+2026-01-06 11:47:00.816 | INFO     | __main__:run_worker:70 - Connected to Service Bus queue: document-uploads
+2026-01-06 11:47:05.666 | INFO     | __main__:run_worker:70 - Connected to Service Bus queue: document-uploads
+2026-01-06 11:47:06.284 | INFO     | __main__:run_worker:73 - Received message: 7aa5e864-c96d-48f8-9205-cb8c39f29eb2
+2026-01-06 11:47:06.284 | INFO     | src.repository.messaging:send_message:18 - Message sent to queue document-uploads: {'document_id': '609dc7db-32f0-4365-a65b-ea8e70332d20', 'timestamp': '2026-01-06T04:47:02.300473Z'}
+2026-01-06 11:47:06.284 | INFO     | src.delivery.upload_routes:upload_file:50 - Successfully processed PDF upload for file_id 609dc7db-32f0-4365-a65b-ea8e70332d20 and activity_id string
+2026-01-06 11:47:06.284 | INFO     | src.usecase.content_extraction:process_message:293 - Processing content extraction for document ID: 609dc7db-32f0-4365-a65b-ea8e70332d20
+2026-01-06 11:47:06.284 | INFO     | src.usecase.content_extraction:process_documents_in_folder:190 - Processing documents in folder: 609dc7db-32f0-4365-a65b-ea8e70332d20
+2026-01-06 11:47:06.357 | INFO     | src.repository.storage:list_files:124 - Listed 18 files for case 609dc7db-32f0-4365-a65b-ea8e70332d20
+2026-01-06 11:47:06.358 | INFO     | src.usecase.content_extraction:process_documents_in_folder:194 - Found 18 files in folder 609dc7db-32f0-4365-a65b-ea8e70332d20
+2026-01-06 11:47:06.359 | INFO     | src.usecase.content_extraction:process_documents_in_folder:211 - Files sorted numerically: ['609dc7db-32f0-4365-a65b-ea8e70332d20/7603497796_1.pdf', '609dc7db-32f0-4365-a65b-ea8e70332d20/7603497796_2.pdf', '609dc7db-32f0-4365-a65b-ea8e70332d20/7603497796_3.pdf', '609dc7db-32f0-4365-a65b-ea8e70332d20/7603497796_4.pdf', '609dc7db-32f0-4365-a65b-ea8e70332d20/7603497796_5.pdf', '609dc7db-32f0-4365-a65b-ea8e70332d20/7603497796_6.pdf', '609dc7db-32f0-4365-a65b-ea8e70332d20/7603497796_7.pdf', '609dc7db-32f0-4365-a65b-ea8e70332d20/7603497796_8.pdf', '609dc7db-32f0-4365-a65b-ea8e70332d20/7603497796_9.pdf', '609dc7db-32f0-4365-a65b-ea8e70332d20/7603497796_10.pdf', '609dc7db-32f0-4365-a65b-ea8e70332d20/7603497796_11.pdf', '609dc7db-32f0-4365-a65b-ea8e70332d20/7603497796_12.pdf', '609dc7db-32f0-4365-a65b-ea8e70332d20/7603497796_13.pdf', '609dc7db-32f0-4365-a65b-ea8e70332d20/7603497796_14.pdf', '609dc7db-32f0-4365-a65b-ea8e70332d20/7603497796_15.pdf', '609dc7db-32f0-4365-a65b-ea8e70332d20/7603497796_16.pdf', '609dc7db-32f0-4365-a65b-ea8e70332d20/7603497796_17.pdf', '609dc7db-32f0-4365-a65b-ea8e70332d20/7603497796_18.pdf']
+2026-01-06 11:47:06.360 | INFO     | src.usecase.content_extraction:process_documents_in_folder:233 - Analyzing document: 609dc7db-32f0-4365-a65b-ea8e70332d20/7603497796_1.pdf
+2026-01-06 11:47:07.450 | INFO     | src.usecase.content_extraction:process_documents_in_folder:248 - Analysis initiated for 609dc7db-32f0-4365-a65b-ea8e70332d20/7603497796_1.pdf, request ID: 23b31d46-fccf-43cc-a230-e3ce77ae1eff
+2026-01-06 11:47:21.929 | INFO     | src.usecase.content_extraction:_wait_for_analysis_result:118 - Analysis completed successfully: 23b31d46-fccf-43cc-a230-e3ce77ae1eff
+2026-01-06 11:47:21.930 | INFO     | src.usecase.content_extraction:_extract_urn_from_content:75 - Extracted URN from content: 7603497796
+2026-01-06 11:47:40.982 | INFO     | src.usecase.content_extraction:_wait_for_analysis_result:157 - Content classification completed for 23b31d46-fccf-43cc-a230-e3ce77ae1eff
+2026-01-06 11:47:40.984 | INFO     | src.usecase.content_extraction:process_documents_in_folder:254 - Successfully analyzed: 609dc7db-32f0-4365-a65b-ea8e70332d20/7603497796_1.pdf
+2026-01-06 11:47:40.984 | INFO     | src.usecase.content_extraction:process_documents_in_folder:233 - Analyzing document: 609dc7db-32f0-4365-a65b-ea8e70332d20/7603497796_2.pdf
+2026-01-06 11:47:41.583 | INFO     | src.usecase.content_extraction:process_documents_in_folder:248 - Analysis initiated for 609dc7db-32f0-4365-a65b-ea8e70332d20/7603497796_2.pdf, request ID: f94790e7-732f-44e7-86d3-b2dc952494a1
+2026-01-06 11:48:17.194 | INFO     | src.usecase.content_extraction:_wait_for_analysis_result:118 - Analysis completed successfully: f94790e7-732f-44e7-86d3-b2dc952494a1
+2026-01-06 11:48:17.194 | INFO     | src.usecase.content_extraction:_extract_urn_from_content:75 - Extracted URN from content: 7603497796
+2026-01-06 11:49:26.398 | INFO     | src.usecase.content_extraction:_wait_for_analysis_result:157 - Content classification completed for f94790e7-732f-44e7-86d3-b2dc952494a1
+2026-01-06 11:49:26.399 | INFO     | src.usecase.content_extraction:process_documents_in_folder:254 - Successfully analyzed: 609dc7db-32f0-4365-a65b-ea8e70332d20/7603497796_2.pdf
+2026-01-06 11:49:26.399 | INFO     | src.usecase.content_extraction:process_documents_in_folder:233 - Analyzing document: 609dc7db-32f0-4365-a65b-ea8e70332d20/7603497796_3.pdf
+2026-01-06 11:49:27.124 | INFO     | src.usecase.content_extraction:process_documents_in_folder:248 - Analysis initiated for 609dc7db-32f0-4365-a65b-ea8e70332d20/7603497796_3.pdf, request ID: ac4ed0b6-79bd-478c-a981-be4351283678
+2026-01-06 11:49:41.639 | INFO     | src.usecase.content_extraction:_wait_for_analysis_result:118 - Analysis completed successfully: ac4ed0b6-79bd-478c-a981-be4351283678
+2026-01-06 11:49:41.639 | INFO     | src.usecase.content_extraction:_extract_urn_from_content:75 - Extracted URN from content: 7603497796
+2026-01-06 11:50:06.294 | INFO     | src.usecase.content_extraction:_wait_for_analysis_result:157 - Content classification completed for ac4ed0b6-79bd-478c-a981-be4351283678
+2026-01-06 11:50:06.294 | INFO     | src.usecase.content_extraction:process_documents_in_folder:254 - Successfully analyzed: 609dc7db-32f0-4365-a65b-ea8e70332d20/7603497796_3.pdf
+2026-01-06 11:50:06.294 | INFO     | src.usecase.content_extraction:process_documents_in_folder:233 - Analyzing document: 609dc7db-32f0-4365-a65b-ea8e70332d20/7603497796_4.pdf
+2026-01-06 11:50:07.151 | INFO     | src.usecase.content_extraction:process_documents_in_folder:248 - Analysis initiated for 609dc7db-32f0-4365-a65b-ea8e70332d20/7603497796_4.pdf, request ID: 705c359b-1bca-4c17-898d-789826d21a5f
+2026-01-06 11:50:14.872 | INFO     | src.usecase.content_extraction:_wait_for_analysis_result:118 - Analysis completed successfully: 705c359b-1bca-4c17-898d-789826d21a5f
+2026-01-06 11:50:14.872 | INFO     | src.usecase.content_extraction:_extract_urn_from_content:75 - Extracted URN from content: 7603497796

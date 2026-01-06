@@ -15,17 +15,11 @@ def get_content_classification_prompt(document_content: str) -> str:
     # Document Completeness Guidelines:
 
     ## Tax Invoice (Faktur Pajak) Completeness Indicators (document is COMPLETE when it has):
-    - Faktur Pajak number/reference
-    - Seller (Pengusaha Kena Pajak) name and NPWP
-    - Buyer (Pembeli Kena Pajak) name and identifying information (NPWP, NIK, or Passport)
-    - Tax invoice date
-    - Line items with descriptions, quantities, and prices
-    - Tax base amount (Dasar Pengenaan Pajak)
-    - PPN amount (VAT/Tax amount)
-    - FINAL TOTAL AMOUNT
-    - **SIGNATURE or AUTHORIZED SIGNATURE area** (critical for Faktur Pajak completeness)
-    - Stamp or official seal from seller
-    - Buyer's acceptance/receipt indication (if applicable)
+    - Digital signature or QR code indicating authorization
+    - Name of city and date of issuance, e.g., "Jakarta, 15 Maret 2023"
+    - Presence of signature note like: "Ditandatangani secara elektronik"
+    - Page numbers indicating all pages are present, example: "2 dari 2"
+    - Even though there is a notes that says something like "Ditandatangani secara elektronik", if there is no name of city and date of issuance or the person who signed, then consider the document as INCOMPLETE.
 
     # Completeness Assessment Logic:
     - Document is INCOMPLETE if it ends abruptly or shows obvious truncation (e.g., line items cut off, missing totals, text continues without conclusion)
