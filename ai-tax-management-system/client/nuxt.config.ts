@@ -68,5 +68,20 @@ export default defineNuxtConfig({
     ],
   },
 
+  runtimeConfig: {
+    public: {
+      apiBase: process.env.NUXT_PUBLIC_API_BASE || 'http://localhost:8000'
+    }
+  },
+
+  nitro: {
+    devProxy: {
+      '/api': {
+        target: process.env.NUXT_PUBLIC_API_BASE || 'http://localhost:8000',
+        changeOrigin: true
+      }
+    }
+  },
+
   compatibilityDate: '2024-12-14',
 })

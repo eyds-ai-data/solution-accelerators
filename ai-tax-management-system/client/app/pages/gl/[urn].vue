@@ -2,9 +2,7 @@
 import { computed } from 'vue'
 import { useRoute, useRouter } from 'vue-router'
 import type { GL } from '@/components/gl/data/schema'
-import glData from '@/components/gl/data/glTable.json'
 import type { Invoice } from '@/components/invoice/data/schema'
-import invoiceData from '@/components/invoice/data/invoice.json'
 import DataTableGLItems from '@/components/gl/components/DataTableGLItems.vue'
 import DataTableInvoices from '@/components/invoice/components/DataTableInvoices.vue'
 import { glReconColumns } from '@/components/gl/components/glReconItems'
@@ -29,15 +27,20 @@ import {
   CheckCircle2,
   Save
 } from 'lucide-vue-next'
+import { Skeleton } from '@/components/ui/skeleton'
 
 const route = useRoute()
 const router = useRouter()
-const gls = (glData as { data: GL[] }).data
 const glId = route.params.urn as string
-const gl = computed(() => gls.find(g => g.urn === glId))
-const invoices = (invoiceData as { data: Invoice[] }).data
-const invoice = computed(() => invoices.find(i => i.urn === glId))
 
+const { glTransaction, loading, error, fetchGLTransactionByUrn } = useGLTransactionDetail()
+
+// Fetch GL transaction on mount
+onMounted(async () => {
+  await fetchGLTransactionByUrn(glId)
+})
+
+const gl = computed(() => glTransaction.value)
 const reconItems = computed(() => gl.value?.glReconItem ?? [])
 
 const goBack = () => {
@@ -53,14 +56,70 @@ const formatCurrency = (amount: number, currency: string) => {
 }
 
 const activeTab = ref<'invoice' | 'tax'>('invoice')
-const invoicePdfUrl = computed(() => {
-  if (!invoice.value) return ''
-  return `/invoices/${invoice.value.urn}.pdf`
-})
 </script>
 
 <template>
-  <div v-if="gl" class="min-h-screen bg-muted/40">
+  <div v-if="loading" class="min-h-screen bg-muted/40">
+    <div class="max-w-7xl mx-auto p-6 space-y-6">
+      
+      <!-- Header Skeleton -->
+      <div class="flex flex-col sm:flex-row justify-between items-start gap-4">
+        <div class="flex items-start gap-4">
+          <Skeleton class="h-10 w-10 rounded-md" /> <!-- Back button -->
+          <div>
+            <Skeleton class="h-8 w-64 mb-1" /> <!-- Title -->
+          </div>
+        </div>
+        
+        <div class="flex gap-2">
+          <Skeleton class="h-10 w-20" />
+          <Skeleton class="h-10 w-20" />
+          <Skeleton class="h-10 w-20" />
+        </div>
+      </div>
+
+      <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
+        <!-- GL Detail Skeleton -->
+        <div class="lg:col-span-2 space-y-6">
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+
+            <!-- LEFT COLUMN -->
+            <div class="space-y-3">
+               <div v-for="i in 8" :key="`left-${i}`" class="flex justify-between items-center min-h-[36px]">
+                  <Skeleton class="h-4 w-24" />
+                  <Skeleton class="h-4 w-32" />
+               </div>
+            </div>
+            
+             <!-- RIGHT COLUMN -->
+            <div class="space-y-3">
+               <div v-for="i in 8" :key="`right-${i}`" class="flex justify-between items-center min-h-[36px]">
+                  <Skeleton class="h-4 w-24" />
+                  <Skeleton class="h-4 w-32" />
+               </div>
+            </div>
+          </div>
+        </div>
+        
+        <!-- Table Area Skeleton -->
+        <div class="lg:col-span-2 mt-8">
+            <Skeleton class="h-10 w-64 mb-4" /> <!-- Tabs -->
+            <Skeleton class="h-64 w-full rounded-md" /> <!-- Table -->
+        </div>
+
+      </div>
+    </div>
+  </div>
+  
+  <div v-else-if="error" class="flex items-center justify-center min-h-screen">
+    <div class="text-center max-w-md">
+      <p class="text-destructive font-medium mb-2">Error loading GL transaction</p>
+      <p class="text-sm text-muted-foreground mb-4">{{ error }}</p>
+      <Button @click="goBack">Go Back</Button>
+    </div>
+  </div>
+  
+  <div v-else-if="gl" class="min-h-screen bg-muted/40">
     <div class="max-w-7xl mx-auto p-6 space-y-6">
       
       <!-- Header -->

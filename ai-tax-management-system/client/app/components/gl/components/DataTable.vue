@@ -26,8 +26,11 @@ import { ref } from 'vue'
 interface DataTableProps {
   columns: ColumnDef<GL, any>[]
   data: GL[]
+  showPagination?: boolean
 }
-const props = defineProps<DataTableProps>()
+const props = withDefaults(defineProps<DataTableProps>(), {
+  showPagination: true
+})
 
 const sorting = ref<SortingState>([])
 const columnFilters = ref<ColumnFiltersState>([])
@@ -87,6 +90,6 @@ const table = useVueTable({
         </TableBody>
       </Table>
     </div>
-    <DataTablePagination :table="table" />
+    <DataTablePagination v-if="showPagination" :table="table" />
   </div>
 </template>

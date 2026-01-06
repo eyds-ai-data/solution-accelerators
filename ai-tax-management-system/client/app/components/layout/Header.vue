@@ -12,7 +12,11 @@ function setLinks() {
     const str = item.replace(/-/g, ' ')
     const title = str
       .split(' ')
-      .map(word => word.charAt(0).toUpperCase() + word.slice(1).toLowerCase())
+      .map((word) => {
+        const lowerWord = word.toLowerCase()
+        if (lowerWord === 'gl') return 'GL'
+        return word.charAt(0).toUpperCase() + word.slice(1).toLowerCase()
+      })
       .join(' ')
 
     return {

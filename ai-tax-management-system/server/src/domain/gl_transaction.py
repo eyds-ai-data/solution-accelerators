@@ -33,7 +33,7 @@ class GLTransaction(BaseModel):
     clearing_document: Optional[str] = Field(None, alias="clearingDocument", description="Clearing document reference")
     document_date: str = Field(..., alias="documentDate", description="Document date (MM/DD/YYYY format)")
     posting_date: str = Field(..., alias="postingDate", description="Posting date (MM/DD/YYYY format)")
-    gl_recon_item: Optional[List[GLReconItem]] = Field(None, alias="glReconItem", min_length=1, description="List of G/L reconciliation items")
+    gl_recon_item: Optional[List[GLReconItem]] = Field(default_factory=list, alias="glReconItem", description="List of G/L reconciliation items")
     document_currency: str = Field(..., alias="documentCurrency", min_length=3, max_length=3, description="Document currency code (ISO 4217)")
     amount_in_document_currency: float = Field(..., alias="amountInDocumentCurrency", description="Amount in document currency")
     local_currency: str = Field(..., alias="localCurrency", min_length=3, max_length=3, description="Local currency code (ISO 4217)")

@@ -14988,3 +14988,131 @@ amountInLocalCurrency
 2026-01-06 11:50:07.151 | INFO     | src.usecase.content_extraction:process_documents_in_folder:248 - Analysis initiated for 609dc7db-32f0-4365-a65b-ea8e70332d20/7603497796_4.pdf, request ID: 705c359b-1bca-4c17-898d-789826d21a5f
 2026-01-06 11:50:14.872 | INFO     | src.usecase.content_extraction:_wait_for_analysis_result:118 - Analysis completed successfully: 705c359b-1bca-4c17-898d-789826d21a5f
 2026-01-06 11:50:14.872 | INFO     | src.usecase.content_extraction:_extract_urn_from_content:75 - Extracted URN from content: 7603497796
+2026-01-06 15:59:15.168 | INFO     | __main__:<module>:256 - Starting application in 'http' mode
+2026-01-06 15:59:27.505 | INFO     | src.config.dependencies:get_app_config:35 - Initializing application configuration
+2026-01-06 15:59:27.505 | INFO     | src.config.dependencies:get_azure_cosmos_repository:104 - Creating AzureCosmosDBRepository singleton
+2026-01-06 15:59:28.904 | INFO     | src.repository.database:__init__:22 - Connected to Cosmos DB database 'tax-management-system', container 'gl-transactions'
+2026-01-06 15:59:31.274 | INFO     | src.repository.database:query_documents:141 - Retrieved 14 documents (type: all)
+2026-01-06 15:59:31.278 | ERROR    | src.usecase.tax_management:get_gl_transactions:23 - Error retrieving G/L transactions: 1 validation error for GLTransaction
+glReconItem
+  List should have at least 1 item after validation, not 0 [type=too_short, input_value=[], input_type=list]
+    For further information visit https://errors.pydantic.dev/2.11/v/too_short
+2026-01-06 15:59:31.278 | ERROR    | src.delivery.tax_management:get_all_gl_transactions:30 - Error retrieving G/L transactions: 1 validation error for GLTransaction
+glReconItem
+  List should have at least 1 item after validation, not 0 [type=too_short, input_value=[], input_type=list]
+    For further information visit https://errors.pydantic.dev/2.11/v/too_short
+2026-01-06 16:00:07.887 | INFO     | src.repository.database:query_documents:141 - Retrieved 14 documents (type: all)
+2026-01-06 16:00:07.887 | ERROR    | src.usecase.tax_management:get_gl_transactions:23 - Error retrieving G/L transactions: 1 validation error for GLTransaction
+glReconItem
+  List should have at least 1 item after validation, not 0 [type=too_short, input_value=[], input_type=list]
+    For further information visit https://errors.pydantic.dev/2.11/v/too_short
+2026-01-06 16:00:09.876 | ERROR    | src.delivery.tax_management:get_all_gl_transactions:30 - Error retrieving G/L transactions: 1 validation error for GLTransaction
+glReconItem
+  List should have at least 1 item after validation, not 0 [type=too_short, input_value=[], input_type=list]
+    For further information visit https://errors.pydantic.dev/2.11/v/too_short
+2026-01-06 16:32:55.613 | INFO     | __main__:<module>:256 - Starting application in 'http' mode
+2026-01-06 16:35:50.186 | INFO     | src.config.dependencies:get_app_config:35 - Initializing application configuration
+2026-01-06 16:35:50.186 | INFO     | src.config.dependencies:get_azure_cosmos_repository:104 - Creating AzureCosmosDBRepository singleton
+2026-01-06 16:35:51.773 | INFO     | src.repository.database:__init__:22 - Connected to Cosmos DB database 'tax-management-system', container 'gl-transactions'
+2026-01-06 16:36:00.623 | INFO     | src.repository.database:query_documents:141 - Retrieved 14 documents (type: all)
+2026-01-06 16:36:08.822 | INFO     | src.delivery.tax_management:get_all_gl_transactions:19 - Retrieved 14 G/L transactions
+2026-01-06 16:36:18.953 | INFO     | src.repository.database:query_documents:141 - Retrieved 1 documents (type: all)
+2026-01-06 16:36:18.954 | INFO     | src.delivery.tax_management:get_all_gl_transactions:19 - Retrieved 1 G/L transactions
+2026-01-06 16:36:28.767 | INFO     | src.repository.database:query_documents:141 - Retrieved 17 documents (type: all)
+2026-01-06 16:36:28.779 | INFO     | src.delivery.tax_management:get_all_tax_invoices:42 - Retrieved 17 tax invoices
+2026-01-06 16:39:19.701 | INFO     | src.repository.database:query_documents:141 - Retrieved 4 documents (type: all)
+2026-01-06 16:39:19.701 | INFO     | src.delivery.tax_management:get_all_tax_invoices:42 - Retrieved 4 tax invoices
+2026-01-06 16:45:13.293 | INFO     | src.repository.database:query_documents:141 - Retrieved 14 documents (type: all)
+2026-01-06 16:45:13.294 | INFO     | src.delivery.tax_management:get_all_gl_transactions:19 - Retrieved 14 G/L transactions
+2026-01-06 16:45:13.912 | INFO     | src.repository.database:query_documents:141 - Retrieved 14 documents (type: all)
+2026-01-06 16:45:13.913 | INFO     | src.delivery.tax_management:get_all_gl_transactions:19 - Retrieved 14 G/L transactions
+2026-01-06 16:45:14.584 | INFO     | src.repository.database:query_documents:141 - Retrieved 14 documents (type: all)
+2026-01-06 16:45:14.584 | INFO     | src.delivery.tax_management:get_all_gl_transactions:19 - Retrieved 14 G/L transactions
+2026-01-06 16:45:21.441 | INFO     | src.repository.database:query_documents:141 - Retrieved 14 documents (type: all)
+2026-01-06 16:45:21.441 | INFO     | src.delivery.tax_management:get_all_gl_transactions:19 - Retrieved 14 G/L transactions
+2026-01-06 16:46:35.626 | INFO     | src.repository.database:query_documents:141 - Retrieved 14 documents (type: all)
+2026-01-06 16:46:35.627 | INFO     | src.delivery.tax_management:get_all_gl_transactions:19 - Retrieved 14 G/L transactions
+2026-01-06 16:48:50.771 | INFO     | src.repository.database:query_documents:141 - Retrieved 14 documents (type: all)
+2026-01-06 16:48:50.772 | INFO     | src.delivery.tax_management:get_all_gl_transactions:19 - Retrieved 14 G/L transactions
+2026-01-06 16:49:47.161 | INFO     | src.repository.database:query_documents:141 - Retrieved 14 documents (type: all)
+2026-01-06 16:49:47.162 | INFO     | src.delivery.tax_management:get_all_gl_transactions:19 - Retrieved 14 G/L transactions
+2026-01-06 16:52:42.287 | INFO     | src.repository.database:query_documents:141 - Retrieved 14 documents (type: all)
+2026-01-06 16:52:42.287 | INFO     | src.delivery.tax_management:get_all_gl_transactions:19 - Retrieved 14 G/L transactions
+2026-01-06 16:53:34.299 | INFO     | __main__:<module>:256 - Starting application in 'http' mode
+2026-01-06 16:55:26.832 | INFO     | src.config.dependencies:get_app_config:35 - Initializing application configuration
+2026-01-06 16:55:26.832 | INFO     | src.config.dependencies:get_azure_cosmos_repository:104 - Creating AzureCosmosDBRepository singleton
+2026-01-06 16:55:28.432 | INFO     | src.repository.database:__init__:22 - Connected to Cosmos DB database 'tax-management-system', container 'gl-transactions'
+2026-01-06 16:55:31.249 | INFO     | src.repository.database:query_documents:141 - Retrieved 10 documents (type: all)
+2026-01-06 16:55:31.249 | INFO     | src.delivery.tax_management:get_all_gl_transactions:24 - Retrieved 10 G/L transactions (page 1 of 2)
+2026-01-06 16:55:58.029 | INFO     | src.repository.database:query_documents:141 - Retrieved 4 documents (type: all)
+2026-01-06 16:55:58.031 | INFO     | src.delivery.tax_management:get_all_gl_transactions:24 - Retrieved 4 G/L transactions (page 2 of 2)
+2026-01-06 16:56:01.074 | INFO     | src.repository.database:query_documents:141 - Retrieved 10 documents (type: all)
+2026-01-06 16:56:01.074 | INFO     | src.delivery.tax_management:get_all_gl_transactions:24 - Retrieved 10 G/L transactions (page 1 of 2)
+2026-01-06 16:57:38.015 | INFO     | src.repository.database:query_documents:141 - Retrieved 10 documents (type: all)
+2026-01-06 16:57:38.016 | INFO     | src.delivery.tax_management:get_all_gl_transactions:24 - Retrieved 10 G/L transactions (page 1 of 2)
+2026-01-06 16:57:39.205 | INFO     | src.repository.database:query_documents:141 - Retrieved 10 documents (type: all)
+2026-01-06 16:57:39.205 | INFO     | src.delivery.tax_management:get_all_gl_transactions:24 - Retrieved 10 G/L transactions (page 1 of 2)
+2026-01-06 16:57:50.332 | INFO     | src.repository.database:query_documents:141 - Retrieved 4 documents (type: all)
+2026-01-06 16:57:50.333 | INFO     | src.delivery.tax_management:get_all_gl_transactions:24 - Retrieved 4 G/L transactions (page 2 of 2)
+2026-01-06 16:57:53.105 | INFO     | src.repository.database:query_documents:141 - Retrieved 10 documents (type: all)
+2026-01-06 16:57:53.107 | INFO     | src.delivery.tax_management:get_all_gl_transactions:24 - Retrieved 10 G/L transactions (page 1 of 2)
+2026-01-06 16:57:54.802 | INFO     | src.config.dependencies:get_content_understanding_repository:57 - Creating ContentUnderstandingRepository singleton
+2026-01-06 16:57:54.803 | INFO     | src.config.dependencies:get_azure_blob_storage_repository:80 - Creating AzureBlobStorageRepository singleton
+2026-01-06 16:57:55.658 | INFO     | src.repository.storage:__init__:21 - Blob container already exists: tax-documents
+2026-01-06 16:57:55.659 | INFO     | src.repository.storage:__init__:25 - Connected to Blob Storage, container: tax-documents
+2026-01-06 16:57:55.661 | INFO     | src.config.dependencies:get_azure_service_bus_repository:188 - Creating AzureServiceBusRepository singleton
+2026-01-06 16:57:56.800 | INFO     | src.repository.database:query_documents:141 - Retrieved 5 documents (type: all)
+2026-01-06 16:58:01.165 | INFO     | src.config.dependencies:get_azure_service_bus_repository:188 - Creating AzureServiceBusRepository singleton
+2026-01-06 16:58:01.780 | INFO     | src.repository.database:query_documents:141 - Retrieved 5 documents (type: all)
+2026-01-06 16:58:04.066 | INFO     | src.config.dependencies:get_azure_service_bus_repository:188 - Creating AzureServiceBusRepository singleton
+2026-01-06 16:58:04.671 | INFO     | src.repository.database:query_documents:141 - Retrieved 1 documents (type: all)
+2026-01-06 16:58:08.822 | INFO     | src.repository.database:query_documents:141 - Retrieved 10 documents (type: all)
+2026-01-06 16:58:08.822 | INFO     | src.delivery.tax_management:get_all_gl_transactions:24 - Retrieved 10 G/L transactions (page 1 of 2)
+2026-01-06 16:58:11.580 | INFO     | src.repository.database:query_documents:141 - Retrieved 4 documents (type: all)
+2026-01-06 16:58:11.581 | INFO     | src.delivery.tax_management:get_all_gl_transactions:24 - Retrieved 4 G/L transactions (page 2 of 2)
+2026-01-06 16:58:15.628 | INFO     | src.repository.database:query_documents:141 - Retrieved 10 documents (type: all)
+2026-01-06 16:58:15.629 | INFO     | src.delivery.tax_management:get_all_gl_transactions:24 - Retrieved 10 G/L transactions (page 1 of 2)
+2026-01-06 16:58:21.137 | INFO     | src.repository.database:query_documents:141 - Retrieved 4 documents (type: all)
+2026-01-06 16:58:21.137 | INFO     | src.delivery.tax_management:get_all_gl_transactions:24 - Retrieved 4 G/L transactions (page 2 of 2)
+2026-01-06 16:58:23.632 | INFO     | src.repository.database:query_documents:141 - Retrieved 10 documents (type: all)
+2026-01-06 16:58:23.633 | INFO     | src.delivery.tax_management:get_all_gl_transactions:24 - Retrieved 10 G/L transactions (page 1 of 2)
+2026-01-06 16:58:39.566 | INFO     | src.repository.database:query_documents:141 - Retrieved 14 documents (type: all)
+2026-01-06 16:58:39.567 | INFO     | src.delivery.tax_management:get_all_gl_transactions:24 - Retrieved 14 G/L transactions (page 1 of 1)
+2026-01-06 16:58:43.839 | INFO     | src.repository.database:query_documents:141 - Retrieved 14 documents (type: all)
+2026-01-06 16:58:43.840 | INFO     | src.delivery.tax_management:get_all_gl_transactions:24 - Retrieved 14 G/L transactions (page 1 of 1)
+2026-01-06 16:58:48.526 | INFO     | src.repository.database:query_documents:141 - Retrieved 10 documents (type: all)
+2026-01-06 16:58:48.527 | INFO     | src.delivery.tax_management:get_all_gl_transactions:24 - Retrieved 10 G/L transactions (page 1 of 2)
+2026-01-06 16:59:03.724 | INFO     | src.repository.database:query_documents:141 - Retrieved 1 documents (type: all)
+2026-01-06 16:59:03.724 | INFO     | src.delivery.tax_management:get_gl_transaction_by_urn:65 - Retrieved G/L transaction: 7603475539
+2026-01-06 17:00:10.142 | INFO     | src.repository.database:query_documents:141 - Retrieved 1 documents (type: all)
+2026-01-06 17:00:10.143 | INFO     | src.delivery.tax_management:get_gl_transaction_by_urn:65 - Retrieved G/L transaction: 7603475539
+2026-01-06 17:00:10.935 | INFO     | src.repository.database:query_documents:141 - Retrieved 1 documents (type: all)
+2026-01-06 17:00:10.936 | INFO     | src.delivery.tax_management:get_gl_transaction_by_urn:65 - Retrieved G/L transaction: 7603475539
+2026-01-06 17:00:11.453 | INFO     | src.repository.database:query_documents:141 - Retrieved 1 documents (type: all)
+2026-01-06 17:00:11.454 | INFO     | src.delivery.tax_management:get_gl_transaction_by_urn:65 - Retrieved G/L transaction: 7603475539
+2026-01-06 17:00:11.905 | INFO     | src.repository.database:query_documents:141 - Retrieved 1 documents (type: all)
+2026-01-06 17:00:11.905 | INFO     | src.delivery.tax_management:get_gl_transaction_by_urn:65 - Retrieved G/L transaction: 7603475539
+2026-01-06 17:00:25.367 | INFO     | src.repository.database:query_documents:141 - Retrieved 10 documents (type: all)
+2026-01-06 17:00:25.367 | INFO     | src.delivery.tax_management:get_all_gl_transactions:24 - Retrieved 10 G/L transactions (page 1 of 2)
+2026-01-06 17:00:26.619 | INFO     | src.config.dependencies:get_azure_service_bus_repository:188 - Creating AzureServiceBusRepository singleton
+2026-01-06 17:00:27.222 | INFO     | src.repository.database:query_documents:141 - Retrieved 5 documents (type: all)
+2026-01-06 17:00:31.280 | INFO     | src.repository.database:query_documents:141 - Retrieved 10 documents (type: all)
+2026-01-06 17:00:31.281 | INFO     | src.delivery.tax_management:get_all_gl_transactions:24 - Retrieved 10 G/L transactions (page 1 of 2)
+2026-01-06 17:00:34.833 | INFO     | src.repository.database:query_documents:141 - Retrieved 1 documents (type: all)
+2026-01-06 17:00:34.836 | INFO     | src.delivery.tax_management:get_gl_transaction_by_urn:65 - Retrieved G/L transaction: 7603475539
+2026-01-06 17:00:40.143 | INFO     | src.repository.database:query_documents:141 - Retrieved 10 documents (type: all)
+2026-01-06 17:00:40.144 | INFO     | src.delivery.tax_management:get_all_gl_transactions:24 - Retrieved 10 G/L transactions (page 1 of 2)
+2026-01-06 17:07:37.061 | INFO     | src.config.dependencies:get_azure_service_bus_repository:188 - Creating AzureServiceBusRepository singleton
+2026-01-06 17:07:39.171 | INFO     | src.repository.database:query_documents:141 - Retrieved 5 documents (type: all)
+2026-01-06 17:09:24.324 | INFO     | src.repository.database:query_documents:141 - Retrieved 10 documents (type: all)
+2026-01-06 17:09:24.324 | INFO     | src.delivery.tax_management:get_all_gl_transactions:24 - Retrieved 10 G/L transactions (page 1 of 2)
+2026-01-06 17:09:27.721 | INFO     | src.repository.database:query_documents:141 - Retrieved 4 documents (type: all)
+2026-01-06 17:09:27.721 | INFO     | src.delivery.tax_management:get_all_gl_transactions:24 - Retrieved 4 G/L transactions (page 2 of 2)
+2026-01-06 17:09:32.738 | INFO     | src.repository.database:query_documents:141 - Retrieved 10 documents (type: all)
+2026-01-06 17:09:32.738 | INFO     | src.delivery.tax_management:get_all_gl_transactions:24 - Retrieved 10 G/L transactions (page 1 of 2)
+2026-01-06 17:09:39.170 | INFO     | src.repository.database:query_documents:141 - Retrieved 1 documents (type: all)
+2026-01-06 17:09:39.170 | INFO     | src.delivery.tax_management:get_gl_transaction_by_urn:65 - Retrieved G/L transaction: 7603504546
+2026-01-06 17:09:52.952 | INFO     | src.repository.database:query_documents:141 - Retrieved 10 documents (type: all)
+2026-01-06 17:09:52.952 | INFO     | src.delivery.tax_management:get_all_gl_transactions:24 - Retrieved 10 G/L transactions (page 1 of 2)
+2026-01-06 17:26:02.462 | INFO     | src.repository.database:query_documents:141 - Retrieved 1 documents (type: all)
+2026-01-06 17:26:02.462 | INFO     | src.delivery.tax_management:get_gl_transaction_by_urn:65 - Retrieved G/L transaction: 7603475539

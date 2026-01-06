@@ -8,7 +8,7 @@ import {
   DropdownMenuItem,
   DropdownMenuTrigger,
 } from '@/components/ui/dropdown-menu'
-import { MoreHorizontalIcon, TrashIcon, EyeIcon, EditIcon } from 'lucide-vue-next'
+import { MoreHorizontalIcon, TrashIcon, EyeIcon } from 'lucide-vue-next'
 import { useRouter } from 'vue-router'
 
 interface DataTableRowActionsProps {
@@ -20,10 +20,6 @@ const router = useRouter()
 
 const viewDetails = () => {
   router.push(`/gl/${props.row.original.urn}`)
-}
-
-const editJob = () => {
-  console.log('Edit job:', props.row.original.urn)
 }
 
 const deleteRow = () => {
@@ -44,10 +40,6 @@ const deleteRow = () => {
         <DropdownMenuItem @click="viewDetails">
           <EyeIcon class="mr-2 h-4 w-4" />
           View Details
-        </DropdownMenuItem>
-        <DropdownMenuItem @click="editJob">
-          <EditIcon class="mr-2 h-4 w-4" />
-          Edit
         </DropdownMenuItem>
         <DropdownMenuItem @click="deleteRow" class="text-red-600">
           <TrashIcon class="mr-2 h-4 w-4" />
