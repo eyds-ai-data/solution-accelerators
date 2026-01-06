@@ -37,6 +37,7 @@ const glId = route.params.urn as string
 const gl = computed(() => gls.find(g => g.urn === glId))
 const invoices = (invoiceData as { data: Invoice[] }).data
 const invoice = computed(() => invoices.find(i => i.urn === glId))
+
 const reconItems = computed(() => gl.value?.glReconItem ?? [])
 
 const goBack = () => {
