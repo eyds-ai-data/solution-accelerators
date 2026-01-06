@@ -1,6 +1,7 @@
 from typing import Dict, Any, Optional, List
 import asyncio
 import re
+from datetime import datetime
 from src.repository.content_understanding import ContentUnderstandingRepository
 from src.repository.storage import MinioStorageRepository
 from src.repository.storage import AzureBlobStorageRepository
@@ -128,9 +129,7 @@ class ContentExtraction:
 
                             if content_classification_data == ContentType.Invoice.value:
                                 # call invoice extraction
-                                result = await self.llm_service_repo.get_invoice_extraction(
-                                    document_text=content
-                                )
+                                result = await self.llm_service_repo.get_invoice_extraction(document_text=content)
                                 result['urn'] = urn
                                 result['invoiceId'] = str(uuid.uuid4())
 
@@ -142,8 +141,7 @@ class ContentExtraction:
                                     )
 
                             elif content_classification_data == ContentType.TaxInvoice.value:
-                                result = await self.llm_service_repo.get_tax_invoice_extraction(
-                                    document_text=content)
+                                result = await self.llm_service_repo.get_tax_invoice_extraction(document_text=content)
                                 result['urn'] = urn
                                 result['taxInvoiceId'] = str(uuid.uuid4())
                                 if self.azure_cosmos_repo and urn:
@@ -152,8 +150,7 @@ class ContentExtraction:
                                         container_id="tax-invoices"
                                     )
                             elif content_classification_data == ContentType.GeneralLedger.value:
-                                result = await self.llm_service_repo.get_gl_extraction(
-                                    document_text=content)
+                                result = await self.llm_service_repo.get_gl_extraction(document_text=content)
                             else:
                                 result = {"message": "Content type is Unknown, no extraction performed."}
 
@@ -301,7 +298,8 @@ class ContentExtraction:
                 document_id=document_id,
                 update_data={
                     "urn": next((res.get('analysis_result', {}).get('urn') for res in result if res.get('analysis_result') and res.get('analysis_result', {}).get('urn')), None),
-                    "status": "completed"
+                    "status": "completed",
+                    "completed_at": datetime.utcnow().isoformat()
                 },
                 container_id="uploads",
                 partial_update=True

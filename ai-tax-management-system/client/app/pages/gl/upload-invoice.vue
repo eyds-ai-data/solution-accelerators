@@ -19,6 +19,7 @@ import {
   PaginationNext,
   PaginationPrevious,
 } from '@/components/ui/pagination'
+import { Skeleton } from '@/components/ui/skeleton'
 
 const router = useRouter()
 const fileInput = ref<HTMLInputElement | null>(null)
@@ -168,7 +169,7 @@ const uploadFile = async (file: File) => {
           </p>
         </div>
         <Button variant="outline" size="sm" :disabled="status === 'pending'" @click="refresh">
-          <RefreshCw class="h-4 w-4 mr-2" :class="{ 'animate-spin': status === 'pending' }" />
+          <RefreshCw class="h-4 w-4 mr-2" />
           Refresh
         </Button>
       </div>
@@ -178,36 +179,74 @@ const uploadFile = async (file: File) => {
             <TableRow>
               <TableHead>Filename</TableHead>
               <TableHead>Uploaded At</TableHead>
+              <TableHead>Completed At</TableHead>
               <TableHead>Status</TableHead>
               <TableHead>URN</TableHead>
             </TableRow>
           </TableHeader>
           <TableBody>
-            <TableRow v-for="file in uploadedFiles" :key="file.id">
-              <TableCell>{{ file.originalFilename }}</TableCell>
-              <TableCell>{{ file.created_at ? new Date(file.created_at).toLocaleString() : '-' }}</TableCell>
-              <TableCell>
-                <Badge
-                  variant="outline"
-                  :class="{
-                    'bg-yellow-100 text-yellow-800 border-yellow-200': file.status === 'processing',
-                    'bg-green-100 text-green-800 border-green-200': file.status === 'done',
-                    'bg-gray-100 text-gray-800 border-gray-200': !['processing', 'done'].includes(file.status),
-                  }"
-                >
-                  {{ file.status || 'Uploaded' }}
-                </Badge>
-              </TableCell>
-              <TableCell>
-                <span v-if="file.urn" class="font-mono text-sm">{{ file.urn }}</span>
-                <span v-else class="text-muted-foreground">-</span>
-              </TableCell>
-            </TableRow>
-            <TableRow v-if="uploadedFiles.length === 0">
-              <TableCell colspan="4" class="text-center text-muted-foreground h-24">
-                No documents uploaded yet.
-              </TableCell>
-            </TableRow>
+            <template v-if="status === 'pending'">
+              <TableRow v-for="i in 5" :key="i">
+                <TableCell><Skeleton class="h-4 w-[250px]" /></TableCell>
+                <TableCell><Skeleton class="h-4 w-[150px]" /></TableCell>
+                <TableCell><Skeleton class="h-4 w-[150px]" /></TableCell>
+                <TableCell><Skeleton class="h-4 w-[100px]" /></TableCell>
+                <TableCell><Skeleton class="h-4 w-[100px]" /></TableCell>
+              </TableRow>
+            </template>
+            <template v-else>
+              <TableRow v-for="file in uploadedFiles" :key="file.id">
+                <TableCell>{{ file.originalFilename }}</TableCell>
+                <TableCell>
+                  {{ file.created_at ? new Date(file.created_at.endsWith('Z') ? file.created_at : file.created_at + 'Z').toLocaleString('en-US', {
+                    year: 'numeric',
+                    month: 'short',
+                    day: 'numeric',
+                    hour: '2-digit',
+                    minute: '2-digit',
+                    timeZone: 'Asia/Jakarta'
+                  }) : '-' }}
+                </TableCell>
+                <TableCell>
+                  {{ file.completed_at ? new Date(file.completed_at.endsWith('Z') ? file.completed_at : file.completed_at + 'Z').toLocaleString('en-US', {
+                    year: 'numeric',
+                    month: 'short',
+                    day: 'numeric',
+                    hour: '2-digit',
+                    minute: '2-digit',
+                    timeZone: 'Asia/Jakarta'
+                  }) : '-' }}
+                </TableCell>
+                <TableCell>
+                  <Badge
+                    variant="outline"
+                    :class="{
+                      'bg-yellow-100 text-yellow-800 border-yellow-200': file.status === 'processing',
+                      'bg-green-100 text-green-800 border-green-200': file.status === 'done',
+                      'bg-gray-100 text-gray-800 border-gray-200': !['processing', 'done'].includes(file.status),
+                    }"
+                  >
+                    <Loader2 v-if="file.status === 'processing'" class="mr-1 h-3 w-3 animate-spin" />
+                    {{ file.status || 'Uploaded' }}
+                  </Badge>
+                </TableCell>
+                <TableCell>
+                  <NuxtLink 
+                    v-if="file.urn" 
+                    :to="`/gl/${file.urn}`"
+                    class="font-mono text-sm text-blue-600 hover:underline"
+                  >
+                    {{ file.urn }}
+                  </NuxtLink>
+                  <span v-else class="text-muted-foreground">-</span>
+                </TableCell>
+              </TableRow>
+              <TableRow v-if="uploadedFiles.length === 0">
+                <TableCell colspan="5" class="text-center text-muted-foreground h-24">
+                  No documents uploaded yet.
+                </TableCell>
+              </TableRow>
+            </template>
           </TableBody>
         </Table>
       </div>
@@ -215,9 +254,9 @@ const uploadFile = async (file: File) => {
       <div class="mt-4 flex justify-end">
         <Pagination v-if="total > 0" v-model:page="page" :total="total" :items-per-page="pageSize" :sibling-count="1" show-edges>
           <PaginationContent v-slot="{ items }">
-            <PaginationItem class="w-auto h-auto p-0 bg-transparent border-none hover:bg-transparent">
+            <li class="flex items-center list-none">
               <PaginationPrevious />
-            </PaginationItem>
+            </li>
 
             <template v-for="(item, index) in items">
               <PaginationItem v-if="item.type === 'page'" :key="index" :value="item.value" :is-active="item.value === page">
@@ -226,9 +265,9 @@ const uploadFile = async (file: File) => {
               <PaginationEllipsis v-else :key="item.type" :index="index" />
             </template>
 
-            <PaginationItem class="w-auto h-auto p-0 bg-transparent border-none hover:bg-transparent">
+            <li class="flex items-center list-none">
               <PaginationNext />
-            </PaginationItem>
+            </li>
           </PaginationContent>
         </Pagination>
       </div>
