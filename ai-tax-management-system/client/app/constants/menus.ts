@@ -19,11 +19,6 @@ export const navMenu: NavMenu[] = [
         icon: 'i-lucide-file-user',
         link: '/gl',
       },
-      {
-        title: 'File upload',
-        icon: 'i-lucide-file',
-        link: '/fileupload',
-      },
     ],
   },
 ]

@@ -36,7 +36,7 @@ export const columns: ColumnDef<GL>[] = [
   },
   {
     accessorKey: 'documentNumber',
-    header: ({ column }) => h(DataTableColumnHeader, { column, title: 'Document umber' }),
+    header: ({ column }) => h(DataTableColumnHeader, { column, title: 'Document Number' }),
     cell: ({ row }) => h('div', { class: 'text-sm' }, row.getValue('documentNumber')),
   },
   {

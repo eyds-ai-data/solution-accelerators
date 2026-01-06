@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import type { Row } from '@tanstack/vue-table'
-import type { Job } from '../data/schema'
+import type { GL } from '../data/schema'
 import { Button } from '@/components/ui/button'
 import {
   DropdownMenu,
@@ -12,22 +12,22 @@ import { MoreHorizontalIcon, TrashIcon, EyeIcon, EditIcon } from 'lucide-vue-nex
 import { useRouter } from 'vue-router'
 
 interface DataTableRowActionsProps {
-  row: Row<Job>
+  row: Row<GL>
 }
 
 const props = defineProps<DataTableRowActionsProps>()
 const router = useRouter()
 
 const viewDetails = () => {
-  router.push(`/jobs/${props.row.original.id}`)
+  router.push(`/gl/${props.row.original.urn}`)
 }
 
 const editJob = () => {
-  console.log('Edit job:', props.row.original.id)
+  console.log('Edit job:', props.row.original.urn)
 }
 
 const deleteRow = () => {
-  console.log('Delete job:', props.row.original.id)
+  console.log('Delete job:', props.row.original.urn)
 }
 </script>
 

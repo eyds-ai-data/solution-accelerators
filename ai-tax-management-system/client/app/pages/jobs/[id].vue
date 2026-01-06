@@ -121,8 +121,20 @@ const formatCurrency = (amount: number, currency: string) => {
             <CardContent>
               <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
                 <div v-for="(benefit, index) in job.benefits" :key="index" class="flex items-center gap-2 text-sm text-muted-foreground">
-                  <CheckCircle2 class="h-4 w-4 text-green-500" />
-                  <span>{{ benefit }}</span>
+                  <!-- <CheckCircle2 class="h-4 w-4 text-green-500" />
+                  <span>{{ benefit }}</span> -->
+                  <span>Vendor Name     : {{ benefit }}</span>
+                  <span>Reference       : {{ benefit }}</span>
+                  <span>Document No     :{{ benefit }}</span>
+                  <span>PO number       :{{ benefit }}</span>
+                  <span>Document Date   :{{ benefit }}</span>
+                  <span>WHT Review      :{{ benefit }}</span>
+                  <span>Diff Normal     :{{ benefit }}</span>
+                  <span>Ref             :{{ benefit }}</span>
+                  <span>1st Vouching    :{{ benefit }}</span>
+                  <span>2nd Reviewer    :{{ benefit }}</span>
+                  <span>WHT Slip Number :{{ benefit }}</span>
+                  <span>Document Type   :{{ benefit }}</span>
                 </div>
               </div>
             </CardContent>
@@ -130,124 +142,7 @@ const formatCurrency = (amount: number, currency: string) => {
 
         </div>
 
-        <!-- Sidebar -->
-        <div class="space-y-6">
-          
-          <!-- Details Card -->
-          <Card>
-            <CardHeader>
-              <CardTitle class="text-base">Job Details</CardTitle>
-            </CardHeader>
-            <CardContent class="space-y-4">
-              
-              <div class="flex items-start gap-3">
-                <Building2 class="h-4 w-4 text-muted-foreground mt-0.5" />
-                <div>
-                  <p class="text-sm font-medium">Department</p>
-                  <p class="text-sm text-muted-foreground">{{ job.department }}</p>
-                </div>
-              </div>
-              
-              <Separator />
-
-              <div class="flex items-start gap-3">
-                <MapPin class="h-4 w-4 text-muted-foreground mt-0.5" />
-                <div>
-                  <p class="text-sm font-medium">Location</p>
-                  <p class="text-sm text-muted-foreground">{{ job.location }}</p>
-                </div>
-              </div>
-
-              <Separator />
-
-              <div class="flex items-start gap-3">
-                <Briefcase class="h-4 w-4 text-muted-foreground mt-0.5" />
-                <div>
-                  <p class="text-sm font-medium">Employment Type</p>
-                  <p class="text-sm text-muted-foreground">{{ job.type }}</p>
-                </div>
-              </div>
-
-              <Separator />
-
-              <div class="flex items-start gap-3">
-                <DollarSign class="h-4 w-4 text-muted-foreground mt-0.5" />
-                <div>
-                  <p class="text-sm font-medium">Salary Range</p>
-                  <p class="text-sm text-muted-foreground" v-if="job.salary">
-                    {{ formatCurrency(job.salary.min, job.salary.currency) }} - {{ formatCurrency(job.salary.max, job.salary.currency) }}
-                  </p>
-                  <p class="text-sm text-muted-foreground" v-else>Not specified</p>
-                </div>
-              </div>
-
-              <Separator />
-
-              <div class="flex items-start gap-3">
-                <Calendar class="h-4 w-4 text-muted-foreground mt-0.5" />
-                <div>
-                  <p class="text-sm font-medium">Posted Date</p>
-                  <p class="text-sm text-muted-foreground">{{ new Date(job.postedDate).toLocaleDateString() }}</p>
-                </div>
-              </div>
-
-              <Separator />
-
-              <div class="flex items-start gap-3">
-                <Users class="h-4 w-4 text-muted-foreground mt-0.5" />
-                <div>
-                  <p class="text-sm font-medium">Applicants</p>
-                  <p class="text-sm text-muted-foreground">{{ job.applicants }} applicants</p>
-                </div>
-              </div>
-
-            </CardContent>
-          </Card>
-
-          <!-- Skills Card -->
-          <Card v-if="job.skills?.length">
-            <CardHeader>
-              <CardTitle class="text-base">Required Skills</CardTitle>
-            </CardHeader>
-            <CardContent>
-              <div class="flex flex-wrap gap-2">
-                <Badge v-for="skill in job.skills" :key="skill" variant="secondary">
-                  {{ skill }}
-                </Badge>
-              </div>
-            </CardContent>
-          </Card>
-
-          <!-- Hiring Team Card -->
-          <Card v-if="job.hiringTeam">
-            <CardHeader>
-              <CardTitle class="text-base">Hiring Team</CardTitle>
-            </CardHeader>
-            <CardContent class="space-y-4">
-              <div class="flex items-center gap-3">
-                <Avatar class="h-8 w-8">
-                  <AvatarImage :src="`https://api.dicebear.com/7.x/avataaars/svg?seed=${job.hiringTeam.hiringManager.name}`" />
-                  <AvatarFallback>{{ job.hiringTeam.hiringManager.name.charAt(0) }}</AvatarFallback>
-                </Avatar>
-                <div>
-                  <p class="text-sm font-medium">{{ job.hiringTeam.hiringManager.name }}</p>
-                  <p class="text-xs text-muted-foreground">Hiring Manager</p>
-                </div>
-              </div>
-              <div class="flex items-center gap-3">
-                <Avatar class="h-8 w-8">
-                  <AvatarImage :src="`https://api.dicebear.com/7.x/avataaars/svg?seed=${job.hiringTeam.recruiter.name}`" />
-                  <AvatarFallback>{{ job.hiringTeam.recruiter.name.charAt(0) }}</AvatarFallback>
-                </Avatar>
-                <div>
-                  <p class="text-sm font-medium">{{ job.hiringTeam.recruiter.name }}</p>
-                  <p class="text-xs text-muted-foreground">Recruiter</p>
-                </div>
-              </div>
-            </CardContent>
-          </Card>
-
-        </div>
+        
       </div>
     </div>
   </div>
