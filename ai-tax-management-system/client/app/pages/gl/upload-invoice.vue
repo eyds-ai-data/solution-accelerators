@@ -65,41 +65,62 @@ const handleFileSelect = async (event: Event) => {
   const input = event.target as HTMLInputElement
   if (!input.files || input.files.length === 0) return
 
-  const file = input.files[0]
-  if (!file) return
-  await uploadFile(file)
+  // TODO: Handle multiple upload from server side so user wont have to wait for each file upload sequentially
+  const files = Array.from(input.files)
+  await uploadFiles(files)
 }
 
 const handleDrop = async (event: DragEvent) => {
   event.preventDefault()
   if (!event.dataTransfer?.files || event.dataTransfer.files.length === 0) return
 
-  const file = event.dataTransfer.files[0]
-  if (!file) return
-  await uploadFile(file)
+  const files = Array.from(event.dataTransfer.files)
+  await uploadFiles(files)
 }
 
-const uploadFile = async (file: File) => {
+const uploadFiles = async (files: File[]) => {
+  if (files.length === 0) return
+
   isUploading.value = true
-  const formData = new FormData()
-  formData.append('file', file)
+  let successCount = 0
+  let failCount = 0
 
   try {
-    // Using the generic file upload endpoint for invoices (PDFs)
-    const { data, error } = await useFetch('http://localhost:8000/api/v1/upload/file', {
-      method: 'POST',
-      body: formData,
+    // Upload all files in parallel
+    const uploadPromises = files.map(async (file) => {
+      const formData = new FormData()
+      formData.append('file', file)
+
+      try {
+        const { data, error } = await useFetch('http://localhost:8000/api/v1/upload/file', {
+          method: 'POST',
+          body: formData,
+        })
+
+        if (error.value) {
+          throw new Error(error.value.message)
+        }
+
+        successCount++
+      }
+      catch (err: any) {
+        failCount++
+        console.error(`Failed to upload ${file.name}:`, err)
+      }
     })
 
-    if (error.value) {
-      throw new Error(error.value.message)
+    await Promise.all(uploadPromises)
+
+    // Show summary toast
+    if (successCount > 0 && failCount === 0) {
+      toast.success(`${successCount} file${successCount > 1 ? 's' : ''} uploaded successfully`)
+    } else if (successCount > 0 && failCount > 0) {
+      toast.warning(`${successCount} succeeded, ${failCount} failed`)
+    } else if (failCount > 0) {
+      toast.error(`Failed to upload ${failCount} file${failCount > 1 ? 's' : ''}`)
     }
 
-    toast.success('File uploaded successfully')
     await refresh()
-  }
-  catch (err: any) {
-    toast.error(`Upload failed: ${err.message}`)
   }
   finally {
     isUploading.value = false
@@ -118,7 +139,7 @@ const uploadFile = async (file: File) => {
         <ArrowLeft class="h-4 w-4" />
       </Button>
       <div>
-        <h2 class="text-2xl font-bold tracking-tight">
+        <h2 class="text-xl font-bold tracking-tight">
           Upload Tax Invoices/Invoices
         </h2>
         <p class="text-muted-foreground mt-1">
@@ -139,6 +160,7 @@ const uploadFile = async (file: File) => {
         ref="fileInput"
         type="file"
         accept=".pdf"
+        multiple
         class="hidden"
         @change="handleFileSelect"
       >
@@ -150,7 +172,7 @@ const uploadFile = async (file: File) => {
         {{ isUploading ? 'Uploading...' : 'Click to upload or drag and drop' }}
       </h3>
       <p class="text-sm text-muted-foreground mt-1">
-        PDF (MAX. 10MB)
+        PDF files (MAX. 10MB each) • Multiple files supported
       </p>
       <Button class="mt-4" :disabled="isUploading">
         {{ isUploading ? 'Uploading...' : 'Select File' }}
