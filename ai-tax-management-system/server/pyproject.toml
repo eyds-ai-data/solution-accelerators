@@ -11,6 +11,7 @@ dependencies = [
     "fastapi>=0.124.4",
     "loguru>=0.7.3",
     "minio>=7.2.20",
+    "openpyxl>=3.1.0",
     "pika>=1.3.2",
     "pypdf>=5.1.0",
     "python-multipart>=0.0.20",

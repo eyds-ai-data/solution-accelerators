@@ -1,6 +1,7 @@
 from typing import Dict, Any, Optional, List
 import asyncio
 import re
+from datetime import datetime
 from src.repository.content_understanding import ContentUnderstandingRepository
 from src.repository.storage import MinioStorageRepository
 from src.repository.storage import AzureBlobStorageRepository
@@ -128,9 +129,7 @@ class ContentExtraction:
 
                             if content_classification_data == ContentType.Invoice.value:
                                 # call invoice extraction
-                                result = await self.llm_service_repo.get_invoice_extraction(
-                                    document_text=content
-                                )
+                                result = await self.llm_service_repo.get_invoice_extraction(document_text=content)
                                 result['urn'] = urn
                                 result['invoiceId'] = str(uuid.uuid4())
 
@@ -142,8 +141,7 @@ class ContentExtraction:
                                     )
 
                             elif content_classification_data == ContentType.TaxInvoice.value:
-                                result = await self.llm_service_repo.get_tax_invoice_extraction(
-                                    document_text=content)
+                                result = await self.llm_service_repo.get_tax_invoice_extraction(document_text=content)
                                 result['urn'] = urn
                                 result['taxInvoiceId'] = str(uuid.uuid4())
                                 if self.azure_cosmos_repo and urn:
@@ -152,8 +150,7 @@ class ContentExtraction:
                                         container_id="tax-invoices"
                                     )
                             elif content_classification_data == ContentType.GeneralLedger.value:
-                                result = await self.llm_service_repo.get_gl_extraction(
-                                    document_text=content)
+                                result = await self.llm_service_repo.get_gl_extraction(document_text=content)
                             else:
                                 result = {"message": "Content type is Unknown, no extraction performed."}
 
@@ -196,7 +193,25 @@ class ContentExtraction:
             files = self.azure_blob_storage_repo.list_files(file_id)
             logger.info(f"Found {len(files)} files in folder {file_id}")
             
+            # Sort files numerically by blob_name to ensure consistent processing order (pdf_1, pdf_2, ..., pdf_10, etc.)
+            def natural_sort_key(f):
+                blob_name = f.get("blob_name", "")
+                # Extract numeric part from filename for natural sorting
+                # e.g., "pdf_1" -> extract 1, "pdf_10" -> extract 10
+                import re
+                parts = []
+                for part in re.split(r'(\d+)', blob_name):
+                    if part.isdigit():
+                        parts.append((0, int(part)))  # Numeric parts sort as numbers
+                    else:
+                        parts.append((1, part))  # String parts sort lexicographically
+                return parts
+            
+            files = sorted(files, key=natural_sort_key)
+            logger.info(f"Files sorted numerically: {[f.get('blob_name') for f in files]}")
+            
             analysis_results = []
+            # pending_incomplete_doc = None  # Track incomplete document
             
             # Loop through each file
             for file_info in files:
@@ -283,7 +298,8 @@ class ContentExtraction:
                 document_id=document_id,
                 update_data={
                     "urn": next((res.get('analysis_result', {}).get('urn') for res in result if res.get('analysis_result') and res.get('analysis_result', {}).get('urn')), None),
-                    "status": "completed"
+                    "status": "completed",
+                    "completed_at": datetime.utcnow().isoformat()
                 },
                 container_id="uploads",
                 partial_update=True

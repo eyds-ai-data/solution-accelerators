@@ -73,6 +73,44 @@ class FileUpload:
             message_data=payload
         )
 
+    def list_files(self, status: Optional[str] = None, page: int = 1, page_size: int = 10) -> Dict[str, Any]:
+        if not self.azure_cosmos_repo:
+            logger.warning("Cosmos DB repository not initialized")
+            return {"items": [], "total": 0, "page": page, "page_size": page_size}
+            
+        try:
+            # Query all documents from the container
+            # Assuming the container stores file metadata
+            query_filter = None
+            if status:
+                query_filter = f"c.status = '{status}'"
+
+            offset = (page - 1) * page_size
+            
+            documents = self.azure_cosmos_repo.query_documents(
+                order_by="created_at DESC",
+                container_id="uploads",
+                query_filter=query_filter,
+                offset=offset,
+                limit=page_size
+            )
+            
+            total = self.azure_cosmos_repo.count_documents(
+                container_id="uploads",
+                query_filter=query_filter
+            )
+            
+            return {
+                "items": documents,
+                "total": total,
+                "page": page,
+                "page_size": page_size,
+                "total_pages": (total + page_size - 1) // page_size
+            }
+        except Exception as e:
+            logger.error(f"Error listing files: {e}")
+            return {"items": [], "total": 0, "page": page, "page_size": page_size}
+
     def _split_pdf_pages(self, file_content: bytes, original_filename: str) -> List[tuple]:
 
         reader = PdfReader(BytesIO(file_content))
