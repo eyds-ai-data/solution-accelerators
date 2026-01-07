@@ -1,19 +1,19 @@
 <script setup lang="ts">
 import NumberFlow from '@number-flow/vue'
-import { TrendingDown, TrendingUp, Users, Briefcase, UserCheck, Percent } from 'lucide-vue-next'
-import jobsData from '@/components/jobs/data/jobs.json'
+import { TrendingDown, TrendingUp, Users, Briefcase, UserCheck, Percent, FileText, Receipt, Database } from 'lucide-vue-next'
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar'
 
-const dataCard = ref({
-  totalApplicants: 0,
-  openPositions: 0,
-  activeCandidates: 0,
-  placementRate: 0,
+const { stats, loading, fetchStats } = useDashboardStats()
+
+onMounted(async () => {
+  await fetchStats()
 })
 
-const openJobs = computed(() => {
-  return (jobsData as any).data.filter((job: any) => job.status === 'Open').slice(0, 5)
-})
+const dataCard = computed(() => ({
+  totalGL: stats.value.total_gl_transactions,
+  totalTaxInvoices: stats.value.total_tax_invoices,
+  totalInvoices: stats.value.total_invoices,
+}))
 
 const timeRange = ref('30d')
 
@@ -40,126 +40,60 @@ watch(isDesktop, () => {
       </div>
     </div>
     <main class="@container/main flex flex-1 flex-col gap-4 md:gap-8">
-      <div class="grid grid-cols-1 gap-4 *:data-[slot=card]:bg-linear-to-t *:data-[slot=card]:shadow-xs @xl/main:grid-cols-2 @5xl/main:grid-cols-4">
+      <div class="grid grid-cols-1 gap-4 *:data-[slot=card]:bg-linear-to-t *:data-[slot=card]:shadow-xs @xl/main:grid-cols-2 @5xl/main:grid-cols-3">
         <Card class="@container/card">
           <CardHeader>
-            <CardDescription>Total Applicants</CardDescription>
+            <CardDescription>Total GL Transactions</CardDescription>
             <CardTitle class="text-2xl font-semibold tabular-nums @[250px]/card:text-3xl">
               <NumberFlow
-                :value="dataCard.totalApplicants"
+                :value="dataCard.totalGL"
               />
             </CardTitle>
-            <CardAction>
-              <Badge variant="outline">
-                <TrendingUp class="h-4 w-4 mr-1" />
-                +12.5%
-              </Badge>
-            </CardAction>
           </CardHeader>
           <CardFooter class="flex-col items-start gap-1.5 text-sm">
             <div class="line-clamp-1 flex gap-2 font-medium">
-              Trending up this month <Users class="size-4" />
+              Recorded Transactions <Database class="size-4" />
             </div>
             <div class="text-muted-foreground">
-              Across all open positions
+              Total GL entries in system
             </div>
           </CardFooter>
         </Card>
         <Card class="@container/card">
           <CardHeader>
-            <CardDescription>Open Positions</CardDescription>
+            <CardDescription>Total Tax Invoices</CardDescription>
             <CardTitle class="text-2xl font-semibold tabular-nums @[250px]/card:text-3xl">
               <NumberFlow
-                :value="dataCard.openPositions"
+                :value="dataCard.totalTaxInvoices"
               />
             </CardTitle>
-            <CardAction>
-              <Badge variant="outline">
-                <TrendingUp class="h-4 w-4 mr-1" />
-                +2
-              </Badge>
-            </CardAction>
           </CardHeader>
           <CardFooter class="flex-col items-start gap-1.5 text-sm">
             <div class="line-clamp-1 flex gap-2 font-medium">
-              Actively hiring <Briefcase class="size-4" />
+              Processed Tax Invoices <Receipt class="size-4" />
             </div>
             <div class="text-muted-foreground">
-              In various departments
+              Total tax invoices uploaded
             </div>
           </CardFooter>
         </Card>
         <Card class="@container/card">
           <CardHeader>
-            <CardDescription>Active Candidates</CardDescription>
+            <CardDescription>Total Invoices</CardDescription>
             <CardTitle class="text-2xl font-semibold tabular-nums @[250px]/card:text-3xl">
               <NumberFlow
-                :value="dataCard.activeCandidates"
+                :value="dataCard.totalInvoices"
               />
             </CardTitle>
-            <CardAction>
-              <Badge variant="outline">
-                <TrendingUp class="h-4 w-4 mr-1" />
-                +5
-              </Badge>
-            </CardAction>
           </CardHeader>
           <CardFooter class="flex-col items-start gap-1.5 text-sm">
             <div class="line-clamp-1 flex gap-2 font-medium">
-              Currently in pipeline <UserCheck class="size-4" />
+              Processed Invoices <FileText class="size-4" />
             </div>
             <div class="text-muted-foreground">
-              Reviewing and interviewing
+              Total regular invoices uploaded
             </div>
           </CardFooter>
-        </Card>
-        <Card class="@container/card">
-          <CardHeader>
-            <CardDescription>Placement Rate</CardDescription>
-            <CardTitle class="text-2xl font-semibold tabular-nums @[250px]/card:text-3xl">
-              <NumberFlow
-                :value="dataCard.placementRate"
-                suffix="%"
-              />
-            </CardTitle>
-            <CardAction>
-              <Badge variant="outline">
-                <TrendingUp class="h-4 w-4 mr-1" />
-                +4.5%
-              </Badge>
-            </CardAction>
-          </CardHeader>
-          <CardFooter class="flex-col items-start gap-1.5 text-sm">
-            <div class="line-clamp-1 flex gap-2 font-medium">
-              Successful hires <Percent class="size-4" />
-            </div>
-            <div class="text-muted-foreground">
-              Meeting hiring targets
-            </div>
-          </CardFooter>
-        </Card>
-      </div>
-      <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
-        <!-- Current Job Openings -->
-        <Card>
-          <CardHeader>
-            <CardTitle>Current Job Openings</CardTitle>
-            <CardDescription>Positions currently accepting applications</CardDescription>
-          </CardHeader>
-          <CardContent>
-            <div class="space-y-4">
-              <div v-for="job in openJobs" :key="job.id" class="flex items-center justify-between">
-                <div class="space-y-1">
-                  <p class="text-sm font-medium leading-none">{{ job.title }}</p>
-                  <p class="text-xs text-muted-foreground">{{ job.department }} • {{ job.location }}</p>
-                </div>
-                <Badge variant="secondary">{{ job.type }}</Badge>
-              </div>
-              <div v-if="openJobs.length === 0" class="text-sm text-muted-foreground">
-                No open positions at the moment.
-              </div>
-            </div>
-          </CardContent>
         </Card>
       </div>
     </main>

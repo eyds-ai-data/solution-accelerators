@@ -74,3 +74,18 @@ class TaxManagementUseCase:
         except Exception as e:
             logger.error(f"Error retrieving invoices: {e}")
             raise e
+
+    def get_dashboard_stats(self) -> dict:
+        try:
+            gl_count = self.azure_cosmos_repo.count_documents(container_id="gl-transactions")
+            tax_invoices_count = self.azure_cosmos_repo.count_documents(container_id="tax-invoices")
+            invoices_count = self.azure_cosmos_repo.count_documents(container_id="invoices")
+            
+            return {
+                "total_gl_transactions": gl_count,
+                "total_tax_invoices": tax_invoices_count,
+                "total_invoices": invoices_count
+            }
+        except Exception as e:
+            logger.error(f"Error retrieving dashboard stats: {e}")
+            raise e

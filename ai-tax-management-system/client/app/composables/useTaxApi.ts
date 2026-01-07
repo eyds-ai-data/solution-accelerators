@@ -184,3 +184,46 @@ export const useInvoices = () => {
     fetchInvoices
   }
 }
+
+export const useDashboardStats = () => {
+  const config = useRuntimeConfig()
+  const stats = ref({
+    total_gl_transactions: 0,
+    total_tax_invoices: 0,
+    total_invoices: 0
+  })
+  const loading = ref(false)
+  const error = ref<string | null>(null)
+
+  const fetchStats = async () => {
+    loading.value = true
+    error.value = null
+    
+    try {
+      const baseUrl = config.public.apiBase
+      const url = `${baseUrl}/api/v1/tax/dashboard-stats`
+      
+      const response = await $fetch<ApiResponse<typeof stats.value>>(url)
+      
+      console.log('Dashboard stats response:', response)
+      
+      if (response.status === 'Success') {
+        stats.value = response.data
+      } else {
+        throw new Error(response.message || 'Failed to fetch dashboard stats')
+      }
+    } catch (err) {
+      error.value = err instanceof Error ? err.message : 'Failed to load dashboard stats'
+      console.error('Error fetching dashboard stats:', err)
+    } finally {
+      loading.value = false
+    }
+  }
+
+  return {
+    stats,
+    loading,
+    error,
+    fetchStats
+  }
+}

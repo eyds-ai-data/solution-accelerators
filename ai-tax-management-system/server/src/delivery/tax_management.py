@@ -126,3 +126,28 @@ async def get_all_invoices(
     except Exception as e:
         logger.error(f"Error retrieving invoices: {e}")
         return JSONResponse(content=response_content.model_dump(), status_code=500)
+
+@router.get("/dashboard-stats")
+async def get_dashboard_stats(
+    tax_management_service: TaxManagementDep = None
+):
+    try:
+        result = tax_management_service.get_dashboard_stats()
+        
+        logger.info(f"Retrieved dashboard stats: {result}")
+        
+        response_content = Response(
+            status="Success",
+            message="Dashboard stats retrieved successfully",
+            data=result
+        )
+        
+        return JSONResponse(content=response_content.model_dump(), status_code=200)
+    except Exception as e:
+        logger.error(f"Error retrieving dashboard stats: {e}")
+        error_response = Response(
+            status="Error",
+            message=str(e),
+            data=None
+        )
+        return JSONResponse(content=error_response.model_dump(), status_code=500)
