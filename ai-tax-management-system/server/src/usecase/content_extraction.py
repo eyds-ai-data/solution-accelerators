@@ -86,7 +86,8 @@ class ContentExtraction:
         self, 
         request_id: str,
         max_retries: int = 35,
-        retry_interval: int = 3
+        retry_interval: int = 3,
+        accumulated_content: Optional[List[str]] = None
     ) -> Dict[str, Any]:
         """
         Poll the analyzer results endpoint until the analysis is complete
@@ -126,6 +127,7 @@ class ContentExtraction:
                                 document_text=content
                             )
                             content_classification_data = content_classification.get("classification", ContentType.Unknown.value)
+                            is_document_complete = content_classification.get("is_document_complete", True)
 
                             if content_classification_data == ContentType.Invoice.value:
                                 # call invoice extraction
@@ -141,14 +143,36 @@ class ContentExtraction:
                                     )
 
                             elif content_classification_data == ContentType.TaxInvoice.value:
-                                result = await self.llm_service_repo.get_tax_invoice_extraction(document_text=content)
+                                # Initialize accumulated_content if not provided
+                                if accumulated_content is None:
+                                    accumulated_content = []
+                                
+                                # Add current page content to accumulated content
+                                accumulated_content.append(content)
+                                logger.info(f"Tax invoice page accumulated. Total pages: {len(accumulated_content)}, Complete: {is_document_complete}")
+                                
+                                if not is_document_complete:
+                                    # Document incomplete, return None to skip this page
+                                    logger.info(f"Tax invoice incomplete. Accumulated {len(accumulated_content)} pages so far. Continuing to next page.")
+                                    return None
+                                
+                                # Document is complete - merge all accumulated content and extract
+                                merged_content = "\n\n--- PAGE BREAK ---\n\n".join(accumulated_content)
+                                logger.info(f"Tax invoice complete. Extracting from {len(accumulated_content)} merged pages")
+                                
+                                result = await self.llm_service_repo.get_tax_invoice_extraction(document_text=merged_content)
                                 result['urn'] = urn
                                 result['taxInvoiceId'] = str(uuid.uuid4())
+                                result['total_pages'] = len(accumulated_content)
+
                                 if self.azure_cosmos_repo and urn:
                                     self.azure_cosmos_repo.create_document(
                                         document_data=result,
                                         container_id="tax-invoices"
                                     )
+                                
+                                # Clear accumulated content after successful extraction
+                                accumulated_content.clear()
                             elif content_classification_data == ContentType.GeneralLedger.value:
                                 result = await self.llm_service_repo.get_gl_extraction(document_text=content)
                             else:
@@ -211,7 +235,7 @@ class ContentExtraction:
             logger.info(f"Files sorted numerically: {[f.get('blob_name') for f in files]}")
             
             analysis_results = []
-            # pending_incomplete_doc = None  # Track incomplete document
+            accumulated_tax_invoice_content = []  # Track incomplete tax invoice pages
             
             # Loop through each file
             for file_info in files:
@@ -249,7 +273,15 @@ class ContentExtraction:
                     
                     # Step 2: Wait for analysis to complete by polling the results endpoint
                     logger.debug(f"Waiting for analysis to complete for {blob_name}...")
-                    final_result = await self._wait_for_analysis_result(request_id)
+                    final_result = await self._wait_for_analysis_result(
+                        request_id,
+                        accumulated_content=accumulated_tax_invoice_content
+                    )
+                    
+                    # Check if result is None (incomplete tax invoice page)
+                    if final_result is None:
+                        logger.info(f"Incomplete page for {blob_name}, continuing to next page")
+                        continue
                     
                     logger.info(f"Successfully analyzed: {blob_name}")
                     
