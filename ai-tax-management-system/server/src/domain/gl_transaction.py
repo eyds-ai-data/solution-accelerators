@@ -17,6 +17,7 @@ class GLTransaction(BaseModel):
 
     id: Optional[str] = Field(None, description="Cosmos DB document ID")
     urn: str = Field(..., description="URN / unique reference number")
+    document_url: Optional[str] = Field(None, alias="documentUrl", description="Azure Blob Storage URL for document preview")
     gl_transaction_id: str = Field(..., alias="glTransactionId", description="Primary G/L transaction ID")
     cocd: str = Field(..., description="Company Code (CoCd)")
     gl: str = Field(..., description="G/L account number")

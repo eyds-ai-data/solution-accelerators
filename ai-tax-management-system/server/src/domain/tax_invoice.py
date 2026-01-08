@@ -18,6 +18,7 @@ class TaxInvoice(BaseModel):
     
     tax_invoice_id: str = Field(..., alias="taxInvoiceId", description="Primary key of tax invoice")
     urn: str = Field(..., description="Unique reference number")
+    document_url: Optional[str] = Field(None, alias="documentUrl", description="Azure Blob Storage URL for document preview")
     tax_invoice_number: str = Field(..., alias="taxInvoiceNumber", description="Tax invoice number or code")
     invoice_number: str = Field(..., alias="invoiceNumber", description="Invoice number or code")
     tax_invoice_date: str = Field(..., alias="taxInvoiceDate", description="Date of tax invoice (ISO format: YYYY-MM-DD)")

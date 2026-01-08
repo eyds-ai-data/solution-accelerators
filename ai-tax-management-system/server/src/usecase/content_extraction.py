@@ -85,6 +85,7 @@ class ContentExtraction:
     async def _wait_for_analysis_result(
         self, 
         request_id: str,
+        file_url: Optional[str] = None,
         max_retries: int = 35,
         retry_interval: int = 3,
         accumulated_content: Optional[List[str]] = None
@@ -134,6 +135,7 @@ class ContentExtraction:
                                 result = await self.llm_service_repo.get_invoice_extraction(document_text=content)
                                 result['urn'] = urn
                                 result['invoiceId'] = str(uuid.uuid4())
+                                result['documentUrl'] = file_url
 
                                 # save the result to cosmos db
                                 if self.azure_cosmos_repo and urn:
@@ -163,6 +165,7 @@ class ContentExtraction:
                                 result = await self.llm_service_repo.get_tax_invoice_extraction(document_text=merged_content)
                                 result['urn'] = urn
                                 result['taxInvoiceId'] = str(uuid.uuid4())
+                                result['documentUrl'] = file_url
                                 result['total_pages'] = len(accumulated_content)
 
                                 if self.azure_cosmos_repo and urn:
@@ -175,6 +178,7 @@ class ContentExtraction:
                                 accumulated_content.clear()
                             elif content_classification_data == ContentType.GeneralLedger.value:
                                 result = await self.llm_service_repo.get_gl_extraction(document_text=content)
+                                result['documentUrl'] = file_url
                             else:
                                 result = {"message": "Content type is Unknown, no extraction performed."}
 
@@ -275,6 +279,7 @@ class ContentExtraction:
                     logger.debug(f"Waiting for analysis to complete for {blob_name}...")
                     final_result = await self._wait_for_analysis_result(
                         request_id,
+                        file_url=file_url,
                         accumulated_content=accumulated_tax_invoice_content
                     )
                     

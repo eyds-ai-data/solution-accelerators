@@ -18,6 +18,7 @@ class Invoice(BaseModel):
     invoice_id: str = Field(..., alias="invoiceId", description="Primary key of invoice")
     invoice_number: str = Field(..., alias="invoiceNumber", description="Invoice number")
     urn: str = Field(..., description="Unique Reference Number")
+    document_url: Optional[str] = Field(None, alias="documentUrl", description="Azure Blob Storage URL for document preview")
     project_number: str = Field(..., alias="projectNumber", description="Project number reference")
     invoice_detail: List[InvoiceDetail] = Field(..., alias="invoiceDetail", min_length=1, description="List of invoice detail line items")
     sub_total_amount: float = Field(..., alias="subTotalAmount", ge=0, description="Subtotal amount before tax")
