@@ -24,7 +24,7 @@ XLSX_TO_GL_TRANSACTION_MAP = {
     "Type": "type",
     "Reference": "reference_number",
     "DocumentNo": "document_number",
-    "Supplier": "vendor_id",
+    "Supplier": "vendor_code",
     "Supplier Name": "vendor_name",
     "PO Number": "po_number",
     "Tax Based": "tax_based",
@@ -261,6 +261,8 @@ class GLUpload:
             "document_currency": "IDR",
             "local_currency": "IDR",
             "vendor_id": "",
+            "vendor_code": "",
+            "vendor_name": "",
             "first_voucing": ""
         }
         
@@ -298,7 +300,7 @@ class GLUpload:
         # Fields that should be string (matching Cosmos DB field names)
         string_fields = [
             "id", "cocd", "gl", "year_month", "type", "reference_number",
-            "document_number", "vendor_id", "po_number", "urn", "username",
+            "document_number", "vendor_id", "vendor_code", "vendor_name", "po_number", "urn", "username",
             "text", "clearing_document", "document_date", "posting_date",
             "document_currency", "local_currency", "ref", "first_voucing",
             "second_reviewer", "gl_transaction_id"
@@ -306,7 +308,7 @@ class GLUpload:
         
         # Extra fields from XLSX (not in Cosmos DB schema, kept for reference)
         extra_string_fields = [
-            "vendor_name", "wht_review", "type_of_tax", "document_type"
+            "wht_review", "type_of_tax", "document_type"
         ]
         
         # Convert datetime objects to ISO format strings

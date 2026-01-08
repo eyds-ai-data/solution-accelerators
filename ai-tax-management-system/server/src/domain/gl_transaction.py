@@ -40,6 +40,8 @@ class GLTransaction(BaseModel):
     local_currency: str = Field(..., alias="localCurrency", min_length=3, max_length=3, description="Local currency code (ISO 4217)")
     amount_in_local_currency: float = Field(..., alias="amountInLocalCurrency", description="Amount in local currency")
     vendor_id: str = Field(..., alias="vendorId", description="Foreign key reference to Vendor")
+    vendor_code: Optional[str] = Field(None, alias="vendorCode", description="Vendor code from Supplier column")
+    vendor_name: Optional[str] = Field(None, alias="vendorName", description="Vendor name from Supplier Name column")
     gl_transaction_status_id: int = Field(..., alias="glTransactionStatusId", description="Foreign key reference to G/L Transaction Status")
     ref: Optional[str] = Field(None, description="Optional internal reference")
     first_voucing: Optional[str] = Field(None, alias="firstVoucing", description="First vouching (review/approval) user or note")
