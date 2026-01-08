@@ -1,6 +1,7 @@
 from typing import Dict, Any, Optional, List
 import asyncio
 import re
+from datetime import datetime
 from src.repository.content_understanding import ContentUnderstandingRepository
 from src.repository.storage import MinioStorageRepository
 from src.repository.storage import AzureBlobStorageRepository
@@ -84,8 +85,10 @@ class ContentExtraction:
     async def _wait_for_analysis_result(
         self, 
         request_id: str,
+        file_url: Optional[str] = None,
         max_retries: int = 35,
-        retry_interval: int = 3
+        retry_interval: int = 3,
+        accumulated_content: Optional[List[str]] = None
     ) -> Dict[str, Any]:
         """
         Poll the analyzer results endpoint until the analysis is complete
@@ -125,14 +128,14 @@ class ContentExtraction:
                                 document_text=content
                             )
                             content_classification_data = content_classification.get("classification", ContentType.Unknown.value)
+                            is_document_complete = content_classification.get("is_document_complete", True)
 
                             if content_classification_data == ContentType.Invoice.value:
                                 # call invoice extraction
-                                result = await self.llm_service_repo.get_invoice_extraction(
-                                    document_text=content
-                                )
+                                result = await self.llm_service_repo.get_invoice_extraction(document_text=content)
                                 result['urn'] = urn
                                 result['invoiceId'] = str(uuid.uuid4())
+                                result['documentUrl'] = file_url
 
                                 # save the result to cosmos db
                                 if self.azure_cosmos_repo and urn:
@@ -142,18 +145,40 @@ class ContentExtraction:
                                     )
 
                             elif content_classification_data == ContentType.TaxInvoice.value:
-                                result = await self.llm_service_repo.get_tax_invoice_extraction(
-                                    document_text=content)
+                                # Initialize accumulated_content if not provided
+                                if accumulated_content is None:
+                                    accumulated_content = []
+                                
+                                # Add current page content to accumulated content
+                                accumulated_content.append(content)
+                                logger.info(f"Tax invoice page accumulated. Total pages: {len(accumulated_content)}, Complete: {is_document_complete}")
+                                
+                                if not is_document_complete:
+                                    # Document incomplete, return None to skip this page
+                                    logger.info(f"Tax invoice incomplete. Accumulated {len(accumulated_content)} pages so far. Continuing to next page.")
+                                    return None
+                                
+                                # Document is complete - merge all accumulated content and extract
+                                merged_content = "\n\n--- PAGE BREAK ---\n\n".join(accumulated_content)
+                                logger.info(f"Tax invoice complete. Extracting from {len(accumulated_content)} merged pages")
+                                
+                                result = await self.llm_service_repo.get_tax_invoice_extraction(document_text=merged_content)
                                 result['urn'] = urn
                                 result['taxInvoiceId'] = str(uuid.uuid4())
+                                result['documentUrl'] = file_url
+                                result['total_pages'] = len(accumulated_content)
+
                                 if self.azure_cosmos_repo and urn:
                                     self.azure_cosmos_repo.create_document(
                                         document_data=result,
                                         container_id="tax-invoices"
                                     )
+                                
+                                # Clear accumulated content after successful extraction
+                                accumulated_content.clear()
                             elif content_classification_data == ContentType.GeneralLedger.value:
-                                result = await self.llm_service_repo.get_gl_extraction(
-                                    document_text=content)
+                                result = await self.llm_service_repo.get_gl_extraction(document_text=content)
+                                result['documentUrl'] = file_url
                             else:
                                 result = {"message": "Content type is Unknown, no extraction performed."}
 
@@ -196,7 +221,25 @@ class ContentExtraction:
             files = self.azure_blob_storage_repo.list_files(file_id)
             logger.info(f"Found {len(files)} files in folder {file_id}")
             
+            # Sort files numerically by blob_name to ensure consistent processing order (pdf_1, pdf_2, ..., pdf_10, etc.)
+            def natural_sort_key(f):
+                blob_name = f.get("blob_name", "")
+                # Extract numeric part from filename for natural sorting
+                # e.g., "pdf_1" -> extract 1, "pdf_10" -> extract 10
+                import re
+                parts = []
+                for part in re.split(r'(\d+)', blob_name):
+                    if part.isdigit():
+                        parts.append((0, int(part)))  # Numeric parts sort as numbers
+                    else:
+                        parts.append((1, part))  # String parts sort lexicographically
+                return parts
+            
+            files = sorted(files, key=natural_sort_key)
+            logger.info(f"Files sorted numerically: {[f.get('blob_name') for f in files]}")
+            
             analysis_results = []
+            accumulated_tax_invoice_content = []  # Track incomplete tax invoice pages
             
             # Loop through each file
             for file_info in files:
@@ -234,7 +277,16 @@ class ContentExtraction:
                     
                     # Step 2: Wait for analysis to complete by polling the results endpoint
                     logger.debug(f"Waiting for analysis to complete for {blob_name}...")
-                    final_result = await self._wait_for_analysis_result(request_id)
+                    final_result = await self._wait_for_analysis_result(
+                        request_id,
+                        file_url=file_url,
+                        accumulated_content=accumulated_tax_invoice_content
+                    )
+                    
+                    # Check if result is None (incomplete tax invoice page)
+                    if final_result is None:
+                        logger.info(f"Incomplete page for {blob_name}, continuing to next page")
+                        continue
                     
                     logger.info(f"Successfully analyzed: {blob_name}")
                     
@@ -283,7 +335,8 @@ class ContentExtraction:
                 document_id=document_id,
                 update_data={
                     "urn": next((res.get('analysis_result', {}).get('urn') for res in result if res.get('analysis_result') and res.get('analysis_result', {}).get('urn')), None),
-                    "status": "completed"
+                    "status": "completed",
+                    "completed_at": datetime.utcnow().isoformat()
                 },
                 container_id="uploads",
                 partial_update=True

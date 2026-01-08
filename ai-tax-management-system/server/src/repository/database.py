@@ -4,12 +4,7 @@ from typing import Dict, Any, List, Optional
 from datetime import datetime
 import uuid
 
-
 class AzureCosmosDBRepository:
-    """
-    Generic repository for Azure Cosmos DB operations.
-    Provides CRUD operations for any document type.
-    """
     
     def __init__(self, connection_string: str, database_id: str, container_id: str):
         """
@@ -96,6 +91,8 @@ class AzureCosmosDBRepository:
         parameters: Optional[List[Dict[str, Any]]] = None,
         order_by: str = "created_at DESC",
         max_items: Optional[int] = None,
+        offset: Optional[int] = None,
+        limit: Optional[int] = None,
         container_id: Optional[str] = None
     ) -> List[Dict[str, Any]]:
         """
@@ -106,7 +103,9 @@ class AzureCosmosDBRepository:
             query_filter: Additional SQL WHERE clause (without WHERE keyword)
             parameters: Query parameters for parameterized queries
             order_by: ORDER BY clause (without ORDER BY keyword)
-            max_items: Maximum number of items to return
+            max_items: Maximum number of items to return (SDK hint)
+            offset: Number of items to skip
+            limit: Maximum number of items to return (SQL LIMIT)
             
         Returns:
             List of matching documents
@@ -129,6 +128,9 @@ class AzureCosmosDBRepository:
             if order_by:
                 query += f" ORDER BY c.{order_by}"
             
+            if offset is not None and limit is not None:
+                query += f" OFFSET {offset} LIMIT {limit}"
+            
             items = list(container.query_items(
                 query=query,
                 parameters=parameters,
@@ -140,6 +142,41 @@ class AzureCosmosDBRepository:
             return items
         except Exception as e:
             logger.error(f"Error querying documents: {e}")
+            raise
+
+    def count_documents(
+        self, 
+        document_type: Optional[str] = None,
+        query_filter: Optional[str] = None,
+        parameters: Optional[List[Dict[str, Any]]] = None,
+        container_id: Optional[str] = None
+    ) -> int:
+        """
+        Count documents with optional filters
+        """
+        try:
+            container = self.database.get_container_client(container_id) if container_id else self.container
+            
+            query = "SELECT VALUE COUNT(1) FROM c"
+            
+            conditions = []
+            if document_type:
+                conditions.append(f"c.type = '{document_type}'")
+            if query_filter:
+                conditions.append(query_filter)
+            
+            if conditions:
+                query += " WHERE " + " AND ".join(conditions)
+                
+            items = list(container.query_items(
+                query=query,
+                parameters=parameters,
+                enable_cross_partition_query=True
+            ))
+            
+            return items[0] if items else 0
+        except Exception as e:
+            logger.error(f"Error counting documents: {e}")
             raise
 
     def delete_document(self, document_id: str, partition_key: Optional[str] = None) -> bool:

@@ -10,6 +10,7 @@ from src.repository.storage import MinioStorageRepository, AzureBlobStorageRepos
 from src.repository.database import AzureCosmosDBRepository
 from src.usecase.content_extraction import ContentExtraction
 from src.usecase.file_upload import FileUpload
+from src.usecase.gl_upload import GLUpload
 from src.usecase.tax_management import TaxManagementUseCase
 from src.repository.llm.llm_service import LLMService
 
@@ -301,6 +302,42 @@ def get_file_upload_service(
         azure_service_bus_repo=azure_service_bus_repo
     )
 
+def get_gl_upload_service(
+    content_understanding_repo: Annotated[
+        ContentUnderstandingRepository, 
+        Depends(get_content_understanding_repository)
+    ],
+    azure_blob_storage_repo: Annotated[
+        AzureBlobStorageRepository, 
+        Depends(get_azure_blob_storage_repository)
+    ],
+    azure_cosmos_repo: Annotated[
+        Optional[AzureCosmosDBRepository],
+        Depends(get_azure_cosmos_repository)
+    ],
+    rabbitmq_repo: Annotated[
+        Optional[RabbitMQRepository],
+        Depends(get_rabbitmq_repository)
+    ],
+    minio_storage_repo: Annotated[
+        Optional[MinioStorageRepository],
+        Depends(get_minio_storage_repository)
+    ],
+    azure_service_bus_repo: Annotated[
+        Optional[AzureServiceBusRepository],
+        Depends(get_azure_service_bus_repository)
+    ]
+) -> GLUpload:
+    logger.debug("Creating GLUpload use case")
+    return GLUpload(
+        content_understanding_repo=content_understanding_repo,
+        azure_blob_storage_repo=azure_blob_storage_repo,
+        azure_cosmos_repo=azure_cosmos_repo,
+        rabbitmq_repo=rabbitmq_repo,
+        minio_storage_repo=minio_storage_repo,
+        azure_service_bus_repo=azure_service_bus_repo
+    )
+
 def get_tax_management_service(
     azure_cosmos_repo: Annotated[
         Optional[AzureCosmosDBRepository],
@@ -314,6 +351,7 @@ def get_tax_management_service(
 TaxManagementDep = Annotated[TaxManagementUseCase, Depends(get_tax_management_service)]
 ContentExtractionDep = Annotated[ContentExtraction, Depends(get_content_extraction_service)]
 FileUploadDep = Annotated[FileUpload, Depends(get_file_upload_service)]
+GLUploadDep = Annotated[GLUpload, Depends(get_gl_upload_service)]
 AzureCosmosRepoDep = Annotated[Optional[AzureCosmosDBRepository], Depends(get_azure_cosmos_repository)]
 RabbitMQDep = Annotated[Optional[RabbitMQRepository], Depends(get_rabbitmq_repository)]
 MinioStorageDep = Annotated[Optional[MinioStorageRepository], Depends(get_minio_storage_repository)]

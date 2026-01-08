@@ -4,6 +4,7 @@ import os
 import json
 from contextlib import asynccontextmanager
 from fastapi import FastAPI
+from fastapi.middleware.cors import CORSMiddleware
 from loguru import logger
 import uvicorn
 from azure.servicebus.aio import ServiceBusClient, AutoLockRenewer
@@ -158,6 +159,15 @@ app = FastAPI(
     lifespan=lifespan
 )
 
+# Add CORS middleware
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=["http://localhost:3000"],
+    allow_credentials=True,
+    allow_methods=["*"],
+    allow_headers=["*"],
+)
+
 # Include routers
 app.include_router(upload_router)
 app.include_router(status_router)
@@ -257,6 +267,16 @@ if __name__ == "__main__":
             description="API for tax document processing and management",
             version="0.1.0"
         )
+        
+        # Add CORS middleware
+        app_http_only.add_middleware(
+            CORSMiddleware,
+            allow_origins=["http://localhost:3000"],
+            allow_credentials=True,
+            allow_methods=["*"],
+            allow_headers=["*"],
+        )
+        
         app_http_only.include_router(upload_router)
         app_http_only.include_router(status_router)
         app_http_only.include_router(tax_management_router)
