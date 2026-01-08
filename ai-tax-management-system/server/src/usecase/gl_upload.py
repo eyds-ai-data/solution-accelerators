@@ -155,6 +155,9 @@ class GLUpload:
                         if document_data.get("glReconItem") is None:
                             document_data["glReconItem"] = []
                         
+                        # Debug log for critical fields
+                        logger.debug(f"Inserting GL transaction with taxRate={document_data.get('taxRate')}, amountInLocalCurrency={document_data.get('amountInLocalCurrency')}")
+                        
                         # Insert each GL transaction to Cosmos DB with aliased field names
                         self.azure_cosmos_repo.create_document(
                             container_id="gl-transactions",
@@ -188,10 +191,11 @@ class GLUpload:
             workbook = load_workbook(BytesIO(file_content), data_only=True)
             worksheet = workbook.active
             
-            # Get headers from row 2
+            # Get headers from row 2 and strip whitespace
             headers = []
             for cell in worksheet[2]:
-                headers.append(cell.value)
+                header_value = cell.value.strip() if isinstance(cell.value, str) else cell.value
+                headers.append(header_value)
             
             logger.info(f"XLSX headers: {headers}")
             
@@ -204,7 +208,11 @@ class GLUpload:
                         xlsx_header = headers[col_idx]
                         # Map XLSX header to GLTransaction field name
                         field_name = XLSX_TO_GL_TRANSACTION_MAP.get(xlsx_header, xlsx_header)
-                        row_data[field_name] = cell.value
+                        # Treat empty strings as None for proper default handling
+                        cell_value = cell.value
+                        if isinstance(cell_value, str) and cell_value.strip() == "":
+                            cell_value = None
+                        row_data[field_name] = cell_value
                 
                 # Only add non-empty rows
                 if any(v is not None for v in row_data.values()):
@@ -269,12 +277,12 @@ class GLUpload:
         
         # Set defaults for missing string fields
         for field, default_value in required_string_fields.items():
-            if field not in row_data or row_data[field] is None:
+            if field not in row_data or row_data[field] is None or (isinstance(row_data[field], str) and row_data[field].strip() == ""):
                 row_data[field] = default_value
         
         # Set defaults for missing numeric fields
         for field, default_value in required_numeric_fields.items():
-            if field not in row_data or row_data[field] is None:
+            if field not in row_data or row_data[field] is None or (isinstance(row_data[field], str) and row_data[field].strip() == ""):
                 row_data[field] = default_value
     
     def _convert_row_types(self, row_data: Dict[str, Any]) -> Dict[str, Any]:
@@ -307,11 +315,15 @@ class GLUpload:
                 row_data[key] = value.isoformat()
         
         for field in float_fields:
-            if field in row_data and row_data[field] is not None:
-                try:
-                    row_data[field] = float(row_data[field])
-                except (ValueError, TypeError):
+            if field in row_data:
+                if row_data[field] is None or (isinstance(row_data[field], str) and row_data[field].strip() == ""):
                     row_data[field] = 0.0
+                else:
+                    try:
+                        row_data[field] = float(row_data[field])
+                    except (ValueError, TypeError) as e:
+                        logger.warning(f"Failed to convert {field}='{row_data[field]}' to float: {e}. Setting to 0.0")
+                        row_data[field] = 0.0
         
         for field in string_fields:
             if field in row_data and row_data[field] is not None:
