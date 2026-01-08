@@ -11,6 +11,8 @@ from src.repository.database import AzureCosmosDBRepository
 from loguru import logger
 from src.common.const import ContentType
 import uuid
+from pypdf import PdfReader, PdfWriter
+from io import BytesIO
 
 class ContentExtraction:
     def __init__(
@@ -86,9 +88,12 @@ class ContentExtraction:
         self, 
         request_id: str,
         file_url: Optional[str] = None,
+        blob_name: Optional[str] = None,
+        file_id: Optional[str] = None,
         max_retries: int = 35,
         retry_interval: int = 3,
-        accumulated_content: Optional[List[str]] = None
+        accumulated_content: Optional[List[str]] = None,
+        accumulated_file_urls: Optional[List[str]] = None
     ) -> Dict[str, Any]:
         """
         Poll the analyzer results endpoint until the analysis is complete
@@ -148,9 +153,12 @@ class ContentExtraction:
                                 # Initialize accumulated_content if not provided
                                 if accumulated_content is None:
                                     accumulated_content = []
+                                if accumulated_file_urls is None:
+                                    accumulated_file_urls = []
                                 
-                                # Add current page content to accumulated content
+                                # Add current page content and file URL to accumulated lists
                                 accumulated_content.append(content)
+                                accumulated_file_urls.append(file_url)
                                 logger.info(f"Tax invoice page accumulated. Total pages: {len(accumulated_content)}, Complete: {is_document_complete}")
                                 
                                 if not is_document_complete:
@@ -158,14 +166,27 @@ class ContentExtraction:
                                     logger.info(f"Tax invoice incomplete. Accumulated {len(accumulated_content)} pages so far. Continuing to next page.")
                                     return None
                                 
-                                # Document is complete - merge all accumulated content and extract
+                                # Document is complete - merge all accumulated content and PDFs
                                 merged_content = "\n\n--- PAGE BREAK ---\n\n".join(accumulated_content)
                                 logger.info(f"Tax invoice complete. Extracting from {len(accumulated_content)} merged pages")
+                                
+                                # Merge PDFs if multiple pages
+                                merged_pdf_url = file_url  # Default to last page URL
+                                if len(accumulated_file_urls) > 1:
+                                    try:
+                                        merged_pdf_url = await self._merge_pdfs_from_urls(
+                                            file_urls=accumulated_file_urls,
+                                            file_id=file_id,
+                                            urn=urn
+                                        )
+                                        logger.info(f"Merged {len(accumulated_file_urls)} PDFs into: {merged_pdf_url}")
+                                    except Exception as e:
+                                        logger.error(f"Failed to merge PDFs: {e}. Using last page URL.")
                                 
                                 result = await self.llm_service_repo.get_tax_invoice_extraction(document_text=merged_content)
                                 result['urn'] = urn
                                 result['taxInvoiceId'] = str(uuid.uuid4())
-                                result['documentUrl'] = file_url
+                                result['documentUrl'] = merged_pdf_url
                                 result['total_pages'] = len(accumulated_content)
 
                                 if self.azure_cosmos_repo and urn:
@@ -174,8 +195,9 @@ class ContentExtraction:
                                         container_id="tax-invoices"
                                     )
                                 
-                                # Clear accumulated content after successful extraction
+                                # Clear accumulated content and URLs after successful extraction
                                 accumulated_content.clear()
+                                accumulated_file_urls.clear()
                             elif content_classification_data == ContentType.GeneralLedger.value:
                                 result = await self.llm_service_repo.get_gl_extraction(document_text=content)
                                 result['documentUrl'] = file_url
@@ -211,6 +233,66 @@ class ContentExtraction:
         # Max retries exceeded
         raise TimeoutError(f"Analysis did not complete within {max_retries * retry_interval} seconds for request {request_id}")
 
+    async def _merge_pdfs_from_urls(self, file_urls: List[str], file_id: str, urn: Optional[str]) -> str:
+        """
+        Download multiple PDF files from blob storage URLs, merge them, and upload the merged PDF.
+        
+        Args:
+            file_urls: List of blob storage URLs to merge
+            file_id: The folder ID for organizing the merged file
+            urn: URN for naming the merged file
+            
+        Returns:
+            URL of the uploaded merged PDF
+        """
+        try:
+            pdf_writer = PdfWriter()
+            
+            # Download and merge each PDF
+            for idx, url in enumerate(file_urls):
+                logger.info(f"Downloading PDF {idx + 1}/{len(file_urls)}: {url}")
+                
+                # Extract blob name from URL to download from blob storage
+                # URL format: https://<account>.blob.core.windows.net/<container>/<folder>/<blob_name>
+                blob_path = '/'.join(url.split('/')[-2:])  # Get folder/blob_name part
+                
+                # Download the PDF bytes
+                pdf_bytes = self.azure_blob_storage_repo.download_blob(blob_name=blob_path)
+                
+                # Read the PDF and add pages to writer
+                pdf_reader = PdfReader(BytesIO(pdf_bytes))
+                for page in pdf_reader.pages:
+                    pdf_writer.add_page(page)
+                
+                logger.debug(f"Added {len(pdf_reader.pages)} pages from {blob_path}")
+            
+            # Write merged PDF to bytes
+            merged_pdf_buffer = BytesIO()
+            pdf_writer.write(merged_pdf_buffer)
+            merged_pdf_buffer.seek(0)
+            
+            # Generate filename for merged PDF
+            merged_filename = f"merged_tax_invoice_{urn or uuid.uuid4()}.pdf"
+            
+            # Upload merged PDF to blob storage
+            logger.info(f"Uploading merged PDF: {merged_filename}")
+            upload_result = self.azure_blob_storage_repo.upload_file(
+                file=merged_pdf_buffer,
+                file_id=file_id,
+                original_filename=merged_filename,
+                activity_id=str(uuid.uuid4()),
+                content_type="application/pdf"
+            )
+            
+            merged_url = upload_result.get("url")
+            logger.info(f"Merged PDF uploaded successfully: {merged_url}")
+            
+            return merged_url
+            
+        except Exception as e:
+            logger.error(f"Error merging PDFs: {e}")
+            raise
+
     async def process_documents_in_folder(self, file_id: str) -> List[Dict[str, Any]]:
         SUPPORTED_EXTENSIONS = {'pdf', 'jpg', 'jpeg', 'png', 'tiff', 'bmp'}
 
@@ -240,6 +322,7 @@ class ContentExtraction:
             
             analysis_results = []
             accumulated_tax_invoice_content = []  # Track incomplete tax invoice pages
+            accumulated_tax_invoice_urls = []  # Track file URLs for incomplete tax invoice pages
             
             # Loop through each file
             for file_info in files:
@@ -280,7 +363,10 @@ class ContentExtraction:
                     final_result = await self._wait_for_analysis_result(
                         request_id,
                         file_url=file_url,
-                        accumulated_content=accumulated_tax_invoice_content
+                        blob_name=blob_name,
+                        file_id=file_id,
+                        accumulated_content=accumulated_tax_invoice_content,
+                        accumulated_file_urls=accumulated_tax_invoice_urls
                     )
                     
                     # Check if result is None (incomplete tax invoice page)

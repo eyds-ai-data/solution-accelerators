@@ -127,6 +127,29 @@ class AzureBlobStorageRepository:
             logger.error(f"Error listing files for case {file_id}: {e}")
             raise
 
+    def download_blob(self, blob_name: str) -> bytes:
+        """
+        Download a blob from Azure Blob Storage and return its content as bytes.
+        
+        Args:
+            blob_name: Name/path of the blob to download
+            
+        Returns:
+            Blob content as bytes
+        """
+        try:
+            blob_client = self.blob_service_client.get_blob_client(
+                container=self.container_name,
+                blob=blob_name
+            )
+            blob_data = blob_client.download_blob()
+            blob_bytes = blob_data.readall()
+            logger.info(f"Downloaded blob: {blob_name} ({len(blob_bytes)} bytes)")
+            return blob_bytes
+        except Exception as e:
+            logger.error(f"Error downloading blob {blob_name}: {e}")
+            raise
+
 class MinioStorageRepository:
     """
     Simple MinIO object storage repository for file operations.
