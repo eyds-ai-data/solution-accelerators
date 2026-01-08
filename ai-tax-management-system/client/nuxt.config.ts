@@ -70,14 +70,14 @@ export default defineNuxtConfig({
 
   runtimeConfig: {
     public: {
-      apiBase: process.env.NUXT_PUBLIC_API_BASE || 'http://localhost:8000'
+      apiBase: process.env.NUXT_PUBLIC_API_BASE || 'https://ai-tax-svc.azurewebsites.net/'
     }
   },
 
   nitro: {
     devProxy: {
       '/api': {
-        target: process.env.NUXT_PUBLIC_API_BASE || 'http://localhost:8000',
+        target: process.env.NUXT_PUBLIC_API_BASE || 'https://ai-tax-svc.azurewebsites.net/',
         changeOrigin: true
       }
     }
