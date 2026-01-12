@@ -4,6 +4,7 @@ export const invoiceSchema = z.object({
   invoiceId: z.string(),
   invoiceNumber: z.string(),
   urn: z.string(),
+  documentUrl: z.string(),
   projectNumber: z.string(),
   invoiceDetail: z.array(z.object({
     invoiceDetailId: z.string(),

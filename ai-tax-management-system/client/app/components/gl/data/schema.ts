@@ -4,6 +4,7 @@ export const glSchema = z.object({
   glTransactionId: z.string(),
   cocd: z.string(),
   gl: z.string(),
+  documentUrl: z.string(),
   yearMonth: z.string(),
   type: z.string(),
   referenceNumber: z.string(),
