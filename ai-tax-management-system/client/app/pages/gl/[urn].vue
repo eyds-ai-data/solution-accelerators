@@ -582,7 +582,7 @@ const activeTab = ref<'invoice' | 'tax'>('invoice')
                     </div>
                   </div>
                 </div>
-
+                <hr class="border-t border-gray-300 my-4" />
                 <!-- Fields 2 -->
                 <div class="grid grid-cols-2 gap-4">
                   <div>
