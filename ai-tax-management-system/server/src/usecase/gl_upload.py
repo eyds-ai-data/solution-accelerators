@@ -45,12 +45,12 @@ XLSX_TO_GL_TRANSACTION_MAP = {
     "Amount in document currency": "amount_in_document_currency",
     "Loc Curr": "local_currency",
     "Amount in local cur.": "amount_in_local_currency",
-    "Ref": "ref",
-    "WHT Review": "wht_review",
-    "1st Vouching": "first_voucing",
-    "2nd Reviewer": "second_reviewer",
-    "Type of Tax": "type_of_tax",
-    "Docu Ty": "document_type",
+    "Ref": "ref", # TODO: remove this field later
+    "WHT Review": "wht_review", # TODO : remove this field later
+    "1st Vouching": "first_voucing", # TODO: remove this field later
+    "2nd Reviewer": "second_reviewer", # TODO: remove this field later
+    "Type of Tax": "type_of_tax", # TODO: remove this field later
+    "Docu Ty": "document_type", # TODO: remove this field later
 }
 
 class GLUpload:
@@ -263,7 +263,7 @@ class GLUpload:
             "vendor_id": "",
             "vendor_code": "",
             "vendor_name": "",
-            "first_voucing": ""
+            "first_voucing": "" # TODO: remove this field later
         }
         
         # Required numeric fields

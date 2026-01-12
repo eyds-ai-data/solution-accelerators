@@ -53,14 +53,28 @@ class AzureBlobStorageRepository:
             )
             
             file_content = file.read()
-            blob_client.upload_blob(file_content, overwrite=True)
-            
-            # Get blob properties
-            blob_properties = blob_client.get_blob_properties()
             
             # Use provided content_type or get from file object
             if content_type is None:
                 content_type = getattr(file, 'content_type', 'application/octet-stream')
+            
+            # Set content settings for PDF files to enable inline preview
+            content_settings = None
+            if content_type == 'application/pdf' or original_filename.lower().endswith('.pdf'):
+                from azure.storage.blob import ContentSettings
+                content_settings = ContentSettings(
+                    content_type='application/pdf',
+                    content_disposition='inline'
+                )
+            
+            blob_client.upload_blob(
+                file_content, 
+                overwrite=True,
+                content_settings=content_settings
+            )
+            
+            # Get blob properties
+            blob_properties = blob_client.get_blob_properties()
             
             file_info = {
                 "blob_name": object_name,

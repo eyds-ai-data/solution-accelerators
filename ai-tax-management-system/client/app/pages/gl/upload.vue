@@ -38,7 +38,8 @@ const uploadFile = async (file: File) => {
   formData.append('file', file)
 
   try {
-    const { data, error } = await useFetch('https://ai-tax-svc.azurewebsites.net/api/v1/upload/file/gl', {
+    const config = useRuntimeConfig()
+    const { data, error } = await useFetch(`${config.public.apiBase}/api/v1/upload/file/gl`, {
       method: 'POST',
       body: formData,
     })
