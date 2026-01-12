@@ -582,34 +582,34 @@ const activeTab = ref<'invoice' | 'tax'>('invoice')
                     </div>
                   </div>
                 </div>
-
+                <hr class="border-t border-gray-300 my-4" />
                 <!-- Fields 2 -->
                 <div class="grid grid-cols-2 gap-4">
                   <div>
-                    <div class="flex justify-between items-center text-sm min-h-[36px]">
-                      <span class="text-muted-foreground"><strong>Total Harga Jual / Penggantian / Uang Muka / Termin</strong></span>
+                    <div class="flex justify-between items-center text-sm h-12 mb-3">
+                      <span class="text-muted-foreground w-48 break-words"><strong>Total Harga Jual / Penggantian / Uang Muka / Termin</strong></span>
                       <span class="font-medium">{{ taxInvoice?.totalTaxBaseWht }}</span>
                     </div>
-                    <div class="flex justify-between items-center text-sm min-h-[36px]">
-                      <span class="text-muted-foreground"><strong>Dikurangi Potongan Harga</strong></span>
+                    <div class="flex justify-between items-center text-sm h-12 mb-3">
+                      <span class="text-muted-foreground w-48 break-words"><strong>Dikurangi Potongan Harga</strong></span>
                       <span class="font-medium">{{ taxInvoice?.dikurangiPotonganHarga }}</span>
                     </div>
-                    <div class="flex justify-between items-center text-sm min-h-[36px]">
-                      <span class="text-muted-foreground"><strong>Dikurangi Uang Muka yang telah diterima</strong></span>
+                    <div class="flex justify-between items-center text-sm h-12 mb-3">
+                      <span class="text-muted-foreground w-48 break-words"><strong>Dikurangi Uang Muka yang telah diterima</strong></span>
                       <span class="font-medium">{{ taxInvoice?.dikurangiUangMukaYangTelahDiterima }}</span>
                     </div>
                   </div>
                   <div>
-                    <div class="flex justify-between items-center text-sm min-h-[36px]">
-                      <span class="text-muted-foreground"><strong>Dasar Pengenaan Pajak</strong></span>
+                    <div class="flex justify-between items-center text-sm h-12 mb-3">
+                      <span class="text-muted-foreground w-48 break-words"><strong>Dasar Pengenaan Pajak</strong></span>
                       <span class="font-medium">{{ taxInvoice?.dasarPengenaanPajak }}</span>
                     </div>
-                    <div class="flex justify-between items-center text-sm min-h-[36px]">
-                      <span class="text-muted-foreground"><strong>Jumlah PPN (Pajak Pertambahan Nilai)</strong></span>
+                    <div class="flex justify-between items-center text-sm h-12 mb-3">
+                      <span class="text-muted-foreground w-48 break-words"><strong>Jumlah PPN (Pajak Pertambahan Nilai)</strong></span>
                       <span class="font-medium">{{ taxInvoice?.jumlahPpn }}</span>
                     </div>
-                    <div class="flex justify-between items-center text-sm min-h-[36px]">
-                      <span class="text-muted-foreground"><strong>Jumlah PPnBM (Pajak Penjualan atas Barang Mewah)</strong></span>
+                    <div class="flex justify-between items-center text-sm h-12 mb-3">
+                      <span class="text-muted-foreground w-48 break-words"><strong>Jumlah PPnBM (Pajak Penjualan atas Barang Mewah)</strong></span>
                       <span class="font-medium">{{ taxInvoice?.jumlahPpnbm }}</span>
                     </div>
                   </div>
