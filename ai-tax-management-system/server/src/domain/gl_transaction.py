@@ -6,10 +6,10 @@ class GLReconItem(BaseModel):
     
     item_name: str = Field(..., alias="itemName", description="Name of the reconciliation item")
     type_of_tax: str = Field(..., alias="typeOfTax", description="Type of tax")
-    tax_base: float = Field(..., alias="taxBase", description="Tax base amount")
-    rate: float = Field(..., description="Tax rate in decimal format (e.g., 0.0265)")
-    wht_normal: float = Field(..., alias="whtNormal", description="Normal withholding tax amount")
-    remarks: str = Field(..., description="Remarks or notes")
+    tax_base: Optional[float] = Field(None, alias="taxBase", description="Tax base amount")
+    rate: Optional[float] = Field(None, description="Tax rate in decimal format (e.g., 0.0265)")
+    wht_normal: Optional[float] = Field(None, alias="whtNormal", description="Normal withholding tax amount")
+    remarks: Optional[str] = Field(None, description="Remarks or notes")
     diff_normal: Optional[float] = Field(None, alias="diffNormal", description="Difference from normal/expected value")
 
 class GLTransaction(BaseModel):
