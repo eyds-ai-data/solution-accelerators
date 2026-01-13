@@ -1,12 +1,15 @@
 <script setup lang="ts">
-import { computed } from 'vue'
+import { computed, ref } from 'vue'
 import { useRoute, useRouter } from 'vue-router'
 import type { GL } from '@/components/gl/data/schema'
 import type { Invoice } from '@/components/invoice/data/schema'
+import type { TaxInvoice } from '@/components/taxinvoice/data/schema'
 import DataTableGLItems from '@/components/gl/components/DataTableGLItems.vue'
 import DataTableInvoices from '@/components/invoice/components/DataTableInvoices.vue'
+import DataTableTaxInvoices from '@/components/taxinvoice/components/DataTableTaxInvoices.vue'
 import { glReconColumns } from '@/components/gl/components/glReconItems'
 import { invoiceDetailColumns } from '@/components/invoice/components/columns'
+import { taxInvoiceDetailColumns } from '@/components/taxinvoice/components/columns'
 import { Badge } from '@/components/ui/badge'
 import { Button } from '@/components/ui/button'
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
@@ -28,20 +31,38 @@ import {
   Save
 } from 'lucide-vue-next'
 import { Skeleton } from '@/components/ui/skeleton'
+import { useGLTransactionDetail, useInvoices, useTaxInvoices } from '~/composables/useTaxApi'
 
 const route = useRoute()
 const router = useRouter()
 const glId = route.params.urn as string
 
-const { glTransaction, loading, error, fetchGLTransactionByUrn } = useGLTransactionDetail()
+const { glTransaction, loading: glLoading, error: glError, fetchGLTransactionByUrn } = useGLTransactionDetail()
+const { invoices, loading: invoiceLoading, error: invoiceError, fetchInvoices } = useInvoices()
+const { taxInvoices, loading: taxInvoiceLoading, error: taxInvoiceError, fetchTaxInvoices } = useTaxInvoices()
 
-// Fetch GL transaction on mount
+// Fetch GL transaction and Invoice on mount
 onMounted(async () => {
   await fetchGLTransactionByUrn(glId)
+  await fetchInvoices(glId)
+  await fetchTaxInvoices(glId)
 })
 
 const gl = computed(() => glTransaction.value)
+const invoice = computed(() =>
+  invoices.value.find(i => i.urn === glId) ?? null
+)
+const taxInvoice = computed(() =>
+  taxInvoices.value.find(t => t.urn === glId) ?? null
+)
+const showGlDetails = ref(false)
 const reconItems = computed(() => gl.value?.glReconItem ?? [])
+
+// const invoicePdfUrl = computed(() =>
+//   invoice.value
+//     ? `${config.public.apiBase}/api/v1/tax/invoices/${invoice.value.urn}/pdf`
+//     : ''
+// )
 
 const goBack = () => {
   router.back()
@@ -59,7 +80,7 @@ const activeTab = ref<'invoice' | 'tax'>('invoice')
 </script>
 
 <template>
-  <div v-if="loading" class="min-h-screen bg-muted/40">
+  <div v-if="glLoading" class="min-h-screen bg-muted/40">
     <div class="max-w-7xl mx-auto p-6 space-y-6">
       
       <!-- Header Skeleton -->
@@ -111,10 +132,10 @@ const activeTab = ref<'invoice' | 'tax'>('invoice')
     </div>
   </div>
   
-  <div v-else-if="error" class="flex items-center justify-center min-h-screen">
+  <div v-else-if="glError" class="flex items-center justify-center min-h-screen">
     <div class="text-center max-w-md">
       <p class="text-destructive font-medium mb-2">Error loading GL transaction</p>
-      <p class="text-sm text-muted-foreground mb-4">{{ error }}</p>
+      <p class="text-sm text-muted-foreground mb-4">{{ glError }}</p>
       <Button @click="goBack">Go Back</Button>
     </div>
   </div>
@@ -190,27 +211,53 @@ const activeTab = ref<'invoice' | 'tax'>('invoice')
             <div class="space-y-3">
               <div class="flex justify-between items-center text-sm min-h-[36px]">
                 <span class="text-muted-foreground"><strong>Diff Normal</strong></span>
-                <span class="font-medium">{{ gl.diffNormal }}</span>
+                <!-- <span class="font-medium">{{ gl.diffNormal }}</span> -->
+                 <input
+                  type="text"
+                  class="w-48 rounded-md border px-2 py-1 text-sm"
+                  disabled
+                />
               </div>
 
               <div class="flex justify-between items-center text-sm min-h-[36px]">
                 <span class="text-muted-foreground"><strong>Ref</strong></span>
-                <span class="font-medium">{{ gl.ref }}</span>
+                <!-- <span class="font-medium">{{ gl.ref }}</span> -->
+                 <input
+                  type="text"
+                  class="w-48 rounded-md border px-2 py-1 text-sm"
+                  placeholder="Input Text"
+                />
               </div>
 
               <div class="flex justify-between items-center text-sm min-h-[36px]">
                 <span class="text-muted-foreground"><strong>1st Vouching</strong></span>
-                <span class="font-medium">{{ gl.firstVouching }}</span>
+                <!-- <span class="font-medium">{{ gl.firstVouching }}</span> -->
+                 <input
+                  type="text"
+                  class="w-48 rounded-md border px-2 py-1 text-sm"
+                  v-model="gl.firstVouching"
+                  placeholder="Input Text"
+                />
               </div>
 
               <div class="flex justify-between items-center text-sm min-h-[36px]">
                 <span class="text-muted-foreground"><strong>2nd Reviewer</strong></span>
-                <span class="font-medium">{{ gl.secondReviewer }}</span>
+                <!-- <span class="font-medium">{{ gl.secondReviewer }}</span> -->
+                 <input
+                  type="text"
+                  class="w-48 rounded-md border px-2 py-1 text-sm"
+                  placeholder="Input Text"
+                />
               </div>
 
               <div class="flex justify-between items-center text-sm min-h-[36px]">
                 <span class="text-muted-foreground"><strong>WHT Slip Number</strong></span>
-                <span class="font-medium">{{ gl.whtSlipNumber }}</span>
+                <!-- <span class="font-medium">{{ gl.whtSlipNumber }}</span> -->
+                 <input
+                  type="text"
+                  class="w-48 rounded-md border px-2 py-1 text-sm"
+                  placeholder="Input Text"
+                />
               </div>
 
               <div class="flex justify-between items-center text-sm min-h-[36px]">
@@ -218,6 +265,7 @@ const activeTab = ref<'invoice' | 'tax'>('invoice')
                 <input
                   type="text"
                   class="w-48 rounded-md border px-2 py-1 text-sm"
+                  placeholder="Input Text"
                 />
               </div>
             </div>
@@ -253,6 +301,7 @@ const activeTab = ref<'invoice' | 'tax'>('invoice')
                       <input
                         type="text"
                         class="w-48 rounded-md border px-2 py-1 text-sm"
+                        disabled
                       />
                     </div>
 
@@ -261,6 +310,7 @@ const activeTab = ref<'invoice' | 'tax'>('invoice')
                       <input
                         type="text"
                         class="w-48 rounded-md border px-2 py-1 text-sm"
+                        disabled
                       />
                     </div>
                   </div>
@@ -270,9 +320,28 @@ const activeTab = ref<'invoice' | 'tax'>('invoice')
                   <!-- GL Table -->
                   <DataTableGLItems :data="gl?.glReconItem ?? []" :columns="glReconColumns" />
                 </div>
-
+                <!-- See details button -->
+                <div class="flex justify-end mt-2">
+                  <button
+                    @click="showGlDetails = !showGlDetails"
+                    class="
+                      flex items-center gap-1
+                      text-sm font-medium
+                      text-foreground
+                      underline
+                      px-2 py-1
+                      rounded-sm
+                      hover:bg-muted
+                      transition
+                    "
+                  >
+                    {{ showGlDetails ? 'G/L Details ▲' : 'G/L Details ▼' }}
+                  </button>
+                </div>
                 <!-- GL Details -->
-                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <div 
+                  v-if="showGlDetails"
+                  class="grid grid-cols-1 md:grid-cols-2 gap-6">
                   <!-- Left -->
                   <div class="space-y-3">
                     <div class="flex justify-between items-center text-sm min-h-[36px]">
@@ -380,14 +449,14 @@ const activeTab = ref<'invoice' | 'tax'>('invoice')
               <!-- PDF preview -->
               <div class="border rounded-md overflow-hidden h-[500px]">
                 <iframe
-                  :src="invoicePdfUrl"
+                  :src= "invoice?.documentUrl"
                   class="w-full h-full"
                   frameborder="0"
                 ></iframe>
               </div>
 
               <!-- Invoice Info + Items -->
-              <div class="space-y-4 lg:col-span-2">
+              <div v-if="invoice" class="space-y-4 lg:col-span-2">
                 <!-- Fields -->
                 <div class="grid grid-cols-2 gap-4">
                   <div>
@@ -436,7 +505,7 @@ const activeTab = ref<'invoice' | 'tax'>('invoice')
                   </div>
                 </div>
                 
-                  <!-- Invoice Detail Table -->
+                <!-- Invoice Detail Table -->
                 <div>
                   <DataTableInvoices :data="invoice?.invoiceDetail ?? []" :columns="invoiceDetailColumns" />
                 </div>
@@ -448,7 +517,7 @@ const activeTab = ref<'invoice' | 'tax'>('invoice')
               <!-- PDF preview -->
               <div class="border rounded-md overflow-hidden h-[500px]">
                 <iframe
-                  :src="invoicePdfUrl"
+                  :src="taxInvoice?.documentUrl"
                   class="w-full h-full"
                   frameborder="0"
                 ></iframe>
@@ -456,57 +525,99 @@ const activeTab = ref<'invoice' | 'tax'>('invoice')
 
               <!-- Tax Invoice Info + Table -->
               <div class="space-y-4 lg:col-span-2">
-                <!-- Fields -->
+                <!-- Fields 1 -->
                 <div class="grid grid-cols-2 gap-4">
                   <div>
                     <div class="flex justify-between items-center text-sm min-h-[36px]">
-                      <span class="text-muted-foreground"><strong>Invoice Number</strong></span>
-                      <span class="font-medium">{{ invoice?.invoiceNumber }}</span>
+                      <span class="text-muted-foreground"><strong>Kode dan Nomor Seri Faktur Pajak</strong></span>
+                      <span class="font-medium">{{ taxInvoice?.taxInvoiceNumber }}</span>
                     </div>
                     <div class="flex justify-between items-center text-sm min-h-[36px]">
-                      <span class="text-muted-foreground"><strong>Invoice Date</strong></span>
-                      <span class="font-medium">{{ invoice?.createdAt }}</span>
+                      <span class="text-muted-foreground font-semibold w-72 shrink-0"><strong>Pengusaha Kena Pajak</strong></span>
                     </div>
                     <div class="flex justify-between items-center text-sm min-h-[36px]">
-                      <span class="text-muted-foreground"><strong>Project Number</strong></span>
-                      <span class="font-medium">{{ invoice?.projectNumber }}</span>
+                      <span class="text-muted-foreground"><strong>Nama</strong></span>
+                      <span class="font-medium">{{ taxInvoice?.namaPengusahaKenaPajak }}</span>
                     </div>
                     <div class="flex justify-between items-center text-sm min-h-[36px]">
-                      <span class="text-muted-foreground"><strong>Currency</strong></span>
-                      <span class="font-medium">{{ invoice?.currency }}</span>
+                      <span class="text-muted-foreground"><strong>Alamat</strong></span>
+                      <span class="font-medium max-w-xs break-words text-right">{{ taxInvoice?.alamatPengusahaKenaPajak }}</span>
                     </div>
                     <div class="flex justify-between items-center text-sm min-h-[36px]">
-                      <span class="text-muted-foreground"><strong>Sub Total Amount</strong></span>
-                      <span class="font-medium">{{ invoice?.subTotalAmount }}</span>
+                      <span class="text-muted-foreground"><strong>NPWP</strong></span>
+                      <span class="font-medium">{{ taxInvoice?.npwpPengusahaKenaPajak }}</span>
                     </div>
                   </div>
                   <div>
                     <div class="flex justify-between items-center text-sm min-h-[36px]">
-                      <span class="text-muted-foreground"><strong>VAT %</strong></span>
-                      <span class="font-medium">{{ invoice?.vatPercentage }}</span>
+                      <span class="text-muted-foreground"><strong>Tanggal Faktur Pajak</strong></span>
+                      <span class="font-medium">{{ taxInvoice?.taxInvoiceDate }}</span>
                     </div>
                     <div class="flex justify-between items-center text-sm min-h-[36px]">
-                      <span class="text-muted-foreground"><strong>VAT Amount</strong></span>
-                      <span class="font-medium">{{ invoice?.vatAmount }}</span>
+                      <span class="text-muted-foreground font-semibold w-72 shrink-0"><strong>Pembelian Barang Kena Pajak/Penerima Jasa Kena Pajak</strong></span>
                     </div>
                     <div class="flex justify-between items-center text-sm min-h-[36px]">
-                      <span class="text-muted-foreground"><strong>WHT %</strong></span>
-                      <span class="font-medium">{{ invoice?.whtPercentage }}</span>
+                      <span class="text-muted-foreground"><strong>Nama</strong></span>
+                      <span class="font-medium">{{ taxInvoice?.namaPembeliKenaPajak }}</span>
                     </div>
                     <div class="flex justify-between items-center text-sm min-h-[36px]">
-                      <span class="text-muted-foreground"><strong>WHT Amount</strong></span>
-                      <span class="font-medium">{{ invoice?.whtAmount }}</span>
+                      <span class="text-muted-foreground"><strong>Alamat</strong></span>
+                      <span class="font-medium max-w-xs break-words text-right">{{ taxInvoice?.alamatPembeliKenaPajak }}</span>
                     </div>
                     <div class="flex justify-between items-center text-sm min-h-[36px]">
-                      <span class="text-muted-foreground"><strong>Total Amount</strong></span>
-                      <span class="font-medium">{{ invoice?.totalAmount }}</span>
+                      <span class="text-muted-foreground"><strong>NPWP</strong></span>
+                      <span class="font-medium">{{ taxInvoice?.npwpPembeliKenaPajak }}</span>
+                    </div>
+                    <div class="flex justify-between items-center text-sm min-h-[36px]">
+                      <span class="text-muted-foreground"><strong>NIK</strong></span>
+                      <span class="font-medium">{{ taxInvoice?.nikPembeliKenaPajak }}</span>
+                    </div>
+                    <div class="flex justify-between items-center text-sm min-h-[36px]">
+                      <span class="text-muted-foreground"><strong>Nomor Paspor</strong></span>
+                      <span class="font-medium">{{ taxInvoice?.nomorPasporPembeliKenaPajak }}</span>
+                    </div>
+                    <div class="flex justify-between items-center text-sm min-h-[36px]">
+                      <span class="text-muted-foreground"><strong>Email</strong></span>
+                      <span class="font-medium">{{ taxInvoice?.emailPembeliKenaPajak }}</span>
+                    </div>
+                  </div>
+                </div>
+                <hr class="border-t border-gray-300 my-4" />
+                <!-- Fields 2 -->
+                <div class="grid grid-cols-2 gap-4">
+                  <div>
+                    <div class="flex justify-between items-center text-sm h-12 mb-3">
+                      <span class="text-muted-foreground w-48 break-words"><strong>Total Harga Jual / Penggantian / Uang Muka / Termin</strong></span>
+                      <span class="font-medium">{{ taxInvoice?.totalTaxBaseWht }}</span>
+                    </div>
+                    <div class="flex justify-between items-center text-sm h-12 mb-3">
+                      <span class="text-muted-foreground w-48 break-words"><strong>Dikurangi Potongan Harga</strong></span>
+                      <span class="font-medium">{{ taxInvoice?.dikurangiPotonganHarga }}</span>
+                    </div>
+                    <div class="flex justify-between items-center text-sm h-12 mb-3">
+                      <span class="text-muted-foreground w-48 break-words"><strong>Dikurangi Uang Muka yang telah diterima</strong></span>
+                      <span class="font-medium">{{ taxInvoice?.dikurangiUangMukaYangTelahDiterima }}</span>
+                    </div>
+                  </div>
+                  <div>
+                    <div class="flex justify-between items-center text-sm h-12 mb-3">
+                      <span class="text-muted-foreground w-48 break-words"><strong>Dasar Pengenaan Pajak</strong></span>
+                      <span class="font-medium">{{ taxInvoice?.dasarPengenaanPajak }}</span>
+                    </div>
+                    <div class="flex justify-between items-center text-sm h-12 mb-3">
+                      <span class="text-muted-foreground w-48 break-words"><strong>Jumlah PPN (Pajak Pertambahan Nilai)</strong></span>
+                      <span class="font-medium">{{ taxInvoice?.jumlahPpn }}</span>
+                    </div>
+                    <div class="flex justify-between items-center text-sm h-12 mb-3">
+                      <span class="text-muted-foreground w-48 break-words"><strong>Jumlah PPnBM (Pajak Penjualan atas Barang Mewah)</strong></span>
+                      <span class="font-medium">{{ taxInvoice?.jumlahPpnbm }}</span>
                     </div>
                   </div>
                 </div>
                 
-                  <!-- Invoice Detail Table -->
+                <!-- Tax Invoice Detail Table -->
                 <div>
-                  <!-- <DataTableInvoices :data="invoice?.invoiceDetail ?? []" :columns="invoiceDetailColumns" /> -->
+                  <DataTableTaxInvoices :data="taxInvoice?.taxInvoiceDetail ?? []" :columns="taxInvoiceDetailColumns" />
                 </div>
               </div>
             </div>

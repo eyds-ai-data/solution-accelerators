@@ -36,7 +36,8 @@ interface UploadedFile {
 const page = ref(1)
 const pageSize = ref(5)
 
-const { data, status, error, refresh } = await useFetch('https://ai-tax-svc.azurewebsites.net/api/v1/upload/list', {
+const config = useRuntimeConfig()
+const { data, status, error, refresh } = await useFetch(`${config.public.apiBase}/api/v1/upload/list`, {
   query: computed(() => ({
     page: page.value,
     page_size: pageSize.value,
@@ -92,7 +93,8 @@ const uploadFiles = async (files: File[]) => {
       formData.append('file', file)
 
       try {
-        const { data, error } = await useFetch('https://ai-tax-svc.azurewebsites.net/api/v1/upload/file', {
+        const config = useRuntimeConfig()
+        const { data, error } = await useFetch(`${config.public.apiBase}/api/v1/upload/file`, {
           method: 'POST',
           body: formData,
         })

@@ -1,5 +1,7 @@
 import { ref } from 'vue'
 import type { GL } from '@/components/gl/data/schema'
+import type { Invoice } from '@/components/invoice/data/schema'
+import type { TaxInvoice } from '@/components/taxinvoice/data/schema'
 
 interface ApiResponse<T> {
   status: string
@@ -111,7 +113,7 @@ export const useGLTransactionDetail = () => {
 
 export const useTaxInvoices = () => {
   const config = useRuntimeConfig()
-  const taxInvoices = ref<any[]>([])
+  const taxInvoices = ref<TaxInvoice[]>([])
   const loading = ref(false)
   const error = ref<string | null>(null)
 
@@ -124,7 +126,7 @@ export const useTaxInvoices = () => {
       const params = urn ? `?urn=${encodeURIComponent(urn)}` : ''
       const url = `${baseUrl}/api/v1/tax/tax-invoices${params}`
       
-      const response = await $fetch<ApiResponse<any[]>>(url)
+      const response = await $fetch<ApiResponse<TaxInvoice[]>>(url)
       
       if (response.status === 'Success') {
         taxInvoices.value = response.data
@@ -149,7 +151,7 @@ export const useTaxInvoices = () => {
 
 export const useInvoices = () => {
   const config = useRuntimeConfig()
-  const invoices = ref<any[]>([])
+  const invoices = ref<Invoice[]>([])
   const loading = ref(false)
   const error = ref<string | null>(null)
 
@@ -162,7 +164,7 @@ export const useInvoices = () => {
       const params = urn ? `?urn=${encodeURIComponent(urn)}` : ''
       const url = `${baseUrl}/api/v1/tax/invoices${params}`
       
-      const response = await $fetch<ApiResponse<any[]>>(url)
+      const response = await $fetch<ApiResponse<Invoice[]>>(url)
       
       if (response.status === 'Success') {
         invoices.value = response.data

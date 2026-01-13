@@ -6,7 +6,7 @@ import type {
   VisibilityState,
 } from '@tanstack/vue-table'
 
-import type { Invoice } from '../data/schema'
+import type { TaxInvoice } from '../data/schema'
 import {
   FlexRender,
   getCoreRowModel,
@@ -22,8 +22,8 @@ import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from '@
 import { ref } from 'vue'
 
 interface DataTableProps {
-  columns: ColumnDef<NonNullable<Invoice['invoiceDetail']>[number], any>[]
-  data: NonNullable<Invoice['invoiceDetail']>
+  columns: ColumnDef<NonNullable<TaxInvoice['taxInvoiceDetail']>[number], any>[]
+  data: NonNullable<TaxInvoice['taxInvoiceDetail']>
 }
 const props = defineProps<DataTableProps>()
 
@@ -48,7 +48,7 @@ const table = useVueTable({
   onRowSelectionChange: updaterOrValue => valueUpdater(updaterOrValue, rowSelection),
   getCoreRowModel: getCoreRowModel(),
   getFilteredRowModel: getFilteredRowModel(),
-  // getPaginationRowModel: getPaginationRowModel(),
+//   getPaginationRowModel: getPaginationRowModel(),
   getSortedRowModel: getSortedRowModel(),
   getFacetedRowModel: getFacetedRowModel(),
   getFacetedUniqueValues: getFacetedUniqueValues(),

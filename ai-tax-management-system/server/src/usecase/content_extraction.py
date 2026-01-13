@@ -281,7 +281,7 @@ class ContentExtraction:
                 file_id=file_id,
                 original_filename=merged_filename,
                 activity_id=str(uuid.uuid4()),
-                content_type="application/pdf"
+                content_type="application/pdf"  # This will trigger inline content-disposition
             )
             
             merged_url = upload_result.get("url")

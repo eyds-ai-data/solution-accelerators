@@ -3,6 +3,7 @@ import { columns } from '@/components/gl/components/columns'
 import DataTable from '@/components/gl/components/DataTable.vue'
 import type { GL } from '@/components/gl/data/schema'
 import { Skeleton } from '@/components/ui/skeleton'
+import { useGLTransactions } from '@/composables/useTaxApi'
 
 const { glTransactions, loading, error, pagination, fetchGLTransactions } = useGLTransactions()
 
