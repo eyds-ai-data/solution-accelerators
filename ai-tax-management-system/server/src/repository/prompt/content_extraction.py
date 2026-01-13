@@ -203,3 +203,31 @@ def get_tax_invoice_extraction_prompt(document_content: str) -> str:
     \"\"\"{document_content}\"\"\"
 
     """
+
+def get_type_of_tax_classification_prompt(description_text: str) -> str:
+    # TODO: Refine and implement the prompt for classifying the type of tax based on description text
+    return f"""
+    You are an expert AI specialized in classifying the type of tax based on transaction descriptions. Your task is to analyze the provided description text and classify it into one of the predefined tax types.
+
+    The possible tax types are:
+    - Income Tax
+    - Value Added Tax (VAT)
+    - Withholding Tax
+    - Corporate Tax
+    - Property Tax
+    - Sales Tax
+    - Excise Tax
+    - Other
+
+    Provide the classification result in the following JSON format:
+    {{
+        "type_of_tax": "<Income Tax | Value Added Tax (VAT) | Withholding Tax | Corporate Tax | Property Tax | Sales Tax | Excise Tax | Other>",
+        "confidence_score": <float between 0 and 1>,
+        "classification_reason": "<brief explanation of why this type was chosen>"
+    }}
+
+    Here is the description text to classify:
+    \"\"\"{description_text}\"\"\"
+
+    Please analyze the description and provide the classification result as specified, along with a confidence score and a brief reason for your classification.
+    """

@@ -12,6 +12,8 @@ class GLReconItem(BaseModel):
     remarks: Optional[str] = Field(None, description="Remarks or notes")
     diff_normal: Optional[float] = Field(None, alias="diffNormal", description="Difference from normal/expected value")
 
+    ai_explanation: Optional[str] = Field(None, alias="aiExplanation", description="AI-generated explanation for classification")
+
 class GLTransaction(BaseModel):
     model_config = ConfigDict(populate_by_name=True)   
 
