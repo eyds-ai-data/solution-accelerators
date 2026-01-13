@@ -405,6 +405,16 @@ class ContentExtraction:
             logger.error(f"Error processing documents in folder {file_id}: {e}")
             raise
 
+    async def reconciliation_process(self, urn: str) -> None:
+        # TODO: implement reconciliation process
+        # 1. fetch tax invoices based on urn
+        # 2. fetch gl transactions based on urn
+        # 3. loop through tax invoice detail item
+        # 4. perform semantic search and matching from tax invoices itemName to vendor-tax-reference description based on vendorId in gl transaction
+        # 5. classify type of tax using llm service
+        # 6. update gl transaction with gl recon items
+        pass
+
     async def process_message(self, message: Dict[str, Any]) -> None:
         try:
             # file_id in status
