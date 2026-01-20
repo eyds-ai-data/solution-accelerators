@@ -1,12 +1,12 @@
 from typing import Dict, Any, Optional, List, BinaryIO
-from src.repository.content_understanding import ContentUnderstandingRepository
-from src.repository.storage import MinioStorageRepository, AzureBlobStorageRepository
-from src.repository.messaging import RabbitMQRepository, AzureServiceBusRepository
-from src.repository.database import AzureCosmosDBRepository
+from repository.content_understanding import ContentUnderstandingRepository
+from repository.storage import MinioStorageRepository, AzureBlobStorageRepository
+from repository.messaging import RabbitMQRepository, AzureServiceBusRepository
+from repository.database import AzureCosmosDBRepository
 from loguru import logger
-from src.domain.file_upload import FileUploadResponse
-from src.domain.gl_transaction import GLTransaction
-from src.common.const import Environment
+from domain.file_upload import FileUploadResponse
+from domain.gl_transaction import GLTransaction
+from common.const import Environment
 from pypdf import PdfReader, PdfWriter
 from io import BytesIO
 from datetime import datetime

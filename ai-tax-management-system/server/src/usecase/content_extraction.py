@@ -2,17 +2,18 @@ from typing import Dict, Any, Optional, List
 import asyncio
 import re
 from datetime import datetime
-from src.repository.content_understanding import ContentUnderstandingRepository
-from src.repository.storage import MinioStorageRepository
-from src.repository.storage import AzureBlobStorageRepository
-from src.repository.messaging import RabbitMQRepository
-from src.repository.llm.llm_service import LLMService
-from src.repository.database import AzureCosmosDBRepository
+from repository.content_understanding import ContentUnderstandingRepository
+from repository.storage import MinioStorageRepository
+from repository.storage import AzureBlobStorageRepository
+from repository.messaging import RabbitMQRepository
+from repository.llm.llm_service import LLMService
+from repository.database import AzureCosmosDBRepository
 from loguru import logger
-from src.common.const import ContentType
+from common.const import ContentType
 import uuid
 from pypdf import PdfReader, PdfWriter
 from io import BytesIO
+from domain.gl_transaction import GLReconItem
 
 class ContentExtraction:
     def __init__(
@@ -408,8 +409,18 @@ class ContentExtraction:
     async def reconciliation_process(self, urn: str) -> None:
         # TODO: implement reconciliation process
         # 1. fetch tax invoices based on urn
+        tax_invoices = self.azure_cosmos_repo.query_documents(
+            container_id="tax-invoices",
+            query_filter=f"c.urn = '{urn}'"
+        )
         # 2. fetch gl transactions based on urn
+        gl_transactions = self.azure_cosmos_repo.query_documents(
+            container_id="gl-transactions",
+            query_filter=f"c.urn = '{urn}'"
+        )
         # 3. loop through tax invoice detail item
+        for tax_invoice in tax_invoices:
+            print(tax_invoice)
         # 4. perform semantic search and matching from tax invoices itemName to vendor-tax-reference description based on vendorId in gl transaction
         # 5. classify type of tax using llm service
         # 6. update gl transaction with gl recon items
@@ -427,10 +438,14 @@ class ContentExtraction:
 
             result = await self.process_documents_in_folder(file_id=document_id)
 
+            urn = next((res.get('analysis_result', {}).get('urn') for res in result if res.get('analysis_result') and res.get('analysis_result', {}).get('urn')), None)
+            if urn:
+                await self.reconciliation_process(urn=urn)
+
             self.azure_cosmos_repo.update_document(
                 document_id=document_id,
                 update_data={
-                    "urn": next((res.get('analysis_result', {}).get('urn') for res in result if res.get('analysis_result') and res.get('analysis_result', {}).get('urn')), None),
+                    "urn": urn,
                     "status": "completed",
                     "completed_at": datetime.utcnow().isoformat()
                 },

@@ -279,12 +279,14 @@ class AzureCosmosDBRepository:
 if __name__ == "__main__":
     import os
     import json
+    import asyncio
     from dotenv import load_dotenv
     from pathlib import Path
     
-    # Import config
+    # Import the embedding repository and config
     import sys
     sys.path.append(str(Path(__file__).parent.parent))
+    from src.repository.embedding import EmbeddingRepository
     from src.config.env import AppConfig
 
     # Load environment variables from .env file
@@ -292,22 +294,83 @@ if __name__ == "__main__":
 
     CONNECTION_STRING = os.getenv("COSMOSDB_CONNECTION_STRING")
     DATABASE_ID = os.getenv("COSMOSDB_DATABASE")
-    CONTAINER_ID = "tax"
+    CONTAINER_ID = "vendor-tax-reference"
 
-    # Initialize repository with the tax container
+    # Initialize repository with the vendor-tax-reference container
     repo = AzureCosmosDBRepository(CONNECTION_STRING, DATABASE_ID, CONTAINER_ID)
     
-    logger.info(f"Starting to copy data from container: {CONTAINER_ID}")
+    # Initialize embedding repository
+    config = AppConfig()
+    embedding_repo = EmbeddingRepository(config)
     
-    # Query all documents from the tax container
-    all_documents = repo.query_documents()
+    async def process_data():
+        """Process the JSON file and vectorize descriptions"""
+        # Path to the JSON file
+        json_file_path = Path(__file__).parent.parent / "vendor_tax_reference_data.json"
+        
+        logger.info(f"Opening JSON file: {json_file_path}")
+        
+        # Target container for vendor tax reference
+        target_container = "vendor-tax-reference"
+        
+        try:
+            # Open and read the JSON file
+            with open(json_file_path, 'r', encoding='utf-8') as f:
+                data = json.load(f)
+            
+            logger.info(f"Loaded {len(data)} records from JSON file")
+            
+            successful_count = 0
+            failed_count = 0
+            
+            # Loop through each record and vectorize the description
+            for idx, record in enumerate(data, 1):
+                try:
+                    description = record.get('description', '')
+                    
+                    if not description:
+                        logger.warning(f"Record {idx} has no description, skipping...")
+                        failed_count += 1
+                        continue
+                    
+                    logger.info(f"Processing record {idx}/{len(data)}: {description[:50]}...")
+                    
+                    # Generate embedding for the description
+                    embedding_vector = await embedding_repo.get_embedding_result(description)
+                    
+                    # Add the embedding to the record
+                    record['vector'] = embedding_vector
+                    
+                    logger.info(f"Generated embedding for record {idx} with dimension {len(embedding_vector)}")
+                    
+                    # Remove Cosmos DB internal fields before upserting
+                    fields_to_remove = ['_rid', '_self', '_etag', '_attachments', '_ts']
+                    for field in fields_to_remove:
+                        record.pop(field, None)
+                    
+                    # Save to Cosmos DB
+                    repo.upsert_document(record)
+                    logger.info(f"Saved record {idx} to Cosmos DB container '{target_container}'")
+                    successful_count += 1
+                    
+                except Exception as e:
+                    logger.error(f"Error processing record {idx}: {e}")
+                    failed_count += 1
+                    continue
+            
+            logger.info(f"Processing complete! Successfully saved {successful_count} records, {failed_count} failed")
+            
+        except FileNotFoundError:
+            logger.error(f"JSON file not found: {json_file_path}")
+        except json.JSONDecodeError as e:
+            logger.error(f"Error parsing JSON file: {e}")
+        except Exception as e:
+            logger.error(f"Error processing data: {e}")
+            raise
     
-    logger.info(f"Retrieved {len(all_documents)} documents from {CONTAINER_ID} container")
-    
-    # Save to JSON file
-    output_file = "tax_container_data.json"
-    with open(output_file, "w", encoding="utf-8") as f:
-        json.dump(all_documents, f, indent=2, ensure_ascii=False)
-    
-    logger.info(f"Successfully saved {len(all_documents)} documents to {output_file}")
+    # Run the async function
+    try:
+        asyncio.run(process_data())
+    except Exception as e:
+        logger.error(f"Error in main execution: {e}")
 
