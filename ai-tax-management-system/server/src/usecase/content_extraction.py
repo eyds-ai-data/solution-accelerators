@@ -8,6 +8,7 @@ from repository.storage import AzureBlobStorageRepository
 from repository.messaging import RabbitMQRepository
 from repository.llm.llm_service import LLMService
 from repository.database import AzureCosmosDBRepository
+from repository.embedding import EmbeddingRepository
 from loguru import logger
 from common.const import ContentType
 import uuid
@@ -23,7 +24,8 @@ class ContentExtraction:
         rabbitmq_repo: Optional[RabbitMQRepository] = None,
         minio_storage_repo: Optional[MinioStorageRepository] = None,
         llm_service_repo: Optional[LLMService] = None,
-        azure_cosmos_repo: Optional[AzureCosmosDBRepository] = None
+        azure_cosmos_repo: Optional[AzureCosmosDBRepository] = None,
+        embedding_repo: Optional[EmbeddingRepository] = None
     ):
         
         self.content_understanding_repo = content_understanding_repo
@@ -32,6 +34,7 @@ class ContentExtraction:
         self.minio_storage_repo = minio_storage_repo
         self.llm_service_repo = llm_service_repo
         self.azure_cosmos_repo = azure_cosmos_repo
+        self.embedding_repo = embedding_repo
 
     def _extract_content(self, file, upload_id: str, original_filename: str) -> Dict[str, Any]:
 
@@ -407,25 +410,109 @@ class ContentExtraction:
             raise
 
     async def reconciliation_process(self, urn: str) -> None:
-        # TODO: implement reconciliation process
-        # 1. fetch tax invoices based on urn
-        tax_invoices = self.azure_cosmos_repo.query_documents(
-            container_id="tax-invoices",
-            query_filter=f"c.urn = '{urn}'"
-        )
-        # 2. fetch gl transactions based on urn
-        gl_transactions = self.azure_cosmos_repo.query_documents(
-            container_id="gl-transactions",
-            query_filter=f"c.urn = '{urn}'"
-        )
-        # 3. loop through tax invoice detail item
-        for tax_invoice in tax_invoices:
-            print(tax_invoice)
-        # 4. perform semantic search and matching from tax invoices itemName to vendor-tax-reference description based on vendorId in gl transaction
-        # 5. classify type of tax using llm service
-        # 6. update gl transaction with gl recon items
-        pass
-
+        """
+        Perform reconciliation process between tax invoices and GL transactions
+        
+        Args:
+            urn: Unique reference number to filter documents
+        """
+        try:
+            # 1. Fetch tax invoices based on urn
+            tax_invoices = self.azure_cosmos_repo.query_documents(
+                container_id="tax-invoices",
+                query_filter=f"c.urn = '{urn}'"
+            )
+            
+            # 2. Fetch GL transactions based on urn
+            gl_transactions = self.azure_cosmos_repo.query_documents(
+                container_id="gl-transactions",
+                query_filter=f"c.urn = '{urn}'"
+            )
+            
+            # 3. Fetch vendor tax references for semantic search
+            vendor_tax_references = self.azure_cosmos_repo.query_documents(
+                container_id="vendor-tax-reference"
+            )
+            
+            logger.info(f"Processing {len(tax_invoices)} tax invoices and {len(gl_transactions)} GL transactions for URN: {urn}")
+            
+            # 4. Loop through tax invoice details and perform semantic search
+            for tax_invoice in tax_invoices:
+                tax_invoice_details = tax_invoice.get("taxInvoiceDetail", [])
+                
+                for detail in tax_invoice_details:
+                    item_name = detail.get("itemName", "")
+                    
+                    if not item_name:
+                        logger.warning(f"Skipping tax invoice detail with no itemName")
+                        continue
+                    
+                    logger.info(f"Processing tax invoice item: {item_name}")
+                    
+                    # Generate embedding for the item name
+                    if self.embedding_repo:
+                        try:
+                            item_embedding = await self.embedding_repo.get_embedding_result(item_name)
+                            
+                            # Perform vector search to find similar vendor tax references
+                            # Find the matching vendorId from GL transaction for this URN
+                            vendor_ids = set()
+                            for gl_transaction in gl_transactions:
+                                vendor_id = gl_transaction.get("vendorId")
+                                if vendor_id:
+                                    vendor_ids.add(vendor_id) # TODO: ini kenapa mesti retrieve all vendor ids dah
+                            
+                            # Search for each vendor
+                            best_matches = []
+                            for vendor_id in vendor_ids:
+                                # Perform vector search with vendor filter
+                                search_results = self.azure_cosmos_repo.vector_search(
+                                    vector=item_embedding,
+                                    vector_field="embedding",
+                                    top_k=3,  # Get top 3 matches per vendor
+                                    additional_filters=f"c.vendorId = {vendor_id}",
+                                    container_id="vendor-tax-reference",
+                                    return_similarity_score=True
+                                )
+                                
+                                best_matches.extend(search_results)
+                            
+                            # Sort all matches by similarity score
+                            best_matches.sort(key=lambda x: x.get("similarity_score", 1.0))
+                            
+                            if best_matches:
+                                top_match = best_matches[0]
+                                similarity_score = top_match.get("similarity_score", 0)
+                                matched_description = top_match.get("description", "")
+                                matched_tax_id = top_match.get("taxId")
+                                matched_vendor_id = top_match.get("vendorId")
+                                
+                                logger.info(f"Best match for '{item_name}': '{matched_description}' (Score: {similarity_score:.4f}, TaxId: {matched_tax_id}, VendorId: {matched_vendor_id})")
+                                
+                                # Store the match result in detail for further processing
+                                detail["matched_tax_reference"] = {
+                                    "description": matched_description,
+                                    "taxId": matched_tax_id,
+                                    "vendorId": matched_vendor_id,
+                                    "similarity_score": similarity_score,
+                                    "vendorTaxReferenceId": top_match.get("vendorTaxReferenceId")
+                                }
+                            else:
+                                logger.warning(f"No vendor tax reference match found for: {item_name}")
+                                
+                        except Exception as e:
+                            logger.error(f"Error generating embedding or performing vector search for '{item_name}': {e}")
+                    else:
+                        logger.warning("Embedding repository not initialized, skipping semantic search")
+            
+            # 5. Classify type of tax using LLM service (TODO)
+            # 6. Update GL transaction with GL recon items (TODO)
+            
+            logger.info(f"Completed reconciliation process for URN: {urn}")
+            
+        except Exception as e:
+            logger.error(f"Error in reconciliation process for URN {urn}: {e}")
+            raise
     async def process_message(self, message: Dict[str, Any]) -> None:
         try:
             # file_id in status
