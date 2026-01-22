@@ -1,6 +1,7 @@
 import type { ColumnDef } from '@tanstack/vue-table'
 import { h } from 'vue'
 import type { Invoice } from '../data/schema'
+import { formatNumber } from '@/components/gl/components/numbering'
 
 export const invoiceDetailColumns: ColumnDef<NonNullable<Invoice['invoiceDetail']>[number], any>[] = [
   // Auto-number column
@@ -19,26 +20,26 @@ export const invoiceDetailColumns: ColumnDef<NonNullable<Invoice['invoiceDetail'
   {
     accessorKey: 'quantity',
     header: ({ column }) => h('div', { class: 'text-sm font-medium' }, 'Quantity'),
-    cell: ({ row }) => h('div', { class: 'text-sm text-muted-foreground' }, row.getValue('quantity')),
+    cell: ({ row }) => h('div', { class: 'text-sm text-muted-foreground' }, formatNumber(row.getValue('quantity'))),
   },
   {
     accessorKey: 'unitPrice',
     header: ({ column }) => h('div', { class: 'text-sm font-medium' }, 'Unit Price (Rp)'),
-    cell: ({ row }) => h('div', { class: 'text-sm text-right' }, row.getValue('unitPrice')),
+    cell: ({ row }) => h('div', { class: 'text-sm text-right' }, formatNumber(row.getValue('unitPrice'))),
   },
   {
     accessorKey: 'taxPercentage',
     header: ({ column }) => h('div', { class: 'text-sm font-medium' }, 'Tax %'),
-    cell: ({ row }) => h('div', { class: 'text-sm text-right' }, row.getValue('taxPercentage')),
+    cell: ({ row }) => h('div', { class: 'text-sm text-right' }, formatNumber(row.getValue('taxPercentage'))),
   },
   {
     accessorKey: 'discountPercentage',
     header: ({ column }) => h('div', { class: 'text-sm font-medium' }, 'Discount %'),
-    cell: ({ row }) => h('div', { class: 'text-sm text-right' }, row.getValue('discountPercentage')),
+    cell: ({ row }) => h('div', { class: 'text-sm text-right' }, formatNumber(row.getValue('discountPercentage'))),
   },
   {
     accessorKey: 'extendedPrice',
     header: ({ column }) => h('div', { class: 'text-sm font-medium' }, 'Extended Price (Rp)'),
-    cell: ({ row }) => h('div', { class: 'text-sm' }, row.getValue('extendedPrice')),
+    cell: ({ row }) => h('div', { class: 'text-sm text-right' }, formatNumber(row.getValue('extendedPrice'))),
   },
 ]

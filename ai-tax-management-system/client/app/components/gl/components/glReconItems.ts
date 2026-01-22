@@ -19,7 +19,19 @@ export const glReconColumns: ColumnDef<NonNullable<GL['glReconItem']>[number], a
   {
     accessorKey: 'typeOfTax',
     header: ({ column }) => h('div', { class: 'text-sm font-medium' }, 'Type of Tax'),
-    cell: ({ row }) => h('div', { class: 'text-sm text-muted-foreground' }, row.getValue('typeOfTax')),
+    cell: ({ row }) => 
+      h
+      (
+        'div', 
+        { 
+          class: 'text-sm', 
+          contenteditable: 'true',
+          onInput: (e: Event) => {
+            row.original.typeOfTax = (e.target as HTMLDivElement).innerText
+          },
+        }, 
+        row.getValue('typeOfTax')
+      ),
   },
   {
     accessorKey: 'taxBase',
@@ -28,8 +40,15 @@ export const glReconColumns: ColumnDef<NonNullable<GL['glReconItem']>[number], a
   },
   {
     accessorKey: 'rate',
-    header: ({ column }) => h('div', { class: 'text-sm font-medium' }, 'Rate'),
-    cell: ({ row }) => h('div', { class: 'text-sm text-right' }, row.getValue('rate')),
+    header: ({ column }) => h('div', { class: 'text-sm font-medium' }, 'Rate %'),
+    cell: ({ row }) => {
+      const rate = row.getValue<number>('rate')
+      return h(
+        'div',
+        { class: 'text-sm text-right' },
+        `${rate * 100}`
+      )
+    },
   },
   {
     accessorKey: 'whtNormal',
@@ -39,11 +58,23 @@ export const glReconColumns: ColumnDef<NonNullable<GL['glReconItem']>[number], a
   {
     accessorKey: 'remarks',
     header: ({ column }) => h('div', { class: 'text-sm font-medium' }, 'Remarks'),
-    cell: ({ row }) => h('div', { class: 'text-sm' }, row.getValue('remarks')),
+    cell: ({ row }) => 
+      h
+      (
+        'div', 
+        { 
+          class: 'text-sm', 
+          contenteditable: 'true',
+          onInput: (e: Event) => {
+            row.original.remarks = (e.target as HTMLDivElement).innerText
+          }, 
+        }, 
+        row.getValue('remarks')
+      ),
   },
   {
     accessorKey: 'diffNormal',
     header: ({ column }) => h('div', { class: 'text-sm font-medium' }, 'Diff Normal'),
-    cell: ({ row }) => h('div', { class: 'text-sm' }, row.getValue('diffNormal') ?? '-'),
+    cell: ({ row }) => h('div', { class: 'text-sm text-right' }, row.getValue('diffNormal') ?? '-'),
   },
 ]

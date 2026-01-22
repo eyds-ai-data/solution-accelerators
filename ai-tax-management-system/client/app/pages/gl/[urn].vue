@@ -31,7 +31,8 @@ import {
   Save
 } from 'lucide-vue-next'
 import { Skeleton } from '@/components/ui/skeleton'
-import { useGLTransactionDetail, useInvoices, useTaxInvoices } from '~/composables/useTaxApi'
+import { useGLTransactionDetail, useInvoices, useTaxInvoices } from '@/composables/useTaxApi'
+import { formatNumber } from '@/components/gl/components/numbering'
 
 const route = useRoute()
 const router = useRouter()
@@ -284,12 +285,12 @@ const activeTab = ref<'invoice' | 'tax'>('invoice')
                   
                     <div class="flex justify-between items-center text-sm min-h-[36px]">
                       <span class="text-muted-foreground"><strong>Tax Based</strong></span>
-                      <span class="font-medium">{{ gl.taxBased }}</span>
+                      <span class="font-medium">{{ formatNumber(gl.taxBased) }}</span>
                     </div>
 
                     <div class="flex justify-between items-center text-sm min-h-[36px]">
                       <span class="text-muted-foreground"><strong>WHT</strong></span>
-                      <span class="font-medium">{{ gl.wht }}</span>
+                      <span class="font-medium">{{ formatNumber(gl.wht) }}</span>
                     </div>
                   </div>
 
@@ -299,7 +300,7 @@ const activeTab = ref<'invoice' | 'tax'>('invoice')
                     <div class="flex justify-between items-center text-sm min-h-[36px]">
                       <span class="text-muted-foreground"><strong>Tax Base WHT (Normal)</strong></span>
                       <input
-                        type="text"
+                        type="number"
                         class="w-48 rounded-md border px-2 py-1 text-sm"
                         disabled
                       />
@@ -308,7 +309,7 @@ const activeTab = ref<'invoice' | 'tax'>('invoice')
                     <div class="flex justify-between items-center text-sm min-h-[36px]">
                       <span class="text-muted-foreground"><strong>WHT (Normal)</strong></span>
                       <input
-                        type="text"
+                        type="number"
                         class="w-48 rounded-md border px-2 py-1 text-sm"
                         disabled
                       />
@@ -389,7 +390,7 @@ const activeTab = ref<'invoice' | 'tax'>('invoice')
 
                     <div class="flex justify-between items-center text-sm min-h-[36px]">
                       <span class="text-muted-foreground"><strong>Amount in Document Currency</strong></span>
-                      <span class="font-medium">{{ gl.amountInDocumentCurrency }}</span>
+                      <span class="font-medium">{{ formatNumber(gl.amountInDocumentCurrency) }}</span>
                     </div>
 
                     <div class="flex justify-between items-center text-sm min-h-[36px]">
@@ -399,22 +400,22 @@ const activeTab = ref<'invoice' | 'tax'>('invoice')
 
                     <div class="flex justify-between items-center text-sm min-h-[36px]">
                       <span class="text-muted-foreground"><strong>Amount in Local Currency</strong></span>
-                      <span class="font-medium">{{ gl.amountInLocalCurrency }}</span>
+                      <span class="font-medium">{{ formatNumber(gl.amountInLocalCurrency) }}</span>
                     </div>
 
                     <div class="flex justify-between items-center text-sm min-h-[36px]">
                       <span class="text-muted-foreground"><strong>Tax Based</strong></span>
-                      <span class="font-medium">{{ gl.taxBased }}</span>
+                      <span class="font-medium">{{ formatNumber(gl.taxBased) }}</span>
                     </div>
 
                     <div class="flex justify-between items-center text-sm min-h-[36px]">
-                      <span class="text-muted-foreground"><strong>Tax Rate</strong></span>
-                      <span class="font-medium">{{ gl.taxRate }}</span>
+                      <span class="text-muted-foreground"><strong>Tax Rate %</strong></span>
+                      <span class="font-medium">{{ formatNumber(gl.taxRate*100) }}</span>
                     </div>
 
                     <div class="flex justify-between items-center text-sm min-h-[36px]">
                       <span class="text-muted-foreground"><strong>WHT</strong></span>
-                      <span class="font-medium">{{ gl.wht }}</span>
+                      <span class="font-medium">{{ formatNumber(gl.wht) }}</span>
                     </div>
                   </div>
                 </div>
@@ -478,29 +479,29 @@ const activeTab = ref<'invoice' | 'tax'>('invoice')
                     </div>
                     <div class="flex justify-between items-center text-sm min-h-[36px]">
                       <span class="text-muted-foreground"><strong>Sub Total Amount</strong></span>
-                      <span class="font-medium">{{ invoice?.subTotalAmount }}</span>
+                      <span class="font-medium">{{ formatNumber(invoice?.subTotalAmount) }}</span>
                     </div>
                   </div>
                   <div>
                     <div class="flex justify-between items-center text-sm min-h-[36px]">
                       <span class="text-muted-foreground"><strong>VAT %</strong></span>
-                      <span class="font-medium">{{ invoice?.vatPercentage }}</span>
+                      <span class="font-medium">{{ formatNumber(invoice?.vatPercentage) }}</span>
                     </div>
                     <div class="flex justify-between items-center text-sm min-h-[36px]">
                       <span class="text-muted-foreground"><strong>VAT Amount</strong></span>
-                      <span class="font-medium">{{ invoice?.vatAmount }}</span>
+                      <span class="font-medium">{{ formatNumber(invoice?.vatAmount) }}</span>
                     </div>
                     <div class="flex justify-between items-center text-sm min-h-[36px]">
                       <span class="text-muted-foreground"><strong>WHT %</strong></span>
-                      <span class="font-medium">{{ invoice?.whtPercentage }}</span>
+                      <span class="font-medium">{{ formatNumber(invoice?.whtPercentage) }}</span>
                     </div>
                     <div class="flex justify-between items-center text-sm min-h-[36px]">
                       <span class="text-muted-foreground"><strong>WHT Amount</strong></span>
-                      <span class="font-medium">{{ invoice?.whtAmount }}</span>
+                      <span class="font-medium">{{ formatNumber(invoice?.whtAmount) }}</span>
                     </div>
                     <div class="flex justify-between items-center text-sm min-h-[36px]">
                       <span class="text-muted-foreground"><strong>Total Amount</strong></span>
-                      <span class="font-medium">{{ invoice?.totalAmount }}</span>
+                      <span class="font-medium">{{ formatNumber(invoice?.totalAmount) }}</span>
                     </div>
                   </div>
                 </div>
@@ -588,29 +589,29 @@ const activeTab = ref<'invoice' | 'tax'>('invoice')
                   <div>
                     <div class="flex justify-between items-center text-sm h-12 mb-3">
                       <span class="text-muted-foreground w-48 break-words"><strong>Total Harga Jual / Penggantian / Uang Muka / Termin</strong></span>
-                      <span class="font-medium">{{ taxInvoice?.totalTaxBaseWht }}</span>
+                      <span class="font-medium">{{ formatNumber(taxInvoice?.totalTaxBaseWht) }}</span>
                     </div>
                     <div class="flex justify-between items-center text-sm h-12 mb-3">
                       <span class="text-muted-foreground w-48 break-words"><strong>Dikurangi Potongan Harga</strong></span>
-                      <span class="font-medium">{{ taxInvoice?.dikurangiPotonganHarga }}</span>
+                      <span class="font-medium">{{ formatNumber(taxInvoice?.dikurangiPotonganHarga) }}</span>
                     </div>
                     <div class="flex justify-between items-center text-sm h-12 mb-3">
                       <span class="text-muted-foreground w-48 break-words"><strong>Dikurangi Uang Muka yang telah diterima</strong></span>
-                      <span class="font-medium">{{ taxInvoice?.dikurangiUangMukaYangTelahDiterima }}</span>
+                      <span class="font-medium">{{ formatNumber(taxInvoice?.dikurangiUangMukaYangTelahDiterima) }}</span>
                     </div>
                   </div>
                   <div>
                     <div class="flex justify-between items-center text-sm h-12 mb-3">
                       <span class="text-muted-foreground w-48 break-words"><strong>Dasar Pengenaan Pajak</strong></span>
-                      <span class="font-medium">{{ taxInvoice?.dasarPengenaanPajak }}</span>
+                      <span class="font-medium">{{ formatNumber(taxInvoice?.dasarPengenaanPajak) }}</span>
                     </div>
                     <div class="flex justify-between items-center text-sm h-12 mb-3">
                       <span class="text-muted-foreground w-48 break-words"><strong>Jumlah PPN (Pajak Pertambahan Nilai)</strong></span>
-                      <span class="font-medium">{{ taxInvoice?.jumlahPpn }}</span>
+                      <span class="font-medium">{{ formatNumber(taxInvoice?.jumlahPpn) }}</span>
                     </div>
                     <div class="flex justify-between items-center text-sm h-12 mb-3">
                       <span class="text-muted-foreground w-48 break-words"><strong>Jumlah PPnBM (Pajak Penjualan atas Barang Mewah)</strong></span>
-                      <span class="font-medium">{{ taxInvoice?.jumlahPpnbm }}</span>
+                      <span class="font-medium">{{ formatNumber(taxInvoice?.jumlahPpnbm) }}</span>
                     </div>
                   </div>
                 </div>
@@ -628,8 +629,8 @@ const activeTab = ref<'invoice' | 'tax'>('invoice')
   </div>
   <div v-else class="min-h-screen flex items-center justify-center bg-muted/40">
     <div class="text-center">
-      <h2 class="text-2xl font-bold text-foreground">Job Not Found</h2>
-      <p class="text-muted-foreground mt-2">The job you are looking for does not exist.</p>
+      <h2 class="text-2xl font-bold text-foreground">GL Not Found</h2>
+      <p class="text-muted-foreground mt-2">The GL you are looking for does not exist.</p>
       <Button class="mt-4" @click="goBack">Go Back</Button>
     </div>
   </div>
