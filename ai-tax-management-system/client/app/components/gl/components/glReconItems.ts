@@ -1,6 +1,7 @@
 import type { ColumnDef } from '@tanstack/vue-table'
 import { h } from 'vue'
 import type { GL } from '../data/schema'
+import { BotIcon, UserPenIcon } from 'lucide-vue-next'
 
 export const glReconColumns: ColumnDef<NonNullable<GL['glReconItem']>[number], any>[] = [
   // Auto-number column
@@ -76,5 +77,18 @@ export const glReconColumns: ColumnDef<NonNullable<GL['glReconItem']>[number], a
     accessorKey: 'diffNormal',
     header: ({ column }) => h('div', { class: 'text-sm font-medium' }, 'Diff Normal'),
     cell: ({ row }) => h('div', { class: 'text-sm text-right' }, row.getValue('diffNormal') ?? '-'),
+  },
+  {
+    accessorKey: 'checker',
+    header: ({ column }) => h('div', { style: { width: '40px', textAlign: 'right' }, class: 'text-sm font-medium' }, ),
+    enableSorting: false,
+    cell: () =>
+      h('div', { style: { width: '40px', textAlign: 'center' } }, 
+        h(BotIcon, {
+          width: '80px',
+          size: 20,
+          class: 'text-gray-600',
+        })
+      )
   },
 ]
