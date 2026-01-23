@@ -148,8 +148,8 @@ const formatCurrency = (amount: number, currency: string) => {
   </div>
   <div v-else class="min-h-screen flex items-center justify-center bg-muted/40">
     <div class="text-center">
-      <h2 class="text-2xl font-bold text-foreground">Job Not Found</h2>
-      <p class="text-muted-foreground mt-2">The job you are looking for does not exist.</p>
+      <h2 class="text-2xl font-bold text-foreground">GL Not Found</h2>
+      <p class="text-muted-foreground mt-2">The GL you are looking for does not exist.</p>
       <Button class="mt-4" @click="goBack">Go Back</Button>
     </div>
   </div>
