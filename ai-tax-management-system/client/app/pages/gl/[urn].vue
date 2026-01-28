@@ -179,7 +179,7 @@ const activeTab = ref<'invoice' | 'tax'>('invoice')
             <div class="space-y-3">
               <div class="flex justify-between items-center text-sm min-h-[36px]">
                 <span class="text-muted-foreground"><strong>Vendor Name</strong></span>
-                <span class="font-medium">{{ gl.vendorId }}</span>
+                <span class="font-medium">{{ gl.vendorName }}</span>
               </div>
 
               <div class="flex justify-between items-center text-sm min-h-[36px]">
@@ -216,6 +216,7 @@ const activeTab = ref<'invoice' | 'tax'>('invoice')
                  <input
                   type="text"
                   class="w-48 rounded-md border px-2 py-1 text-sm"
+                  :value="formatNumber(gl.diffNormal)"
                   disabled
                 />
               </div>
@@ -302,6 +303,7 @@ const activeTab = ref<'invoice' | 'tax'>('invoice')
                       <input
                         type="number"
                         class="w-48 rounded-md border px-2 py-1 text-sm"
+                        :value="formatNumber(gl.taxBasedWhtNormal)"
                         disabled
                       />
                     </div>
@@ -311,6 +313,7 @@ const activeTab = ref<'invoice' | 'tax'>('invoice')
                       <input
                         type="number"
                         class="w-48 rounded-md border px-2 py-1 text-sm"
+                        :value="formatNumber(gl.whtNormal)"
                         disabled
                       />
                     </div>
