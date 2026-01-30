@@ -28,7 +28,9 @@ import {
   Edit,
   Trash2,
   CheckCircle2,
-  Save
+  Save,
+  ChevronLeft,
+  ChevronRight
 } from 'lucide-vue-next'
 import { Skeleton } from '@/components/ui/skeleton'
 import { useGLTransactionDetail, useInvoices, useTaxInvoices } from '@/composables/useTaxApi'
@@ -50,14 +52,44 @@ onMounted(async () => {
 })
 
 const gl = computed(() => glTransaction.value)
-const invoice = computed(() =>
-  invoices.value.find(i => i.urn === glId) ?? null
-)
-const taxInvoice = computed(() =>
-  taxInvoices.value.find(t => t.urn === glId) ?? null
-)
+
+// Pagination state for invoices and tax invoices
+const currentInvoiceIndex = ref(0)
+const currentTaxInvoiceIndex = ref(0)
+
+const filteredInvoices = computed(() => invoices.value.filter(i => i.urn === glId))
+const filteredTaxInvoices = computed(() => taxInvoices.value.filter(t => t.urn === glId))
+
+const invoice = computed(() => filteredInvoices.value[currentInvoiceIndex.value] ?? null)
+const taxInvoice = computed(() => filteredTaxInvoices.value[currentTaxInvoiceIndex.value] ?? null)
+
 const showGlDetails = ref(false)
 const reconItems = computed(() => gl.value?.glReconItem ?? [])
+
+// Navigation functions
+const nextInvoice = () => {
+  if (currentInvoiceIndex.value < filteredInvoices.value.length - 1) {
+    currentInvoiceIndex.value++
+  }
+}
+
+const previousInvoice = () => {
+  if (currentInvoiceIndex.value > 0) {
+    currentInvoiceIndex.value--
+  }
+}
+
+const nextTaxInvoice = () => {
+  if (currentTaxInvoiceIndex.value < filteredTaxInvoices.value.length - 1) {
+    currentTaxInvoiceIndex.value++
+  }
+}
+
+const previousTaxInvoice = () => {
+  if (currentTaxInvoiceIndex.value > 0) {
+    currentTaxInvoiceIndex.value--
+  }
+}
 
 // const invoicePdfUrl = computed(() =>
 //   invoice.value
@@ -449,7 +481,33 @@ const activeTab = ref<'invoice' | 'tax'>('invoice')
           <!-- Tab Panels -->
           <div>
             <!-- Invoice Detail Tab -->
-            <div v-if="activeTab === 'invoice'" class="grid grid-cols-1 lg:grid-cols-3 gap-6">
+            <div v-if="activeTab === 'invoice'">
+              <!-- Navigation Controls -->
+              <div v-if="filteredInvoices.length > 1" class="flex items-center justify-between mb-4">
+                <Button
+                  variant="outline"
+                  size="sm"
+                  :disabled="currentInvoiceIndex === 0"
+                  @click="previousInvoice"
+                >
+                  <ChevronLeft class="h-4 w-4 mr-1" />
+                  Previous
+                </Button>
+                <span class="text-sm text-muted-foreground">
+                  Invoice {{ currentInvoiceIndex + 1 }} of {{ filteredInvoices.length }}
+                </span>
+                <Button
+                  variant="outline"
+                  size="sm"
+                  :disabled="currentInvoiceIndex === filteredInvoices.length - 1"
+                  @click="nextInvoice"
+                >
+                  Next
+                  <ChevronRight class="h-4 w-4 ml-1" />
+                </Button>
+              </div>
+              
+              <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
               <!-- PDF preview -->
               <div class="border rounded-md overflow-hidden h-[500px]">
                 <iframe
@@ -514,10 +572,37 @@ const activeTab = ref<'invoice' | 'tax'>('invoice')
                   <DataTableInvoices :data="invoice?.invoiceDetail ?? []" :columns="invoiceDetailColumns" />
                 </div>
               </div>
+              </div>
             </div>
 
             <!-- Tax Invoice Tab -->
-            <div v-if="activeTab === 'tax'" class="grid grid-cols-1 lg:grid-cols-3 gap-6">
+            <div v-if="activeTab === 'tax'">
+              <!-- Navigation Controls -->
+              <div v-if="filteredTaxInvoices.length > 1" class="flex items-center justify-between mb-4">
+                <Button
+                  variant="outline"
+                  size="sm"
+                  :disabled="currentTaxInvoiceIndex === 0"
+                  @click="previousTaxInvoice"
+                >
+                  <ChevronLeft class="h-4 w-4 mr-1" />
+                  Previous
+                </Button>
+                <span class="text-sm text-muted-foreground">
+                  Tax Invoice {{ currentTaxInvoiceIndex + 1 }} of {{ filteredTaxInvoices.length }}
+                </span>
+                <Button
+                  variant="outline"
+                  size="sm"
+                  :disabled="currentTaxInvoiceIndex === filteredTaxInvoices.length - 1"
+                  @click="nextTaxInvoice"
+                >
+                  Next
+                  <ChevronRight class="h-4 w-4 ml-1" />
+                </Button>
+              </div>
+              
+              <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
               <!-- PDF preview -->
               <div class="border rounded-md overflow-hidden h-[500px]">
                 <iframe
@@ -623,6 +708,7 @@ const activeTab = ref<'invoice' | 'tax'>('invoice')
                 <div>
                   <DataTableTaxInvoices :data="taxInvoice?.taxInvoiceDetail ?? []" :columns="taxInvoiceDetailColumns" />
                 </div>
+              </div>
               </div>
             </div>
           </div>
