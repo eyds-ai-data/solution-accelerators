@@ -22,6 +22,9 @@ import DataTablePagination from './DataTablePagination.vue'
 import DataTableToolbar from './DataTableToolbar.vue'
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from '@/components/ui/table'
 import { ref } from 'vue'
+import { useRouter } from 'vue-router'
+
+const router = useRouter()
 
 interface DataTableProps {
   columns: ColumnDef<GL, any>[]
@@ -58,6 +61,13 @@ const table = useVueTable({
   getFacetedRowModel: getFacetedRowModel(),
   getFacetedUniqueValues: getFacetedUniqueValues(),
 })
+
+const handleRowClick = (row: any) => {
+  const urn = row.original.urn
+  if (urn) {
+    router.push(`/gl/${urn}`)
+  }
+}
 </script>
 
 <template>
@@ -74,7 +84,13 @@ const table = useVueTable({
         </TableHeader>
         <TableBody>
           <template v-if="table.getRowModel().rows?.length">
-            <TableRow v-for="row in table.getRowModel().rows" :key="row.id" :data-state="row.getIsSelected() && 'selected'">
+            <TableRow 
+              v-for="row in table.getRowModel().rows" 
+              :key="row.id" 
+              :data-state="row.getIsSelected() && 'selected'"
+              @click="handleRowClick(row)"
+              class="cursor-pointer hover:bg-muted/50"
+            >
               <TableCell v-for="cell in row.getVisibleCells()" :key="cell.id">
                 <FlexRender :render="cell.column.columnDef.cell" :props="cell.getContext()" />
               </TableCell>

@@ -1,7 +1,8 @@
 import type { ColumnDef } from '@tanstack/vue-table'
 import { h } from 'vue'
 import type { GL } from '../data/schema'
-import { BotIcon, UserPenIcon } from 'lucide-vue-next'
+import { BotIcon, UserPenIcon, SparklesIcon } from 'lucide-vue-next'
+import { formatNumber } from './numbering'
 
 export const glReconColumns: ColumnDef<NonNullable<GL['glReconItem']>[number], any>[] = [
   // Auto-number column
@@ -37,7 +38,7 @@ export const glReconColumns: ColumnDef<NonNullable<GL['glReconItem']>[number], a
   {
     accessorKey: 'taxBase',
     header: ({ column }) => h('div', { class: 'text-sm font-medium' }, 'Tax Base'),
-    cell: ({ row }) => h('div', { class: 'text-sm text-right' }, row.getValue('taxBase')),
+    cell: ({ row }) => h('div', { class: 'text-sm text-right' }, formatNumber(row.getValue('taxBase'))),
   },
   {
     accessorKey: 'rate',
@@ -54,7 +55,7 @@ export const glReconColumns: ColumnDef<NonNullable<GL['glReconItem']>[number], a
   {
     accessorKey: 'whtNormal',
     header: ({ column }) => h('div', { class: 'text-sm font-medium' }, 'WHT Normal'),
-    cell: ({ row }) => h('div', { class: 'text-sm text-right' }, row.getValue('whtNormal')),
+    cell: ({ row }) => h('div', { class: 'text-sm text-right' }, formatNumber(row.getValue('whtNormal'))),
   },
   {
     accessorKey: 'remarks',
@@ -84,10 +85,10 @@ export const glReconColumns: ColumnDef<NonNullable<GL['glReconItem']>[number], a
     enableSorting: false,
     cell: () =>
       h('div', { style: { width: '40px', textAlign: 'center' } }, 
-        h(BotIcon, {
+        h(SparklesIcon, {
           width: '80px',
           size: 20,
-          class: 'text-gray-600',
+          class: 'text-yellow-500',
         })
       )
   },
