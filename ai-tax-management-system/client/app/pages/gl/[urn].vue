@@ -301,7 +301,7 @@ const activeTab = ref<'invoice' | 'tax'>('invoice')
                     <div class="flex justify-between items-center text-sm min-h-[36px]">
                       <span class="text-muted-foreground"><strong>Tax Base WHT (Normal)</strong></span>
                       <input
-                        type="number"
+                        type="text"
                         class="w-48 rounded-md border px-2 py-1 text-sm"
                         :value="formatNumber(gl.taxBasedWhtNormal)"
                         disabled
@@ -311,7 +311,7 @@ const activeTab = ref<'invoice' | 'tax'>('invoice')
                     <div class="flex justify-between items-center text-sm min-h-[36px]">
                       <span class="text-muted-foreground"><strong>WHT (Normal)</strong></span>
                       <input
-                        type="number"
+                        type="text"
                         class="w-48 rounded-md border px-2 py-1 text-sm"
                         :value="formatNumber(gl.whtNormal)"
                         disabled
@@ -408,7 +408,7 @@ const activeTab = ref<'invoice' | 'tax'>('invoice')
 
                     <div class="flex justify-between items-center text-sm min-h-[36px]">
                       <span class="text-muted-foreground"><strong>Tax Based</strong></span>
-                      <span class="font-medium">{{ formatNumber(gl.taxBased) }}</span>
+                      <span class="font-medium">{{ formatNumber(gl.taxBase) }}</span>
                     </div>
 
                     <div class="flex justify-between items-center text-sm min-h-[36px]">

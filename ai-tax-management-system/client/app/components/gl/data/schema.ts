@@ -39,7 +39,7 @@ export const glSchema = z.object({
   ref: z.string(),
   firstVouching: z.string().nullable(),
   secondReviewer: z.string(),
-  taxBasedWhtNormal: z.number(),
+  taxBasedWhtNormal: z.number().nullable(),
   whtNormal: z.number(),
   whtSlipNumber: z.string().nullable(),
   diffNormal: z.number(),
