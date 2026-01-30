@@ -526,8 +526,9 @@ class ContentExtraction:
             result = await self.process_documents_in_folder(file_id=document_id)
 
             urn = next((res.get('analysis_result', {}).get('urn') for res in result if res.get('analysis_result') and res.get('analysis_result', {}).get('urn')), None)
-            if urn:
-                await self.reconciliation_process(urn=urn)
+            # TODO: continue this
+            # if urn:
+            #     await self.reconciliation_process(urn=urn)
 
             self.azure_cosmos_repo.update_document(
                 document_id=document_id,
