@@ -25,9 +25,9 @@ export const columns: ColumnDef<GL>[] = [
     cell: ({ row }) => h('div', { class: 'max-w-[200px] font-medium' }, row.getValue('urn')),
   },
   {
-    accessorKey: 'vendorId',
-    header: ({ column }) => h(DataTableColumnHeader, { column, title: 'Vendor Id' }),
-    cell: ({ row }) => h('div', { class: 'text-sm text-muted-foreground' }, row.getValue('vendorId')),
+    accessorKey: 'vendorName',
+    header: ({ column }) => h(DataTableColumnHeader, { column, title: 'Vendor Name' }),
+    cell: ({ row }) => h('div', { class: 'text-sm text-muted-foreground' }, row.getValue('vendorName')),
   },
   {
     accessorKey: 'referenceNumber',
