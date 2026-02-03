@@ -45,12 +45,6 @@ XLSX_TO_GL_TRANSACTION_MAP = {
     "Amount in document currency": "amount_in_document_currency",
     "Loc Curr": "local_currency",
     "Amount in local cur.": "amount_in_local_currency",
-    "Ref": "ref", # TODO: remove this field later
-    "WHT Review": "wht_review", # TODO : remove this field later
-    "1st Vouching": "first_voucing", # TODO: remove this field later
-    "2nd Reviewer": "second_reviewer", # TODO: remove this field later
-    "Type of Tax": "type_of_tax", # TODO: remove this field later
-    "Docu Ty": "document_type", # TODO: remove this field later
 }
 
 class GLUpload:
@@ -316,7 +310,6 @@ class GLUpload:
             "vendor_id": "UNKNOWN",  # Default vendor_id if lookup fails
             "vendor_code": "",
             "vendor_name": "",
-            "first_voucing": "" # TODO: remove this field later
         }
         
         # Required numeric fields
@@ -326,8 +319,7 @@ class GLUpload:
             "tax_rate": 0.0,
             "amount_in_document_currency": 0.0,
             "amount_in_local_currency": 0.0,
-            "wht_normal": 0.0,
-            "diff_normal": 0.0
+            "wht_normal": 0.0
         }
         
         # Set defaults for missing string fields
@@ -355,8 +347,7 @@ class GLUpload:
             "id", "cocd", "gl", "year_month", "type", "reference_number",
             "document_number", "vendor_id", "vendor_code", "vendor_name", "po_number", "urn", "username",
             "text", "clearing_document", "document_date", "posting_date",
-            "document_currency", "local_currency", "ref", "first_voucing",
-            "second_reviewer", "gl_transaction_id"
+            "document_currency", "local_currency", "gl_transaction_id"
         ]
         
         # Extra fields from XLSX (not in Cosmos DB schema, kept for reference)

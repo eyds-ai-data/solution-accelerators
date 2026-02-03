@@ -53,26 +53,6 @@ export const columns: ColumnDef<GL>[] = [
     },
   },
   {
-    accessorKey: 'diffNormal',
-    header: ({ column }) => h(DataTableColumnHeader, { column, title: 'Diff Normal' }),
-    cell: ({ row }) => h('div', { class: 'text-sm' }, row.getValue('diffNormal')),
-  },
-  {
-    accessorKey: 'ref',
-    header: ({ column }) => h(DataTableColumnHeader, { column, title: 'Ref' }),
-    cell: ({ row }) => h('div', { class: 'text-sm' }, row.getValue('ref')),
-  },
-  {
-    accessorKey: 'firstVouching',
-    header: ({ column }) => h(DataTableColumnHeader, { column, title: 'First Vouching' }),
-    cell: ({ row }) => h('div', { class: 'text-sm' }, row.getValue('firstVouching')),
-  },
-  {
-    accessorKey: 'secondReviewer',
-    header: ({ column }) => h(DataTableColumnHeader, { column, title: 'Second Reviewer' }),
-    cell: ({ row }) => h('div', { class: 'text-sm' }, row.getValue('secondReviewer')),
-  },
-  {
     id: 'actions',
     cell: ({ row }) => h(DataTableRowActions, { row }),
   },

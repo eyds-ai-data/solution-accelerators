@@ -145,6 +145,7 @@ class ContentExtraction:
                                 result['urn'] = urn
                                 result['invoiceId'] = str(uuid.uuid4())
                                 result['documentUrl'] = file_url
+                                result['classification'] = ContentType.Invoice.value
 
                                 # save the result to cosmos db
                                 if self.azure_cosmos_repo and urn:
@@ -152,7 +153,6 @@ class ContentExtraction:
                                         document_data=result,
                                         container_id="invoices"
                                     )
-
                             elif content_classification_data == ContentType.TaxInvoice.value:
                                 # Initialize accumulated_content if not provided
                                 if accumulated_content is None:
@@ -192,6 +192,7 @@ class ContentExtraction:
                                 result['taxInvoiceId'] = str(uuid.uuid4())
                                 result['documentUrl'] = merged_pdf_url
                                 result['total_pages'] = len(accumulated_content)
+                                result['classification'] = ContentType.TaxInvoice.value
 
                                 if self.azure_cosmos_repo and urn:
                                     self.azure_cosmos_repo.create_document(
@@ -206,7 +207,12 @@ class ContentExtraction:
                                 result = await self.llm_service_repo.get_gl_extraction(document_text=content)
                                 result['documentUrl'] = file_url
                             else:
-                                result = {"message": "Content type is Unknown, no extraction performed."}
+                                result = {
+                                    "message": "Content type is Unknown, no extraction performed.",
+                                    "urn": urn,
+                                    "documentUrl": file_url,
+                                    "classification": ContentType.Unknown.value
+                                }
 
                             logger.info(f"Content classification completed for {request_id}")
                         except Exception as e:
@@ -327,6 +333,7 @@ class ContentExtraction:
             analysis_results = []
             accumulated_tax_invoice_content = []  # Track incomplete tax invoice pages
             accumulated_tax_invoice_urls = []  # Track file URLs for incomplete tax invoice pages
+            suitable_documents_found = False  # Flag to track if any invoices/tax invoices were found
             
             # Loop through each file
             for file_info in files:
@@ -380,6 +387,12 @@ class ContentExtraction:
                     
                     logger.info(f"Successfully analyzed: {blob_name}")
                     
+                    # Check if this is a suitable document (Invoice or TaxInvoice)
+                    classification = final_result.get("classification", "")
+                    if classification in [ContentType.Invoice.value, ContentType.TaxInvoice.value]:
+                        suitable_documents_found = True
+                        logger.info(f"Suitable document found: {blob_name} - Classification: {classification}")
+                    
                     analysis_results.append({
                         "blob_name": blob_name,
                         "file_url": file_url,
@@ -403,7 +416,13 @@ class ContentExtraction:
                     })
             
             logger.info(f"Completed processing {len(analysis_results)} documents from folder {file_id}")
-            return analysis_results
+            logger.info(f"Suitable documents (Invoice/TaxInvoice) found: {suitable_documents_found}")
+            
+            return {
+                "results": analysis_results,
+                "suitable_documents_found": suitable_documents_found,
+                "total_files_processed": len(analysis_results)
+            }
             
         except Exception as e:
             logger.error(f"Error processing documents in folder {file_id}: {e}")
@@ -524,8 +543,15 @@ class ContentExtraction:
             logger.info(f"Processing content extraction for document ID: {document_id}")
 
             result = await self.process_documents_in_folder(file_id=document_id)
+            
+            # Extract results and flags
+            analysis_results = result.get("results", [])
+            suitable_documents_found = result.get("suitable_documents_found", False)
+            
+            if not suitable_documents_found:
+                logger.warning(f"No suitable documents (Invoice/TaxInvoice) found in folder {document_id}")
 
-            urn = next((res.get('analysis_result', {}).get('urn') for res in result if res.get('analysis_result') and res.get('analysis_result', {}).get('urn')), None)
+            urn = next((res.get('analysis_result', {}).get('urn') for res in analysis_results if res.get('analysis_result') and res.get('analysis_result', {}).get('urn')), None)
             # TODO: continue this
             # if urn:
             #     await self.reconciliation_process(urn=urn)
@@ -535,7 +561,9 @@ class ContentExtraction:
                 update_data={
                     "urn": urn,
                     "status": "completed",
-                    "completed_at": datetime.utcnow().isoformat()
+                    "completed_at": datetime.utcnow().isoformat(),
+                    "suitable_documents_found": suitable_documents_found,
+                    "has_no_documents": not suitable_documents_found
                 },
                 container_id="uploads",
                 partial_update=True
