@@ -60,26 +60,15 @@ class AzureCosmosDBRepository:
         except Exception as e:
             raise
 
-    def get_document_by_id(self, document_id: str, partition_key: Optional[str] = None, container_id: Optional[str] = None) -> Dict[str, Any]:
-        """
-        Get a specific document by ID
-        
-        Args:
-            document_id: Document ID to retrieve
-            partition_key: Partition key value. If not provided, uses document_id
-            
-        Returns:
-            Retrieved document
-        """
+    def get_document_by_id(self, document_id: str, partition_key: Optional[str] = None, container_id: Optional[str] = None) -> Optional[Dict[str, Any]]:
         try:
             container = self.database.get_container_client(container_id) if container_id else self.container
-            pk = partition_key if partition_key else document_id
-            item = container.read_item(item=document_id, partition_key=pk)
+            item = container.read_item(item=document_id, partition_key=partition_key)
             logger.info(f"Retrieved document: {document_id}")
             return item
         except exceptions.CosmosResourceNotFoundError:
             logger.warning(f"Document not found: {document_id}")
-            raise
+            return None
         except Exception as e:
             logger.error(f"Error retrieving document {document_id}: {e}")
             raise
@@ -208,7 +197,8 @@ class AzureCosmosDBRepository:
         update_data: Dict[str, Any],
         partition_key: Optional[str] = None,
         partial_update: bool = True,
-        container_id: Optional[str] = None
+        container_id: Optional[str] = None,
+        create_if_not_exists: bool = True
     ) -> Dict[str, Any]:
         """
         Update an existing document
@@ -218,6 +208,7 @@ class AzureCosmosDBRepository:
             update_data: Data to update (merged with existing if partial_update=True)
             partition_key: Partition key value. If not provided, uses document_id
             partial_update: If True, merge with existing data. If False, replace entire document.
+            create_if_not_exists: If True, create document if it doesn't exist. If False, raise error.
             
         Returns:
             Updated document
@@ -227,15 +218,35 @@ class AzureCosmosDBRepository:
             pk = partition_key if partition_key else document_id
             
             if partial_update:
+
                 # Get existing document and merge
-                existing = self.get_document_by_id(document_id, partition_key, container_id)
+                existing = self.get_document_by_id(
+                    document_id=document_id,
+                    partition_key=partition_key,
+                    container_id=container_id
+                )
                 
-                # Update fields (preserve id and created_at)
-                for key, value in update_data.items():
-                    if key not in ["id", "created_at"]:
-                        existing[key] = value
-                
-                document = existing
+                if existing is None:
+                    # Document doesn't exist
+                    if create_if_not_exists:
+                        logger.info(f"Document {document_id} not found, creating new document")
+                        document = {
+                            **update_data,
+                            "id": document_id,
+                            "created_at": datetime.utcnow().isoformat(),
+                            "updated_at": datetime.utcnow().isoformat()
+                        }
+                    else:
+                        logger.error(f"Document not found: {document_id}")
+                        raise exceptions.CosmosResourceNotFoundError(f"Document {document_id} not found")
+                else:
+                    # Update existing document
+                    # Update fields (preserve id and created_at)
+                    for key, value in update_data.items():
+                        if key not in ["id", "created_at"]:
+                            existing[key] = value
+                    
+                    document = existing
             else:
                 # Replace entire document
                 document = {
@@ -478,3 +489,33 @@ class AzureCosmosDBRepository:
         except Exception as e:
             logger.error(f"Error performing hybrid search: {e}")
             raise
+
+# Simple test for get_document_by_id
+# if __name__ == "__main__":
+#     import os
+    
+#     # Test credentials
+#     connection_string = "AccountEndpoint=https://eyds.documents.azure.com:443/;AccountKey=plR3OxNYJtmxuxCeMYp6SnXiixULM56lyMCFFDVxJCp0oPPd1aDnPUznddnUFLB1L3axuLgS297DACDbe4g1YA==;"
+#     database_id = "tax-management-system"
+#     container_id = "gl-transactions"
+    
+#     try:
+#         # Initialize repository
+#         repo = AzureCosmosDBRepository(connection_string, database_id, container_id)
+#         logger.info("Repository initialized successfully")
+        
+#         retrieved = repo.get_document_by_id(
+#             container_id="gl-transactions",
+#             document_id="a579a426-7565-496f-bb55-9dffbf464712",
+#             partition_key="7603502338"
+#         )
+#         logger.info(f"Retrieved document: {retrieved}")
+        
+#         # Test 3: Try to retrieve non-existent document (should return None)
+#         not_found = repo.get_document_by_id("non-existent-id", raise_on_not_found=False)
+#         logger.info(f"Non-existent document result: {not_found}")
+        
+#         logger.info("All tests passed!")
+        
+#     except Exception as e:
+#         logger.error(f"Test failed: {e}")

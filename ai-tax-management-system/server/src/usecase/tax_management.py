@@ -1,9 +1,9 @@
-from domain.gl_transaction import GLTransaction, GLReconItem
-from domain.tax_invoice import TaxInvoice
-from domain.invoice import Invoice
+from src.domain.gl_transaction import GLTransaction, GLReconItem
+from src.domain.tax_invoice import TaxInvoice
+from src.domain.invoice import Invoice
 from typing import List, Tuple, Optional
 from loguru import logger
-from repository.database import AzureCosmosDBRepository
+from src.repository.database import AzureCosmosDBRepository
 
 class TaxManagementUseCase:
     def __init__(self, azure_cosmos_repo: AzureCosmosDBRepository):

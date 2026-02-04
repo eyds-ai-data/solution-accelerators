@@ -2,19 +2,19 @@ from typing import Dict, Any, Optional, List
 import asyncio
 import re
 from datetime import datetime
-from repository.content_understanding import ContentUnderstandingRepository
-from repository.storage import MinioStorageRepository
-from repository.storage import AzureBlobStorageRepository
-from repository.messaging import RabbitMQRepository
-from repository.llm.llm_service import LLMService
-from repository.database import AzureCosmosDBRepository
-from repository.embedding import EmbeddingRepository
+from src.repository.content_understanding import ContentUnderstandingRepository
+from src.repository.storage import MinioStorageRepository
+from src.repository.storage import AzureBlobStorageRepository
+from src.repository.messaging import RabbitMQRepository
+from src.repository.llm.llm_service import LLMService
+from src.repository.database import AzureCosmosDBRepository
+from src.repository.embedding import EmbeddingRepository
 from loguru import logger
-from common.const import ContentType
+from src.common.const import ContentType
 import uuid
 from pypdf import PdfReader, PdfWriter
 from io import BytesIO
-from domain.gl_transaction import GLReconItem
+from src.domain.gl_transaction import GLReconItem
 
 class ContentExtraction:
     def __init__(
@@ -532,6 +532,78 @@ class ContentExtraction:
         except Exception as e:
             logger.error(f"Error in reconciliation process for URN {urn}: {e}")
             raise
+    
+    # temporary function, on the production code this function will be changed
+    async def copy_tax_invoice_item_to_gl_recon_item(self, urn: str) -> GLReconItem:
+        # 1. Fetch tax invoices based on urn
+        tax_invoices = self.azure_cosmos_repo.query_documents(
+            container_id="tax-invoices",
+            query_filter=f"c.urn = '{urn}'"
+        )
+        
+        if not tax_invoices:
+            logger.warning(f"No tax invoices found for URN: {urn}")
+            return None
+        
+        # 2. Fetch GL transactions based on urn (single record)
+        gl_transactions = self.azure_cosmos_repo.query_documents(
+            container_id="gl-transactions",
+            query_filter=f"c.urn = '{urn}'"
+        )
+        
+        if not gl_transactions:
+            logger.warning(f"No GL transactions found for URN: {urn}")
+            return None
+        
+        # Get the first (and only) GL transaction
+        gl_transaction = gl_transactions[0]
+        
+        # 3. Build GLReconItem list from tax invoice details
+        gl_recon_items = []
+        
+        for tax_invoice in tax_invoices:
+            # Get the tax_invoice_detail list from the tax invoice
+            tax_invoice_details = tax_invoice.get("taxInvoiceDetail", [])
+            
+            for detail in tax_invoice_details:
+                # Extract itemName from the detail
+                item_name = detail.get("itemName", "")
+                
+                # Create GLReconItem with itemName from tax invoice detail
+                gl_recon_item = GLReconItem(
+                    item_name=item_name,
+                    type_of_tax="",  # Default empty, can be updated later
+                    tax_base=None,
+                    rate=None,
+                    wht_normal=None,
+                    remarks=None,
+                    diff_normal=None,
+                    ai_explanation=None
+                )
+                gl_recon_items.append(gl_recon_item)
+        
+        # 4. Update the GL transaction with glReconItem
+        if gl_recon_items:
+            # Convert to dict format with camelCase aliases for Cosmos DB
+            gl_recon_items_dict = [item.model_dump(by_alias=True) for item in gl_recon_items]
+            
+            # Update the GL transaction document
+            self.azure_cosmos_repo.update_document(
+                document_id=gl_transaction["id"],
+                partition_key=gl_transaction["urn"],
+                update_data={
+                    "glReconItem": gl_recon_items_dict
+                },
+                container_id="gl-transactions",
+                partial_update=True
+            )
+            
+            logger.info(f"Updated GL transaction {gl_transaction['id']} with {len(gl_recon_items)} GLReconItem(s)")
+        
+        # Return the first GLReconItem as specified in return type
+        return gl_recon_items[0] if gl_recon_items else None
+        
+    
     async def process_message(self, message: Dict[str, Any]) -> None:
         try:
             # file_id in status
@@ -552,9 +624,10 @@ class ContentExtraction:
                 logger.warning(f"No suitable documents (Invoice/TaxInvoice) found in folder {document_id}")
 
             urn = next((res.get('analysis_result', {}).get('urn') for res in analysis_results if res.get('analysis_result') and res.get('analysis_result', {}).get('urn')), None)
+            
             # TODO: continue this
-            # if urn:
-            #     await self.reconciliation_process(urn=urn)
+            if urn:
+                await self.copy_tax_invoice_item_to_gl_recon_item(urn=urn)
 
             self.azure_cosmos_repo.update_document(
                 document_id=document_id,
