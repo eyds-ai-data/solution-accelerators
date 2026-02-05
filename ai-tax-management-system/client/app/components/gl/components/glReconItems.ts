@@ -16,7 +16,19 @@ export const glReconColumns: ColumnDef<NonNullable<GL['glReconItem']>[number], a
   {
     accessorKey: 'itemName',
     header: ({ column }) => h('div', { class: 'text-sm font-medium' }, 'Item Name'),
-    cell: ({ row }) => h('div', { class: 'text-sm break-words max-w-[200px] whitespace-normal', style: { wordWrap: 'break-word' } }, row.getValue('itemName')),
+    cell: ({ row }) => 
+      h(
+        'div', 
+        { 
+          class: 'text-sm break-words max-w-[200px] whitespace-normal cursor-text border rounded px-2 py-1 hover:border-primary focus:outline-none focus:ring-2 focus:ring-primary/20', 
+          style: { wordWrap: 'break-word' },
+          contenteditable: 'true',
+          onInput: (e: Event) => {
+            row.original.itemName = (e.target as HTMLDivElement).innerText
+          },
+        }, 
+        row.getValue('itemName')
+      ),
   },
   {
     accessorKey: 'typeOfTax',
@@ -26,7 +38,7 @@ export const glReconColumns: ColumnDef<NonNullable<GL['glReconItem']>[number], a
       (
         'div', 
         { 
-          class: 'text-sm', 
+          class: 'text-sm cursor-text border rounded px-2 py-1 hover:border-primary focus:outline-none focus:ring-2 focus:ring-primary/20', 
           contenteditable: 'true',
           onInput: (e: Event) => {
             row.original.typeOfTax = (e.target as HTMLDivElement).innerText
@@ -38,7 +50,20 @@ export const glReconColumns: ColumnDef<NonNullable<GL['glReconItem']>[number], a
   {
     accessorKey: 'taxBase',
     header: ({ column }) => h('div', { class: 'text-sm font-medium' }, 'Tax Base'),
-    cell: ({ row }) => h('div', { class: 'text-sm text-right' }, formatNumber(row.getValue('taxBase'))),
+    cell: ({ row }) => 
+      h(
+        'div', 
+        { 
+          class: 'text-sm text-right cursor-text border rounded px-2 py-1 hover:border-primary focus:outline-none focus:ring-2 focus:ring-primary/20',
+          contenteditable: 'true',
+          onInput: (e: Event) => {
+            const value = (e.target as HTMLDivElement).innerText.replace(/,/g, '')
+            row.original.taxBase = parseFloat(value) || 0
+            ;(e.target as HTMLDivElement).innerText = formatNumber(row.original.taxBase)
+          },
+        }, 
+        formatNumber(row.getValue('taxBase'))
+      ),
   },
   {
     accessorKey: 'rate',
@@ -47,7 +72,14 @@ export const glReconColumns: ColumnDef<NonNullable<GL['glReconItem']>[number], a
       const rate = row.getValue<number>('rate')
       return h(
         'div',
-        { class: 'text-sm text-right' },
+        { 
+          class: 'text-sm text-right cursor-text border rounded px-2 py-1 hover:border-primary focus:outline-none focus:ring-2 focus:ring-primary/20',
+          contenteditable: 'true',
+          onInput: (e: Event) => {
+            const value = parseFloat((e.target as HTMLDivElement).innerText) || 0
+            row.original.rate = value / 100
+          },
+        },
         `${rate * 100}`
       )
     },
@@ -55,7 +87,20 @@ export const glReconColumns: ColumnDef<NonNullable<GL['glReconItem']>[number], a
   {
     accessorKey: 'whtNormal',
     header: ({ column }) => h('div', { class: 'text-sm font-medium' }, 'WHT Normal'),
-    cell: ({ row }) => h('div', { class: 'text-sm text-right' }, formatNumber(row.getValue('whtNormal'))),
+    cell: ({ row }) => 
+      h(
+        'div', 
+        { 
+          class: 'text-sm text-right cursor-text border rounded px-2 py-1 hover:border-primary focus:outline-none focus:ring-2 focus:ring-primary/20',
+          contenteditable: 'true',
+          onInput: (e: Event) => {
+            const value = (e.target as HTMLDivElement).innerText.replace(/,/g, '')
+            row.original.whtNormal = parseFloat(value) || 0
+            ;(e.target as HTMLDivElement).innerText = formatNumber(row.original.whtNormal)
+          },
+        }, 
+        formatNumber(row.getValue('whtNormal'))
+      ),
   },
   {
     accessorKey: 'remarks',
@@ -65,7 +110,7 @@ export const glReconColumns: ColumnDef<NonNullable<GL['glReconItem']>[number], a
       (
         'div', 
         { 
-          class: 'text-sm', 
+          class: 'text-sm cursor-text border rounded px-2 py-1 hover:border-primary focus:outline-none focus:ring-2 focus:ring-primary/20', 
           contenteditable: 'true',
           onInput: (e: Event) => {
             row.original.remarks = (e.target as HTMLDivElement).innerText
@@ -77,7 +122,18 @@ export const glReconColumns: ColumnDef<NonNullable<GL['glReconItem']>[number], a
   {
     accessorKey: 'diffNormal',
     header: ({ column }) => h('div', { class: 'text-sm font-medium' }, 'Diff Normal'),
-    cell: ({ row }) => h('div', { class: 'text-sm text-right' }, row.getValue('diffNormal') ?? '-'),
+    cell: ({ row }) => 
+      h(
+        'div', 
+        { 
+          class: 'text-sm text-right cursor-text border rounded px-2 py-1 hover:border-primary focus:outline-none focus:ring-2 focus:ring-primary/20',
+          contenteditable: 'true',
+          onInput: (e: Event) => {
+            row.original.diffNormal = (e.target as HTMLDivElement).innerText
+          },
+        }, 
+        row.getValue('diffNormal') ?? '-'
+      ),
   }
   // {
   //   accessorKey: 'checker',

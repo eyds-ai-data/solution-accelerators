@@ -13,6 +13,7 @@ import { taxInvoiceDetailColumns } from '@/components/taxinvoice/components/colu
 import { Badge } from '@/components/ui/badge'
 import { Button } from '@/components/ui/button'
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
+import { Alert, AlertDescription, AlertTitle } from '@/components/ui/alert'
 import { Separator } from '@/components/ui/separator'
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar'
 import {
@@ -30,7 +31,8 @@ import {
   CheckCircle2,
   Save,
   ChevronLeft,
-  ChevronRight
+  ChevronRight,
+  AlertCircle
 } from 'lucide-vue-next'
 import { Skeleton } from '@/components/ui/skeleton'
 import { useGLTransactionDetail, useInvoices, useTaxInvoices } from '@/composables/useTaxApi'
@@ -355,6 +357,15 @@ const activeTab = ref<'invoice' | 'tax'>('invoice')
                 <div>
                   <!-- GL Table -->
                   <DataTableGLItems :data="gl?.glReconItem ?? []" :columns="glReconColumns" />
+                  
+                  <!-- AI Recon Warning -->
+                  <Alert class="mt-4 bg-yellow-50 dark:bg-yellow-950 border-yellow-500 dark:border-yellow-600">
+                    <AlertCircle class="h-4 w-4 text-yellow-600 dark:text-yellow-500" />
+                    <AlertTitle class="text-yellow-800 dark:text-yellow-400">AI Recon System Not Activated</AlertTitle>
+                    <AlertDescription class="text-yellow-700 dark:text-yellow-500">
+                      The AI-powered reconciliation system is currently not activated. Manual review is required for all reconciliation items.
+                    </AlertDescription>
+                  </Alert>
                 </div>
                 <!-- See details button -->
                 <div class="flex justify-end mt-2">

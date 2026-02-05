@@ -40,8 +40,8 @@ const { sidebar } = useAppSettings()
 
       <SidebarMenuButton size="lg" class="data-[state=open]:bg-sidebar-accent data-[state=open]:text-sidebar-accent-foreground">
         
-        <div class="aspect-square size-8 flex items-center justify-center rounded-lg bg-sidebar-primary text-sidebar-primary-foreground">
-          <div class="">T</div>
+        <div class="aspect-square size-8 flex items-center justify-center rounded-lg">
+          <img src="/ey_logo.png" alt="EY Logo" class="size-8">
         </div>
           
 
@@ -49,7 +49,7 @@ const { sidebar } = useAppSettings()
           <span class="truncate font-semibold">
             AI Tax Management
           </span>
-          <span class="truncate text-xs">v1.0.0 (Beta)</span>
+          <span class="truncate text-xs flex items-center gap-1.5">v0.0.1 <Badge variant="default" class="text-[10px] px-1 py-0 h-4">Beta</Badge> </span>
         </div>
 
       </SidebarMenuButton>
