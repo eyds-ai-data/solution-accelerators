@@ -494,11 +494,6 @@ class AzureCosmosDBRepository:
 # if __name__ == "__main__":
 #     import os
     
-#     # Test credentials
-#     connection_string = "AccountEndpoint=https://eyds.documents.azure.com:443/;AccountKey=plR3OxNYJtmxuxCeMYp6SnXiixULM56lyMCFFDVxJCp0oPPd1aDnPUznddnUFLB1L3axuLgS297DACDbe4g1YA==;"
-#     database_id = "tax-management-system"
-#     container_id = "gl-transactions"
-    
 #     try:
 #         # Initialize repository
 #         repo = AzureCosmosDBRepository(connection_string, database_id, container_id)

@@ -78,18 +78,18 @@ export const glReconColumns: ColumnDef<NonNullable<GL['glReconItem']>[number], a
     accessorKey: 'diffNormal',
     header: ({ column }) => h('div', { class: 'text-sm font-medium' }, 'Diff Normal'),
     cell: ({ row }) => h('div', { class: 'text-sm text-right' }, row.getValue('diffNormal') ?? '-'),
-  },
-  {
-    accessorKey: 'checker',
-    header: ({ column }) => h('div', { style: { width: '40px', textAlign: 'right' }, class: 'text-sm font-medium' }, ),
-    enableSorting: false,
-    cell: () =>
-      h('div', { style: { width: '40px', textAlign: 'center' } }, 
-        h(SparklesIcon, {
-          width: '80px',
-          size: 20,
-          class: 'text-yellow-500',
-        })
-      )
-  },
+  }
+  // {
+  //   accessorKey: 'checker',
+  //   header: ({ column }) => h('div', { style: { width: '40px', textAlign: 'right' }, class: 'text-sm font-medium' }, ),
+  //   enableSorting: false,
+  //   cell: () =>
+  //     h('div', { style: { width: '40px', textAlign: 'center' } }, 
+  //       h(SparklesIcon, {
+  //         width: '80px',
+  //         size: 20,
+  //         class: 'text-yellow-500',
+  //       })
+  //     )
+  // },
 ]

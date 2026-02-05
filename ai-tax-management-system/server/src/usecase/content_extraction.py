@@ -631,6 +631,7 @@ class ContentExtraction:
 
             self.azure_cosmos_repo.update_document(
                 document_id=document_id,
+                partition_key=document_id,
                 update_data={
                     "urn": urn,
                     "status": "completed",
