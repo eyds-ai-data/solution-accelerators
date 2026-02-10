@@ -217,6 +217,7 @@ const activeTab = ref<'invoice' | 'tax'>('invoice')
                   type="text"
                   class="w-48 rounded-md border px-2 py-1 text-sm"
                   :value="formatNumber(gl.diffNormal)"
+                  :class="gl.diffNormal === 0 ? 'bg-green-100 border-green-500' : 'bg-red-100 border-red-500'"
                   disabled
                 />
               </div>
