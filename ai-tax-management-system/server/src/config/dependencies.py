@@ -13,6 +13,7 @@ from src.usecase.file_upload import FileUpload
 from src.usecase.gl_upload import GLUpload
 from src.usecase.tax_management import TaxManagementUseCase
 from src.repository.llm.llm_service import LLMService
+from src.repository.embedding import EmbeddingRepository
 
 # Module-level singleton instances
 _content_understanding_repo: Optional[ContentUnderstandingRepository] = None
@@ -22,6 +23,7 @@ _rabbitmq_repo: Optional[RabbitMQRepository] = None
 _minio_storage_repo: Optional[MinioStorageRepository] = None
 _azure_service_bus_repo: Optional[AzureServiceBusRepository] = None
 _llm_service_repo: Optional[LLMService] = None
+_embedding_repo: Optional[EmbeddingRepository] = None
 
 
 @lru_cache
@@ -214,6 +216,26 @@ def get_llm_service_repository(
         )
     return _llm_service_repo
 
+def get_embedding_repository(
+    config: Annotated[AppConfig, Depends(get_app_config)]
+) -> Optional[EmbeddingRepository]:
+    """
+    Create and return EmbeddingRepository instance (singleton).
+    
+    EmbeddingRepository wraps Azure OpenAI embedding service which is
+    thread-safe and maintains internal connection pooling.
+    
+    Args:
+        config: Application configuration dependency
+    Returns:
+        EmbeddingRepository singleton instance
+    """
+    global _embedding_repo
+    if _embedding_repo is None:
+        logger.info("Creating EmbeddingRepository singleton")
+        _embedding_repo = EmbeddingRepository(config=config)
+    return _embedding_repo
+
 def get_content_extraction_service(
     content_understanding_repo: Annotated[
         ContentUnderstandingRepository, 
@@ -238,6 +260,10 @@ def get_content_extraction_service(
     azure_cosmos_repo: Annotated[
         Optional[AzureCosmosDBRepository],
         Depends(get_azure_cosmos_repository)
+    ],
+    embedding_repo: Annotated[
+        Optional[EmbeddingRepository],
+        Depends(get_embedding_repository)
     ]
 
 ) -> ContentExtraction:
@@ -252,6 +278,7 @@ def get_content_extraction_service(
         blob_storage_repo: Blob Storage repository dependency
         rabbitmq_repo: Optional RabbitMQ repository (development only)
         minio_storage_repo: Optional MinIO storage repository (development only)
+        embedding_repo: Optional Embedding repository for vector generation
         
     Returns:
         ContentExtraction use case instance
@@ -263,7 +290,8 @@ def get_content_extraction_service(
         rabbitmq_repo=rabbitmq_repo,
         minio_storage_repo=minio_storage_repo,
         llm_service_repo=llm_service_repo,
-        azure_cosmos_repo=azure_cosmos_repo
+        azure_cosmos_repo=azure_cosmos_repo,
+        embedding_repo=embedding_repo
     )
 
 def get_file_upload_service(

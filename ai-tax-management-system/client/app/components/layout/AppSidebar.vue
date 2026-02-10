@@ -16,8 +16,8 @@ const teams: {
 }[] = [
   {
     name: 'AI Tax Management',
-    logo: 'i-lucide-circle-user',
-    plan: '',
+    logo: 'i-lucid-book',
+    plan: 'v1.0.0 (Beta)',
   }
 ]
 
@@ -28,7 +28,7 @@ const user: {
 } = {
   name: 'Jericho Siahaya',
   email: 'jericho.c.siahaya@id.ey.com',
-  avatar: '/avatars/avatartion.png',
+  avatar: 'i-lucid-user',
 }
 
 const { sidebar } = useAppSettings()
@@ -37,8 +37,25 @@ const { sidebar } = useAppSettings()
 <template>
   <Sidebar :collapsible="sidebar?.collapsible" :side="sidebar?.side" :variant="sidebar?.variant">
     <SidebarHeader>
-      <LayoutSidebarNavHeader :teams="teams" />
-      <Search />
+
+      <SidebarMenuButton size="lg" class="data-[state=open]:bg-sidebar-accent data-[state=open]:text-sidebar-accent-foreground">
+        
+        <div class="aspect-square size-8 flex items-center justify-center rounded-lg">
+          <img src="/ey_logo.png" alt="EY Logo" class="size-8">
+        </div>
+          
+
+        <div class="grid flex-1 text-left text-sm leading-tight">
+          <span class="truncate font-semibold">
+            AI Tax Management
+          </span>
+          <span class="truncate text-xs flex items-center gap-1.5">v0.0.1 <Badge variant="default" class="text-[10px] px-1 py-0 h-4">alpha</Badge> </span>
+        </div>
+
+      </SidebarMenuButton>
+
+      <!-- <LayoutSidebarNavHeader :teams="teams" /> -->
+      <!-- <Search /> -->
     </SidebarHeader>
     <SidebarContent>
       <SidebarGroup v-for="(nav, indexGroup) in navMenu" :key="indexGroup">
@@ -52,7 +69,7 @@ const { sidebar } = useAppSettings()
       </SidebarGroup>
     </SidebarContent>
     <SidebarFooter>
-      <!-- <LayoutSidebarNavFooter :user="user" /> -->
+      <LayoutSidebarNavFooter :user="user" />
     </SidebarFooter>
     <SidebarRail />
   </Sidebar>

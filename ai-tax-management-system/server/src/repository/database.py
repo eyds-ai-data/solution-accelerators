@@ -60,26 +60,15 @@ class AzureCosmosDBRepository:
         except Exception as e:
             raise
 
-    def get_document_by_id(self, document_id: str, partition_key: Optional[str] = None, container_id: Optional[str] = None) -> Dict[str, Any]:
-        """
-        Get a specific document by ID
-        
-        Args:
-            document_id: Document ID to retrieve
-            partition_key: Partition key value. If not provided, uses document_id
-            
-        Returns:
-            Retrieved document
-        """
+    def get_document_by_id(self, document_id: str, partition_key: Optional[str] = None, container_id: Optional[str] = None) -> Optional[Dict[str, Any]]:
         try:
             container = self.database.get_container_client(container_id) if container_id else self.container
-            pk = partition_key if partition_key else document_id
-            item = container.read_item(item=document_id, partition_key=pk)
+            item = container.read_item(item=document_id, partition_key=partition_key)
             logger.info(f"Retrieved document: {document_id}")
             return item
         except exceptions.CosmosResourceNotFoundError:
             logger.warning(f"Document not found: {document_id}")
-            raise
+            return None
         except Exception as e:
             logger.error(f"Error retrieving document {document_id}: {e}")
             raise
@@ -208,7 +197,8 @@ class AzureCosmosDBRepository:
         update_data: Dict[str, Any],
         partition_key: Optional[str] = None,
         partial_update: bool = True,
-        container_id: Optional[str] = None
+        container_id: Optional[str] = None,
+        create_if_not_exists: bool = True
     ) -> Dict[str, Any]:
         """
         Update an existing document
@@ -218,6 +208,7 @@ class AzureCosmosDBRepository:
             update_data: Data to update (merged with existing if partial_update=True)
             partition_key: Partition key value. If not provided, uses document_id
             partial_update: If True, merge with existing data. If False, replace entire document.
+            create_if_not_exists: If True, create document if it doesn't exist. If False, raise error.
             
         Returns:
             Updated document
@@ -227,15 +218,35 @@ class AzureCosmosDBRepository:
             pk = partition_key if partition_key else document_id
             
             if partial_update:
+
                 # Get existing document and merge
-                existing = self.get_document_by_id(document_id, partition_key, container_id)
+                existing = self.get_document_by_id(
+                    document_id=document_id,
+                    partition_key=partition_key,
+                    container_id=container_id
+                )
                 
-                # Update fields (preserve id and created_at)
-                for key, value in update_data.items():
-                    if key not in ["id", "created_at"]:
-                        existing[key] = value
-                
-                document = existing
+                if existing is None:
+                    # Document doesn't exist
+                    if create_if_not_exists:
+                        logger.info(f"Document {document_id} not found, creating new document")
+                        document = {
+                            **update_data,
+                            "id": document_id,
+                            "created_at": datetime.utcnow().isoformat(),
+                            "updated_at": datetime.utcnow().isoformat()
+                        }
+                    else:
+                        logger.error(f"Document not found: {document_id}")
+                        raise exceptions.CosmosResourceNotFoundError(f"Document {document_id} not found")
+                else:
+                    # Update existing document
+                    # Update fields (preserve id and created_at)
+                    for key, value in update_data.items():
+                        if key not in ["id", "created_at"]:
+                            existing[key] = value
+                    
+                    document = existing
             else:
                 # Replace entire document
                 document = {
@@ -275,3 +286,231 @@ class AzureCosmosDBRepository:
         except Exception as e:
             logger.error(f"Error upserting document: {e}")
             raise
+
+    def vector_search(
+        self,
+        vector: List[float],
+        vector_field: str = "embedding",
+        top_k: int = 10,
+        similarity_score_threshold: Optional[float] = None,
+        document_type: Optional[str] = None,
+        additional_filters: Optional[str] = None,
+        parameters: Optional[List[Dict[str, Any]]] = None,
+        return_similarity_score: bool = True,
+        container_id: Optional[str] = None
+    ) -> List[Dict[str, Any]]:
+        """
+        Perform vector similarity search in Cosmos DB using VectorDistance function
+        
+        Args:
+            vector: Query vector (embedding) to search for similar documents
+            vector_field: Name of the field containing the vector embeddings (default: "embedding")
+            top_k: Number of most similar documents to return (default: 10)
+            similarity_score_threshold: Optional minimum similarity score filter
+            document_type: Optional filter by document type
+            additional_filters: Additional SQL WHERE conditions (without WHERE keyword)
+            parameters: Query parameters for parameterized queries
+            return_similarity_score: If True, include similarity score in results
+            container_id: Optional different container ID to query
+            
+        Returns:
+            List of documents ordered by similarity (most similar first)
+            Each document includes a 'similarity_score' field if return_similarity_score=True
+            
+        Note:
+            - The container must have a vector index policy configured on the vector_field
+            - Similarity score ranges from 0 (least similar) to 1 (most similar) for cosine similarity
+            - Lower values indicate less similarity, higher values indicate more similarity
+        """
+        try:
+            container = self.database.get_container_client(container_id) if container_id else self.container
+            
+            # Build the vector distance calculation in SELECT
+            if return_similarity_score:
+                select_clause = f"SELECT c.*, VectorDistance(c.{vector_field}, @embedding) AS similarity_score FROM c"
+            else:
+                select_clause = f"SELECT c.* FROM c"
+            
+            # Build WHERE conditions
+            conditions = []
+            
+            if document_type:
+                conditions.append(f"c.type = '{document_type}'")
+            
+            if additional_filters:
+                conditions.append(additional_filters)
+            
+            # Build the complete query
+            query = select_clause
+            
+            if conditions:
+                query += " WHERE " + " AND ".join(conditions)
+            
+            # Order by similarity (VectorDistance returns lower values for more similar vectors in some metrics)
+            # For cosine similarity, lower distance = more similar
+            query += f" ORDER BY VectorDistance(c.{vector_field}, @embedding)"
+            
+            # Prepare parameters
+            query_params = parameters or []
+            query_params.append({"name": "@embedding", "value": vector})
+            
+            # Execute the query
+            items = list(container.query_items(
+                query=query,
+                parameters=query_params,
+                enable_cross_partition_query=True,
+                max_item_count=top_k
+            ))
+            
+            # Apply similarity threshold filter if specified
+            if similarity_score_threshold is not None and return_similarity_score:
+                items = [
+                    item for item in items 
+                    if item.get("similarity_score", 0) >= similarity_score_threshold
+                ]
+            
+            # Limit to top_k results
+            items = items[:top_k]
+            
+            logger.info(f"Vector search returned {len(items)} documents (top_k={top_k})")
+            return items
+            
+        except Exception as e:
+            logger.error(f"Error performing vector search: {e}")
+            raise
+
+    def hybrid_search(
+        self,
+        vector: List[float],
+        text_query: Optional[str] = None,
+        vector_field: str = "embedding",
+        text_search_fields: Optional[List[str]] = None,
+        top_k: int = 10,
+        vector_weight: float = 0.5,
+        document_type: Optional[str] = None,
+        additional_filters: Optional[str] = None,
+        parameters: Optional[List[Dict[str, Any]]] = None,
+        container_id: Optional[str] = None
+    ) -> List[Dict[str, Any]]:
+        """
+        Perform hybrid search combining vector similarity and text search
+        
+        Args:
+            vector: Query vector (embedding) for semantic search
+            text_query: Text query for keyword matching
+            vector_field: Name of the field containing the vector embeddings
+            text_search_fields: Fields to search for text (e.g., ["content", "title"])
+            top_k: Number of results to return
+            vector_weight: Weight for vector similarity (0-1), text weight = 1 - vector_weight
+            document_type: Optional filter by document type
+            additional_filters: Additional SQL WHERE conditions
+            parameters: Query parameters for parameterized queries
+            container_id: Optional different container ID to query
+            
+        Returns:
+            List of documents ranked by combined score
+        """
+        try:
+            container = self.database.get_container_client(container_id) if container_id else self.container
+            
+            # Build the query with both vector and text relevance
+            text_conditions = []
+            if text_query and text_search_fields:
+                # Build text search conditions (contains check for each field)
+                for field in text_search_fields:
+                    text_conditions.append(f"CONTAINS(LOWER(c.{field}), LOWER(@textQuery))")
+            
+            # Build WHERE conditions
+            conditions = []
+            if document_type:
+                conditions.append(f"c.type = '{document_type}'")
+            
+            if text_conditions:
+                conditions.append(f"({' OR '.join(text_conditions)})")
+            
+            if additional_filters:
+                conditions.append(additional_filters)
+            
+            # Calculate hybrid score
+            vector_score = f"VectorDistance(c.{vector_field}, @embedding)"
+            
+            # Build query
+            select_clause = f"""SELECT c.*, 
+                {vector_score} AS vector_score,
+                {vector_score} AS hybrid_score 
+                FROM c"""
+            
+            query = select_clause
+            
+            if conditions:
+                query += " WHERE " + " AND ".join(conditions)
+            
+            query += f" ORDER BY {vector_score}"
+            
+            # Prepare parameters
+            query_params = parameters or []
+            query_params.append({"name": "@embedding", "value": vector})
+            if text_query:
+                query_params.append({"name": "@textQuery", "value": text_query})
+            
+            # Execute query
+            items = list(container.query_items(
+                query=query,
+                parameters=query_params,
+                enable_cross_partition_query=True,
+                max_item_count=top_k * 2  # Get more items for re-ranking
+            ))
+            
+            # Re-rank if text query is provided
+            if text_query and text_search_fields:
+                for item in items:
+                    # Simple text relevance score (count of matches)
+                    text_score = 0
+                    for field in text_search_fields:
+                        field_value = str(item.get(field, "")).lower()
+                        if text_query.lower() in field_value:
+                            text_score += field_value.count(text_query.lower())
+                    
+                    # Normalize text score
+                    text_score = min(text_score / 10.0, 1.0)  # Cap at 1.0
+                    
+                    # Combine scores (invert vector score since lower is better)
+                    vector_sim = 1.0 - min(item.get("vector_score", 1.0), 1.0)
+                    item["hybrid_score"] = (vector_weight * vector_sim) + ((1 - vector_weight) * text_score)
+                
+                # Sort by hybrid score (descending)
+                items.sort(key=lambda x: x.get("hybrid_score", 0), reverse=True)
+            
+            # Return top_k results
+            results = items[:top_k]
+            logger.info(f"Hybrid search returned {len(results)} documents (top_k={top_k})")
+            return results
+            
+        except Exception as e:
+            logger.error(f"Error performing hybrid search: {e}")
+            raise
+
+# Simple test for get_document_by_id
+# if __name__ == "__main__":
+#     import os
+    
+#     try:
+#         # Initialize repository
+#         repo = AzureCosmosDBRepository(connection_string, database_id, container_id)
+#         logger.info("Repository initialized successfully")
+        
+#         retrieved = repo.get_document_by_id(
+#             container_id="gl-transactions",
+#             document_id="a579a426-7565-496f-bb55-9dffbf464712",
+#             partition_key="7603502338"
+#         )
+#         logger.info(f"Retrieved document: {retrieved}")
+        
+#         # Test 3: Try to retrieve non-existent document (should return None)
+#         not_found = repo.get_document_by_id("non-existent-id", raise_on_not_found=False)
+#         logger.info(f"Non-existent document result: {not_found}")
+        
+#         logger.info("All tests passed!")
+        
+#     except Exception as e:
+#         logger.error(f"Test failed: {e}")

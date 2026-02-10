@@ -25,9 +25,9 @@ export const columns: ColumnDef<GL>[] = [
     cell: ({ row }) => h('div', { class: 'max-w-[200px] font-medium' }, row.getValue('urn')),
   },
   {
-    accessorKey: 'vendorId',
-    header: ({ column }) => h(DataTableColumnHeader, { column, title: 'Vendor Id' }),
-    cell: ({ row }) => h('div', { class: 'text-sm text-muted-foreground' }, row.getValue('vendorId')),
+    accessorKey: 'vendorName',
+    header: ({ column }) => h(DataTableColumnHeader, { column, title: 'Vendor Name' }),
+    cell: ({ row }) => h('div', { class: 'text-sm text-muted-foreground' }, row.getValue('vendorName')),
   },
   {
     accessorKey: 'referenceNumber',
@@ -51,26 +51,6 @@ export const columns: ColumnDef<GL>[] = [
       const date = new Date(row.getValue('documentDate') as string)
       return h('div', { class: 'text-sm' }, date.toLocaleDateString())
     },
-  },
-  {
-    accessorKey: 'diffNormal',
-    header: ({ column }) => h(DataTableColumnHeader, { column, title: 'Diff Normal' }),
-    cell: ({ row }) => h('div', { class: 'text-sm' }, row.getValue('diffNormal')),
-  },
-  {
-    accessorKey: 'ref',
-    header: ({ column }) => h(DataTableColumnHeader, { column, title: 'Ref' }),
-    cell: ({ row }) => h('div', { class: 'text-sm' }, row.getValue('ref')),
-  },
-  {
-    accessorKey: 'firstVouching',
-    header: ({ column }) => h(DataTableColumnHeader, { column, title: 'First Vouching' }),
-    cell: ({ row }) => h('div', { class: 'text-sm' }, row.getValue('firstVouching')),
-  },
-  {
-    accessorKey: 'secondReviewer',
-    header: ({ column }) => h(DataTableColumnHeader, { column, title: 'Second Reviewer' }),
-    cell: ({ row }) => h('div', { class: 'text-sm' }, row.getValue('secondReviewer')),
   },
   {
     id: 'actions',

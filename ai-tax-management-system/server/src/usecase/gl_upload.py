@@ -45,12 +45,6 @@ XLSX_TO_GL_TRANSACTION_MAP = {
     "Amount in document currency": "amount_in_document_currency",
     "Loc Curr": "local_currency",
     "Amount in local cur.": "amount_in_local_currency",
-    "Ref": "ref", # TODO: remove this field later
-    "WHT Review": "wht_review", # TODO : remove this field later
-    "1st Vouching": "first_voucing", # TODO: remove this field later
-    "2nd Reviewer": "second_reviewer", # TODO: remove this field later
-    "Type of Tax": "type_of_tax", # TODO: remove this field later
-    "Docu Ty": "document_type", # TODO: remove this field later
 }
 
 class GLUpload:
@@ -116,6 +110,37 @@ class GLUpload:
             
         return result
 
+    def _get_vendor_id_by_code(self, vendor_code: str) -> Optional[str]:
+        """Query vendor container by vendor_code and return vendorId"""
+        
+        if not self.azure_cosmos_repo or not vendor_code or vendor_code.strip() == "":
+            return None
+        
+        try:
+            # Query vendor container for matching vendor_code
+            # Note: query_filter should only contain the WHERE condition, not the full SELECT
+            query_filter = "c.vendorCode = @vendorCode"
+            parameters = [{"name": "@vendorCode", "value": vendor_code}]
+            
+            results = self.azure_cosmos_repo.query_documents(
+                container_id="vendor",
+                query_filter=query_filter,
+                parameters=parameters
+            )
+            
+            # Return first matching vendorId (keep as integer/string based on actual type)
+            if results:
+                vendor_id = results[0].get("vendorId")
+                # Convert to string to match GLTransaction model expectation
+                return str(vendor_id) if vendor_id is not None else None
+            
+            logger.warning(f"No vendor found for vendor_code: {vendor_code}")
+            return None
+            
+        except Exception as e:
+            logger.error(f"Error querying vendor by code {vendor_code}: {e}")
+            return None
+
     def upload(self, file, file_id: str, original_filename: str) -> Dict[str, Any]:
         
         try:
@@ -146,10 +171,32 @@ class GLUpload:
             # 3. Insert to Azure Cosmos DB
             if self.azure_cosmos_repo and rows_data:
                 try:
-                    for row in rows_data:
+                    for idx, row in enumerate(rows_data, start=1):
+                        # Lookup vendor_id from vendor container using vendor_code
+                        vendor_code = row.get("vendor_code", "").strip()
+                        if vendor_code:
+                            vendor_id = self._get_vendor_id_by_code(vendor_code)
+                            if vendor_id:
+                                row["vendor_id"] = vendor_id
+                                logger.debug(f"Row {idx}: Found vendor_id={vendor_id} for vendor_code={vendor_code}")
+                            else:
+                                logger.warning(f"Row {idx}: Could not find vendor_id for vendor_code={vendor_code}, using default")
+                                row["vendor_id"] = "UNKNOWN"
+                        else:
+                            logger.warning(f"Row {idx}: No vendor_code provided, using default vendor_id")
+                            row["vendor_id"] = "UNKNOWN"
+                        
+                        # Log the full row data before validation
+                        logger.debug(f"Row {idx} data before validation: {row}")
+                        
                         # Convert to GLTransaction model and serialize with aliases (camelCase)
-                        gl_transaction = GLTransaction(**row)
-                        document_data = gl_transaction.model_dump(by_alias=True)
+                        try:
+                            gl_transaction = GLTransaction(**row)
+                            document_data = gl_transaction.model_dump(by_alias=True)
+                        except Exception as validation_error:
+                            logger.error(f"Row {idx} validation error: {validation_error}")
+                            logger.error(f"Row {idx} problematic data: {row}")
+                            raise
                         
                         # Ensure glReconItem is present as empty array if None
                         if document_data.get("glReconItem") is None:
@@ -260,10 +307,9 @@ class GLUpload:
             "posting_date": "",
             "document_currency": "IDR",
             "local_currency": "IDR",
-            "vendor_id": "",
+            "vendor_id": "UNKNOWN",  # Default vendor_id if lookup fails
             "vendor_code": "",
             "vendor_name": "",
-            "first_voucing": "" # TODO: remove this field later
         }
         
         # Required numeric fields
@@ -273,8 +319,7 @@ class GLUpload:
             "tax_rate": 0.0,
             "amount_in_document_currency": 0.0,
             "amount_in_local_currency": 0.0,
-            "wht_normal": 0.0,
-            "diff_normal": 0.0
+            "wht_normal": 0.0
         }
         
         # Set defaults for missing string fields
@@ -302,8 +347,7 @@ class GLUpload:
             "id", "cocd", "gl", "year_month", "type", "reference_number",
             "document_number", "vendor_id", "vendor_code", "vendor_name", "po_number", "urn", "username",
             "text", "clearing_document", "document_date", "posting_date",
-            "document_currency", "local_currency", "ref", "first_voucing",
-            "second_reviewer", "gl_transaction_id"
+            "document_currency", "local_currency", "gl_transaction_id"
         ]
         
         # Extra fields from XLSX (not in Cosmos DB schema, kept for reference)

@@ -6,7 +6,7 @@ import type {
   VisibilityState,
 } from '@tanstack/vue-table'
 
-import type { GL } from '../data/schema'
+import type { Invoice } from '../data/schema'
 import {
   FlexRender,
   getCoreRowModel,
@@ -18,22 +18,16 @@ import {
   useVueTable,
 } from '@tanstack/vue-table'
 import { valueUpdater } from '@/lib/utils'
-import DataTablePagination from './DataTablePagination.vue'
-import DataTableToolbar from './DataTableToolbar.vue'
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from '@/components/ui/table'
 import { ref } from 'vue'
-import { useRouter } from 'vue-router'
-
-const router = useRouter()
 
 interface DataTableProps {
-  columns: ColumnDef<GL, any>[]
-  data: GL[]
-  showPagination?: boolean
+  columns: ColumnDef<Invoice, any>[]
+  data: Invoice[]
 }
-const props = withDefaults(defineProps<DataTableProps>(), {
-  showPagination: true
-})
+const props = defineProps<DataTableProps>()
+
+const router = useRouter()
 
 const sorting = ref<SortingState>([])
 const columnFilters = ref<ColumnFiltersState>([])
@@ -62,17 +56,13 @@ const table = useVueTable({
   getFacetedUniqueValues: getFacetedUniqueValues(),
 })
 
-const handleRowClick = (row: any) => {
-  const urn = row.original.urn
-  if (urn) {
-    router.push(`/gl/${urn}`)
-  }
+const handleRowClick = (invoice: Invoice) => {
+  router.push(`/mdm/invoice/${invoice.invoiceId}`)
 }
 </script>
 
 <template>
   <div class="space-y-4">
-    <DataTableToolbar :table="table" />
     <div class="rounded-md border">
       <Table>
         <TableHeader>
@@ -84,11 +74,11 @@ const handleRowClick = (row: any) => {
         </TableHeader>
         <TableBody>
           <template v-if="table.getRowModel().rows?.length">
-            <TableRow 
-              v-for="row in table.getRowModel().rows" 
-              :key="row.id" 
+            <TableRow
+              v-for="row in table.getRowModel().rows"
+              :key="row.id"
               :data-state="row.getIsSelected() && 'selected'"
-              @click="handleRowClick(row)"
+              @click="handleRowClick(row.original)"
               class="cursor-pointer hover:bg-muted/50"
             >
               <TableCell v-for="cell in row.getVisibleCells()" :key="cell.id">
@@ -96,16 +86,17 @@ const handleRowClick = (row: any) => {
               </TableCell>
             </TableRow>
           </template>
-          <template v-else>
-            <TableRow>
-              <TableCell :col-span="table.getAllColumns().length" class="h-24 text-center">
-                No results.
-              </TableCell>
-            </TableRow>
-          </template>
+
+          <TableRow v-else>
+            <TableCell
+              :colspan="table.getAllColumns().length"
+              class="h-24 text-center"
+            >
+              No results.
+            </TableCell>
+          </TableRow>
         </TableBody>
       </Table>
     </div>
-    <DataTablePagination v-if="showPagination" :table="table" />
   </div>
 </template>

@@ -21,7 +21,8 @@ from src.config.dependencies import (
     get_azure_service_bus_repository,
     get_content_extraction_service,
     get_llm_service_repository,
-    get_azure_cosmos_repository
+    get_azure_cosmos_repository,
+    get_embedding_repository
 )
 
 from src.common.const import Environment
@@ -51,7 +52,8 @@ async def run_worker():
         rabbitmq_repo=get_rabbitmq_repository(config),
         minio_storage_repo=get_minio_storage_repository(config),
         llm_service_repo=get_llm_service_repository(config),
-        azure_cosmos_repo=get_azure_cosmos_repository(config)
+        azure_cosmos_repo=get_azure_cosmos_repository(config),
+        embedding_repo=get_embedding_repository(config)
     )
     
     try:

@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { ArrowLeft, UploadCloud, Loader2, RefreshCw } from 'lucide-vue-next'
+import { ArrowLeft, UploadCloud, Loader2, RefreshCw, CheckCircle2, XCircle, Upload } from 'lucide-vue-next'
 import { toast } from 'vue-sonner'
 import {
   Table,
@@ -11,6 +11,7 @@ import {
   TableRow,
 } from '@/components/ui/table'
 import { Badge } from '@/components/ui/badge'
+import { Progress } from '@/components/ui/progress'
 import {
   Pagination,
   PaginationContent,
@@ -31,10 +32,20 @@ interface UploadedFile {
   created_at: string
   status: string
   urn?: string
+  completed_at?: string
 }
 
+interface FileUploadProgress {
+  file: File
+  status: 'pending' | 'uploading' | 'success' | 'error'
+  progress: number
+  error?: string
+}
+
+const uploadQueue = ref<FileUploadProgress[]>([])
 const page = ref(1)
 const pageSize = ref(5)
+const MAX_CONCURRENT_UPLOADS = 3 // Limit concurrent uploads to avoid overwhelming the server
 
 const config = useRuntimeConfig()
 const { data, status, error, refresh } = await useFetch(`${config.public.apiBase}/api/v1/upload/list`, {
@@ -54,6 +65,16 @@ const total = computed(() => {
   return responseData?.data?.total || 0
 })
 
+const uploadProgress = computed(() => {
+  const total = uploadQueue.value.length
+  if (total === 0) return 0
+  const completed = uploadQueue.value.filter(f => f.status === 'success' || f.status === 'error').length
+  return Number((completed / total * 100).toFixed(2))
+})
+
+const successCount = computed(() => uploadQueue.value.filter(f => f.status === 'success').length)
+const failCount = computed(() => uploadQueue.value.filter(f => f.status === 'error').length)
+
 const goBack = () => {
   router.back()
 }
@@ -66,7 +87,6 @@ const handleFileSelect = async (event: Event) => {
   const input = event.target as HTMLInputElement
   if (!input.files || input.files.length === 0) return
 
-  // TODO: Handle multiple upload from server side so user wont have to wait for each file upload sequentially
   const files = Array.from(input.files)
   await uploadFiles(files)
 }
@@ -79,48 +99,99 @@ const handleDrop = async (event: DragEvent) => {
   await uploadFiles(files)
 }
 
+const uploadSingleFile = async (fileProgress: FileUploadProgress): Promise<void> => {
+  const formData = new FormData()
+  formData.append('file', fileProgress.file)
+
+  try {
+    const config = useRuntimeConfig()
+    const { data, error } = await useFetch(`${config.public.apiBase}/api/v1/upload/file`, {
+      method: 'POST',
+      body: formData,
+    })
+
+    if (error.value) {
+      throw new Error(error.value.message || 'Upload failed')
+    }
+
+    fileProgress.status = 'success'
+    fileProgress.progress = 100
+  }
+  catch (err: any) {
+    fileProgress.status = 'error'
+    fileProgress.error = err.message || 'Upload failed'
+    console.error(`Failed to upload ${fileProgress.file.name}:`, err)
+  }
+}
+
+const processUploadQueue = async (): Promise<void> => {
+  const pendingFiles = uploadQueue.value.filter(f => f.status === 'pending')
+  const activeUploads: Promise<void>[] = []
+
+  for (const fileProgress of pendingFiles) {
+    // Wait until we have available slots
+    while (activeUploads.length >= MAX_CONCURRENT_UPLOADS) {
+      await Promise.race(activeUploads)
+      // Remove completed uploads from active list
+      const completedIndex = activeUploads.findIndex(
+        p => uploadQueue.value.find(f => f.file === (p as any)?.file)?.status !== 'uploading'
+      )
+      if (completedIndex !== -1) {
+        activeUploads.splice(completedIndex, 1)
+      }
+    }
+
+    fileProgress.status = 'uploading'
+    fileProgress.progress = 0
+
+    // Simulate progress (since we don't have actual upload progress from the API)
+    const progressInterval = setInterval(() => {
+      if (fileProgress.progress < 90) {
+        fileProgress.progress = Number((fileProgress.progress + Math.random() * 20).toFixed(2))
+      }
+    }, 200)
+
+    const uploadPromise = uploadSingleFile(fileProgress)
+    activeUploads.push(uploadPromise)
+
+    uploadPromise.finally(() => {
+      clearInterval(progressInterval)
+    })
+  }
+
+  // Wait for all remaining uploads to complete
+  await Promise.all(activeUploads)
+}
+
 const uploadFiles = async (files: File[]) => {
   if (files.length === 0) return
 
   isUploading.value = true
-  let successCount = 0
-  let failCount = 0
+
+  // Initialize upload queue
+  uploadQueue.value = files.map(file => ({
+    file,
+    status: 'pending' as const,
+    progress: 0,
+  }))
 
   try {
-    // Upload all files in parallel
-    const uploadPromises = files.map(async (file) => {
-      const formData = new FormData()
-      formData.append('file', file)
-
-      try {
-        const config = useRuntimeConfig()
-        const { data, error } = await useFetch(`${config.public.apiBase}/api/v1/upload/file`, {
-          method: 'POST',
-          body: formData,
-        })
-
-        if (error.value) {
-          throw new Error(error.value.message)
-        }
-
-        successCount++
-      }
-      catch (err: any) {
-        failCount++
-        console.error(`Failed to upload ${file.name}:`, err)
-      }
-    })
-
-    await Promise.all(uploadPromises)
+    // Process uploads with concurrency limit
+    await processUploadQueue()
 
     // Show summary toast
-    if (successCount > 0 && failCount === 0) {
-      toast.success(`${successCount} file${successCount > 1 ? 's' : ''} uploaded successfully`)
-    } else if (successCount > 0 && failCount > 0) {
-      toast.warning(`${successCount} succeeded, ${failCount} failed`)
-    } else if (failCount > 0) {
-      toast.error(`Failed to upload ${failCount} file${failCount > 1 ? 's' : ''}`)
+    if (successCount.value > 0 && failCount.value === 0) {
+      toast.success(`${successCount.value} file${successCount.value > 1 ? 's' : ''} uploaded successfully`)
+    } else if (successCount.value > 0 && failCount.value > 0) {
+      toast.warning(`${successCount.value} succeeded, ${failCount.value} failed`)
+    } else if (failCount.value > 0) {
+      toast.error(`Failed to upload ${failCount.value} file${failCount.value > 1 ? 's' : ''}`)
     }
+
+    // Clear queue after a delay
+    setTimeout(() => {
+      uploadQueue.value = []
+    }, 3000)
 
     await refresh()
   }
@@ -179,6 +250,60 @@ const uploadFiles = async (files: File[]) => {
       <Button class="mt-4" :disabled="isUploading">
         {{ isUploading ? 'Uploading...' : 'Select File' }}
       </Button>
+    </div>
+
+    <!-- Upload Progress Section -->
+    <div v-if="uploadQueue.length > 0" class="space-y-4">
+      <div class="flex items-center justify-between">
+        <div>
+          <h3 class="text-lg font-semibold">
+            Upload Progress
+          </h3>
+          <p class="text-sm text-muted-foreground">
+            {{ successCount }} succeeded, {{ failCount }} failed, {{ uploadQueue.length - successCount - failCount }} remaining
+          </p>
+        </div>
+        <Badge variant="outline">
+          {{ uploadProgress }}%
+        </Badge>
+      </div>
+
+      <!-- Overall Progress Bar -->
+      <div class="space-y-2">
+        <Progress :value="uploadProgress" class="h-2" />
+      </div>
+
+      <!-- Individual File Progress -->
+      <div class="space-y-2 max-h-64 overflow-y-auto">
+        <div
+          v-for="item in uploadQueue"
+          :key="item.file.name"
+          class="flex items-center gap-3 p-3 rounded-lg border bg-card"
+        >
+          <div class="flex-shrink-0">
+            <Loader2 v-if="item.status === 'uploading'" class="h-5 w-5 animate-spin text-blue-500" />
+            <CheckCircle2 v-else-if="item.status === 'success'" class="h-5 w-5 text-green-500" />
+            <XCircle v-else-if="item.status === 'error'" class="h-5 w-5 text-red-500" />
+            <Upload v-else class="h-5 w-5 text-muted-foreground" />
+          </div>
+          <div class="flex-1 min-w-0">
+            <div class="flex items-center justify-between gap-2">
+              <p class="text-sm font-medium truncate">
+                {{ item.file.name }}
+              </p>
+              <span class="text-xs text-muted-foreground flex-shrink-0">
+                {{ item.progress }}%
+              </span>
+            </div>
+            <div v-if="item.status === 'uploading'" class="mt-1">
+              <Progress :value="item.progress" class="h-1" />
+            </div>
+            <p v-if="item.status === 'error'" class="text-xs text-red-500 mt-1">
+              {{ item.error }}
+            </p>
+          </div>
+        </div>
+      </div>
     </div>
 
     <!-- Uploaded Files List -->

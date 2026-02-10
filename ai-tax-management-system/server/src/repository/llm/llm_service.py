@@ -11,7 +11,7 @@ from typing import Optional, Any
 from semantic_kernel.kernel_pydantic import KernelBaseModel
 
 from src.config.env import AppConfig
-from src.repository.prompt.content_extraction import get_content_classification_prompt, get_invoice_extraction_prompt, get_tax_invoice_extraction_prompt
+from src.repository.prompt.content_extraction import get_content_classification_prompt, get_invoice_extraction_prompt, get_tax_invoice_extraction_prompt, get_type_of_tax_classification_prompt
 from src.domain.invoice import Invoice
 from src.domain.tax_invoice import TaxInvoice
 from src.domain.gl_transaction import GLTransaction
@@ -21,6 +21,11 @@ class ClassificationResponse(KernelBaseModel):
     confidence_score: float
     is_document_complete: bool
     completeness_reason: Optional[str]
+
+class TypeOfTaxClassificationResponse(KernelBaseModel):
+    type_of_tax: str
+    confidence_score: float
+    ai_explanation: Optional[str]
 
 class LLMService:
     def __init__(self, service_id: str = "default_service", config: AppConfig = None):
@@ -111,6 +116,31 @@ class LLMService:
 
     def get_gl_extraction(self):
         pass
+
+    async def get_type_of_tax_classification(self, document_text: str) -> Optional[ClassificationResponse]:
+        try:
+            settings = OpenAIChatPromptExecutionSettings()
+            settings.response_format = ClassificationResponse
+            instruction = get_type_of_tax_classification_prompt(document_text)
+            kernel = Kernel()
+            agent = ChatCompletionAgent(
+                service=self.azure_chat_completion,
+                kernel=kernel,
+                name="TypeOfTaxClassificationAgent",
+                instructions=instruction,
+                arguments=KernelArguments(settings=settings)
+            )
+
+            response = await agent.get_response()
+            response_content = str(response.content)
+
+            response_data = json.loads(response_content)
+
+            return response_data
+
+        except Exception as e:
+            logger.error(f"Error getting type of tax classification: {e}")
+            return None
 
         
 

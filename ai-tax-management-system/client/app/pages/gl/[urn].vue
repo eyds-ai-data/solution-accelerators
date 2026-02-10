@@ -13,6 +13,7 @@ import { taxInvoiceDetailColumns } from '@/components/taxinvoice/components/colu
 import { Badge } from '@/components/ui/badge'
 import { Button } from '@/components/ui/button'
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
+import { Alert, AlertDescription, AlertTitle } from '@/components/ui/alert'
 import { Separator } from '@/components/ui/separator'
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar'
 import {
@@ -28,10 +29,14 @@ import {
   Edit,
   Trash2,
   CheckCircle2,
-  Save
+  Save,
+  ChevronLeft,
+  ChevronRight,
+  AlertCircle
 } from 'lucide-vue-next'
 import { Skeleton } from '@/components/ui/skeleton'
-import { useGLTransactionDetail, useInvoices, useTaxInvoices } from '~/composables/useTaxApi'
+import { useGLTransactionDetail, useInvoices, useTaxInvoices } from '@/composables/useTaxApi'
+import { formatNumber } from '@/components/gl/components/numbering'
 
 const route = useRoute()
 const router = useRouter()
@@ -49,14 +54,44 @@ onMounted(async () => {
 })
 
 const gl = computed(() => glTransaction.value)
-const invoice = computed(() =>
-  invoices.value.find(i => i.urn === glId) ?? null
-)
-const taxInvoice = computed(() =>
-  taxInvoices.value.find(t => t.urn === glId) ?? null
-)
+
+// Pagination state for invoices and tax invoices
+const currentInvoiceIndex = ref(0)
+const currentTaxInvoiceIndex = ref(0)
+
+const filteredInvoices = computed(() => invoices.value.filter(i => i.urn === glId))
+const filteredTaxInvoices = computed(() => taxInvoices.value.filter(t => t.urn === glId))
+
+const invoice = computed(() => filteredInvoices.value[currentInvoiceIndex.value] ?? null)
+const taxInvoice = computed(() => filteredTaxInvoices.value[currentTaxInvoiceIndex.value] ?? null)
+
 const showGlDetails = ref(false)
 const reconItems = computed(() => gl.value?.glReconItem ?? [])
+
+// Navigation functions
+const nextInvoice = () => {
+  if (currentInvoiceIndex.value < filteredInvoices.value.length - 1) {
+    currentInvoiceIndex.value++
+  }
+}
+
+const previousInvoice = () => {
+  if (currentInvoiceIndex.value > 0) {
+    currentInvoiceIndex.value--
+  }
+}
+
+const nextTaxInvoice = () => {
+  if (currentTaxInvoiceIndex.value < filteredTaxInvoices.value.length - 1) {
+    currentTaxInvoiceIndex.value++
+  }
+}
+
+const previousTaxInvoice = () => {
+  if (currentTaxInvoiceIndex.value > 0) {
+    currentTaxInvoiceIndex.value--
+  }
+}
 
 // const invoicePdfUrl = computed(() =>
 //   invoice.value
@@ -178,7 +213,7 @@ const activeTab = ref<'invoice' | 'tax'>('invoice')
             <div class="space-y-3">
               <div class="flex justify-between items-center text-sm min-h-[36px]">
                 <span class="text-muted-foreground"><strong>Vendor Name</strong></span>
-                <span class="font-medium">{{ gl.vendorId }}</span>
+                <span class="font-medium">{{ gl.vendorName }}</span>
               </div>
 
               <div class="flex justify-between items-center text-sm min-h-[36px]">
@@ -215,6 +250,7 @@ const activeTab = ref<'invoice' | 'tax'>('invoice')
                  <input
                   type="text"
                   class="w-48 rounded-md border px-2 py-1 text-sm"
+                  :value="formatNumber(gl.diffNormal)"
                   disabled
                 />
               </div>
@@ -284,12 +320,12 @@ const activeTab = ref<'invoice' | 'tax'>('invoice')
                   
                     <div class="flex justify-between items-center text-sm min-h-[36px]">
                       <span class="text-muted-foreground"><strong>Tax Based</strong></span>
-                      <span class="font-medium">{{ gl.taxBased }}</span>
+                      <span class="font-medium">{{ formatNumber(gl.taxBased) }}</span>
                     </div>
 
                     <div class="flex justify-between items-center text-sm min-h-[36px]">
                       <span class="text-muted-foreground"><strong>WHT</strong></span>
-                      <span class="font-medium">{{ gl.wht }}</span>
+                      <span class="font-medium">{{ formatNumber(gl.wht) }}</span>
                     </div>
                   </div>
 
@@ -301,6 +337,7 @@ const activeTab = ref<'invoice' | 'tax'>('invoice')
                       <input
                         type="text"
                         class="w-48 rounded-md border px-2 py-1 text-sm"
+                        :value="formatNumber(gl.taxBasedWhtNormal)"
                         disabled
                       />
                     </div>
@@ -310,6 +347,7 @@ const activeTab = ref<'invoice' | 'tax'>('invoice')
                       <input
                         type="text"
                         class="w-48 rounded-md border px-2 py-1 text-sm"
+                        :value="formatNumber(gl.whtNormal)"
                         disabled
                       />
                     </div>
@@ -319,6 +357,15 @@ const activeTab = ref<'invoice' | 'tax'>('invoice')
                 <div>
                   <!-- GL Table -->
                   <DataTableGLItems :data="gl?.glReconItem ?? []" :columns="glReconColumns" />
+                  
+                  <!-- AI Recon Warning -->
+                  <Alert class="mt-4 bg-yellow-50 dark:bg-yellow-950 border-yellow-500 dark:border-yellow-600">
+                    <AlertCircle class="h-4 w-4 text-yellow-600 dark:text-yellow-500" />
+                    <AlertTitle class="text-yellow-800 dark:text-yellow-400">AI Recon System Not Activated</AlertTitle>
+                    <AlertDescription class="text-yellow-700 dark:text-yellow-500">
+                      The AI-powered reconciliation system is currently not activated. Manual review is required for all reconciliation items.
+                    </AlertDescription>
+                  </Alert>
                 </div>
                 <!-- See details button -->
                 <div class="flex justify-end mt-2">
@@ -389,7 +436,7 @@ const activeTab = ref<'invoice' | 'tax'>('invoice')
 
                     <div class="flex justify-between items-center text-sm min-h-[36px]">
                       <span class="text-muted-foreground"><strong>Amount in Document Currency</strong></span>
-                      <span class="font-medium">{{ gl.amountInDocumentCurrency }}</span>
+                      <span class="font-medium">{{ formatNumber(gl.amountInDocumentCurrency) }}</span>
                     </div>
 
                     <div class="flex justify-between items-center text-sm min-h-[36px]">
@@ -399,22 +446,22 @@ const activeTab = ref<'invoice' | 'tax'>('invoice')
 
                     <div class="flex justify-between items-center text-sm min-h-[36px]">
                       <span class="text-muted-foreground"><strong>Amount in Local Currency</strong></span>
-                      <span class="font-medium">{{ gl.amountInLocalCurrency }}</span>
+                      <span class="font-medium">{{ formatNumber(gl.amountInLocalCurrency) }}</span>
                     </div>
 
                     <div class="flex justify-between items-center text-sm min-h-[36px]">
                       <span class="text-muted-foreground"><strong>Tax Based</strong></span>
-                      <span class="font-medium">{{ gl.taxBased }}</span>
+                      <span class="font-medium">{{ formatNumber(gl.taxBase) }}</span>
                     </div>
 
                     <div class="flex justify-between items-center text-sm min-h-[36px]">
-                      <span class="text-muted-foreground"><strong>Tax Rate</strong></span>
-                      <span class="font-medium">{{ gl.taxRate }}</span>
+                      <span class="text-muted-foreground"><strong>Tax Rate %</strong></span>
+                      <span class="font-medium">{{ formatNumber(gl.taxRate*100) }}</span>
                     </div>
 
                     <div class="flex justify-between items-center text-sm min-h-[36px]">
                       <span class="text-muted-foreground"><strong>WHT</strong></span>
-                      <span class="font-medium">{{ gl.wht }}</span>
+                      <span class="font-medium">{{ formatNumber(gl.wht) }}</span>
                     </div>
                   </div>
                 </div>
@@ -445,7 +492,33 @@ const activeTab = ref<'invoice' | 'tax'>('invoice')
           <!-- Tab Panels -->
           <div>
             <!-- Invoice Detail Tab -->
-            <div v-if="activeTab === 'invoice'" class="grid grid-cols-1 lg:grid-cols-3 gap-6">
+            <div v-if="activeTab === 'invoice'">
+              <!-- Navigation Controls -->
+              <div v-if="filteredInvoices.length > 1" class="flex items-center justify-between mb-4">
+                <Button
+                  variant="outline"
+                  size="sm"
+                  :disabled="currentInvoiceIndex === 0"
+                  @click="previousInvoice"
+                >
+                  <ChevronLeft class="h-4 w-4 mr-1" />
+                  Previous
+                </Button>
+                <span class="text-sm text-muted-foreground">
+                  Invoice {{ currentInvoiceIndex + 1 }} of {{ filteredInvoices.length }}
+                </span>
+                <Button
+                  variant="outline"
+                  size="sm"
+                  :disabled="currentInvoiceIndex === filteredInvoices.length - 1"
+                  @click="nextInvoice"
+                >
+                  Next
+                  <ChevronRight class="h-4 w-4 ml-1" />
+                </Button>
+              </div>
+              
+              <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
               <!-- PDF preview -->
               <div class="border rounded-md overflow-hidden h-[500px]">
                 <iframe
@@ -478,29 +551,29 @@ const activeTab = ref<'invoice' | 'tax'>('invoice')
                     </div>
                     <div class="flex justify-between items-center text-sm min-h-[36px]">
                       <span class="text-muted-foreground"><strong>Sub Total Amount</strong></span>
-                      <span class="font-medium">{{ invoice?.subTotalAmount }}</span>
+                      <span class="font-medium">{{ formatNumber(invoice?.subTotalAmount) }}</span>
                     </div>
                   </div>
                   <div>
                     <div class="flex justify-between items-center text-sm min-h-[36px]">
                       <span class="text-muted-foreground"><strong>VAT %</strong></span>
-                      <span class="font-medium">{{ invoice?.vatPercentage }}</span>
+                      <span class="font-medium">{{ formatNumber(invoice?.vatPercentage) }}</span>
                     </div>
                     <div class="flex justify-between items-center text-sm min-h-[36px]">
                       <span class="text-muted-foreground"><strong>VAT Amount</strong></span>
-                      <span class="font-medium">{{ invoice?.vatAmount }}</span>
+                      <span class="font-medium">{{ formatNumber(invoice?.vatAmount) }}</span>
                     </div>
                     <div class="flex justify-between items-center text-sm min-h-[36px]">
                       <span class="text-muted-foreground"><strong>WHT %</strong></span>
-                      <span class="font-medium">{{ invoice?.whtPercentage }}</span>
+                      <span class="font-medium">{{ formatNumber(invoice?.whtPercentage) }}</span>
                     </div>
                     <div class="flex justify-between items-center text-sm min-h-[36px]">
                       <span class="text-muted-foreground"><strong>WHT Amount</strong></span>
-                      <span class="font-medium">{{ invoice?.whtAmount }}</span>
+                      <span class="font-medium">{{ formatNumber(invoice?.whtAmount) }}</span>
                     </div>
                     <div class="flex justify-between items-center text-sm min-h-[36px]">
                       <span class="text-muted-foreground"><strong>Total Amount</strong></span>
-                      <span class="font-medium">{{ invoice?.totalAmount }}</span>
+                      <span class="font-medium">{{ formatNumber(invoice?.totalAmount) }}</span>
                     </div>
                   </div>
                 </div>
@@ -510,10 +583,37 @@ const activeTab = ref<'invoice' | 'tax'>('invoice')
                   <DataTableInvoices :data="invoice?.invoiceDetail ?? []" :columns="invoiceDetailColumns" />
                 </div>
               </div>
+              </div>
             </div>
 
             <!-- Tax Invoice Tab -->
-            <div v-if="activeTab === 'tax'" class="grid grid-cols-1 lg:grid-cols-3 gap-6">
+            <div v-if="activeTab === 'tax'">
+              <!-- Navigation Controls -->
+              <div v-if="filteredTaxInvoices.length > 1" class="flex items-center justify-between mb-4">
+                <Button
+                  variant="outline"
+                  size="sm"
+                  :disabled="currentTaxInvoiceIndex === 0"
+                  @click="previousTaxInvoice"
+                >
+                  <ChevronLeft class="h-4 w-4 mr-1" />
+                  Previous
+                </Button>
+                <span class="text-sm text-muted-foreground">
+                  Tax Invoice {{ currentTaxInvoiceIndex + 1 }} of {{ filteredTaxInvoices.length }}
+                </span>
+                <Button
+                  variant="outline"
+                  size="sm"
+                  :disabled="currentTaxInvoiceIndex === filteredTaxInvoices.length - 1"
+                  @click="nextTaxInvoice"
+                >
+                  Next
+                  <ChevronRight class="h-4 w-4 ml-1" />
+                </Button>
+              </div>
+              
+              <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
               <!-- PDF preview -->
               <div class="border rounded-md overflow-hidden h-[500px]">
                 <iframe
@@ -588,29 +688,29 @@ const activeTab = ref<'invoice' | 'tax'>('invoice')
                   <div>
                     <div class="flex justify-between items-center text-sm h-12 mb-3">
                       <span class="text-muted-foreground w-48 break-words"><strong>Total Harga Jual / Penggantian / Uang Muka / Termin</strong></span>
-                      <span class="font-medium">{{ taxInvoice?.totalTaxBaseWht }}</span>
+                      <span class="font-medium">{{ formatNumber(taxInvoice?.totalTaxBaseWht) }}</span>
                     </div>
                     <div class="flex justify-between items-center text-sm h-12 mb-3">
                       <span class="text-muted-foreground w-48 break-words"><strong>Dikurangi Potongan Harga</strong></span>
-                      <span class="font-medium">{{ taxInvoice?.dikurangiPotonganHarga }}</span>
+                      <span class="font-medium">{{ formatNumber(taxInvoice?.dikurangiPotonganHarga) }}</span>
                     </div>
                     <div class="flex justify-between items-center text-sm h-12 mb-3">
                       <span class="text-muted-foreground w-48 break-words"><strong>Dikurangi Uang Muka yang telah diterima</strong></span>
-                      <span class="font-medium">{{ taxInvoice?.dikurangiUangMukaYangTelahDiterima }}</span>
+                      <span class="font-medium">{{ formatNumber(taxInvoice?.dikurangiUangMukaYangTelahDiterima) }}</span>
                     </div>
                   </div>
                   <div>
                     <div class="flex justify-between items-center text-sm h-12 mb-3">
                       <span class="text-muted-foreground w-48 break-words"><strong>Dasar Pengenaan Pajak</strong></span>
-                      <span class="font-medium">{{ taxInvoice?.dasarPengenaanPajak }}</span>
+                      <span class="font-medium">{{ formatNumber(taxInvoice?.dasarPengenaanPajak) }}</span>
                     </div>
                     <div class="flex justify-between items-center text-sm h-12 mb-3">
                       <span class="text-muted-foreground w-48 break-words"><strong>Jumlah PPN (Pajak Pertambahan Nilai)</strong></span>
-                      <span class="font-medium">{{ taxInvoice?.jumlahPpn }}</span>
+                      <span class="font-medium">{{ formatNumber(taxInvoice?.jumlahPpn) }}</span>
                     </div>
                     <div class="flex justify-between items-center text-sm h-12 mb-3">
                       <span class="text-muted-foreground w-48 break-words"><strong>Jumlah PPnBM (Pajak Penjualan atas Barang Mewah)</strong></span>
-                      <span class="font-medium">{{ taxInvoice?.jumlahPpnbm }}</span>
+                      <span class="font-medium">{{ formatNumber(taxInvoice?.jumlahPpnbm) }}</span>
                     </div>
                   </div>
                 </div>
@@ -620,6 +720,7 @@ const activeTab = ref<'invoice' | 'tax'>('invoice')
                   <DataTableTaxInvoices :data="taxInvoice?.taxInvoiceDetail ?? []" :columns="taxInvoiceDetailColumns" />
                 </div>
               </div>
+              </div>
             </div>
           </div>
         </div>
@@ -628,8 +729,8 @@ const activeTab = ref<'invoice' | 'tax'>('invoice')
   </div>
   <div v-else class="min-h-screen flex items-center justify-center bg-muted/40">
     <div class="text-center">
-      <h2 class="text-2xl font-bold text-foreground">Job Not Found</h2>
-      <p class="text-muted-foreground mt-2">The job you are looking for does not exist.</p>
+      <h2 class="text-2xl font-bold text-foreground">GL Not Found</h2>
+      <p class="text-muted-foreground mt-2">The GL you are looking for does not exist.</p>
       <Button class="mt-4" @click="goBack">Go Back</Button>
     </div>
   </div>

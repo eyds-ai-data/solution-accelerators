@@ -41,7 +41,7 @@ const activeTeam = ref(props.teams[0])
           :side="isMobile ? 'bottom' : 'right'"
         >
           <DropdownMenuLabel class="text-xs text-muted-foreground">
-            Teams
+            Projects
           </DropdownMenuLabel>
           <DropdownMenuItem
             v-for="(team, index) in teams"
@@ -53,7 +53,7 @@ const activeTeam = ref(props.teams[0])
               <Icon :name="team.logo" class="size-4 shrink-0" />
             </div>
             {{ team.name }}
-            <DropdownMenuShortcut>⌘{{ index + 1 }}</DropdownMenuShortcut>
+            <!-- <DropdownMenuShortcut>⌘{{ index + 1 }}</DropdownMenuShortcut> -->
           </DropdownMenuItem>
           <DropdownMenuSeparator />
           <DropdownMenuItem class="gap-2 p-2">

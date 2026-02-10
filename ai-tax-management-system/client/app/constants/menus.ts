@@ -16,11 +16,17 @@ export const navMenu: NavMenu[] = [
     items: [
       {
         title: 'GL Table',
-        icon: 'i-lucide-file-user',
+        icon: 'i-lucide-sheet',
         link: '/gl',
       },
     ],
   },
 ]
 
-export const navMenuBottom: NavMenuItems = []
+export const navMenuBottom: NavMenuItems = [
+  {
+    title: 'MDM',
+    icon: 'i-lucide-database',
+    link: '/mdm',
+  },
+]

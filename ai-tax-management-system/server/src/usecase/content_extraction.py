@@ -8,11 +8,13 @@ from src.repository.storage import AzureBlobStorageRepository
 from src.repository.messaging import RabbitMQRepository
 from src.repository.llm.llm_service import LLMService
 from src.repository.database import AzureCosmosDBRepository
+from src.repository.embedding import EmbeddingRepository
 from loguru import logger
 from src.common.const import ContentType
 import uuid
 from pypdf import PdfReader, PdfWriter
 from io import BytesIO
+from src.domain.gl_transaction import GLReconItem
 
 class ContentExtraction:
     def __init__(
@@ -22,7 +24,8 @@ class ContentExtraction:
         rabbitmq_repo: Optional[RabbitMQRepository] = None,
         minio_storage_repo: Optional[MinioStorageRepository] = None,
         llm_service_repo: Optional[LLMService] = None,
-        azure_cosmos_repo: Optional[AzureCosmosDBRepository] = None
+        azure_cosmos_repo: Optional[AzureCosmosDBRepository] = None,
+        embedding_repo: Optional[EmbeddingRepository] = None
     ):
         
         self.content_understanding_repo = content_understanding_repo
@@ -31,6 +34,7 @@ class ContentExtraction:
         self.minio_storage_repo = minio_storage_repo
         self.llm_service_repo = llm_service_repo
         self.azure_cosmos_repo = azure_cosmos_repo
+        self.embedding_repo = embedding_repo
 
     def _extract_content(self, file, upload_id: str, original_filename: str) -> Dict[str, Any]:
 
@@ -141,6 +145,7 @@ class ContentExtraction:
                                 result['urn'] = urn
                                 result['invoiceId'] = str(uuid.uuid4())
                                 result['documentUrl'] = file_url
+                                result['classification'] = ContentType.Invoice.value
 
                                 # save the result to cosmos db
                                 if self.azure_cosmos_repo and urn:
@@ -148,7 +153,6 @@ class ContentExtraction:
                                         document_data=result,
                                         container_id="invoices"
                                     )
-
                             elif content_classification_data == ContentType.TaxInvoice.value:
                                 # Initialize accumulated_content if not provided
                                 if accumulated_content is None:
@@ -188,6 +192,7 @@ class ContentExtraction:
                                 result['taxInvoiceId'] = str(uuid.uuid4())
                                 result['documentUrl'] = merged_pdf_url
                                 result['total_pages'] = len(accumulated_content)
+                                result['classification'] = ContentType.TaxInvoice.value
 
                                 if self.azure_cosmos_repo and urn:
                                     self.azure_cosmos_repo.create_document(
@@ -202,7 +207,12 @@ class ContentExtraction:
                                 result = await self.llm_service_repo.get_gl_extraction(document_text=content)
                                 result['documentUrl'] = file_url
                             else:
-                                result = {"message": "Content type is Unknown, no extraction performed."}
+                                result = {
+                                    "message": "Content type is Unknown, no extraction performed.",
+                                    "urn": urn,
+                                    "documentUrl": file_url,
+                                    "classification": ContentType.Unknown.value
+                                }
 
                             logger.info(f"Content classification completed for {request_id}")
                         except Exception as e:
@@ -323,6 +333,7 @@ class ContentExtraction:
             analysis_results = []
             accumulated_tax_invoice_content = []  # Track incomplete tax invoice pages
             accumulated_tax_invoice_urls = []  # Track file URLs for incomplete tax invoice pages
+            suitable_documents_found = False  # Flag to track if any invoices/tax invoices were found
             
             # Loop through each file
             for file_info in files:
@@ -376,6 +387,12 @@ class ContentExtraction:
                     
                     logger.info(f"Successfully analyzed: {blob_name}")
                     
+                    # Check if this is a suitable document (Invoice or TaxInvoice)
+                    classification = final_result.get("classification", "")
+                    if classification in [ContentType.Invoice.value, ContentType.TaxInvoice.value]:
+                        suitable_documents_found = True
+                        logger.info(f"Suitable document found: {blob_name} - Classification: {classification}")
+                    
                     analysis_results.append({
                         "blob_name": blob_name,
                         "file_url": file_url,
@@ -399,12 +416,194 @@ class ContentExtraction:
                     })
             
             logger.info(f"Completed processing {len(analysis_results)} documents from folder {file_id}")
-            return analysis_results
+            logger.info(f"Suitable documents (Invoice/TaxInvoice) found: {suitable_documents_found}")
+            
+            return {
+                "results": analysis_results,
+                "suitable_documents_found": suitable_documents_found,
+                "total_files_processed": len(analysis_results)
+            }
             
         except Exception as e:
             logger.error(f"Error processing documents in folder {file_id}: {e}")
             raise
 
+    async def reconciliation_process(self, urn: str) -> None:
+        """
+        Perform reconciliation process between tax invoices and GL transactions
+        
+        Args:
+            urn: Unique reference number to filter documents
+        """
+        try:
+            # 1. Fetch tax invoices based on urn
+            tax_invoices = self.azure_cosmos_repo.query_documents(
+                container_id="tax-invoices",
+                query_filter=f"c.urn = '{urn}'"
+            )
+            
+            # 2. Fetch GL transactions based on urn
+            gl_transactions = self.azure_cosmos_repo.query_documents(
+                container_id="gl-transactions",
+                query_filter=f"c.urn = '{urn}'"
+            )
+            
+            # 3. Fetch vendor tax references for semantic search
+            vendor_tax_references = self.azure_cosmos_repo.query_documents(
+                container_id="vendor-tax-reference"
+            )
+            
+            logger.info(f"Processing {len(tax_invoices)} tax invoices and {len(gl_transactions)} GL transactions for URN: {urn}")
+            
+            # 4. Loop through tax invoice details and perform semantic search
+            for tax_invoice in tax_invoices:
+                tax_invoice_details = tax_invoice.get("taxInvoiceDetail", [])
+                
+                for detail in tax_invoice_details:
+                    item_name = detail.get("itemName", "")
+                    
+                    if not item_name:
+                        logger.warning(f"Skipping tax invoice detail with no itemName")
+                        continue
+                    
+                    logger.info(f"Processing tax invoice item: {item_name}")
+                    
+                    # Generate embedding for the item name
+                    if self.embedding_repo:
+                        try:
+                            item_embedding = await self.embedding_repo.get_embedding_result(item_name)
+                            
+                            # Perform vector search to find similar vendor tax references
+                            # Find the matching vendorId from GL transaction for this URN
+                            vendor_ids = set()
+                            for gl_transaction in gl_transactions:
+                                vendor_id = gl_transaction.get("vendorId")
+                                if vendor_id:
+                                    vendor_ids.add(vendor_id) # TODO: ini kenapa mesti retrieve all vendor ids dah
+                            
+                            # Search for each vendor
+                            best_matches = []
+                            for vendor_id in vendor_ids:
+                                # Perform vector search with vendor filter
+                                search_results = self.azure_cosmos_repo.vector_search(
+                                    vector=item_embedding,
+                                    vector_field="embedding",
+                                    top_k=3,  # Get top 3 matches per vendor
+                                    additional_filters=f"c.vendorId = {vendor_id}",
+                                    container_id="vendor-tax-reference",
+                                    return_similarity_score=True
+                                )
+                                
+                                best_matches.extend(search_results)
+                            
+                            # Sort all matches by similarity score
+                            best_matches.sort(key=lambda x: x.get("similarity_score", 1.0))
+                            
+                            if best_matches:
+                                top_match = best_matches[0]
+                                similarity_score = top_match.get("similarity_score", 0)
+                                matched_description = top_match.get("description", "")
+                                matched_tax_id = top_match.get("taxId")
+                                matched_vendor_id = top_match.get("vendorId")
+                                
+                                logger.info(f"Best match for '{item_name}': '{matched_description}' (Score: {similarity_score:.4f}, TaxId: {matched_tax_id}, VendorId: {matched_vendor_id})")
+                                
+                                # Store the match result in detail for further processing
+                                detail["matched_tax_reference"] = {
+                                    "description": matched_description,
+                                    "taxId": matched_tax_id,
+                                    "vendorId": matched_vendor_id,
+                                    "similarity_score": similarity_score,
+                                    "vendorTaxReferenceId": top_match.get("vendorTaxReferenceId")
+                                }
+                            else:
+                                logger.warning(f"No vendor tax reference match found for: {item_name}")
+                                
+                        except Exception as e:
+                            logger.error(f"Error generating embedding or performing vector search for '{item_name}': {e}")
+                    else:
+                        logger.warning("Embedding repository not initialized, skipping semantic search")
+            
+            # 5. Classify type of tax using LLM service (TODO)
+            # 6. Update GL transaction with GL recon items (TODO)
+            
+            logger.info(f"Completed reconciliation process for URN: {urn}")
+            
+        except Exception as e:
+            logger.error(f"Error in reconciliation process for URN {urn}: {e}")
+            raise
+    
+    # temporary function, on the production code this function will be changed
+    async def copy_tax_invoice_item_to_gl_recon_item(self, urn: str) -> GLReconItem:
+        # 1. Fetch tax invoices based on urn
+        tax_invoices = self.azure_cosmos_repo.query_documents(
+            container_id="tax-invoices",
+            query_filter=f"c.urn = '{urn}'"
+        )
+        
+        if not tax_invoices:
+            logger.warning(f"No tax invoices found for URN: {urn}")
+            return None
+        
+        # 2. Fetch GL transactions based on urn (single record)
+        gl_transactions = self.azure_cosmos_repo.query_documents(
+            container_id="gl-transactions",
+            query_filter=f"c.urn = '{urn}'"
+        )
+        
+        if not gl_transactions:
+            logger.warning(f"No GL transactions found for URN: {urn}")
+            return None
+        
+        # Get the first (and only) GL transaction
+        gl_transaction = gl_transactions[0]
+        
+        # 3. Build GLReconItem list from tax invoice details
+        gl_recon_items = []
+        
+        for tax_invoice in tax_invoices:
+            # Get the tax_invoice_detail list from the tax invoice
+            tax_invoice_details = tax_invoice.get("taxInvoiceDetail", [])
+            
+            for detail in tax_invoice_details:
+                # Extract itemName from the detail
+                item_name = detail.get("itemName", "")
+                
+                # Create GLReconItem with itemName from tax invoice detail
+                gl_recon_item = GLReconItem(
+                    item_name=item_name,
+                    type_of_tax="",  # Default empty, can be updated later
+                    tax_base=None,
+                    rate=None,
+                    wht_normal=None,
+                    remarks=None,
+                    diff_normal=None,
+                    ai_explanation=None
+                )
+                gl_recon_items.append(gl_recon_item)
+        
+        # 4. Update the GL transaction with glReconItem
+        if gl_recon_items:
+            # Convert to dict format with camelCase aliases for Cosmos DB
+            gl_recon_items_dict = [item.model_dump(by_alias=True) for item in gl_recon_items]
+            
+            # Update the GL transaction document
+            self.azure_cosmos_repo.update_document(
+                document_id=gl_transaction["id"],
+                partition_key=gl_transaction["urn"],
+                update_data={
+                    "glReconItem": gl_recon_items_dict
+                },
+                container_id="gl-transactions",
+                partial_update=True
+            )
+            
+            logger.info(f"Updated GL transaction {gl_transaction['id']} with {len(gl_recon_items)} GLReconItem(s)")
+        
+        # Return the first GLReconItem as specified in return type
+        return gl_recon_items[0] if gl_recon_items else None
+        
+    
     async def process_message(self, message: Dict[str, Any]) -> None:
         try:
             # file_id in status
@@ -416,13 +615,29 @@ class ContentExtraction:
             logger.info(f"Processing content extraction for document ID: {document_id}")
 
             result = await self.process_documents_in_folder(file_id=document_id)
+            
+            # Extract results and flags
+            analysis_results = result.get("results", [])
+            suitable_documents_found = result.get("suitable_documents_found", False)
+            
+            if not suitable_documents_found:
+                logger.warning(f"No suitable documents (Invoice/TaxInvoice) found in folder {document_id}")
+
+            urn = next((res.get('analysis_result', {}).get('urn') for res in analysis_results if res.get('analysis_result') and res.get('analysis_result', {}).get('urn')), None)
+            
+            # TODO: continue this
+            if urn:
+                await self.copy_tax_invoice_item_to_gl_recon_item(urn=urn)
 
             self.azure_cosmos_repo.update_document(
                 document_id=document_id,
+                partition_key=document_id,
                 update_data={
-                    "urn": next((res.get('analysis_result', {}).get('urn') for res in result if res.get('analysis_result') and res.get('analysis_result', {}).get('urn')), None),
+                    "urn": urn,
                     "status": "completed",
-                    "completed_at": datetime.utcnow().isoformat()
+                    "completed_at": datetime.utcnow().isoformat(),
+                    "suitable_documents_found": suitable_documents_found,
+                    "has_no_documents": not suitable_documents_found
                 },
                 container_id="uploads",
                 partial_update=True
