@@ -5,27 +5,27 @@ export const navMenu: NavMenu[] = [
     heading: '',
     items: [
       {
-        title: 'Home',
-        icon: 'i-lucide-home',
+        title: 'Dashboard',
+        icon: 'i-lucide-layout-dashboard',
         link: '/',
       }
     ],
   },
   {
-    heading: 'Tax Uploads',
+    heading: 'WHT Management',
     items: [
       {
-        title: 'GL Table',
-        icon: 'i-lucide-sheet',
+        title: 'GL Transactions',
+        icon: 'i-lucide-book-open',
         link: '/gl',
-      },
+      }
     ],
   },
 ]
 
 export const navMenuBottom: NavMenuItems = [
   {
-    title: 'MDM',
+    title: 'Master Data',
     icon: 'i-lucide-database',
     link: '/mdm',
   },

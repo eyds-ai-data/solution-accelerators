@@ -213,10 +213,10 @@ const uploadFiles = async (files: File[]) => {
       </Button>
       <div>
         <h2 class="text-xl font-bold tracking-tight">
-          Upload Tax Invoices/Invoices
+          Upload Invoices
         </h2>
         <p class="text-muted-foreground mt-1">
-          Upload your Tax Invoices or Invoices for processing
+          Please upload your <span class="font-bold">commercial invoices</span> or <span class="font-bold">tax invoices</span> for processing
         </p>
       </div>
     </div>
@@ -307,7 +307,7 @@ const uploadFiles = async (files: File[]) => {
     </div>
 
     <!-- Uploaded Files List -->
-    <div class="mt-8 space-y-4">
+    <div class="space-y-4">
       <div class="flex items-center justify-between">
         <div>
           <h3 class="text-xl font-semibold">

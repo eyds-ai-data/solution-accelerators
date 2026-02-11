@@ -4,6 +4,7 @@ import DataTable from '@/components/gl/components/DataTable.vue'
 import type { GL } from '@/components/gl/data/schema'
 import { Skeleton } from '@/components/ui/skeleton'
 import { useGLTransactions } from '@/composables/useTaxApi'
+import { FileUp, Receipt } from 'lucide-vue-next'
 
 const { glTransactions, loading, error, pagination, fetchGLTransactions } = useGLTransactions()
 
@@ -29,7 +30,7 @@ const handlePageSizeChange = async (pageSize: number) => {
     <div class="flex items-center justify-between">
       <div>
         <h2 class="text-3xl font-bold tracking-tight">
-          GL
+          GL Transactions
         </h2>
         <p class="text-muted-foreground mt-1">
           Uploaded GL transactions for review and processing
@@ -37,10 +38,12 @@ const handlePageSizeChange = async (pageSize: number) => {
       </div>
       <div class="flex items-center gap-2">
         <Button variant="outline" @click="navigateTo('/gl/upload')">
+          <FileUp class="h-4 w-4" />
           Upload GL
         </Button>
         <Button variant="outline" @click="navigateTo('/gl/upload-invoice')">
-          Upload Tax Invoices or Invoices
+          <Receipt class="h-4 w-4" />
+          Upload Invoices
         </Button>
       </div>
     </div>

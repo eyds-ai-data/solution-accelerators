@@ -75,11 +75,11 @@ const uploadFile = async (file: File) => {
         <ArrowLeft class="h-4 w-4" />
       </Button>
       <div>
-        <h2 class="text-3xl font-bold tracking-tight">
-          Upload GL
+        <h2 class="text-xl font-bold tracking-tight">
+          Upload General Ledger (GL) File
         </h2>
         <p class="text-muted-foreground mt-1">
-          Upload your General Ledger file for processing
+          Please upload your <span class="font-bold">general ledger</span> file for processing
         </p>
       </div>
     </div>
