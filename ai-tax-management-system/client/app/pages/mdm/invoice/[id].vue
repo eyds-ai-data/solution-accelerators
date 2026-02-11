@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { computed, ref } from 'vue'
+import { computed, ref, onMounted } from 'vue'
 import { useRoute, useRouter } from 'vue-router'
 import type { Invoice } from '@/components/invoice/data/schema'
 import DataTableInvoices from '@/components/invoice/components/DataTableInvoices.vue'

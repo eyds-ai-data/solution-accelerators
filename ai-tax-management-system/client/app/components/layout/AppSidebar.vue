@@ -45,9 +45,9 @@ const { sidebar } = useAppSettings()
         </div>
           
 
-        <div class="grid flex-1 text-left text-sm leading-tight">
+        <div class="grid flex-1 text-left leading-tight">
           <span class="truncate font-semibold">
-            AI Tax Management
+            EY TaxIQ
           </span>
           <span class="truncate text-xs flex items-center gap-1.5">v0.0.1 <Badge variant="default" class="text-[10px] px-1 py-0 h-4">alpha</Badge> </span>
         </div>

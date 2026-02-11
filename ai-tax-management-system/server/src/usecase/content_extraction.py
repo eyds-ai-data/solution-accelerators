@@ -2,6 +2,7 @@ from typing import Dict, Any, Optional, List
 import asyncio
 import re
 from datetime import datetime
+from urllib.parse import unquote
 from src.repository.content_understanding import ContentUnderstandingRepository
 from src.repository.storage import MinioStorageRepository
 from src.repository.storage import AzureBlobStorageRepository
@@ -132,7 +133,7 @@ class ContentExtraction:
                     if self.llm_service_repo:
                         try:
                             content = result['result']['contents'][0]['markdown']
-                            urn = self._extract_urn_from_content(content)
+                            # urn = self._extract_urn_from_content(content)
                             content_classification = await self.llm_service_repo.get_content_classification(
                                 document_text=content
                             )
@@ -142,13 +143,13 @@ class ContentExtraction:
                             if content_classification_data == ContentType.Invoice.value:
                                 # call invoice extraction
                                 result = await self.llm_service_repo.get_invoice_extraction(document_text=content)
-                                result['urn'] = urn
+                                result['urn'] = result['invoiceNumber']
                                 result['invoiceId'] = str(uuid.uuid4())
                                 result['documentUrl'] = file_url
                                 result['classification'] = ContentType.Invoice.value
 
                                 # save the result to cosmos db
-                                if self.azure_cosmos_repo and urn:
+                                if self.azure_cosmos_repo and result['invoiceNumber']:
                                     self.azure_cosmos_repo.create_document(
                                         document_data=result,
                                         container_id="invoices"
@@ -181,20 +182,20 @@ class ContentExtraction:
                                         merged_pdf_url = await self._merge_pdfs_from_urls(
                                             file_urls=accumulated_file_urls,
                                             file_id=file_id,
-                                            urn=urn
+                                            urn=file_id
                                         )
                                         logger.info(f"Merged {len(accumulated_file_urls)} PDFs into: {merged_pdf_url}")
                                     except Exception as e:
                                         logger.error(f"Failed to merge PDFs: {e}. Using last page URL.")
                                 
                                 result = await self.llm_service_repo.get_tax_invoice_extraction(document_text=merged_content)
-                                result['urn'] = urn
+                                result['urn'] = result['invoiceNumber']
                                 result['taxInvoiceId'] = str(uuid.uuid4())
                                 result['documentUrl'] = merged_pdf_url
                                 result['total_pages'] = len(accumulated_content)
                                 result['classification'] = ContentType.TaxInvoice.value
 
-                                if self.azure_cosmos_repo and urn:
+                                if self.azure_cosmos_repo and result['invoiceNumber']:
                                     self.azure_cosmos_repo.create_document(
                                         document_data=result,
                                         container_id="tax-invoices"
@@ -209,7 +210,7 @@ class ContentExtraction:
                             else:
                                 result = {
                                     "message": "Content type is Unknown, no extraction performed.",
-                                    "urn": urn,
+                                    "urn": result.get('urn'),
                                     "documentUrl": file_url,
                                     "classification": ContentType.Unknown.value
                                 }
@@ -264,7 +265,7 @@ class ContentExtraction:
                 
                 # Extract blob name from URL to download from blob storage
                 # URL format: https://<account>.blob.core.windows.net/<container>/<folder>/<blob_name>
-                blob_path = '/'.join(url.split('/')[-2:])  # Get folder/blob_name part
+                blob_path = unquote('/'.join(url.split('/')[-2:]))  # Get folder/blob_name part, decode URL encoding
                 
                 # Download the PDF bytes
                 pdf_bytes = self.azure_blob_storage_repo.download_blob(blob_name=blob_path)

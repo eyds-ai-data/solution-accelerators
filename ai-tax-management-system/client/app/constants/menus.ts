@@ -29,4 +29,9 @@ export const navMenuBottom: NavMenuItems = [
     icon: 'i-lucide-database',
     link: '/mdm',
   },
+  {
+    title: 'Settings',
+    icon: 'i-lucide-settings',
+    link: '/settings',
+  }
 ]
