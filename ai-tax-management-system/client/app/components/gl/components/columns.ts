@@ -5,6 +5,8 @@ import { Checkbox } from '@/components/ui/checkbox'
 import type { GL } from '../data/schema'
 import DataTableColumnHeader from './DataTableColumnHeader.vue'
 import DataTableRowActions from './DataTableRowActions.vue'
+import { FileText, Receipt, CircleAlert } from 'lucide-vue-next'
+import { NuxtLink } from '#components'
 
 export const columns: ColumnDef<GL>[] = [
   {
@@ -30,14 +32,48 @@ export const columns: ColumnDef<GL>[] = [
     cell: ({ row }) => h('div', { class: 'text-sm' }, row.getValue('referenceNumber')),
   },
   {
-    accessorKey: 'documentNumber',
-    header: ({ column }) => h(DataTableColumnHeader, { column, title: 'Document Number' }),
-    cell: ({ row }) => h('div', { class: 'text-sm' }, row.getValue('documentNumber')),
+    id: 'invoice',
+    header: ({ column }) => h(DataTableColumnHeader, { column, title: 'Invoice' }),
+    cell: ({ row }) => {
+      const invoiceData = row.original.relatedInvoice
+      if (invoiceData) {
+        return h(NuxtLink, {
+          to: `/mdm/invoice/${invoiceData.invoiceId}`,
+          class: 'flex items-center gap-1.5 text-sm text-primary hover:underline',
+          onClick: (e: Event) => e.stopPropagation(),
+        }, () => [
+          h(FileText, { class: 'size-4 shrink-0' }),
+          h('span', { class: 'truncate max-w-[120px]' }, invoiceData.invoiceNumber || 'View'),
+        ])
+      }
+      return h('div', { class: 'flex items-center gap-1.5 text-sm text-muted-foreground/50' }, [
+        h(CircleAlert, { class: 'size-4 shrink-0 text-destructive' }),
+        h('span', {}, 'Missing'),
+      ])
+    },
+    enableSorting: false,
   },
   {
-    accessorKey: 'poNumber',
-    header: ({ column }) => h(DataTableColumnHeader, { column, title: 'PO Number' }),
-    cell: ({ row }) => h('div', { class: 'text-sm' }, row.getValue('poNumber')),
+    id: 'taxInvoice',
+    header: ({ column }) => h(DataTableColumnHeader, { column, title: 'Tax Invoice' }),
+    cell: ({ row }) => {
+      const taxInvoiceData = row.original.relatedTaxInvoice
+      if (taxInvoiceData) {
+        return h(NuxtLink, {
+          to: `/mdm/tax-invoice/${taxInvoiceData.taxInvoiceId}`,
+          class: 'flex items-center gap-1.5 text-sm text-primary hover:underline',
+          onClick: (e: Event) => e.stopPropagation(),
+        }, () => [
+          h(Receipt, { class: 'size-4 shrink-0' }),
+          h('span', { class: 'truncate max-w-[120px]' }, taxInvoiceData.taxInvoiceNumber || 'View'),
+        ])
+      }
+      return h('div', { class: 'flex items-center gap-1.5 text-sm text-muted-foreground/50' }, [
+        h(CircleAlert, { class: 'size-4 shrink-0 text-destructive' }),
+        h('span', {}, 'Missing'),
+      ])
+    },
+    enableSorting: false,
   },
   {
     accessorKey: 'documentDate',

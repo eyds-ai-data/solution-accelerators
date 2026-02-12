@@ -9,7 +9,7 @@ class TaxManagementUseCase:
     def __init__(self, azure_cosmos_repo: AzureCosmosDBRepository):
         self.azure_cosmos_repo = azure_cosmos_repo
 
-    def get_gl_transactions(self, urn: str = None, page: int = 1, page_size: int = 10) -> Tuple[List[GLTransaction], int]:
+    def get_gl_transactions(self, urn: str = None, page: int = 1, page_size: int = 10) -> Tuple[List[dict], int]:
         try:
             query_filter = f"c.urn = '{urn}'" if urn else None
             
@@ -28,7 +28,46 @@ class TaxManagementUseCase:
                 limit=page_size
             )
             
-            return [GLTransaction(**item) for item in result], total
+            gl_transactions = [GLTransaction(**item) for item in result]
+            
+            # Enrich each GL transaction with related invoice and tax invoice
+            enriched = []
+            for gl in gl_transactions:
+                gl_dict = gl.model_dump(by_alias=True)
+                
+                # Look up related invoice by URN
+                invoice_results = self.azure_cosmos_repo.query_documents(
+                    container_id="invoices",
+                    query_filter=f"c.urn = '{gl.urn}'",
+                    limit=1
+                )
+                if invoice_results:
+                    inv = Invoice(**invoice_results[0])
+                    gl_dict["relatedInvoice"] = {
+                        "invoiceId": inv.invoice_id,
+                        "invoiceNumber": inv.invoice_number,
+                    }
+                else:
+                    gl_dict["relatedInvoice"] = None
+                
+                # Look up related tax invoice by URN
+                tax_invoice_results = self.azure_cosmos_repo.query_documents(
+                    container_id="tax-invoices",
+                    query_filter=f"c.urn = '{gl.urn}'",
+                    limit=1
+                )
+                if tax_invoice_results:
+                    tax_inv = TaxInvoice(**tax_invoice_results[0])
+                    gl_dict["relatedTaxInvoice"] = {
+                        "taxInvoiceId": tax_inv.tax_invoice_id,
+                        "taxInvoiceNumber": tax_inv.tax_invoice_number,
+                    }
+                else:
+                    gl_dict["relatedTaxInvoice"] = None
+                
+                enriched.append(gl_dict)
+            
+            return enriched, total
         except Exception as e:
             logger.error(f"Error retrieving G/L transactions: {e}")
             raise e

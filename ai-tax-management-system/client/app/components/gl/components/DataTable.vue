@@ -89,7 +89,10 @@ const handleRowClick = (row: any) => {
               :key="row.id" 
               :data-state="row.getIsSelected() && 'selected'"
               @click="handleRowClick(row)"
-              class="cursor-pointer hover:bg-muted/50"
+              :class="[
+                'cursor-pointer hover:bg-muted/50 transition-colors',
+                (!row.original.relatedInvoice || !row.original.relatedTaxInvoice) && 'bg-destructive/10 hover:bg-destructive/20'
+              ]"
             >
               <TableCell v-for="cell in row.getVisibleCells()" :key="cell.id">
                 <FlexRender :render="cell.column.columnDef.cell" :props="cell.getContext()" />

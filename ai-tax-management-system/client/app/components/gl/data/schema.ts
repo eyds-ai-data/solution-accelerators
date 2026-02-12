@@ -1,5 +1,15 @@
 import { z } from 'zod'
 
+export const relatedInvoiceSchema = z.object({
+  invoiceId: z.string(),
+  invoiceNumber: z.string(),
+}).nullable().optional()
+
+export const relatedTaxInvoiceSchema = z.object({
+  taxInvoiceId: z.string(),
+  taxInvoiceNumber: z.string(),
+}).nullable().optional()
+
 export const glSchema = z.object({
   glTransactionId: z.string(),
   cocd: z.string(),
@@ -45,6 +55,8 @@ export const glSchema = z.object({
   diffNormal: z.number(),
   taxInvoices: z.string().nullable(),
   invoices: z.string().nullable(),
+  relatedInvoice: relatedInvoiceSchema,
+  relatedTaxInvoice: relatedTaxInvoiceSchema,
 })
 
 export type GL = z.infer<typeof glSchema>

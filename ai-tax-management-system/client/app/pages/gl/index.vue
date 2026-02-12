@@ -2,9 +2,10 @@
 import { columns } from '@/components/gl/components/columns'
 import DataTable from '@/components/gl/components/DataTable.vue'
 import type { GL } from '@/components/gl/data/schema'
+import { Alert, AlertDescription, AlertTitle } from '@/components/ui/alert'
 import { Skeleton } from '@/components/ui/skeleton'
 import { useGLTransactions } from '@/composables/useTaxApi'
-import { FileUp, Receipt } from 'lucide-vue-next'
+import { FileUp, Receipt, AlertCircle } from 'lucide-vue-next'
 
 const { glTransactions, loading, error, pagination, fetchGLTransactions } = useGLTransactions()
 
@@ -22,6 +23,16 @@ const handlePageChange = async (page: number) => {
 const handlePageSizeChange = async (pageSize: number) => {
   await fetchGLTransactions(undefined, 1, pageSize)
 }
+
+const missingInvoiceCount = computed(() => {
+  return glTransactions.value.filter(gl => !gl.relatedInvoice).length
+})
+
+const missingTaxInvoiceCount = computed(() => {
+  return glTransactions.value.filter(gl => !gl.relatedTaxInvoice).length
+})
+
+const hasMissingDocuments = computed(() => missingInvoiceCount.value > 0 || missingTaxInvoiceCount.value > 0)
 </script>
 
 <template>
@@ -47,6 +58,22 @@ const handlePageSizeChange = async (pageSize: number) => {
         </Button>
       </div>
     </div>
+
+    <!-- Alert for Missing Documents -->
+    <Alert v-if="hasMissingDocuments && !loading" variant="destructive">
+      <AlertCircle class="h-4 w-4" />
+      <AlertTitle>Missing Documents Detected</AlertTitle>
+      <AlertDescription>
+        <span v-if="missingInvoiceCount > 0">
+          Found {{ missingInvoiceCount }} GL transaction(s) without a linked Invoice.
+        </span>
+        <span v-if="missingTaxInvoiceCount > 0">
+          {{ missingInvoiceCount > 0 ? ' Also found ' : 'Found ' }}
+          {{ missingTaxInvoiceCount }} GL transaction(s) without a linked Tax Invoice.
+        </span>
+        Please check the highlighted rows below.
+      </AlertDescription>
+    </Alert>
 
     <!-- Error Message -->
     <div v-if="error" class="bg-destructive/10 border border-destructive text-destructive px-4 py-3 rounded-lg">

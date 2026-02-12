@@ -27,7 +27,7 @@ async def get_all_gl_transactions(
             status="Success",
             message="G/L transactions retrieved successfully",
             data={
-                "items": [item.model_dump(by_alias=True) for item in result],
+                "items": result,
                 "total": total,
                 "page": page,
                 "pageSize": page_size,
