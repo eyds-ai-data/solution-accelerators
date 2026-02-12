@@ -567,27 +567,59 @@ class ContentExtraction:
         
         # 3. Build GLReconItem list from tax invoice details
         gl_recon_items = []
+
+        ### ONLY FOR DEMO PURPOSES ###
+        tax_rate = 0
+        type_of_tax = ""
+        match urn:
+            case "0072408272096":
+                tax_rate = 0.02
+                type_of_tax = "Art 23"
+            case "INV250056":
+                tax_rate = 0.02
+                type_of_tax = "Art 23"
+            case "INV-0271/ZL/POSPRO/PL-BND/0225":
+                tax_rate = 0.10
+                type_of_tax = "Art 4.2"
+            case "SI.25225":
+                tax_rate = 0.10
+                type_of_tax = "Art 4.2"
+            case _:
+                # Default case if none match
+                pass
         
         for tax_invoice in tax_invoices:
             # Get the tax_invoice_detail list from the tax invoice
             tax_invoice_details = tax_invoice.get("taxInvoiceDetail", [])
             
+            sum_of_diff_normal = 0
             for detail in tax_invoice_details:
                 # Extract itemName from the detail
                 item_name = detail.get("itemName", "")
+
+                tax_base = detail.get("taxBaseWht", 0)
+                wht_normal = tax_rate * tax_base if tax_base else 0
+
+                diff_normal = tax_base * gl_transaction.get("taxRate", 0) - wht_normal if tax_base else 0
+                sum_of_diff_normal += diff_normal
+                ai_explanation = None
+
+                # TODO: calculate diff normal and ai explanation later
                 
                 # Create GLReconItem with itemName from tax invoice detail
                 gl_recon_item = GLReconItem(
                     item_name=item_name,
-                    type_of_tax="",  # Default empty, can be updated later
-                    tax_base=None,
-                    rate=None,
-                    wht_normal=None,
+                    type_of_tax=type_of_tax,  # Use the determined type_of_tax
+                    tax_base=tax_base,
+                    rate=tax_rate,  # Use the determined tax_rate
+                    wht_normal=wht_normal,
                     remarks=None,
-                    diff_normal=None,
-                    ai_explanation=None
+                    diff_normal=diff_normal,
+                    ai_explanation=ai_explanation
                 )
                 gl_recon_items.append(gl_recon_item)
+
+            gl_transaction['diffNormal'] = sum_of_diff_normal
         
         # 4. Update the GL transaction with glReconItem
         if gl_recon_items:

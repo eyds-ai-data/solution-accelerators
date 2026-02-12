@@ -63,16 +63,7 @@ const hasMissingDocuments = computed(() => missingInvoiceCount.value > 0 || miss
     <Alert v-if="hasMissingDocuments && !loading" variant="destructive">
       <AlertCircle class="h-4 w-4" />
       <AlertTitle>Missing Documents Detected</AlertTitle>
-      <AlertDescription>
-        <span v-if="missingInvoiceCount > 0">
-          Found {{ missingInvoiceCount }} GL transaction(s) without a linked Invoice.
-        </span>
-        <span v-if="missingTaxInvoiceCount > 0">
-          {{ missingInvoiceCount > 0 ? ' Also found ' : 'Found ' }}
-          {{ missingTaxInvoiceCount }} GL transaction(s) without a linked Tax Invoice.
-        </span>
-        Please check the highlighted rows below.
-      </AlertDescription>
+      <AlertDescription>Please check the highlighted rows below.</AlertDescription>
     </Alert>
 
     <!-- Error Message -->

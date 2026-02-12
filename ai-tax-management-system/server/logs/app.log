@@ -94918,3 +94918,1457 @@ Time:2026-02-11T04:53:08.9755969Z</Message></Error>. Using last page URL.
 2026-02-12 11:21:35.709 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
 2026-02-12 11:21:40.477 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
 2026-02-12 11:21:44.982 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 11:21:49.680 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 11:21:54.428 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 11:21:59.147 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 11:22:03.857 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 11:22:08.532 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 11:22:13.282 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 11:22:18.009 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 11:22:22.659 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 11:22:27.388 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 11:22:32.475 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 11:22:36.881 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 11:22:41.542 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 11:22:46.312 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 11:22:51.054 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 11:22:56.031 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 11:23:00.906 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 11:23:05.583 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 11:23:10.201 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 11:23:14.938 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 11:23:19.594 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 11:23:24.107 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 11:23:28.577 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 11:23:33.217 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 11:23:37.682 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 11:23:42.232 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 11:23:46.814 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 11:23:51.331 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 11:23:55.985 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 11:24:00.567 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 11:24:05.157 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 11:24:09.866 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 11:24:14.619 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 11:24:19.106 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 11:24:23.635 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 11:24:28.163 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 11:24:32.639 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 11:24:37.225 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 11:24:41.757 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 11:24:46.233 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 11:24:50.785 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 11:24:55.198 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 11:24:59.845 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 11:25:04.305 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 11:25:08.858 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 11:25:13.274 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 11:25:17.962 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 11:25:22.384 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 11:25:26.908 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 11:25:31.595 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 11:25:36.232 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 11:25:40.746 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 11:25:45.319 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 11:25:50.162 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 11:25:55.429 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 11:26:00.290 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 11:26:05.061 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 11:26:09.567 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 11:26:14.046 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 11:26:18.630 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 11:26:23.095 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 11:26:27.811 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 11:26:32.146 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 11:26:36.794 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 11:26:41.288 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 11:26:45.765 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 11:26:50.360 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 11:26:54.960 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 11:27:00.610 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 11:27:05.216 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 11:27:09.943 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 11:27:14.532 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 11:27:18.942 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 11:28:06.301 | INFO     | __main__:<module>:258 - Starting application in 'worker' mode
+2026-02-12 11:28:06.301 | INFO     | __main__:run_worker_standalone:194 - Starting worker in standalone mode...
+2026-02-12 11:28:06.301 | INFO     | __main__:run_worker:34 - Worker started
+2026-02-12 11:28:06.301 | INFO     | src.config.dependencies:get_app_config:37 - Initializing application configuration
+2026-02-12 11:28:06.301 | INFO     | src.config.dependencies:get_content_understanding_repository:59 - Creating ContentUnderstandingRepository singleton
+2026-02-12 11:28:06.301 | INFO     | src.config.dependencies:get_azure_blob_storage_repository:82 - Creating AzureBlobStorageRepository singleton
+2026-02-12 11:28:07.189 | INFO     | src.repository.storage:__init__:21 - Blob container already exists: tax-documents
+2026-02-12 11:28:07.189 | INFO     | src.repository.storage:__init__:25 - Connected to Blob Storage, container: tax-documents
+2026-02-12 11:28:07.189 | INFO     | src.config.dependencies:get_llm_service_repository:212 - Creating LLMService singleton
+2026-02-12 11:28:07.727 | INFO     | src.config.dependencies:get_azure_cosmos_repository:106 - Creating AzureCosmosDBRepository singleton
+2026-02-12 11:28:09.112 | INFO     | src.repository.database:__init__:22 - Connected to Cosmos DB database 'tax-management-system', container 'gl-transactions'
+2026-02-12 11:28:09.112 | INFO     | src.config.dependencies:get_embedding_repository:235 - Creating EmbeddingRepository singleton
+2026-02-12 11:28:13.116 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 11:28:17.850 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 11:28:22.423 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 11:28:27.096 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 11:28:31.778 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 11:28:36.354 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 11:28:40.872 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 11:28:45.207 | INFO     | src.repository.database:query_documents:130 - Retrieved 4 documents (type: all)
+2026-02-12 11:28:45.779 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 11:28:45.812 | INFO     | src.repository.database:query_documents:130 - Retrieved 0 documents (type: all)
+2026-02-12 11:28:46.424 | INFO     | src.repository.database:query_documents:130 - Retrieved 0 documents (type: all)
+2026-02-12 11:28:47.022 | INFO     | src.repository.database:query_documents:130 - Retrieved 1 documents (type: all)
+2026-02-12 11:28:47.627 | INFO     | src.repository.database:query_documents:130 - Retrieved 1 documents (type: all)
+2026-02-12 11:28:48.254 | INFO     | src.repository.database:query_documents:130 - Retrieved 1 documents (type: all)
+2026-02-12 11:28:48.839 | INFO     | src.repository.database:query_documents:130 - Retrieved 1 documents (type: all)
+2026-02-12 11:28:49.432 | INFO     | src.repository.database:query_documents:130 - Retrieved 1 documents (type: all)
+2026-02-12 11:28:50.016 | INFO     | src.repository.database:query_documents:130 - Retrieved 0 documents (type: all)
+2026-02-12 11:28:50.016 | INFO     | src.delivery.tax_management:get_all_gl_transactions:24 - Retrieved 4 G/L transactions (page 1 of 1)
+2026-02-12 11:28:50.674 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 11:28:55.486 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 11:29:00.288 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 11:29:05.018 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 11:29:09.639 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 11:29:12.683 | INFO     | src.config.dependencies:get_content_understanding_repository:59 - Creating ContentUnderstandingRepository singleton
+2026-02-12 11:29:12.686 | INFO     | src.config.dependencies:get_azure_blob_storage_repository:82 - Creating AzureBlobStorageRepository singleton
+2026-02-12 11:29:13.357 | INFO     | src.repository.storage:__init__:21 - Blob container already exists: tax-documents
+2026-02-12 11:29:13.357 | INFO     | src.repository.storage:__init__:25 - Connected to Blob Storage, container: tax-documents
+2026-02-12 11:29:13.357 | INFO     | src.config.dependencies:get_azure_service_bus_repository:190 - Creating AzureServiceBusRepository singleton
+2026-02-12 11:29:14.393 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 11:29:14.509 | INFO     | src.repository.database:query_documents:130 - Retrieved 4 documents (type: all)
+2026-02-12 11:29:19.077 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 11:29:23.939 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 11:29:28.589 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 11:29:33.213 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 11:29:37.948 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 11:29:42.631 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 11:29:47.733 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 11:29:52.602 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 11:29:57.467 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 11:30:02.302 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 11:30:02.946 | INFO     | src.config.dependencies:get_azure_service_bus_repository:190 - Creating AzureServiceBusRepository singleton
+2026-02-12 11:30:02.946 | INFO     | src.delivery.upload_routes:upload_file:40 - Received PDF upload: INV0072.pdf with file_id 6183546a-f150-48f3-8fec-ed12feb86a65 and activity_id beba6e55-dac8-4159-be99-f98105fc4acf
+2026-02-12 11:30:02.962 | INFO     | src.usecase.file_upload:_split_pdf_pages:119 - Splitting PDF INV0072.pdf into 2 pages
+2026-02-12 11:30:02.962 | INFO     | src.usecase.file_upload:_split_pdf_pages:135 - Successfully split INV0072.pdf into 2 pages
+2026-02-12 11:30:02.962 | INFO     | src.usecase.file_upload:upload:178 - Uploading 2 pages from PDF INV0072.pdf
+2026-02-12 11:30:03.129 | INFO     | src.repository.storage:upload_file:89 - Uploaded file INV0072_1.pdf for case 6183546a-f150-48f3-8fec-ed12feb86a65, blob: 6183546a-f150-48f3-8fec-ed12feb86a65/INV0072_1.pdf
+2026-02-12 11:30:03.235 | INFO     | src.repository.storage:upload_file:89 - Uploaded file INV0072_2.pdf for case 6183546a-f150-48f3-8fec-ed12feb86a65, blob: 6183546a-f150-48f3-8fec-ed12feb86a65/INV0072_2.pdf
+2026-02-12 11:30:06.963 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 11:30:07.196 | INFO     | src.repository.messaging:send_message:18 - Message sent to queue document-uploads: {'document_id': '6183546a-f150-48f3-8fec-ed12feb86a65', 'timestamp': '2026-02-12T04:30:03.446113Z'}
+2026-02-12 11:30:07.196 | INFO     | src.delivery.upload_routes:upload_file:50 - Successfully processed PDF upload for file_id 6183546a-f150-48f3-8fec-ed12feb86a65 and activity_id beba6e55-dac8-4159-be99-f98105fc4acf
+2026-02-12 11:30:07.213 | INFO     | src.config.dependencies:get_azure_service_bus_repository:190 - Creating AzureServiceBusRepository singleton
+2026-02-12 11:30:07.222 | INFO     | __main__:run_worker:75 - Received message: ffc6c49a-d43d-4dd6-8795-bf41a681c0a6
+2026-02-12 11:30:07.229 | INFO     | src.usecase.content_extraction:process_message:622 - Processing content extraction for document ID: 6183546a-f150-48f3-8fec-ed12feb86a65
+2026-02-12 11:30:07.229 | INFO     | src.usecase.content_extraction:process_documents_in_folder:317 - Processing documents in folder: 6183546a-f150-48f3-8fec-ed12feb86a65
+2026-02-12 11:30:07.329 | INFO     | src.repository.storage:list_files:138 - Listed 2 files for case 6183546a-f150-48f3-8fec-ed12feb86a65
+2026-02-12 11:30:07.329 | INFO     | src.usecase.content_extraction:process_documents_in_folder:321 - Found 2 files in folder 6183546a-f150-48f3-8fec-ed12feb86a65
+2026-02-12 11:30:07.329 | INFO     | src.usecase.content_extraction:process_documents_in_folder:338 - Files sorted numerically: ['6183546a-f150-48f3-8fec-ed12feb86a65/INV0072_1.pdf', '6183546a-f150-48f3-8fec-ed12feb86a65/INV0072_2.pdf']
+2026-02-12 11:30:07.329 | INFO     | src.usecase.content_extraction:process_documents_in_folder:362 - Analyzing document: 6183546a-f150-48f3-8fec-ed12feb86a65/INV0072_1.pdf
+2026-02-12 11:30:07.806 | INFO     | src.repository.database:query_documents:130 - Retrieved 5 documents (type: all)
+2026-02-12 11:30:08.518 | INFO     | src.usecase.content_extraction:process_documents_in_folder:377 - Analysis initiated for 6183546a-f150-48f3-8fec-ed12feb86a65/INV0072_1.pdf, request ID: 30ba528e-43e7-44af-b7ef-9e25ab26298a
+2026-02-12 11:30:23.084 | INFO     | src.usecase.content_extraction:_wait_for_analysis_result:130 - Analysis completed successfully: 30ba528e-43e7-44af-b7ef-9e25ab26298a
+2026-02-12 11:30:29.584 | INFO     | src.usecase.content_extraction:_wait_for_analysis_result:224 - Content classification completed for 30ba528e-43e7-44af-b7ef-9e25ab26298a
+2026-02-12 11:30:29.584 | INFO     | src.usecase.content_extraction:process_documents_in_folder:395 - Successfully analyzed: 6183546a-f150-48f3-8fec-ed12feb86a65/INV0072_1.pdf
+2026-02-12 11:30:29.584 | INFO     | src.usecase.content_extraction:process_documents_in_folder:401 - Suitable document found: 6183546a-f150-48f3-8fec-ed12feb86a65/INV0072_1.pdf - Classification: Invoice
+2026-02-12 11:30:29.584 | INFO     | src.usecase.content_extraction:process_documents_in_folder:362 - Analyzing document: 6183546a-f150-48f3-8fec-ed12feb86a65/INV0072_2.pdf
+2026-02-12 11:30:30.263 | INFO     | src.usecase.content_extraction:process_documents_in_folder:377 - Analysis initiated for 6183546a-f150-48f3-8fec-ed12feb86a65/INV0072_2.pdf, request ID: c7d64d18-b6d5-443e-93b5-56719733a9bc
+2026-02-12 11:30:44.693 | INFO     | src.usecase.content_extraction:_wait_for_analysis_result:130 - Analysis completed successfully: c7d64d18-b6d5-443e-93b5-56719733a9bc
+2026-02-12 11:30:47.971 | INFO     | src.usecase.content_extraction:_wait_for_analysis_result:167 - Tax invoice page accumulated. Total pages: 1, Complete: True
+2026-02-12 11:30:47.972 | INFO     | src.usecase.content_extraction:_wait_for_analysis_result:176 - Tax invoice complete. Extracting from 1 merged pages
+2026-02-12 11:30:51.831 | INFO     | src.usecase.content_extraction:_wait_for_analysis_result:224 - Content classification completed for c7d64d18-b6d5-443e-93b5-56719733a9bc
+2026-02-12 11:30:51.831 | INFO     | src.usecase.content_extraction:process_documents_in_folder:395 - Successfully analyzed: 6183546a-f150-48f3-8fec-ed12feb86a65/INV0072_2.pdf
+2026-02-12 11:30:51.832 | INFO     | src.usecase.content_extraction:process_documents_in_folder:401 - Suitable document found: 6183546a-f150-48f3-8fec-ed12feb86a65/INV0072_2.pdf - Classification: Tax Invoice (Faktur Pajak)
+2026-02-12 11:30:51.832 | INFO     | src.usecase.content_extraction:process_documents_in_folder:425 - Completed processing 2 documents from folder 6183546a-f150-48f3-8fec-ed12feb86a65
+2026-02-12 11:30:51.832 | INFO     | src.usecase.content_extraction:process_documents_in_folder:426 - Suitable documents (Invoice/TaxInvoice) found: True
+2026-02-12 11:30:52.720 | INFO     | src.repository.database:query_documents:130 - Retrieved 0 documents (type: all)
+2026-02-12 11:30:52.721 | WARNING  | src.usecase.content_extraction:copy_tax_invoice_item_to_gl_recon_item:552 - No tax invoices found for URN: 0072408272096
+2026-02-12 11:30:53.211 | INFO     | src.repository.database:get_document_by_id:67 - Retrieved document: 6183546a-f150-48f3-8fec-ed12feb86a65
+2026-02-12 11:30:53.450 | INFO     | src.repository.database:update_document:261 - Updated document: 6183546a-f150-48f3-8fec-ed12feb86a65
+2026-02-12 11:30:53.451 | INFO     | src.usecase.content_extraction:process_message:653 - Successfully processed content extraction for document ID: 6183546a-f150-48f3-8fec-ed12feb86a65
+2026-02-12 11:30:56.294 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 11:31:00.814 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 11:31:05.361 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 11:31:09.719 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 11:31:14.370 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 11:31:18.845 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 11:31:23.409 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 11:31:27.958 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 11:31:32.431 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 11:31:37.049 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 11:31:41.601 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 11:31:46.111 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 11:31:50.971 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 11:31:55.642 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 11:32:00.410 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 11:32:05.338 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 11:32:10.061 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 11:32:14.735 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 11:32:19.351 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 11:32:23.977 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 11:32:28.826 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 11:32:33.610 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 11:32:38.167 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 11:32:42.568 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 11:32:47.169 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 11:32:51.548 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 11:32:56.086 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 11:33:00.758 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 11:33:05.460 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 11:33:06.728 | INFO     | src.config.dependencies:get_azure_service_bus_repository:190 - Creating AzureServiceBusRepository singleton
+2026-02-12 11:33:08.644 | INFO     | src.repository.database:query_documents:130 - Retrieved 5 documents (type: all)
+2026-02-12 11:33:10.125 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 11:33:15.163 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 11:33:15.183 | INFO     | src.config.dependencies:get_azure_service_bus_repository:190 - Creating AzureServiceBusRepository singleton
+2026-02-12 11:33:15.185 | INFO     | src.delivery.upload_routes:upload_file:40 - Received PDF upload: INV0072.pdf with file_id 4dc40602-5a65-476e-bdcd-93160ac56b40 and activity_id 61173093-1897-479e-9dc6-427330245b9f
+2026-02-12 11:33:15.187 | INFO     | src.usecase.file_upload:_split_pdf_pages:119 - Splitting PDF INV0072.pdf into 2 pages
+2026-02-12 11:33:15.198 | INFO     | src.usecase.file_upload:_split_pdf_pages:135 - Successfully split INV0072.pdf into 2 pages
+2026-02-12 11:33:15.199 | INFO     | src.usecase.file_upload:upload:178 - Uploading 2 pages from PDF INV0072.pdf
+2026-02-12 11:33:16.075 | INFO     | src.repository.storage:upload_file:89 - Uploaded file INV0072_1.pdf for case 4dc40602-5a65-476e-bdcd-93160ac56b40, blob: 4dc40602-5a65-476e-bdcd-93160ac56b40/INV0072_1.pdf
+2026-02-12 11:33:16.171 | INFO     | src.repository.storage:upload_file:89 - Uploaded file INV0072_2.pdf for case 4dc40602-5a65-476e-bdcd-93160ac56b40, blob: 4dc40602-5a65-476e-bdcd-93160ac56b40/INV0072_2.pdf
+2026-02-12 11:33:19.795 | INFO     | src.repository.messaging:send_message:18 - Message sent to queue document-uploads: {'document_id': '4dc40602-5a65-476e-bdcd-93160ac56b40', 'timestamp': '2026-02-12T04:33:16.387218Z'}
+2026-02-12 11:33:19.797 | INFO     | src.delivery.upload_routes:upload_file:50 - Successfully processed PDF upload for file_id 4dc40602-5a65-476e-bdcd-93160ac56b40 and activity_id 61173093-1897-479e-9dc6-427330245b9f
+2026-02-12 11:33:19.808 | INFO     | src.config.dependencies:get_azure_service_bus_repository:190 - Creating AzureServiceBusRepository singleton
+2026-02-12 11:33:19.848 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 11:33:20.085 | INFO     | __main__:run_worker:75 - Received message: 90040f54-3c6f-44d7-b1b8-0322c4c7b7b5
+2026-02-12 11:33:20.087 | INFO     | src.usecase.content_extraction:process_message:622 - Processing content extraction for document ID: 4dc40602-5a65-476e-bdcd-93160ac56b40
+2026-02-12 11:33:20.088 | INFO     | src.usecase.content_extraction:process_documents_in_folder:317 - Processing documents in folder: 4dc40602-5a65-476e-bdcd-93160ac56b40
+2026-02-12 11:33:20.395 | INFO     | src.repository.database:query_documents:130 - Retrieved 5 documents (type: all)
+2026-02-12 11:33:20.716 | INFO     | src.repository.storage:list_files:138 - Listed 2 files for case 4dc40602-5a65-476e-bdcd-93160ac56b40
+2026-02-12 11:33:20.716 | INFO     | src.usecase.content_extraction:process_documents_in_folder:321 - Found 2 files in folder 4dc40602-5a65-476e-bdcd-93160ac56b40
+2026-02-12 11:33:20.716 | INFO     | src.usecase.content_extraction:process_documents_in_folder:338 - Files sorted numerically: ['4dc40602-5a65-476e-bdcd-93160ac56b40/INV0072_1.pdf', '4dc40602-5a65-476e-bdcd-93160ac56b40/INV0072_2.pdf']
+2026-02-12 11:33:20.717 | INFO     | src.usecase.content_extraction:process_documents_in_folder:362 - Analyzing document: 4dc40602-5a65-476e-bdcd-93160ac56b40/INV0072_1.pdf
+2026-02-12 11:33:21.698 | INFO     | src.usecase.content_extraction:process_documents_in_folder:377 - Analysis initiated for 4dc40602-5a65-476e-bdcd-93160ac56b40/INV0072_1.pdf, request ID: 35701fa6-f5fe-4ff1-be45-dbb352ce2a11
+2026-02-12 11:33:32.889 | INFO     | src.usecase.content_extraction:_wait_for_analysis_result:130 - Analysis completed successfully: 35701fa6-f5fe-4ff1-be45-dbb352ce2a11
+2026-02-12 11:33:49.445 | INFO     | src.usecase.content_extraction:_wait_for_analysis_result:224 - Content classification completed for 35701fa6-f5fe-4ff1-be45-dbb352ce2a11
+2026-02-12 11:33:49.445 | INFO     | src.usecase.content_extraction:process_documents_in_folder:395 - Successfully analyzed: 4dc40602-5a65-476e-bdcd-93160ac56b40/INV0072_1.pdf
+2026-02-12 11:33:49.445 | INFO     | src.usecase.content_extraction:process_documents_in_folder:401 - Suitable document found: 4dc40602-5a65-476e-bdcd-93160ac56b40/INV0072_1.pdf - Classification: Invoice
+2026-02-12 11:33:49.445 | INFO     | src.usecase.content_extraction:process_documents_in_folder:362 - Analyzing document: 4dc40602-5a65-476e-bdcd-93160ac56b40/INV0072_2.pdf
+2026-02-12 11:33:50.193 | INFO     | src.usecase.content_extraction:process_documents_in_folder:377 - Analysis initiated for 4dc40602-5a65-476e-bdcd-93160ac56b40/INV0072_2.pdf, request ID: 8f060b08-c6f2-441c-8011-d05310263ecf
+2026-02-12 11:34:01.219 | INFO     | src.usecase.content_extraction:_wait_for_analysis_result:130 - Analysis completed successfully: 8f060b08-c6f2-441c-8011-d05310263ecf
+2026-02-12 11:34:36.090 | INFO     | src.usecase.content_extraction:_wait_for_analysis_result:167 - Tax invoice page accumulated. Total pages: 1, Complete: True
+2026-02-12 11:34:36.090 | INFO     | src.usecase.content_extraction:_wait_for_analysis_result:176 - Tax invoice complete. Extracting from 1 merged pages
+2026-02-12 11:35:01.321 | INFO     | src.usecase.content_extraction:_wait_for_analysis_result:224 - Content classification completed for 8f060b08-c6f2-441c-8011-d05310263ecf
+2026-02-12 11:35:01.321 | INFO     | src.usecase.content_extraction:process_documents_in_folder:395 - Successfully analyzed: 4dc40602-5a65-476e-bdcd-93160ac56b40/INV0072_2.pdf
+2026-02-12 11:35:01.321 | INFO     | src.usecase.content_extraction:process_documents_in_folder:401 - Suitable document found: 4dc40602-5a65-476e-bdcd-93160ac56b40/INV0072_2.pdf - Classification: Tax Invoice (Faktur Pajak)
+2026-02-12 11:35:01.321 | INFO     | src.usecase.content_extraction:process_documents_in_folder:425 - Completed processing 2 documents from folder 4dc40602-5a65-476e-bdcd-93160ac56b40
+2026-02-12 11:35:01.321 | INFO     | src.usecase.content_extraction:process_documents_in_folder:426 - Suitable documents (Invoice/TaxInvoice) found: True
+2026-02-12 11:35:01.927 | INFO     | src.repository.database:query_documents:130 - Retrieved 1 documents (type: all)
+2026-02-12 11:35:02.426 | INFO     | src.repository.database:query_documents:130 - Retrieved 1 documents (type: all)
+2026-02-12 11:39:20.245 | INFO     | src.repository.database:query_documents:130 - Retrieved 4 documents (type: all)
+2026-02-12 11:39:20.883 | INFO     | src.repository.database:query_documents:130 - Retrieved 1 documents (type: all)
+2026-02-12 11:39:21.481 | INFO     | src.repository.database:query_documents:130 - Retrieved 1 documents (type: all)
+2026-02-12 11:39:22.071 | INFO     | src.repository.database:query_documents:130 - Retrieved 1 documents (type: all)
+2026-02-12 11:39:22.695 | INFO     | src.repository.database:query_documents:130 - Retrieved 1 documents (type: all)
+2026-02-12 11:39:23.289 | INFO     | src.repository.database:query_documents:130 - Retrieved 1 documents (type: all)
+2026-02-12 11:39:23.905 | INFO     | src.repository.database:query_documents:130 - Retrieved 1 documents (type: all)
+2026-02-12 11:39:24.597 | INFO     | src.repository.database:query_documents:130 - Retrieved 1 documents (type: all)
+2026-02-12 11:39:25.237 | INFO     | src.repository.database:query_documents:130 - Retrieved 0 documents (type: all)
+2026-02-12 11:39:25.237 | INFO     | src.delivery.tax_management:get_all_gl_transactions:24 - Retrieved 4 G/L transactions (page 1 of 1)
+2026-02-12 11:39:31.490 | INFO     | src.repository.database:query_documents:130 - Retrieved 1 documents (type: all)
+2026-02-12 11:39:31.490 | INFO     | src.delivery.tax_management:get_gl_transaction_by_urn:65 - Retrieved G/L transaction: 0072408272096
+2026-02-12 11:39:32.105 | INFO     | src.repository.database:query_documents:130 - Retrieved 1 documents (type: all)
+2026-02-12 11:39:32.105 | INFO     | src.delivery.tax_management:get_all_invoices:116 - Retrieved 1 invoices
+2026-02-12 11:39:32.723 | INFO     | src.repository.database:query_documents:130 - Retrieved 1 documents (type: all)
+2026-02-12 11:39:32.724 | INFO     | src.delivery.tax_management:get_all_tax_invoices:93 - Retrieved 1 tax invoices
+2026-02-12 11:42:53.137 | INFO     | __main__:<module>:258 - Starting application in 'worker' mode
+2026-02-12 11:42:53.142 | INFO     | __main__:run_worker_standalone:194 - Starting worker in standalone mode...
+2026-02-12 11:42:53.142 | INFO     | __main__:run_worker:34 - Worker started
+2026-02-12 11:42:53.143 | INFO     | src.config.dependencies:get_app_config:37 - Initializing application configuration
+2026-02-12 11:42:53.143 | INFO     | src.config.dependencies:get_content_understanding_repository:59 - Creating ContentUnderstandingRepository singleton
+2026-02-12 11:42:53.143 | INFO     | src.config.dependencies:get_azure_blob_storage_repository:82 - Creating AzureBlobStorageRepository singleton
+2026-02-12 11:42:53.853 | INFO     | src.repository.storage:__init__:21 - Blob container already exists: tax-documents
+2026-02-12 11:42:53.853 | INFO     | src.repository.storage:__init__:25 - Connected to Blob Storage, container: tax-documents
+2026-02-12 11:42:53.854 | INFO     | src.config.dependencies:get_llm_service_repository:212 - Creating LLMService singleton
+2026-02-12 11:42:54.471 | INFO     | src.config.dependencies:get_azure_cosmos_repository:106 - Creating AzureCosmosDBRepository singleton
+2026-02-12 11:42:55.779 | INFO     | src.repository.database:__init__:22 - Connected to Cosmos DB database 'tax-management-system', container 'gl-transactions'
+2026-02-12 11:42:55.784 | INFO     | src.config.dependencies:get_embedding_repository:235 - Creating EmbeddingRepository singleton
+2026-02-12 11:42:59.421 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 11:43:04.266 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 11:43:08.978 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 11:43:13.580 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 11:43:18.271 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 11:43:23.022 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 11:43:27.727 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 11:43:32.840 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 11:43:37.522 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 11:43:42.243 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 11:43:47.056 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 11:43:51.491 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 11:43:55.991 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 11:44:00.883 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 11:44:02.135 | INFO     | src.repository.database:query_documents:130 - Retrieved 4 documents (type: all)
+2026-02-12 11:44:02.813 | INFO     | src.repository.database:query_documents:130 - Retrieved 0 documents (type: all)
+2026-02-12 11:44:03.520 | INFO     | src.repository.database:query_documents:130 - Retrieved 0 documents (type: all)
+2026-02-12 11:44:04.186 | INFO     | src.repository.database:query_documents:130 - Retrieved 1 documents (type: all)
+2026-02-12 11:44:04.884 | INFO     | src.repository.database:query_documents:130 - Retrieved 1 documents (type: all)
+2026-02-12 11:44:05.581 | INFO     | src.repository.database:query_documents:130 - Retrieved 1 documents (type: all)
+2026-02-12 11:44:05.700 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 11:44:06.298 | INFO     | src.repository.database:query_documents:130 - Retrieved 1 documents (type: all)
+2026-02-12 11:44:06.964 | INFO     | src.repository.database:query_documents:130 - Retrieved 1 documents (type: all)
+2026-02-12 11:44:07.685 | INFO     | src.repository.database:query_documents:130 - Retrieved 0 documents (type: all)
+2026-02-12 11:44:07.685 | INFO     | src.delivery.tax_management:get_all_gl_transactions:24 - Retrieved 4 G/L transactions (page 1 of 1)
+2026-02-12 11:44:07.685 | INFO     | src.config.dependencies:get_azure_service_bus_repository:190 - Creating AzureServiceBusRepository singleton
+2026-02-12 11:44:08.452 | INFO     | src.repository.database:query_documents:130 - Retrieved 5 documents (type: all)
+2026-02-12 11:44:10.384 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 11:44:15.085 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 11:44:20.068 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 11:44:21.652 | INFO     | src.config.dependencies:get_azure_service_bus_repository:190 - Creating AzureServiceBusRepository singleton
+2026-02-12 11:44:21.652 | INFO     | src.delivery.upload_routes:upload_file:40 - Received PDF upload: INV0072.pdf with file_id 8436f785-75bd-4ec4-b99c-f629648d259b and activity_id 930d31d0-41cc-4c0d-9329-fcc3a568de82
+2026-02-12 11:44:21.652 | INFO     | src.usecase.file_upload:_split_pdf_pages:119 - Splitting PDF INV0072.pdf into 2 pages
+2026-02-12 11:44:21.668 | INFO     | src.usecase.file_upload:_split_pdf_pages:135 - Successfully split INV0072.pdf into 2 pages
+2026-02-12 11:44:21.668 | INFO     | src.usecase.file_upload:upload:178 - Uploading 2 pages from PDF INV0072.pdf
+2026-02-12 11:44:22.702 | INFO     | src.repository.storage:upload_file:89 - Uploaded file INV0072_1.pdf for case 8436f785-75bd-4ec4-b99c-f629648d259b, blob: 8436f785-75bd-4ec4-b99c-f629648d259b/INV0072_1.pdf
+2026-02-12 11:44:22.818 | INFO     | src.repository.storage:upload_file:89 - Uploaded file INV0072_2.pdf for case 8436f785-75bd-4ec4-b99c-f629648d259b, blob: 8436f785-75bd-4ec4-b99c-f629648d259b/INV0072_2.pdf
+2026-02-12 11:44:25.067 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 11:44:26.918 | INFO     | src.repository.messaging:send_message:18 - Message sent to queue document-uploads: {'document_id': '8436f785-75bd-4ec4-b99c-f629648d259b', 'timestamp': '2026-02-12T04:44:23.044481Z'}
+2026-02-12 11:44:26.918 | INFO     | src.delivery.upload_routes:upload_file:50 - Successfully processed PDF upload for file_id 8436f785-75bd-4ec4-b99c-f629648d259b and activity_id 930d31d0-41cc-4c0d-9329-fcc3a568de82
+2026-02-12 11:44:26.935 | INFO     | src.config.dependencies:get_azure_service_bus_repository:190 - Creating AzureServiceBusRepository singleton
+2026-02-12 11:44:27.518 | INFO     | src.repository.database:query_documents:130 - Retrieved 5 documents (type: all)
+2026-02-12 11:44:29.685 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 11:44:29.918 | INFO     | __main__:run_worker:75 - Received message: b28d8e8d-2be9-47e9-a343-48050a9ccadb
+2026-02-12 11:44:29.918 | INFO     | src.usecase.content_extraction:process_message:631 - Processing content extraction for document ID: 8436f785-75bd-4ec4-b99c-f629648d259b
+2026-02-12 11:44:29.918 | INFO     | src.usecase.content_extraction:process_documents_in_folder:317 - Processing documents in folder: 8436f785-75bd-4ec4-b99c-f629648d259b
+2026-02-12 11:44:29.984 | INFO     | src.repository.storage:list_files:138 - Listed 2 files for case 8436f785-75bd-4ec4-b99c-f629648d259b
+2026-02-12 11:44:29.984 | INFO     | src.usecase.content_extraction:process_documents_in_folder:321 - Found 2 files in folder 8436f785-75bd-4ec4-b99c-f629648d259b
+2026-02-12 11:44:29.985 | INFO     | src.usecase.content_extraction:process_documents_in_folder:338 - Files sorted numerically: ['8436f785-75bd-4ec4-b99c-f629648d259b/INV0072_1.pdf', '8436f785-75bd-4ec4-b99c-f629648d259b/INV0072_2.pdf']
+2026-02-12 11:44:29.985 | INFO     | src.usecase.content_extraction:process_documents_in_folder:362 - Analyzing document: 8436f785-75bd-4ec4-b99c-f629648d259b/INV0072_1.pdf
+2026-02-12 11:44:30.876 | INFO     | src.usecase.content_extraction:process_documents_in_folder:377 - Analysis initiated for 8436f785-75bd-4ec4-b99c-f629648d259b/INV0072_1.pdf, request ID: df98d85d-82d6-4b4f-8204-5c1fe29ee7f3
+2026-02-12 11:44:41.940 | INFO     | src.usecase.content_extraction:_wait_for_analysis_result:130 - Analysis completed successfully: df98d85d-82d6-4b4f-8204-5c1fe29ee7f3
+2026-02-12 11:45:45.156 | INFO     | src.usecase.content_extraction:_wait_for_analysis_result:224 - Content classification completed for df98d85d-82d6-4b4f-8204-5c1fe29ee7f3
+2026-02-12 11:45:45.157 | INFO     | src.usecase.content_extraction:process_documents_in_folder:395 - Successfully analyzed: 8436f785-75bd-4ec4-b99c-f629648d259b/INV0072_1.pdf
+2026-02-12 11:45:45.157 | INFO     | src.usecase.content_extraction:process_documents_in_folder:401 - Suitable document found: 8436f785-75bd-4ec4-b99c-f629648d259b/INV0072_1.pdf - Classification: Invoice
+2026-02-12 11:45:45.158 | INFO     | src.usecase.content_extraction:process_documents_in_folder:362 - Analyzing document: 8436f785-75bd-4ec4-b99c-f629648d259b/INV0072_2.pdf
+2026-02-12 11:45:45.804 | INFO     | src.usecase.content_extraction:process_documents_in_folder:377 - Analysis initiated for 8436f785-75bd-4ec4-b99c-f629648d259b/INV0072_2.pdf, request ID: cbbd3165-c990-4315-bd23-a4835c1598c6
+2026-02-12 11:46:00.210 | INFO     | src.usecase.content_extraction:_wait_for_analysis_result:130 - Analysis completed successfully: cbbd3165-c990-4315-bd23-a4835c1598c6
+2026-02-12 11:46:03.102 | INFO     | src.usecase.content_extraction:_wait_for_analysis_result:167 - Tax invoice page accumulated. Total pages: 1, Complete: True
+2026-02-12 11:46:03.103 | INFO     | src.usecase.content_extraction:_wait_for_analysis_result:176 - Tax invoice complete. Extracting from 1 merged pages
+2026-02-12 11:46:22.328 | INFO     | src.usecase.content_extraction:_wait_for_analysis_result:224 - Content classification completed for cbbd3165-c990-4315-bd23-a4835c1598c6
+2026-02-12 11:46:22.329 | INFO     | src.usecase.content_extraction:process_documents_in_folder:395 - Successfully analyzed: 8436f785-75bd-4ec4-b99c-f629648d259b/INV0072_2.pdf
+2026-02-12 11:46:22.329 | INFO     | src.usecase.content_extraction:process_documents_in_folder:401 - Suitable document found: 8436f785-75bd-4ec4-b99c-f629648d259b/INV0072_2.pdf - Classification: Tax Invoice (Faktur Pajak)
+2026-02-12 11:46:22.329 | INFO     | src.usecase.content_extraction:process_documents_in_folder:425 - Completed processing 2 documents from folder 8436f785-75bd-4ec4-b99c-f629648d259b
+2026-02-12 11:46:22.330 | INFO     | src.usecase.content_extraction:process_documents_in_folder:426 - Suitable documents (Invoice/TaxInvoice) found: True
+2026-02-12 11:46:23.183 | INFO     | src.repository.database:query_documents:130 - Retrieved 0 documents (type: all)
+2026-02-12 11:46:23.183 | WARNING  | src.usecase.content_extraction:copy_tax_invoice_item_to_gl_recon_item:552 - No tax invoices found for URN: 0072408272096
+2026-02-12 11:46:23.690 | INFO     | src.repository.database:get_document_by_id:67 - Retrieved document: 8436f785-75bd-4ec4-b99c-f629648d259b
+2026-02-12 11:46:23.926 | INFO     | src.repository.database:update_document:261 - Updated document: 8436f785-75bd-4ec4-b99c-f629648d259b
+2026-02-12 11:46:23.926 | INFO     | src.usecase.content_extraction:process_message:662 - Successfully processed content extraction for document ID: 8436f785-75bd-4ec4-b99c-f629648d259b
+2026-02-12 11:46:26.859 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 11:46:31.463 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 11:46:36.149 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 11:46:40.948 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 11:46:45.487 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 11:46:50.034 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 11:46:54.712 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 11:46:59.375 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 11:47:04.148 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 11:47:08.748 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 11:47:13.573 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 11:47:18.327 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 11:47:22.915 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 11:47:27.931 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 11:47:28.933 | INFO     | src.config.dependencies:get_azure_service_bus_repository:190 - Creating AzureServiceBusRepository singleton
+2026-02-12 11:47:30.716 | INFO     | src.repository.database:query_documents:130 - Retrieved 5 documents (type: all)
+2026-02-12 11:47:32.649 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 11:47:33.149 | INFO     | src.config.dependencies:get_azure_service_bus_repository:190 - Creating AzureServiceBusRepository singleton
+2026-02-12 11:47:33.758 | INFO     | src.repository.database:query_documents:130 - Retrieved 5 documents (type: all)
+2026-02-12 11:47:37.616 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 11:47:39.922 | INFO     | src.config.dependencies:get_azure_service_bus_repository:190 - Creating AzureServiceBusRepository singleton
+2026-02-12 11:47:39.924 | INFO     | src.delivery.upload_routes:upload_file:40 - Received PDF upload: INV0072.pdf with file_id 196ca095-718e-43ad-9143-6e61a9d3463f and activity_id 5b9fb585-3554-4c64-963e-6f455b1db801
+2026-02-12 11:47:39.926 | INFO     | src.usecase.file_upload:_split_pdf_pages:119 - Splitting PDF INV0072.pdf into 2 pages
+2026-02-12 11:47:39.936 | INFO     | src.usecase.file_upload:_split_pdf_pages:135 - Successfully split INV0072.pdf into 2 pages
+2026-02-12 11:47:39.936 | INFO     | src.usecase.file_upload:upload:178 - Uploading 2 pages from PDF INV0072.pdf
+2026-02-12 11:47:40.768 | INFO     | src.repository.storage:upload_file:89 - Uploaded file INV0072_1.pdf for case 196ca095-718e-43ad-9143-6e61a9d3463f, blob: 196ca095-718e-43ad-9143-6e61a9d3463f/INV0072_1.pdf
+2026-02-12 11:47:40.917 | INFO     | src.repository.storage:upload_file:89 - Uploaded file INV0072_2.pdf for case 196ca095-718e-43ad-9143-6e61a9d3463f, blob: 196ca095-718e-43ad-9143-6e61a9d3463f/INV0072_2.pdf
+2026-02-12 11:47:42.502 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 11:47:44.838 | INFO     | src.repository.messaging:send_message:18 - Message sent to queue document-uploads: {'document_id': '196ca095-718e-43ad-9143-6e61a9d3463f', 'timestamp': '2026-02-12T04:47:41.163472Z'}
+2026-02-12 11:47:44.839 | INFO     | src.delivery.upload_routes:upload_file:50 - Successfully processed PDF upload for file_id 196ca095-718e-43ad-9143-6e61a9d3463f and activity_id 5b9fb585-3554-4c64-963e-6f455b1db801
+2026-02-12 11:47:44.849 | INFO     | src.config.dependencies:get_azure_service_bus_repository:190 - Creating AzureServiceBusRepository singleton
+2026-02-12 11:47:45.513 | INFO     | src.repository.database:query_documents:130 - Retrieved 5 documents (type: all)
+2026-02-12 11:47:47.308 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 11:47:47.565 | INFO     | __main__:run_worker:75 - Received message: 92162879-ef4c-4eb0-a034-2a7f117d3c1c
+2026-02-12 11:47:47.567 | INFO     | src.usecase.content_extraction:process_message:631 - Processing content extraction for document ID: 196ca095-718e-43ad-9143-6e61a9d3463f
+2026-02-12 11:47:47.567 | INFO     | src.usecase.content_extraction:process_documents_in_folder:317 - Processing documents in folder: 196ca095-718e-43ad-9143-6e61a9d3463f
+2026-02-12 11:47:48.072 | INFO     | src.repository.storage:list_files:138 - Listed 2 files for case 196ca095-718e-43ad-9143-6e61a9d3463f
+2026-02-12 11:47:48.073 | INFO     | src.usecase.content_extraction:process_documents_in_folder:321 - Found 2 files in folder 196ca095-718e-43ad-9143-6e61a9d3463f
+2026-02-12 11:47:48.073 | INFO     | src.usecase.content_extraction:process_documents_in_folder:338 - Files sorted numerically: ['196ca095-718e-43ad-9143-6e61a9d3463f/INV0072_1.pdf', '196ca095-718e-43ad-9143-6e61a9d3463f/INV0072_2.pdf']
+2026-02-12 11:47:48.074 | INFO     | src.usecase.content_extraction:process_documents_in_folder:362 - Analyzing document: 196ca095-718e-43ad-9143-6e61a9d3463f/INV0072_1.pdf
+2026-02-12 11:47:48.849 | INFO     | src.usecase.content_extraction:process_documents_in_folder:377 - Analysis initiated for 196ca095-718e-43ad-9143-6e61a9d3463f/INV0072_1.pdf, request ID: 6d036420-f3b5-4ae4-b252-c29dd95391f0
+2026-02-12 11:48:13.755 | INFO     | src.usecase.content_extraction:_wait_for_analysis_result:130 - Analysis completed successfully: 6d036420-f3b5-4ae4-b252-c29dd95391f0
+2026-02-12 11:48:18.752 | INFO     | src.usecase.content_extraction:_wait_for_analysis_result:224 - Content classification completed for 6d036420-f3b5-4ae4-b252-c29dd95391f0
+2026-02-12 11:48:18.752 | INFO     | src.usecase.content_extraction:process_documents_in_folder:395 - Successfully analyzed: 196ca095-718e-43ad-9143-6e61a9d3463f/INV0072_1.pdf
+2026-02-12 11:48:18.752 | INFO     | src.usecase.content_extraction:process_documents_in_folder:401 - Suitable document found: 196ca095-718e-43ad-9143-6e61a9d3463f/INV0072_1.pdf - Classification: Invoice
+2026-02-12 11:48:18.753 | INFO     | src.usecase.content_extraction:process_documents_in_folder:362 - Analyzing document: 196ca095-718e-43ad-9143-6e61a9d3463f/INV0072_2.pdf
+2026-02-12 11:48:19.342 | INFO     | src.usecase.content_extraction:process_documents_in_folder:377 - Analysis initiated for 196ca095-718e-43ad-9143-6e61a9d3463f/INV0072_2.pdf, request ID: 4229b6a5-1f57-4d5c-9bbb-a97cae521c62
+2026-02-12 11:48:37.344 | INFO     | src.usecase.content_extraction:_wait_for_analysis_result:130 - Analysis completed successfully: 4229b6a5-1f57-4d5c-9bbb-a97cae521c62
+2026-02-12 11:48:40.466 | INFO     | src.usecase.content_extraction:_wait_for_analysis_result:167 - Tax invoice page accumulated. Total pages: 1, Complete: True
+2026-02-12 11:48:40.467 | INFO     | src.usecase.content_extraction:_wait_for_analysis_result:176 - Tax invoice complete. Extracting from 1 merged pages
+2026-02-12 11:49:49.269 | INFO     | src.usecase.content_extraction:_wait_for_analysis_result:224 - Content classification completed for 4229b6a5-1f57-4d5c-9bbb-a97cae521c62
+2026-02-12 11:49:49.269 | INFO     | src.usecase.content_extraction:process_documents_in_folder:395 - Successfully analyzed: 196ca095-718e-43ad-9143-6e61a9d3463f/INV0072_2.pdf
+2026-02-12 11:49:49.269 | INFO     | src.usecase.content_extraction:process_documents_in_folder:401 - Suitable document found: 196ca095-718e-43ad-9143-6e61a9d3463f/INV0072_2.pdf - Classification: Tax Invoice (Faktur Pajak)
+2026-02-12 11:49:49.269 | INFO     | src.usecase.content_extraction:process_documents_in_folder:425 - Completed processing 2 documents from folder 196ca095-718e-43ad-9143-6e61a9d3463f
+2026-02-12 11:49:49.269 | INFO     | src.usecase.content_extraction:process_documents_in_folder:426 - Suitable documents (Invoice/TaxInvoice) found: True
+2026-02-12 11:49:49.898 | INFO     | src.repository.database:query_documents:130 - Retrieved 1 documents (type: all)
+2026-02-12 11:49:50.581 | INFO     | src.repository.database:query_documents:130 - Retrieved 1 documents (type: all)
+2026-02-12 11:53:07.522 | INFO     | src.repository.database:get_document_by_id:67 - Retrieved document: ef35b1bd-839e-4923-8dc0-d2c5099ba0e7
+2026-02-12 11:53:07.772 | INFO     | src.repository.database:update_document:261 - Updated document: ef35b1bd-839e-4923-8dc0-d2c5099ba0e7
+2026-02-12 11:53:07.772 | INFO     | src.usecase.content_extraction:copy_tax_invoice_item_to_gl_recon_item:617 - Updated GL transaction ef35b1bd-839e-4923-8dc0-d2c5099ba0e7 with 2 GLReconItem(s)
+2026-02-12 11:53:08.231 | INFO     | src.repository.database:get_document_by_id:67 - Retrieved document: 196ca095-718e-43ad-9143-6e61a9d3463f
+2026-02-12 11:53:08.432 | INFO     | src.repository.database:update_document:261 - Updated document: 196ca095-718e-43ad-9143-6e61a9d3463f
+2026-02-12 11:53:08.432 | INFO     | src.usecase.content_extraction:process_message:662 - Successfully processed content extraction for document ID: 196ca095-718e-43ad-9143-6e61a9d3463f
+2026-02-12 11:53:11.265 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 11:53:13.668 | INFO     | src.repository.database:query_documents:130 - Retrieved 4 documents (type: all)
+2026-02-12 11:53:14.352 | INFO     | src.repository.database:query_documents:130 - Retrieved 1 documents (type: all)
+2026-02-12 11:53:15.012 | INFO     | src.repository.database:query_documents:130 - Retrieved 1 documents (type: all)
+2026-02-12 11:53:15.602 | INFO     | src.repository.database:query_documents:130 - Retrieved 1 documents (type: all)
+2026-02-12 11:53:16.023 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 11:53:16.188 | INFO     | src.repository.database:query_documents:130 - Retrieved 1 documents (type: all)
+2026-02-12 11:53:16.775 | INFO     | src.repository.database:query_documents:130 - Retrieved 1 documents (type: all)
+2026-02-12 11:53:17.355 | INFO     | src.repository.database:query_documents:130 - Retrieved 1 documents (type: all)
+2026-02-12 11:53:17.936 | INFO     | src.repository.database:query_documents:130 - Retrieved 1 documents (type: all)
+2026-02-12 11:53:18.527 | INFO     | src.repository.database:query_documents:130 - Retrieved 0 documents (type: all)
+2026-02-12 11:53:18.528 | INFO     | src.delivery.tax_management:get_all_gl_transactions:24 - Retrieved 4 G/L transactions (page 1 of 1)
+2026-02-12 11:53:20.522 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 11:53:22.897 | INFO     | src.repository.database:query_documents:130 - Retrieved 1 documents (type: all)
+2026-02-12 11:53:22.897 | INFO     | src.delivery.tax_management:get_gl_transaction_by_urn:65 - Retrieved G/L transaction: 0072408272096
+2026-02-12 11:53:23.525 | INFO     | src.repository.database:query_documents:130 - Retrieved 1 documents (type: all)
+2026-02-12 11:53:23.525 | INFO     | src.delivery.tax_management:get_all_invoices:116 - Retrieved 1 invoices
+2026-02-12 11:53:24.147 | INFO     | src.repository.database:query_documents:130 - Retrieved 1 documents (type: all)
+2026-02-12 11:53:24.148 | INFO     | src.delivery.tax_management:get_all_tax_invoices:93 - Retrieved 1 tax invoices
+2026-02-12 11:53:25.276 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 11:53:29.998 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 11:53:34.550 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 11:53:39.233 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 11:53:43.931 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 11:53:48.814 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 11:53:53.412 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 11:53:58.049 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 11:54:02.795 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 11:54:07.524 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 11:54:12.061 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 11:54:16.556 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 11:54:21.076 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 11:54:25.643 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 11:54:30.275 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 11:54:35.031 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 11:54:39.846 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 11:54:44.598 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 11:54:49.268 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 11:54:54.076 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 11:54:58.733 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 11:55:03.495 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 11:55:08.248 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 11:55:12.927 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 11:55:17.663 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 11:55:22.187 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 11:55:26.897 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 11:55:31.451 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 11:55:36.059 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 11:55:40.701 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 11:55:45.491 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 11:55:50.440 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 11:55:55.493 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 11:56:00.220 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 11:56:04.941 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 11:56:09.792 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 11:56:14.508 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 11:56:19.157 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 11:56:23.857 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 11:56:28.432 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 11:56:33.141 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 11:56:37.892 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 11:56:42.500 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 11:56:47.328 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 11:56:52.026 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 11:56:56.599 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 11:57:01.012 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 11:57:06.007 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 11:57:10.595 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 11:57:15.382 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 11:57:19.961 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 11:57:24.508 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 11:57:29.008 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 11:57:33.602 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 11:57:38.208 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 11:57:42.680 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 11:57:47.188 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 11:57:51.715 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 11:57:56.205 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 11:58:00.717 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 11:58:05.183 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 11:58:09.732 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 11:58:14.330 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 11:58:18.877 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 11:58:23.394 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 11:58:27.826 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 11:58:32.435 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 11:58:36.973 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 11:58:41.525 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 11:58:45.923 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 11:58:50.449 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 11:58:54.972 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 11:58:59.457 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 11:59:04.023 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 11:59:08.701 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 11:59:13.272 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 11:59:17.733 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 11:59:22.293 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 11:59:26.733 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 11:59:31.299 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 11:59:35.889 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 11:59:40.357 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 11:59:44.928 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 11:59:49.611 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 11:59:54.114 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 11:59:58.639 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 12:00:03.096 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 12:00:07.673 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 12:00:12.194 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 12:00:16.907 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 12:00:21.354 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 12:00:25.935 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 12:00:30.472 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 12:00:34.968 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 12:00:39.693 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 12:00:44.180 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 12:00:48.693 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 12:00:53.272 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 12:00:57.796 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 12:01:02.319 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 12:01:06.966 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 12:01:11.606 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 12:01:16.221 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 12:01:20.671 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 12:01:25.244 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 12:01:29.735 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 12:01:34.354 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 12:01:38.839 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 12:01:43.426 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 12:01:47.901 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 12:01:52.545 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 12:01:57.013 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 12:02:01.639 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 12:02:06.198 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 12:02:10.765 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 12:02:15.208 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 12:02:19.798 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 12:02:24.454 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 12:02:28.887 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 12:02:33.320 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 12:02:37.983 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 12:02:42.498 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 12:02:47.041 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 12:02:51.503 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 12:02:56.154 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 12:03:00.551 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 12:03:04.984 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 12:03:09.616 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 12:03:14.061 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 12:03:18.619 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 12:03:23.076 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 12:03:27.664 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 12:03:32.190 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 12:03:36.681 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 12:03:41.246 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 12:03:45.939 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 12:03:50.573 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 12:03:55.053 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 12:03:59.641 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 12:04:04.245 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 12:04:08.706 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 12:04:13.226 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 12:04:17.714 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 12:04:22.196 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 12:04:26.836 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 12:04:31.298 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 12:04:35.869 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 12:04:40.384 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 12:04:45.065 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 12:04:49.412 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 12:04:55.179 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 12:04:59.642 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 12:05:04.192 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 12:05:08.680 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 12:05:13.256 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 12:05:17.732 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 12:05:22.344 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 12:05:26.889 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 12:05:31.379 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 12:05:36.037 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 12:05:40.839 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 12:05:45.674 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 12:05:50.318 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 12:05:55.106 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 12:05:59.759 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 12:06:04.837 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 12:06:10.368 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 12:06:15.181 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 12:06:20.159 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 12:06:25.040 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 12:06:29.828 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 12:06:34.671 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 12:06:39.293 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 12:06:43.905 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 12:06:48.591 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 12:06:53.197 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 12:06:57.796 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 12:07:02.368 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 12:07:07.059 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 12:07:11.573 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 12:07:16.139 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 12:07:20.621 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 12:07:25.291 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 12:07:29.786 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 12:07:34.240 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 12:07:38.818 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 12:07:43.397 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 12:07:47.911 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 12:07:52.546 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 12:07:57.155 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 12:08:01.596 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 12:08:06.123 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 12:08:10.691 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 12:08:15.225 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 12:08:19.817 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 12:08:24.333 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 12:08:28.882 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 12:08:33.543 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 12:08:37.980 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 12:08:42.586 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 12:08:47.081 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 12:08:51.805 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 12:08:56.730 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 12:09:01.216 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 12:09:05.832 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 12:09:10.265 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 12:09:14.771 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 12:09:19.359 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 12:09:23.977 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 12:09:28.520 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 12:09:33.101 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 12:09:37.481 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 12:09:41.995 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 12:09:46.584 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 12:09:50.997 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 12:09:55.624 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 12:10:00.149 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 12:10:04.694 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 12:10:09.167 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 12:10:13.691 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 12:10:18.307 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 12:10:22.809 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 12:10:27.231 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 12:10:31.736 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 12:10:36.287 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 12:10:40.775 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 12:10:45.353 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 12:10:50.033 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 12:10:54.524 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 12:10:59.110 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 12:11:03.537 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 12:11:08.693 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 12:11:13.238 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 12:11:17.773 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 12:11:22.248 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 12:11:26.726 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 12:11:31.134 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 12:11:35.635 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 12:11:40.153 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 12:11:44.590 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 12:11:49.262 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 12:11:53.751 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 12:11:58.375 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 12:12:02.828 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 12:12:07.363 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 12:12:11.924 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 12:12:16.653 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 12:12:21.012 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 12:12:25.479 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 12:12:29.991 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 12:12:34.397 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 12:12:38.865 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 12:12:43.412 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 12:12:47.969 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 12:12:52.528 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 12:12:57.072 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 12:13:01.526 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 12:13:06.008 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 12:13:10.528 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 12:13:15.055 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 12:13:19.748 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 12:13:24.310 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 12:13:28.801 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 12:13:33.311 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 12:13:37.807 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 12:13:42.270 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 12:13:46.825 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 12:13:51.507 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 12:13:56.127 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 12:14:00.700 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 12:14:05.111 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 12:14:09.746 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 12:14:14.272 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 12:14:18.810 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 12:14:23.394 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 12:14:27.990 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 12:14:32.409 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 12:14:37.054 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 12:14:41.489 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 12:14:46.030 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 12:14:50.611 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 12:14:55.444 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 12:14:59.876 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 12:15:04.621 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 12:15:09.135 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 12:15:13.749 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 12:15:18.303 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 12:15:22.862 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 12:15:27.311 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 12:15:31.805 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 12:15:36.311 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 12:15:40.767 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 12:15:45.294 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 12:15:49.842 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 12:15:54.360 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 12:15:58.735 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 12:16:03.360 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 12:16:08.507 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 12:16:12.901 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 12:16:17.429 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 12:16:21.924 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 12:16:26.361 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 12:16:31.393 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 12:16:35.861 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 12:16:40.441 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 12:16:44.918 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 12:16:49.554 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 12:16:54.110 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 12:16:58.585 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 12:17:03.051 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 12:17:07.552 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 12:17:12.027 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 12:17:16.628 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 12:17:21.152 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 12:17:25.799 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 12:17:30.263 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 12:17:34.794 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 12:17:39.393 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 12:17:43.925 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 12:17:48.486 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 12:17:52.991 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 12:17:57.586 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 12:18:02.686 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 12:18:06.602 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 12:18:11.186 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 12:18:15.644 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 12:18:20.154 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 12:18:25.100 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 12:18:29.304 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 12:18:33.649 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 12:18:38.215 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 12:18:42.638 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 12:18:47.778 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 12:18:51.784 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 12:18:56.526 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 12:19:01.114 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 12:19:05.639 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 12:19:10.210 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 12:19:14.822 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 12:19:19.265 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 12:19:23.734 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 12:19:28.355 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 12:19:32.801 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 12:19:37.194 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 12:19:41.776 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 12:19:46.890 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 12:19:51.744 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 12:19:56.381 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 12:20:00.975 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 12:20:05.835 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 12:20:09.982 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 12:20:14.619 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 12:20:19.162 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 12:20:23.666 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 12:20:28.164 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 12:20:32.817 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 12:20:37.289 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 12:20:41.831 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 12:20:46.351 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 12:20:50.876 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 12:20:55.387 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 12:20:59.877 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 12:21:04.378 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 12:21:08.972 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 12:21:13.626 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 12:21:18.141 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 12:21:22.652 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 12:21:27.203 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 12:21:31.827 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 12:21:36.397 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 12:21:41.032 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 12:21:45.467 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 12:21:50.081 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 12:21:54.509 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 12:21:59.089 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 12:22:03.638 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 12:22:08.215 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 12:22:12.645 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 12:22:17.160 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 12:22:21.706 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 12:22:26.327 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 12:22:30.751 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 12:22:35.430 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 12:22:40.191 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 12:22:44.963 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 12:22:49.550 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 12:22:54.288 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 12:22:58.991 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 12:23:03.783 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 12:23:08.439 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 12:23:13.261 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 12:23:17.986 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 12:23:22.705 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 12:23:27.399 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 12:23:32.147 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 12:23:36.787 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 12:23:41.568 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 12:23:46.405 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 12:23:51.089 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 12:23:55.872 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 12:24:00.570 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 12:24:00.871 | INFO     | src.repository.database:query_documents:130 - Retrieved 4 documents (type: all)
+2026-02-12 12:24:01.558 | INFO     | src.repository.database:query_documents:130 - Retrieved 0 documents (type: all)
+2026-02-12 12:24:02.230 | INFO     | src.repository.database:query_documents:130 - Retrieved 0 documents (type: all)
+2026-02-12 12:24:02.831 | INFO     | src.repository.database:query_documents:130 - Retrieved 1 documents (type: all)
+2026-02-12 12:24:03.433 | INFO     | src.repository.database:query_documents:130 - Retrieved 1 documents (type: all)
+2026-02-12 12:24:04.054 | INFO     | src.repository.database:query_documents:130 - Retrieved 1 documents (type: all)
+2026-02-12 12:24:04.647 | INFO     | src.repository.database:query_documents:130 - Retrieved 1 documents (type: all)
+2026-02-12 12:24:05.338 | INFO     | src.repository.database:query_documents:130 - Retrieved 1 documents (type: all)
+2026-02-12 12:24:05.389 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 12:24:05.973 | INFO     | src.repository.database:query_documents:130 - Retrieved 0 documents (type: all)
+2026-02-12 12:24:05.973 | INFO     | src.delivery.tax_management:get_all_gl_transactions:24 - Retrieved 4 G/L transactions (page 1 of 1)
+2026-02-12 12:24:10.752 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 12:24:15.863 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 12:24:20.452 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 12:24:25.194 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 12:24:30.028 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 12:24:34.816 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 12:24:39.530 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 12:24:44.279 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 12:24:48.924 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 12:24:53.567 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 12:24:58.399 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 12:25:03.240 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 12:25:08.041 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 12:25:12.746 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 12:25:17.378 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 12:25:22.264 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 12:25:27.014 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 12:25:31.707 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 12:25:36.376 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 12:25:41.096 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 12:25:45.832 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 12:25:50.593 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 12:25:55.294 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 12:26:00.081 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 12:26:04.747 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 12:26:09.421 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 12:26:14.152 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 12:26:18.770 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 12:26:23.445 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 12:26:28.639 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 12:26:33.030 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 12:26:37.612 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 12:26:42.367 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 12:26:47.028 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 12:26:51.725 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 12:26:56.460 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 12:27:01.163 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 12:27:05.799 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 12:27:10.519 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 12:27:15.292 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 12:27:20.026 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 12:27:24.736 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 12:27:29.449 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 12:27:34.071 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 12:27:38.831 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 12:27:43.619 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 12:27:48.164 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 12:27:52.896 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 12:27:57.545 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 12:28:02.298 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 12:28:07.096 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 12:28:11.918 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 12:28:16.534 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 12:28:21.213 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 12:28:25.981 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 12:28:30.776 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 12:28:35.510 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 12:28:40.138 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 12:28:44.867 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 12:28:49.540 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 12:28:54.287 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 12:28:58.985 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 12:29:03.758 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 12:29:08.389 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 12:29:13.145 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 12:29:17.926 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 12:29:22.691 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 12:29:27.393 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 12:29:32.178 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 12:29:36.966 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 12:29:41.601 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 12:29:46.331 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 12:29:51.081 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 12:29:55.843 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 12:30:00.263 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 12:30:05.198 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 12:30:09.817 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 12:30:14.512 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 12:30:19.216 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 12:30:23.918 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 12:30:28.599 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 12:30:33.470 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 12:30:38.071 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 12:30:42.897 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 12:30:47.562 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 12:30:52.151 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 12:30:57.039 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 12:31:01.522 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 12:31:06.232 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 12:31:10.915 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 12:31:15.431 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 12:31:20.017 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 12:31:24.466 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 12:31:29.164 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 12:31:33.696 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 12:31:38.265 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 12:31:43.045 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 12:31:43.959 | INFO     | src.repository.database:query_documents:130 - Retrieved 4 documents (type: all)
+2026-02-12 12:31:44.540 | INFO     | src.repository.database:query_documents:130 - Retrieved 0 documents (type: all)
+2026-02-12 12:31:45.121 | INFO     | src.repository.database:query_documents:130 - Retrieved 0 documents (type: all)
+2026-02-12 12:31:45.700 | INFO     | src.repository.database:query_documents:130 - Retrieved 1 documents (type: all)
+2026-02-12 12:31:46.282 | INFO     | src.repository.database:query_documents:130 - Retrieved 1 documents (type: all)
+2026-02-12 12:31:46.878 | INFO     | src.repository.database:query_documents:130 - Retrieved 1 documents (type: all)
+2026-02-12 12:31:47.490 | INFO     | src.repository.database:query_documents:130 - Retrieved 1 documents (type: all)
+2026-02-12 12:31:47.541 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 12:31:48.079 | INFO     | src.repository.database:query_documents:130 - Retrieved 1 documents (type: all)
+2026-02-12 12:31:48.681 | INFO     | src.repository.database:query_documents:130 - Retrieved 0 documents (type: all)
+2026-02-12 12:31:48.681 | INFO     | src.delivery.tax_management:get_all_gl_transactions:24 - Retrieved 4 G/L transactions (page 1 of 1)
+2026-02-12 12:31:49.859 | INFO     | src.repository.database:query_documents:130 - Retrieved 4 documents (type: all)
+2026-02-12 12:31:50.447 | INFO     | src.repository.database:query_documents:130 - Retrieved 0 documents (type: all)
+2026-02-12 12:31:51.044 | INFO     | src.repository.database:query_documents:130 - Retrieved 0 documents (type: all)
+2026-02-12 12:31:51.652 | INFO     | src.repository.database:query_documents:130 - Retrieved 1 documents (type: all)
+2026-02-12 12:31:52.250 | INFO     | src.repository.database:query_documents:130 - Retrieved 1 documents (type: all)
+2026-02-12 12:31:52.298 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 12:31:52.852 | INFO     | src.repository.database:query_documents:130 - Retrieved 1 documents (type: all)
+2026-02-12 12:31:53.454 | INFO     | src.repository.database:query_documents:130 - Retrieved 1 documents (type: all)
+2026-02-12 12:31:54.054 | INFO     | src.repository.database:query_documents:130 - Retrieved 1 documents (type: all)
+2026-02-12 12:31:54.647 | INFO     | src.repository.database:query_documents:130 - Retrieved 0 documents (type: all)
+2026-02-12 12:31:54.649 | INFO     | src.delivery.tax_management:get_all_gl_transactions:24 - Retrieved 4 G/L transactions (page 1 of 1)
+2026-02-12 12:31:57.007 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 12:32:01.531 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 12:32:06.456 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 12:32:11.052 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 12:32:15.741 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 12:32:20.475 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 12:32:25.150 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 12:32:29.840 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 12:32:34.511 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 12:32:39.341 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 12:32:41.844 | INFO     | src.config.dependencies:get_azure_service_bus_repository:190 - Creating AzureServiceBusRepository singleton
+2026-02-12 12:32:42.588 | INFO     | src.repository.database:query_documents:130 - Retrieved 5 documents (type: all)
+2026-02-12 12:32:43.910 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 12:32:48.615 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 12:32:48.645 | INFO     | src.config.dependencies:get_azure_service_bus_repository:190 - Creating AzureServiceBusRepository singleton
+2026-02-12 12:32:48.652 | INFO     | src.delivery.upload_routes:upload_file:40 - Received PDF upload: INV0072.pdf with file_id 0bb881d7-a639-40ff-a55c-0584b19855dc and activity_id 1304b1e4-cd5c-400a-b8e2-8725606e64e2
+2026-02-12 12:32:48.655 | INFO     | src.usecase.file_upload:_split_pdf_pages:119 - Splitting PDF INV0072.pdf into 2 pages
+2026-02-12 12:32:48.666 | INFO     | src.usecase.file_upload:_split_pdf_pages:135 - Successfully split INV0072.pdf into 2 pages
+2026-02-12 12:32:48.667 | INFO     | src.usecase.file_upload:upload:178 - Uploading 2 pages from PDF INV0072.pdf
+2026-02-12 12:32:49.422 | INFO     | src.repository.storage:upload_file:89 - Uploaded file INV0072_1.pdf for case 0bb881d7-a639-40ff-a55c-0584b19855dc, blob: 0bb881d7-a639-40ff-a55c-0584b19855dc/INV0072_1.pdf
+2026-02-12 12:32:49.524 | INFO     | src.repository.storage:upload_file:89 - Uploaded file INV0072_2.pdf for case 0bb881d7-a639-40ff-a55c-0584b19855dc, blob: 0bb881d7-a639-40ff-a55c-0584b19855dc/INV0072_2.pdf
+2026-02-12 12:32:53.319 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 12:32:53.969 | INFO     | __main__:run_worker:75 - Received message: d80fbcc9-ab13-4f87-b88a-ba6eae59b91e
+2026-02-12 12:32:53.969 | INFO     | src.usecase.content_extraction:process_message:631 - Processing content extraction for document ID: 0bb881d7-a639-40ff-a55c-0584b19855dc
+2026-02-12 12:32:53.969 | INFO     | src.usecase.content_extraction:process_documents_in_folder:317 - Processing documents in folder: 0bb881d7-a639-40ff-a55c-0584b19855dc
+2026-02-12 12:32:53.969 | INFO     | src.repository.messaging:send_message:18 - Message sent to queue document-uploads: {'document_id': '0bb881d7-a639-40ff-a55c-0584b19855dc', 'timestamp': '2026-02-12T05:32:49.733884Z'}
+2026-02-12 12:32:53.969 | INFO     | src.delivery.upload_routes:upload_file:50 - Successfully processed PDF upload for file_id 0bb881d7-a639-40ff-a55c-0584b19855dc and activity_id 1304b1e4-cd5c-400a-b8e2-8725606e64e2
+2026-02-12 12:32:53.983 | INFO     | src.config.dependencies:get_azure_service_bus_repository:190 - Creating AzureServiceBusRepository singleton
+2026-02-12 12:32:54.405 | INFO     | src.repository.storage:list_files:138 - Listed 2 files for case 0bb881d7-a639-40ff-a55c-0584b19855dc
+2026-02-12 12:32:54.405 | INFO     | src.usecase.content_extraction:process_documents_in_folder:321 - Found 2 files in folder 0bb881d7-a639-40ff-a55c-0584b19855dc
+2026-02-12 12:32:54.405 | INFO     | src.usecase.content_extraction:process_documents_in_folder:338 - Files sorted numerically: ['0bb881d7-a639-40ff-a55c-0584b19855dc/INV0072_1.pdf', '0bb881d7-a639-40ff-a55c-0584b19855dc/INV0072_2.pdf']
+2026-02-12 12:32:54.406 | INFO     | src.usecase.content_extraction:process_documents_in_folder:362 - Analyzing document: 0bb881d7-a639-40ff-a55c-0584b19855dc/INV0072_1.pdf
+2026-02-12 12:32:54.563 | INFO     | src.repository.database:query_documents:130 - Retrieved 5 documents (type: all)
+2026-02-12 12:32:55.141 | INFO     | src.usecase.content_extraction:process_documents_in_folder:377 - Analysis initiated for 0bb881d7-a639-40ff-a55c-0584b19855dc/INV0072_1.pdf, request ID: 9ec75726-a661-48c4-9dc1-d0185a3c3f96
+2026-02-12 12:33:09.397 | INFO     | src.usecase.content_extraction:_wait_for_analysis_result:130 - Analysis completed successfully: 9ec75726-a661-48c4-9dc1-d0185a3c3f96
+2026-02-12 12:33:15.561 | INFO     | src.usecase.content_extraction:_wait_for_analysis_result:224 - Content classification completed for 9ec75726-a661-48c4-9dc1-d0185a3c3f96
+2026-02-12 12:33:15.561 | INFO     | src.usecase.content_extraction:process_documents_in_folder:395 - Successfully analyzed: 0bb881d7-a639-40ff-a55c-0584b19855dc/INV0072_1.pdf
+2026-02-12 12:33:15.562 | INFO     | src.usecase.content_extraction:process_documents_in_folder:401 - Suitable document found: 0bb881d7-a639-40ff-a55c-0584b19855dc/INV0072_1.pdf - Classification: Invoice
+2026-02-12 12:33:15.562 | INFO     | src.usecase.content_extraction:process_documents_in_folder:362 - Analyzing document: 0bb881d7-a639-40ff-a55c-0584b19855dc/INV0072_2.pdf
+2026-02-12 12:33:16.340 | INFO     | src.usecase.content_extraction:process_documents_in_folder:377 - Analysis initiated for 0bb881d7-a639-40ff-a55c-0584b19855dc/INV0072_2.pdf, request ID: 0a6b25b1-5658-4b2d-89e8-331c608154ee
+2026-02-12 12:33:30.613 | INFO     | src.usecase.content_extraction:_wait_for_analysis_result:130 - Analysis completed successfully: 0a6b25b1-5658-4b2d-89e8-331c608154ee
+2026-02-12 12:33:33.659 | INFO     | src.usecase.content_extraction:_wait_for_analysis_result:167 - Tax invoice page accumulated. Total pages: 1, Complete: True
+2026-02-12 12:33:33.659 | INFO     | src.usecase.content_extraction:_wait_for_analysis_result:176 - Tax invoice complete. Extracting from 1 merged pages
+2026-02-12 12:34:34.047 | INFO     | src.usecase.content_extraction:_wait_for_analysis_result:224 - Content classification completed for 0a6b25b1-5658-4b2d-89e8-331c608154ee
+2026-02-12 12:34:34.047 | INFO     | src.usecase.content_extraction:process_documents_in_folder:395 - Successfully analyzed: 0bb881d7-a639-40ff-a55c-0584b19855dc/INV0072_2.pdf
+2026-02-12 12:34:34.047 | INFO     | src.usecase.content_extraction:process_documents_in_folder:401 - Suitable document found: 0bb881d7-a639-40ff-a55c-0584b19855dc/INV0072_2.pdf - Classification: Tax Invoice (Faktur Pajak)
+2026-02-12 12:34:34.047 | INFO     | src.usecase.content_extraction:process_documents_in_folder:425 - Completed processing 2 documents from folder 0bb881d7-a639-40ff-a55c-0584b19855dc
+2026-02-12 12:34:34.047 | INFO     | src.usecase.content_extraction:process_documents_in_folder:426 - Suitable documents (Invoice/TaxInvoice) found: True
+2026-02-12 12:34:34.628 | INFO     | src.repository.database:query_documents:130 - Retrieved 0 documents (type: all)
+2026-02-12 12:35:05.174 | WARNING  | src.usecase.content_extraction:copy_tax_invoice_item_to_gl_recon_item:552 - No tax invoices found for URN: 0072408272096
+2026-02-12 12:35:05.495 | INFO     | src.repository.database:get_document_by_id:67 - Retrieved document: 0bb881d7-a639-40ff-a55c-0584b19855dc
+2026-02-12 12:35:05.710 | INFO     | src.repository.database:update_document:261 - Updated document: 0bb881d7-a639-40ff-a55c-0584b19855dc
+2026-02-12 12:35:05.711 | INFO     | src.usecase.content_extraction:process_message:662 - Successfully processed content extraction for document ID: 0bb881d7-a639-40ff-a55c-0584b19855dc
+2026-02-12 12:35:08.582 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 12:35:13.298 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 12:35:14.813 | INFO     | src.config.dependencies:get_azure_service_bus_repository:190 - Creating AzureServiceBusRepository singleton
+2026-02-12 12:35:16.731 | INFO     | src.repository.database:query_documents:130 - Retrieved 5 documents (type: all)
+2026-02-12 12:35:18.015 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 12:35:22.638 | INFO     | src.config.dependencies:get_azure_service_bus_repository:190 - Creating AzureServiceBusRepository singleton
+2026-02-12 12:35:22.640 | INFO     | src.delivery.upload_routes:upload_file:40 - Received PDF upload: INV0072.pdf with file_id 521eba3f-5210-4f8d-b3d2-03651a27acd8 and activity_id 3f3322c1-e566-42c4-b372-220a6fac1bdf
+2026-02-12 12:35:22.642 | INFO     | src.usecase.file_upload:_split_pdf_pages:119 - Splitting PDF INV0072.pdf into 2 pages
+2026-02-12 12:35:22.649 | INFO     | src.usecase.file_upload:_split_pdf_pages:135 - Successfully split INV0072.pdf into 2 pages
+2026-02-12 12:35:22.650 | INFO     | src.usecase.file_upload:upload:178 - Uploading 2 pages from PDF INV0072.pdf
+2026-02-12 12:35:22.801 | INFO     | src.repository.storage:upload_file:89 - Uploaded file INV0072_1.pdf for case 521eba3f-5210-4f8d-b3d2-03651a27acd8, blob: 521eba3f-5210-4f8d-b3d2-03651a27acd8/INV0072_1.pdf
+2026-02-12 12:35:22.900 | INFO     | src.repository.storage:upload_file:89 - Uploaded file INV0072_2.pdf for case 521eba3f-5210-4f8d-b3d2-03651a27acd8, blob: 521eba3f-5210-4f8d-b3d2-03651a27acd8/INV0072_2.pdf
+2026-02-12 12:35:23.131 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 12:35:27.260 | INFO     | src.repository.messaging:send_message:18 - Message sent to queue document-uploads: {'document_id': '521eba3f-5210-4f8d-b3d2-03651a27acd8', 'timestamp': '2026-02-12T05:35:23.117117Z'}
+2026-02-12 12:35:27.260 | INFO     | src.delivery.upload_routes:upload_file:50 - Successfully processed PDF upload for file_id 521eba3f-5210-4f8d-b3d2-03651a27acd8 and activity_id 3f3322c1-e566-42c4-b372-220a6fac1bdf
+2026-02-12 12:35:27.273 | INFO     | src.config.dependencies:get_azure_service_bus_repository:190 - Creating AzureServiceBusRepository singleton
+2026-02-12 12:35:27.883 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 12:35:27.885 | INFO     | src.repository.database:query_documents:130 - Retrieved 5 documents (type: all)
+2026-02-12 12:35:28.126 | INFO     | __main__:run_worker:75 - Received message: bedffcb4-07f7-40df-b0c9-8b95fdcc2c4c
+2026-02-12 12:35:28.128 | INFO     | src.usecase.content_extraction:process_message:631 - Processing content extraction for document ID: 521eba3f-5210-4f8d-b3d2-03651a27acd8
+2026-02-12 12:35:28.128 | INFO     | src.usecase.content_extraction:process_documents_in_folder:317 - Processing documents in folder: 521eba3f-5210-4f8d-b3d2-03651a27acd8
+2026-02-12 12:35:28.185 | INFO     | src.repository.storage:list_files:138 - Listed 2 files for case 521eba3f-5210-4f8d-b3d2-03651a27acd8
+2026-02-12 12:35:28.185 | INFO     | src.usecase.content_extraction:process_documents_in_folder:321 - Found 2 files in folder 521eba3f-5210-4f8d-b3d2-03651a27acd8
+2026-02-12 12:35:28.186 | INFO     | src.usecase.content_extraction:process_documents_in_folder:338 - Files sorted numerically: ['521eba3f-5210-4f8d-b3d2-03651a27acd8/INV0072_1.pdf', '521eba3f-5210-4f8d-b3d2-03651a27acd8/INV0072_2.pdf']
+2026-02-12 12:35:28.186 | INFO     | src.usecase.content_extraction:process_documents_in_folder:362 - Analyzing document: 521eba3f-5210-4f8d-b3d2-03651a27acd8/INV0072_1.pdf
+2026-02-12 12:35:29.082 | INFO     | src.usecase.content_extraction:process_documents_in_folder:377 - Analysis initiated for 521eba3f-5210-4f8d-b3d2-03651a27acd8/INV0072_1.pdf, request ID: 67865fa4-5670-406f-8fd3-2de02c9ab79e
+2026-02-12 12:35:57.440 | INFO     | src.usecase.content_extraction:_wait_for_analysis_result:130 - Analysis completed successfully: 67865fa4-5670-406f-8fd3-2de02c9ab79e
+2026-02-12 12:36:02.559 | INFO     | src.usecase.content_extraction:_wait_for_analysis_result:224 - Content classification completed for 67865fa4-5670-406f-8fd3-2de02c9ab79e
+2026-02-12 12:36:02.560 | INFO     | src.usecase.content_extraction:process_documents_in_folder:395 - Successfully analyzed: 521eba3f-5210-4f8d-b3d2-03651a27acd8/INV0072_1.pdf
+2026-02-12 12:36:02.560 | INFO     | src.usecase.content_extraction:process_documents_in_folder:401 - Suitable document found: 521eba3f-5210-4f8d-b3d2-03651a27acd8/INV0072_1.pdf - Classification: Invoice
+2026-02-12 12:36:02.560 | INFO     | src.usecase.content_extraction:process_documents_in_folder:362 - Analyzing document: 521eba3f-5210-4f8d-b3d2-03651a27acd8/INV0072_2.pdf
+2026-02-12 12:36:03.112 | INFO     | src.usecase.content_extraction:process_documents_in_folder:377 - Analysis initiated for 521eba3f-5210-4f8d-b3d2-03651a27acd8/INV0072_2.pdf, request ID: da99ec7e-f0b8-42fd-a040-c80f679f6341
+2026-02-12 12:36:42.359 | INFO     | src.usecase.content_extraction:_wait_for_analysis_result:130 - Analysis completed successfully: da99ec7e-f0b8-42fd-a040-c80f679f6341
+2026-02-12 12:36:45.973 | INFO     | src.usecase.content_extraction:_wait_for_analysis_result:167 - Tax invoice page accumulated. Total pages: 1, Complete: True
+2026-02-12 12:36:45.974 | INFO     | src.usecase.content_extraction:_wait_for_analysis_result:176 - Tax invoice complete. Extracting from 1 merged pages
+2026-02-12 12:37:12.425 | INFO     | src.usecase.content_extraction:_wait_for_analysis_result:224 - Content classification completed for da99ec7e-f0b8-42fd-a040-c80f679f6341
+2026-02-12 12:37:12.425 | INFO     | src.usecase.content_extraction:process_documents_in_folder:395 - Successfully analyzed: 521eba3f-5210-4f8d-b3d2-03651a27acd8/INV0072_2.pdf
+2026-02-12 12:37:12.427 | INFO     | src.usecase.content_extraction:process_documents_in_folder:401 - Suitable document found: 521eba3f-5210-4f8d-b3d2-03651a27acd8/INV0072_2.pdf - Classification: Tax Invoice (Faktur Pajak)
+2026-02-12 12:37:12.427 | INFO     | src.usecase.content_extraction:process_documents_in_folder:425 - Completed processing 2 documents from folder 521eba3f-5210-4f8d-b3d2-03651a27acd8
+2026-02-12 12:37:12.427 | INFO     | src.usecase.content_extraction:process_documents_in_folder:426 - Suitable documents (Invoice/TaxInvoice) found: True
+2026-02-12 12:37:13.013 | INFO     | src.repository.database:query_documents:130 - Retrieved 0 documents (type: all)
+2026-02-12 12:37:22.195 | WARNING  | src.usecase.content_extraction:copy_tax_invoice_item_to_gl_recon_item:552 - No tax invoices found for URN: 0072408272096
+2026-02-12 12:37:22.415 | INFO     | src.repository.database:get_document_by_id:67 - Retrieved document: 521eba3f-5210-4f8d-b3d2-03651a27acd8
+2026-02-12 12:37:22.609 | INFO     | src.repository.database:update_document:261 - Updated document: 521eba3f-5210-4f8d-b3d2-03651a27acd8
+2026-02-12 12:37:22.609 | INFO     | src.usecase.content_extraction:process_message:662 - Successfully processed content extraction for document ID: 521eba3f-5210-4f8d-b3d2-03651a27acd8
+2026-02-12 12:37:25.479 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 12:37:30.232 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 12:37:34.905 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 12:37:39.521 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 12:37:40.191 | INFO     | src.config.dependencies:get_azure_service_bus_repository:190 - Creating AzureServiceBusRepository singleton
+2026-02-12 12:37:42.024 | INFO     | src.repository.database:query_documents:130 - Retrieved 5 documents (type: all)
+2026-02-12 12:37:44.281 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 12:37:48.996 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 12:37:49.100 | INFO     | src.config.dependencies:get_azure_service_bus_repository:190 - Creating AzureServiceBusRepository singleton
+2026-02-12 12:37:49.100 | INFO     | src.delivery.upload_routes:upload_file:40 - Received PDF upload: INV0072.pdf with file_id 6c08f079-2acd-481e-be41-ec7462b129a9 and activity_id 4ca7e5b0-b96f-4ce4-9700-7d00e208d8b0
+2026-02-12 12:37:49.100 | INFO     | src.usecase.file_upload:_split_pdf_pages:119 - Splitting PDF INV0072.pdf into 2 pages
+2026-02-12 12:37:49.112 | INFO     | src.usecase.file_upload:_split_pdf_pages:135 - Successfully split INV0072.pdf into 2 pages
+2026-02-12 12:37:49.112 | INFO     | src.usecase.file_upload:upload:178 - Uploading 2 pages from PDF INV0072.pdf
+2026-02-12 12:37:49.282 | INFO     | src.repository.storage:upload_file:89 - Uploaded file INV0072_1.pdf for case 6c08f079-2acd-481e-be41-ec7462b129a9, blob: 6c08f079-2acd-481e-be41-ec7462b129a9/INV0072_1.pdf
+2026-02-12 12:37:49.379 | INFO     | src.repository.storage:upload_file:89 - Uploaded file INV0072_2.pdf for case 6c08f079-2acd-481e-be41-ec7462b129a9, blob: 6c08f079-2acd-481e-be41-ec7462b129a9/INV0072_2.pdf
+2026-02-12 12:37:52.883 | INFO     | src.repository.messaging:send_message:18 - Message sent to queue document-uploads: {'document_id': '6c08f079-2acd-481e-be41-ec7462b129a9', 'timestamp': '2026-02-12T05:37:49.596682Z'}
+2026-02-12 12:37:52.883 | INFO     | src.delivery.upload_routes:upload_file:50 - Successfully processed PDF upload for file_id 6c08f079-2acd-481e-be41-ec7462b129a9 and activity_id 4ca7e5b0-b96f-4ce4-9700-7d00e208d8b0
+2026-02-12 12:37:52.883 | INFO     | src.config.dependencies:get_azure_service_bus_repository:190 - Creating AzureServiceBusRepository singleton
+2026-02-12 12:37:53.511 | INFO     | src.repository.database:query_documents:130 - Retrieved 5 documents (type: all)
+2026-02-12 12:37:53.696 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 12:37:53.929 | INFO     | __main__:run_worker:75 - Received message: 72988ace-8c8a-4e5b-a933-9e9b600fcc51
+2026-02-12 12:37:53.929 | INFO     | src.usecase.content_extraction:process_message:631 - Processing content extraction for document ID: 6c08f079-2acd-481e-be41-ec7462b129a9
+2026-02-12 12:37:53.929 | INFO     | src.usecase.content_extraction:process_documents_in_folder:317 - Processing documents in folder: 6c08f079-2acd-481e-be41-ec7462b129a9
+2026-02-12 12:37:53.990 | INFO     | src.repository.storage:list_files:138 - Listed 2 files for case 6c08f079-2acd-481e-be41-ec7462b129a9
+2026-02-12 12:37:53.990 | INFO     | src.usecase.content_extraction:process_documents_in_folder:321 - Found 2 files in folder 6c08f079-2acd-481e-be41-ec7462b129a9
+2026-02-12 12:37:53.990 | INFO     | src.usecase.content_extraction:process_documents_in_folder:338 - Files sorted numerically: ['6c08f079-2acd-481e-be41-ec7462b129a9/INV0072_1.pdf', '6c08f079-2acd-481e-be41-ec7462b129a9/INV0072_2.pdf']
+2026-02-12 12:37:53.995 | INFO     | src.usecase.content_extraction:process_documents_in_folder:362 - Analyzing document: 6c08f079-2acd-481e-be41-ec7462b129a9/INV0072_1.pdf
+2026-02-12 12:37:54.646 | INFO     | src.usecase.content_extraction:process_documents_in_folder:377 - Analysis initiated for 6c08f079-2acd-481e-be41-ec7462b129a9/INV0072_1.pdf, request ID: 7b49e168-3664-478f-83fb-74df96336513
+2026-02-12 12:38:09.003 | INFO     | src.usecase.content_extraction:_wait_for_analysis_result:130 - Analysis completed successfully: 7b49e168-3664-478f-83fb-74df96336513
+2026-02-12 12:38:14.399 | INFO     | src.usecase.content_extraction:_wait_for_analysis_result:224 - Content classification completed for 7b49e168-3664-478f-83fb-74df96336513
+2026-02-12 12:38:14.400 | INFO     | src.usecase.content_extraction:process_documents_in_folder:395 - Successfully analyzed: 6c08f079-2acd-481e-be41-ec7462b129a9/INV0072_1.pdf
+2026-02-12 12:38:14.400 | INFO     | src.usecase.content_extraction:process_documents_in_folder:401 - Suitable document found: 6c08f079-2acd-481e-be41-ec7462b129a9/INV0072_1.pdf - Classification: Invoice
+2026-02-12 12:38:14.401 | INFO     | src.usecase.content_extraction:process_documents_in_folder:362 - Analyzing document: 6c08f079-2acd-481e-be41-ec7462b129a9/INV0072_2.pdf
+2026-02-12 12:38:14.985 | INFO     | src.usecase.content_extraction:process_documents_in_folder:377 - Analysis initiated for 6c08f079-2acd-481e-be41-ec7462b129a9/INV0072_2.pdf, request ID: fd9a5f05-3dd1-49a3-b473-90ff4453d5c7
+2026-02-12 12:38:36.330 | INFO     | src.usecase.content_extraction:_wait_for_analysis_result:130 - Analysis completed successfully: fd9a5f05-3dd1-49a3-b473-90ff4453d5c7
+2026-02-12 12:38:39.377 | INFO     | src.usecase.content_extraction:_wait_for_analysis_result:167 - Tax invoice page accumulated. Total pages: 1, Complete: True
+2026-02-12 12:38:39.377 | INFO     | src.usecase.content_extraction:_wait_for_analysis_result:176 - Tax invoice complete. Extracting from 1 merged pages
+2026-02-12 12:39:10.111 | INFO     | src.usecase.content_extraction:_wait_for_analysis_result:224 - Content classification completed for fd9a5f05-3dd1-49a3-b473-90ff4453d5c7
+2026-02-12 12:39:10.111 | INFO     | src.usecase.content_extraction:process_documents_in_folder:395 - Successfully analyzed: 6c08f079-2acd-481e-be41-ec7462b129a9/INV0072_2.pdf
+2026-02-12 12:39:10.111 | INFO     | src.usecase.content_extraction:process_documents_in_folder:401 - Suitable document found: 6c08f079-2acd-481e-be41-ec7462b129a9/INV0072_2.pdf - Classification: Tax Invoice (Faktur Pajak)
+2026-02-12 12:39:10.111 | INFO     | src.usecase.content_extraction:process_documents_in_folder:425 - Completed processing 2 documents from folder 6c08f079-2acd-481e-be41-ec7462b129a9
+2026-02-12 12:39:10.111 | INFO     | src.usecase.content_extraction:process_documents_in_folder:426 - Suitable documents (Invoice/TaxInvoice) found: True
+2026-02-12 12:39:10.690 | INFO     | src.repository.database:query_documents:130 - Retrieved 1 documents (type: all)
+2026-02-12 12:39:10.908 | INFO     | src.repository.database:query_documents:130 - Retrieved 1 documents (type: all)
+2026-02-12 12:43:33.095 | INFO     | src.repository.database:get_document_by_id:67 - Retrieved document: ef35b1bd-839e-4923-8dc0-d2c5099ba0e7
+2026-02-12 12:43:33.292 | INFO     | src.repository.database:update_document:261 - Updated document: ef35b1bd-839e-4923-8dc0-d2c5099ba0e7
+2026-02-12 12:43:33.292 | INFO     | src.usecase.content_extraction:copy_tax_invoice_item_to_gl_recon_item:617 - Updated GL transaction ef35b1bd-839e-4923-8dc0-d2c5099ba0e7 with 2 GLReconItem(s)
+2026-02-12 12:43:33.575 | INFO     | src.repository.database:get_document_by_id:67 - Retrieved document: 6c08f079-2acd-481e-be41-ec7462b129a9
+2026-02-12 12:43:33.792 | INFO     | src.repository.database:update_document:261 - Updated document: 6c08f079-2acd-481e-be41-ec7462b129a9
+2026-02-12 12:43:33.792 | INFO     | src.usecase.content_extraction:process_message:662 - Successfully processed content extraction for document ID: 6c08f079-2acd-481e-be41-ec7462b129a9
+2026-02-12 12:43:36.958 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 12:43:41.625 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 12:43:46.406 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 12:43:49.432 | INFO     | src.config.dependencies:get_azure_service_bus_repository:190 - Creating AzureServiceBusRepository singleton
+2026-02-12 12:43:51.207 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 12:43:51.280 | INFO     | src.repository.database:query_documents:130 - Retrieved 5 documents (type: all)
+2026-02-12 12:43:56.306 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 12:43:57.858 | INFO     | src.config.dependencies:get_azure_service_bus_repository:190 - Creating AzureServiceBusRepository singleton
+2026-02-12 12:43:57.858 | INFO     | src.delivery.upload_routes:upload_file:40 - Received PDF upload: INV0072.pdf with file_id d81e6425-55da-4b01-997c-fc1134d76d7e and activity_id d06abaa6-0aff-401e-83c5-7f0f86b309fa
+2026-02-12 12:43:57.858 | INFO     | src.usecase.file_upload:_split_pdf_pages:119 - Splitting PDF INV0072.pdf into 2 pages
+2026-02-12 12:43:57.877 | INFO     | src.usecase.file_upload:_split_pdf_pages:135 - Successfully split INV0072.pdf into 2 pages
+2026-02-12 12:43:57.877 | INFO     | src.usecase.file_upload:upload:178 - Uploading 2 pages from PDF INV0072.pdf
+2026-02-12 12:43:58.958 | INFO     | src.repository.storage:upload_file:89 - Uploaded file INV0072_1.pdf for case d81e6425-55da-4b01-997c-fc1134d76d7e, blob: d81e6425-55da-4b01-997c-fc1134d76d7e/INV0072_1.pdf
+2026-02-12 12:43:59.078 | INFO     | src.repository.storage:upload_file:89 - Uploaded file INV0072_2.pdf for case d81e6425-55da-4b01-997c-fc1134d76d7e, blob: d81e6425-55da-4b01-997c-fc1134d76d7e/INV0072_2.pdf
+2026-02-12 12:44:01.274 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 12:44:03.291 | INFO     | src.repository.messaging:send_message:18 - Message sent to queue document-uploads: {'document_id': 'd81e6425-55da-4b01-997c-fc1134d76d7e', 'timestamp': '2026-02-12T05:43:59.356554Z'}
+2026-02-12 12:44:03.291 | INFO     | src.delivery.upload_routes:upload_file:50 - Successfully processed PDF upload for file_id d81e6425-55da-4b01-997c-fc1134d76d7e and activity_id d06abaa6-0aff-401e-83c5-7f0f86b309fa
+2026-02-12 12:44:03.291 | INFO     | src.config.dependencies:get_azure_service_bus_repository:190 - Creating AzureServiceBusRepository singleton
+2026-02-12 12:44:03.908 | INFO     | src.repository.database:query_documents:130 - Retrieved 5 documents (type: all)
+2026-02-12 12:44:06.273 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 12:44:06.520 | INFO     | __main__:run_worker:75 - Received message: dab01c04-d4ba-47e9-92c5-c602aab8c519
+2026-02-12 12:44:06.522 | INFO     | src.usecase.content_extraction:process_message:631 - Processing content extraction for document ID: d81e6425-55da-4b01-997c-fc1134d76d7e
+2026-02-12 12:44:06.522 | INFO     | src.usecase.content_extraction:process_documents_in_folder:317 - Processing documents in folder: d81e6425-55da-4b01-997c-fc1134d76d7e
+2026-02-12 12:44:07.066 | INFO     | src.repository.storage:list_files:138 - Listed 2 files for case d81e6425-55da-4b01-997c-fc1134d76d7e
+2026-02-12 12:44:07.067 | INFO     | src.usecase.content_extraction:process_documents_in_folder:321 - Found 2 files in folder d81e6425-55da-4b01-997c-fc1134d76d7e
+2026-02-12 12:44:07.067 | INFO     | src.usecase.content_extraction:process_documents_in_folder:338 - Files sorted numerically: ['d81e6425-55da-4b01-997c-fc1134d76d7e/INV0072_1.pdf', 'd81e6425-55da-4b01-997c-fc1134d76d7e/INV0072_2.pdf']
+2026-02-12 12:44:07.067 | INFO     | src.usecase.content_extraction:process_documents_in_folder:362 - Analyzing document: d81e6425-55da-4b01-997c-fc1134d76d7e/INV0072_1.pdf
+2026-02-12 12:44:07.859 | INFO     | src.usecase.content_extraction:process_documents_in_folder:377 - Analysis initiated for d81e6425-55da-4b01-997c-fc1134d76d7e/INV0072_1.pdf, request ID: a4812e88-f8ef-43c5-9a2a-1682c9d217be
+2026-02-12 12:44:22.370 | INFO     | src.usecase.content_extraction:_wait_for_analysis_result:130 - Analysis completed successfully: a4812e88-f8ef-43c5-9a2a-1682c9d217be
+2026-02-12 12:44:27.434 | INFO     | src.usecase.content_extraction:_wait_for_analysis_result:224 - Content classification completed for a4812e88-f8ef-43c5-9a2a-1682c9d217be
+2026-02-12 12:44:27.434 | INFO     | src.usecase.content_extraction:process_documents_in_folder:395 - Successfully analyzed: d81e6425-55da-4b01-997c-fc1134d76d7e/INV0072_1.pdf
+2026-02-12 12:44:27.434 | INFO     | src.usecase.content_extraction:process_documents_in_folder:401 - Suitable document found: d81e6425-55da-4b01-997c-fc1134d76d7e/INV0072_1.pdf - Classification: Invoice
+2026-02-12 12:44:27.434 | INFO     | src.usecase.content_extraction:process_documents_in_folder:362 - Analyzing document: d81e6425-55da-4b01-997c-fc1134d76d7e/INV0072_2.pdf
+2026-02-12 12:44:28.085 | INFO     | src.usecase.content_extraction:process_documents_in_folder:377 - Analysis initiated for d81e6425-55da-4b01-997c-fc1134d76d7e/INV0072_2.pdf, request ID: 04ee3612-f242-4ba2-9b22-346a9aa0be04
+2026-02-12 12:44:38.866 | INFO     | src.usecase.content_extraction:_wait_for_analysis_result:130 - Analysis completed successfully: 04ee3612-f242-4ba2-9b22-346a9aa0be04
+2026-02-12 12:44:41.804 | INFO     | src.usecase.content_extraction:_wait_for_analysis_result:167 - Tax invoice page accumulated. Total pages: 1, Complete: True
+2026-02-12 12:44:41.807 | INFO     | src.usecase.content_extraction:_wait_for_analysis_result:176 - Tax invoice complete. Extracting from 1 merged pages
+2026-02-12 12:44:59.417 | INFO     | src.usecase.content_extraction:_wait_for_analysis_result:224 - Content classification completed for 04ee3612-f242-4ba2-9b22-346a9aa0be04
+2026-02-12 12:44:59.417 | INFO     | src.usecase.content_extraction:process_documents_in_folder:395 - Successfully analyzed: d81e6425-55da-4b01-997c-fc1134d76d7e/INV0072_2.pdf
+2026-02-12 12:44:59.417 | INFO     | src.usecase.content_extraction:process_documents_in_folder:401 - Suitable document found: d81e6425-55da-4b01-997c-fc1134d76d7e/INV0072_2.pdf - Classification: Tax Invoice (Faktur Pajak)
+2026-02-12 12:44:59.417 | INFO     | src.usecase.content_extraction:process_documents_in_folder:425 - Completed processing 2 documents from folder d81e6425-55da-4b01-997c-fc1134d76d7e
+2026-02-12 12:44:59.417 | INFO     | src.usecase.content_extraction:process_documents_in_folder:426 - Suitable documents (Invoice/TaxInvoice) found: True
+2026-02-12 12:44:59.999 | INFO     | src.repository.database:query_documents:130 - Retrieved 1 documents (type: all)
+2026-02-12 12:45:00.260 | INFO     | src.repository.database:query_documents:130 - Retrieved 1 documents (type: all)
+2026-02-12 12:46:10.823 | INFO     | src.config.dependencies:get_azure_service_bus_repository:190 - Creating AzureServiceBusRepository singleton
+2026-02-12 12:46:11.446 | INFO     | src.repository.database:query_documents:130 - Retrieved 0 documents (type: all)
+2026-02-12 12:46:17.097 | INFO     | __main__:<module>:258 - Starting application in 'worker' mode
+2026-02-12 12:46:17.100 | INFO     | __main__:run_worker_standalone:194 - Starting worker in standalone mode...
+2026-02-12 12:46:17.101 | INFO     | __main__:run_worker:34 - Worker started
+2026-02-12 12:46:17.101 | INFO     | src.config.dependencies:get_app_config:37 - Initializing application configuration
+2026-02-12 12:46:17.101 | INFO     | src.config.dependencies:get_content_understanding_repository:59 - Creating ContentUnderstandingRepository singleton
+2026-02-12 12:46:17.101 | INFO     | src.config.dependencies:get_azure_blob_storage_repository:82 - Creating AzureBlobStorageRepository singleton
+2026-02-12 12:46:17.764 | INFO     | src.repository.storage:__init__:21 - Blob container already exists: tax-documents
+2026-02-12 12:46:17.764 | INFO     | src.repository.storage:__init__:25 - Connected to Blob Storage, container: tax-documents
+2026-02-12 12:46:17.764 | INFO     | src.config.dependencies:get_llm_service_repository:212 - Creating LLMService singleton
+2026-02-12 12:46:18.320 | INFO     | src.config.dependencies:get_azure_cosmos_repository:106 - Creating AzureCosmosDBRepository singleton
+2026-02-12 12:46:19.539 | INFO     | src.repository.database:__init__:22 - Connected to Cosmos DB database 'tax-management-system', container 'gl-transactions'
+2026-02-12 12:46:19.542 | INFO     | src.config.dependencies:get_embedding_repository:235 - Creating EmbeddingRepository singleton
+2026-02-12 12:46:23.101 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 12:46:27.488 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 12:46:32.130 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 12:46:35.022 | INFO     | src.config.dependencies:get_azure_service_bus_repository:190 - Creating AzureServiceBusRepository singleton
+2026-02-12 12:46:35.663 | INFO     | src.repository.database:query_documents:130 - Retrieved 0 documents (type: all)
+2026-02-12 12:46:37.146 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 12:46:39.766 | INFO     | src.config.dependencies:get_azure_service_bus_repository:190 - Creating AzureServiceBusRepository singleton
+2026-02-12 12:46:40.407 | INFO     | src.repository.database:query_documents:130 - Retrieved 0 documents (type: all)
+2026-02-12 12:46:41.877 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 12:46:46.215 | INFO     | src.config.dependencies:get_azure_service_bus_repository:190 - Creating AzureServiceBusRepository singleton
+2026-02-12 12:46:46.217 | INFO     | src.delivery.upload_routes:upload_file:40 - Received PDF upload: INV0072.pdf with file_id cc62c546-4ca6-4676-b486-6ef1c5d0f07f and activity_id 6ec7bc07-758a-4e09-acdb-9f30bcea511d
+2026-02-12 12:46:46.219 | INFO     | src.usecase.file_upload:_split_pdf_pages:119 - Splitting PDF INV0072.pdf into 2 pages
+2026-02-12 12:46:46.227 | INFO     | src.usecase.file_upload:_split_pdf_pages:135 - Successfully split INV0072.pdf into 2 pages
+2026-02-12 12:46:46.228 | INFO     | src.usecase.file_upload:upload:178 - Uploading 2 pages from PDF INV0072.pdf
+2026-02-12 12:46:46.392 | INFO     | src.repository.storage:upload_file:89 - Uploaded file INV0072_1.pdf for case cc62c546-4ca6-4676-b486-6ef1c5d0f07f, blob: cc62c546-4ca6-4676-b486-6ef1c5d0f07f/INV0072_1.pdf
+2026-02-12 12:46:46.490 | INFO     | src.repository.storage:upload_file:89 - Uploaded file INV0072_2.pdf for case cc62c546-4ca6-4676-b486-6ef1c5d0f07f, blob: cc62c546-4ca6-4676-b486-6ef1c5d0f07f/INV0072_2.pdf
+2026-02-12 12:46:46.848 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 12:46:50.059 | INFO     | src.repository.messaging:send_message:18 - Message sent to queue document-uploads: {'document_id': 'cc62c546-4ca6-4676-b486-6ef1c5d0f07f', 'timestamp': '2026-02-12T05:46:46.710159Z'}
+2026-02-12 12:46:50.060 | INFO     | src.delivery.upload_routes:upload_file:50 - Successfully processed PDF upload for file_id cc62c546-4ca6-4676-b486-6ef1c5d0f07f and activity_id 6ec7bc07-758a-4e09-acdb-9f30bcea511d
+2026-02-12 12:46:50.072 | INFO     | src.config.dependencies:get_azure_service_bus_repository:190 - Creating AzureServiceBusRepository singleton
+2026-02-12 12:46:50.673 | INFO     | src.repository.database:query_documents:130 - Retrieved 1 documents (type: all)
+2026-02-12 12:46:51.733 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 12:46:51.974 | INFO     | __main__:run_worker:75 - Received message: 2acd9cc5-40c3-4a8f-a8e4-e6814a05e1e7
+2026-02-12 12:46:51.976 | INFO     | src.usecase.content_extraction:process_message:650 - Processing content extraction for document ID: cc62c546-4ca6-4676-b486-6ef1c5d0f07f
+2026-02-12 12:46:51.977 | INFO     | src.usecase.content_extraction:process_documents_in_folder:317 - Processing documents in folder: cc62c546-4ca6-4676-b486-6ef1c5d0f07f
+2026-02-12 12:46:52.042 | INFO     | src.repository.storage:list_files:138 - Listed 2 files for case cc62c546-4ca6-4676-b486-6ef1c5d0f07f
+2026-02-12 12:46:52.042 | INFO     | src.usecase.content_extraction:process_documents_in_folder:321 - Found 2 files in folder cc62c546-4ca6-4676-b486-6ef1c5d0f07f
+2026-02-12 12:46:52.043 | INFO     | src.usecase.content_extraction:process_documents_in_folder:338 - Files sorted numerically: ['cc62c546-4ca6-4676-b486-6ef1c5d0f07f/INV0072_1.pdf', 'cc62c546-4ca6-4676-b486-6ef1c5d0f07f/INV0072_2.pdf']
+2026-02-12 12:46:52.043 | INFO     | src.usecase.content_extraction:process_documents_in_folder:362 - Analyzing document: cc62c546-4ca6-4676-b486-6ef1c5d0f07f/INV0072_1.pdf
+2026-02-12 12:46:53.205 | INFO     | src.usecase.content_extraction:process_documents_in_folder:377 - Analysis initiated for cc62c546-4ca6-4676-b486-6ef1c5d0f07f/INV0072_1.pdf, request ID: 4b66698d-bd3c-482d-b1b1-e675b7aa4cbb
+2026-02-12 12:47:07.850 | INFO     | src.usecase.content_extraction:_wait_for_analysis_result:130 - Analysis completed successfully: 4b66698d-bd3c-482d-b1b1-e675b7aa4cbb
+2026-02-12 12:47:13.036 | INFO     | src.usecase.content_extraction:_wait_for_analysis_result:224 - Content classification completed for 4b66698d-bd3c-482d-b1b1-e675b7aa4cbb
+2026-02-12 12:47:13.036 | INFO     | src.usecase.content_extraction:process_documents_in_folder:395 - Successfully analyzed: cc62c546-4ca6-4676-b486-6ef1c5d0f07f/INV0072_1.pdf
+2026-02-12 12:47:13.036 | INFO     | src.usecase.content_extraction:process_documents_in_folder:401 - Suitable document found: cc62c546-4ca6-4676-b486-6ef1c5d0f07f/INV0072_1.pdf - Classification: Invoice
+2026-02-12 12:47:13.037 | INFO     | src.usecase.content_extraction:process_documents_in_folder:362 - Analyzing document: cc62c546-4ca6-4676-b486-6ef1c5d0f07f/INV0072_2.pdf
+2026-02-12 12:47:13.662 | INFO     | src.usecase.content_extraction:process_documents_in_folder:377 - Analysis initiated for cc62c546-4ca6-4676-b486-6ef1c5d0f07f/INV0072_2.pdf, request ID: 1738cb2f-7cee-4e2b-b62a-091d80ad117e
+2026-02-12 12:47:27.883 | INFO     | src.usecase.content_extraction:_wait_for_analysis_result:130 - Analysis completed successfully: 1738cb2f-7cee-4e2b-b62a-091d80ad117e
+2026-02-12 12:47:30.675 | INFO     | src.usecase.content_extraction:_wait_for_analysis_result:167 - Tax invoice page accumulated. Total pages: 1, Complete: True
+2026-02-12 12:47:30.675 | INFO     | src.usecase.content_extraction:_wait_for_analysis_result:176 - Tax invoice complete. Extracting from 1 merged pages
+2026-02-12 12:47:44.679 | INFO     | src.usecase.content_extraction:_wait_for_analysis_result:224 - Content classification completed for 1738cb2f-7cee-4e2b-b62a-091d80ad117e
+2026-02-12 12:47:44.680 | INFO     | src.usecase.content_extraction:process_documents_in_folder:395 - Successfully analyzed: cc62c546-4ca6-4676-b486-6ef1c5d0f07f/INV0072_2.pdf
+2026-02-12 12:47:44.680 | INFO     | src.usecase.content_extraction:process_documents_in_folder:401 - Suitable document found: cc62c546-4ca6-4676-b486-6ef1c5d0f07f/INV0072_2.pdf - Classification: Tax Invoice (Faktur Pajak)
+2026-02-12 12:47:44.681 | INFO     | src.usecase.content_extraction:process_documents_in_folder:425 - Completed processing 2 documents from folder cc62c546-4ca6-4676-b486-6ef1c5d0f07f
+2026-02-12 12:47:44.681 | INFO     | src.usecase.content_extraction:process_documents_in_folder:426 - Suitable documents (Invoice/TaxInvoice) found: True
+2026-02-12 12:47:45.437 | INFO     | src.repository.database:query_documents:130 - Retrieved 1 documents (type: all)
+2026-02-12 12:47:45.981 | INFO     | src.repository.database:query_documents:130 - Retrieved 1 documents (type: all)
+2026-02-12 12:51:08.273 | INFO     | __main__:<module>:258 - Starting application in 'worker' mode
+2026-02-12 12:51:08.276 | INFO     | __main__:run_worker_standalone:194 - Starting worker in standalone mode...
+2026-02-12 12:51:08.277 | INFO     | __main__:run_worker:34 - Worker started
+2026-02-12 12:51:08.277 | INFO     | src.config.dependencies:get_app_config:37 - Initializing application configuration
+2026-02-12 12:51:08.277 | INFO     | src.config.dependencies:get_content_understanding_repository:59 - Creating ContentUnderstandingRepository singleton
+2026-02-12 12:51:08.277 | INFO     | src.config.dependencies:get_azure_blob_storage_repository:82 - Creating AzureBlobStorageRepository singleton
+2026-02-12 12:51:08.829 | INFO     | src.repository.storage:__init__:21 - Blob container already exists: tax-documents
+2026-02-12 12:51:08.829 | INFO     | src.repository.storage:__init__:25 - Connected to Blob Storage, container: tax-documents
+2026-02-12 12:51:08.830 | INFO     | src.config.dependencies:get_llm_service_repository:212 - Creating LLMService singleton
+2026-02-12 12:51:09.218 | INFO     | src.config.dependencies:get_azure_cosmos_repository:106 - Creating AzureCosmosDBRepository singleton
+2026-02-12 12:51:10.361 | INFO     | src.repository.database:__init__:22 - Connected to Cosmos DB database 'tax-management-system', container 'gl-transactions'
+2026-02-12 12:51:10.363 | INFO     | src.config.dependencies:get_embedding_repository:235 - Creating EmbeddingRepository singleton
+2026-02-12 12:51:13.693 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 12:51:18.199 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 12:51:22.799 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 12:51:27.372 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 12:51:31.814 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 12:51:36.468 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 12:51:38.302 | INFO     | src.repository.database:query_documents:130 - Retrieved 4 documents (type: all)
+2026-02-12 12:51:38.969 | INFO     | src.repository.database:query_documents:130 - Retrieved 0 documents (type: all)
+2026-02-12 12:51:39.602 | INFO     | src.repository.database:query_documents:130 - Retrieved 0 documents (type: all)
+2026-02-12 12:51:40.202 | INFO     | src.repository.database:query_documents:130 - Retrieved 0 documents (type: all)
+2026-02-12 12:51:40.787 | INFO     | src.repository.database:query_documents:130 - Retrieved 0 documents (type: all)
+2026-02-12 12:51:41.302 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 12:51:41.386 | INFO     | src.repository.database:query_documents:130 - Retrieved 0 documents (type: all)
+2026-02-12 12:51:42.002 | INFO     | src.repository.database:query_documents:130 - Retrieved 0 documents (type: all)
+2026-02-12 12:51:42.604 | INFO     | src.repository.database:query_documents:130 - Retrieved 0 documents (type: all)
+2026-02-12 12:51:43.216 | INFO     | src.repository.database:query_documents:130 - Retrieved 0 documents (type: all)
+2026-02-12 12:51:43.216 | INFO     | src.delivery.tax_management:get_all_gl_transactions:24 - Retrieved 4 G/L transactions (page 1 of 1)
+2026-02-12 12:51:46.205 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 12:51:50.749 | INFO     | src.config.dependencies:get_azure_service_bus_repository:190 - Creating AzureServiceBusRepository singleton
+2026-02-12 12:51:50.864 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 12:51:51.347 | INFO     | src.repository.database:query_documents:130 - Retrieved 0 documents (type: all)
+2026-02-12 12:51:55.609 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 12:51:59.002 | INFO     | src.config.dependencies:get_azure_service_bus_repository:190 - Creating AzureServiceBusRepository singleton
+2026-02-12 12:51:59.585 | INFO     | src.repository.database:query_documents:130 - Retrieved 0 documents (type: all)
+2026-02-12 12:52:00.387 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 12:52:02.279 | INFO     | src.config.dependencies:get_azure_service_bus_repository:190 - Creating AzureServiceBusRepository singleton
+2026-02-12 12:52:02.863 | INFO     | src.repository.database:query_documents:130 - Retrieved 0 documents (type: all)
+2026-02-12 12:52:05.356 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 12:52:08.102 | INFO     | src.config.dependencies:get_azure_service_bus_repository:190 - Creating AzureServiceBusRepository singleton
+2026-02-12 12:52:08.105 | INFO     | src.delivery.upload_routes:upload_file:40 - Received PDF upload: INV0072.pdf with file_id a29fd743-a57c-423b-9ae0-9e427d96abfc and activity_id e9296d64-9817-495c-998e-37131255d140
+2026-02-12 12:52:08.107 | INFO     | src.usecase.file_upload:_split_pdf_pages:119 - Splitting PDF INV0072.pdf into 2 pages
+2026-02-12 12:52:08.114 | INFO     | src.usecase.file_upload:_split_pdf_pages:135 - Successfully split INV0072.pdf into 2 pages
+2026-02-12 12:52:08.115 | INFO     | src.usecase.file_upload:upload:178 - Uploading 2 pages from PDF INV0072.pdf
+2026-02-12 12:52:08.872 | INFO     | src.repository.storage:upload_file:89 - Uploaded file INV0072_1.pdf for case a29fd743-a57c-423b-9ae0-9e427d96abfc, blob: a29fd743-a57c-423b-9ae0-9e427d96abfc/INV0072_1.pdf
+2026-02-12 12:52:08.973 | INFO     | src.repository.storage:upload_file:89 - Uploaded file INV0072_2.pdf for case a29fd743-a57c-423b-9ae0-9e427d96abfc, blob: a29fd743-a57c-423b-9ae0-9e427d96abfc/INV0072_2.pdf
+2026-02-12 12:52:09.945 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 12:52:12.596 | INFO     | src.repository.messaging:send_message:18 - Message sent to queue document-uploads: {'document_id': 'a29fd743-a57c-423b-9ae0-9e427d96abfc', 'timestamp': '2026-02-12T05:52:09.185599Z'}
+2026-02-12 12:52:12.597 | INFO     | src.delivery.upload_routes:upload_file:50 - Successfully processed PDF upload for file_id a29fd743-a57c-423b-9ae0-9e427d96abfc and activity_id e9296d64-9817-495c-998e-37131255d140
+2026-02-12 12:52:12.608 | INFO     | src.config.dependencies:get_azure_service_bus_repository:190 - Creating AzureServiceBusRepository singleton
+2026-02-12 12:52:13.195 | INFO     | src.repository.database:query_documents:130 - Retrieved 1 documents (type: all)
+2026-02-12 12:52:14.565 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 12:52:14.807 | INFO     | __main__:run_worker:75 - Received message: 6f232f34-a997-4238-9c9e-9d1ebe0d2657
+2026-02-12 12:52:14.809 | INFO     | src.usecase.content_extraction:process_message:654 - Processing content extraction for document ID: a29fd743-a57c-423b-9ae0-9e427d96abfc
+2026-02-12 12:52:14.810 | INFO     | src.usecase.content_extraction:process_documents_in_folder:317 - Processing documents in folder: a29fd743-a57c-423b-9ae0-9e427d96abfc
+2026-02-12 12:52:14.863 | INFO     | src.repository.storage:list_files:138 - Listed 2 files for case a29fd743-a57c-423b-9ae0-9e427d96abfc
+2026-02-12 12:52:14.864 | INFO     | src.usecase.content_extraction:process_documents_in_folder:321 - Found 2 files in folder a29fd743-a57c-423b-9ae0-9e427d96abfc
+2026-02-12 12:52:14.864 | INFO     | src.usecase.content_extraction:process_documents_in_folder:338 - Files sorted numerically: ['a29fd743-a57c-423b-9ae0-9e427d96abfc/INV0072_1.pdf', 'a29fd743-a57c-423b-9ae0-9e427d96abfc/INV0072_2.pdf']
+2026-02-12 12:52:14.865 | INFO     | src.usecase.content_extraction:process_documents_in_folder:362 - Analyzing document: a29fd743-a57c-423b-9ae0-9e427d96abfc/INV0072_1.pdf
+2026-02-12 12:52:15.873 | INFO     | src.usecase.content_extraction:process_documents_in_folder:377 - Analysis initiated for a29fd743-a57c-423b-9ae0-9e427d96abfc/INV0072_1.pdf, request ID: da92a888-f2f9-4387-86f4-b59b00e22fb7
+2026-02-12 12:52:30.384 | INFO     | src.usecase.content_extraction:_wait_for_analysis_result:130 - Analysis completed successfully: da92a888-f2f9-4387-86f4-b59b00e22fb7
+2026-02-12 12:52:36.331 | INFO     | src.usecase.content_extraction:_wait_for_analysis_result:224 - Content classification completed for da92a888-f2f9-4387-86f4-b59b00e22fb7
+2026-02-12 12:52:36.343 | INFO     | src.usecase.content_extraction:process_documents_in_folder:395 - Successfully analyzed: a29fd743-a57c-423b-9ae0-9e427d96abfc/INV0072_1.pdf
+2026-02-12 12:52:36.343 | INFO     | src.usecase.content_extraction:process_documents_in_folder:401 - Suitable document found: a29fd743-a57c-423b-9ae0-9e427d96abfc/INV0072_1.pdf - Classification: Invoice
+2026-02-12 12:52:36.343 | INFO     | src.usecase.content_extraction:process_documents_in_folder:362 - Analyzing document: a29fd743-a57c-423b-9ae0-9e427d96abfc/INV0072_2.pdf
+2026-02-12 12:52:37.136 | INFO     | src.usecase.content_extraction:process_documents_in_folder:377 - Analysis initiated for a29fd743-a57c-423b-9ae0-9e427d96abfc/INV0072_2.pdf, request ID: 1835b0b4-ece3-42be-977c-ccd3a5997ca8
+2026-02-12 12:52:51.397 | INFO     | src.usecase.content_extraction:_wait_for_analysis_result:130 - Analysis completed successfully: 1835b0b4-ece3-42be-977c-ccd3a5997ca8
+2026-02-12 12:52:54.205 | INFO     | src.usecase.content_extraction:_wait_for_analysis_result:167 - Tax invoice page accumulated. Total pages: 1, Complete: True
+2026-02-12 12:52:54.205 | INFO     | src.usecase.content_extraction:_wait_for_analysis_result:176 - Tax invoice complete. Extracting from 1 merged pages
+2026-02-12 12:53:15.299 | INFO     | src.usecase.content_extraction:_wait_for_analysis_result:224 - Content classification completed for 1835b0b4-ece3-42be-977c-ccd3a5997ca8
+2026-02-12 12:53:15.299 | INFO     | src.usecase.content_extraction:process_documents_in_folder:395 - Successfully analyzed: a29fd743-a57c-423b-9ae0-9e427d96abfc/INV0072_2.pdf
+2026-02-12 12:53:15.300 | INFO     | src.usecase.content_extraction:process_documents_in_folder:401 - Suitable document found: a29fd743-a57c-423b-9ae0-9e427d96abfc/INV0072_2.pdf - Classification: Tax Invoice (Faktur Pajak)
+2026-02-12 12:53:15.300 | INFO     | src.usecase.content_extraction:process_documents_in_folder:425 - Completed processing 2 documents from folder a29fd743-a57c-423b-9ae0-9e427d96abfc
+2026-02-12 12:53:15.300 | INFO     | src.usecase.content_extraction:process_documents_in_folder:426 - Suitable documents (Invoice/TaxInvoice) found: True
+2026-02-12 12:53:16.080 | INFO     | src.repository.database:query_documents:130 - Retrieved 1 documents (type: all)
+2026-02-12 12:53:16.630 | INFO     | src.repository.database:query_documents:130 - Retrieved 1 documents (type: all)
+2026-02-12 12:53:38.614 | INFO     | src.repository.database:get_document_by_id:67 - Retrieved document: ef35b1bd-839e-4923-8dc0-d2c5099ba0e7
+2026-02-12 12:53:38.817 | INFO     | src.repository.database:update_document:261 - Updated document: ef35b1bd-839e-4923-8dc0-d2c5099ba0e7
+2026-02-12 12:53:38.817 | INFO     | src.usecase.content_extraction:copy_tax_invoice_item_to_gl_recon_item:640 - Updated GL transaction ef35b1bd-839e-4923-8dc0-d2c5099ba0e7 with 2 GLReconItem(s)
+2026-02-12 12:53:39.334 | INFO     | src.repository.database:get_document_by_id:67 - Retrieved document: a29fd743-a57c-423b-9ae0-9e427d96abfc
+2026-02-12 12:53:39.555 | INFO     | src.repository.database:update_document:261 - Updated document: a29fd743-a57c-423b-9ae0-9e427d96abfc
+2026-02-12 12:53:39.556 | INFO     | src.usecase.content_extraction:process_message:685 - Successfully processed content extraction for document ID: a29fd743-a57c-423b-9ae0-9e427d96abfc
+2026-02-12 12:53:42.345 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 12:53:44.028 | INFO     | src.config.dependencies:get_azure_service_bus_repository:190 - Creating AzureServiceBusRepository singleton
+2026-02-12 12:53:44.623 | INFO     | src.repository.database:query_documents:130 - Retrieved 1 documents (type: all)
+2026-02-12 12:53:46.442 | INFO     | src.repository.database:query_documents:130 - Retrieved 1 documents (type: all)
+2026-02-12 12:53:46.443 | INFO     | src.delivery.tax_management:get_gl_transaction_by_urn:65 - Retrieved G/L transaction: 0072408272096
+2026-02-12 12:53:47.138 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 12:53:47.162 | INFO     | src.repository.database:query_documents:130 - Retrieved 1 documents (type: all)
+2026-02-12 12:53:47.163 | INFO     | src.delivery.tax_management:get_all_invoices:116 - Retrieved 1 invoices
+2026-02-12 12:53:47.858 | INFO     | src.repository.database:query_documents:130 - Retrieved 1 documents (type: all)
+2026-02-12 12:53:47.859 | INFO     | src.delivery.tax_management:get_all_tax_invoices:93 - Retrieved 1 tax invoices
+2026-02-12 12:53:51.840 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 12:53:56.499 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 12:54:01.067 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 12:54:05.800 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 12:54:10.450 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 12:54:15.253 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 12:54:19.966 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 12:54:24.634 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 12:54:29.249 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 12:54:33.990 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 12:54:38.794 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 12:54:43.415 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 12:54:47.955 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 12:54:52.448 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 12:54:56.974 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 12:55:01.666 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 12:55:06.334 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 12:55:11.128 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 12:55:15.801 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 12:55:20.588 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 12:55:25.163 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 12:55:29.910 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 12:55:34.668 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 12:55:39.198 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 12:55:44.010 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 12:55:48.741 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 12:55:53.485 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 12:55:58.149 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 12:56:03.029 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 12:56:07.838 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 12:56:12.505 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 12:56:17.346 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 12:56:21.936 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 12:56:26.713 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 12:56:31.412 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 12:56:36.304 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 12:56:40.980 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 12:56:45.695 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 12:56:50.384 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 12:56:55.221 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 12:56:59.775 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 12:57:04.497 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 12:57:09.227 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 12:57:14.163 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 12:57:18.896 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 12:57:23.613 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 12:57:28.280 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 12:57:33.077 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 12:57:37.757 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 12:57:42.583 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 12:57:47.288 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 12:57:52.046 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 12:57:56.549 | INFO     | src.config.dependencies:get_azure_service_bus_repository:190 - Creating AzureServiceBusRepository singleton
+2026-02-12 12:57:56.783 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 12:57:58.414 | INFO     | src.repository.database:query_documents:130 - Retrieved 1 documents (type: all)
+2026-02-12 12:58:00.314 | INFO     | src.repository.database:query_documents:130 - Retrieved 4 documents (type: all)
+2026-02-12 12:58:00.965 | INFO     | src.repository.database:query_documents:130 - Retrieved 1 documents (type: all)
+2026-02-12 12:58:01.464 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 12:58:01.681 | INFO     | src.repository.database:query_documents:130 - Retrieved 1 documents (type: all)
+2026-02-12 12:58:02.317 | INFO     | src.repository.database:query_documents:130 - Retrieved 0 documents (type: all)
+2026-02-12 12:58:02.916 | INFO     | src.repository.database:query_documents:130 - Retrieved 0 documents (type: all)
+2026-02-12 12:58:03.535 | INFO     | src.repository.database:query_documents:130 - Retrieved 0 documents (type: all)
+2026-02-12 12:58:04.141 | INFO     | src.repository.database:query_documents:130 - Retrieved 0 documents (type: all)
+2026-02-12 12:58:04.747 | INFO     | src.repository.database:query_documents:130 - Retrieved 0 documents (type: all)
+2026-02-12 12:58:05.364 | INFO     | src.repository.database:query_documents:130 - Retrieved 0 documents (type: all)
+2026-02-12 12:58:05.364 | INFO     | src.delivery.tax_management:get_all_gl_transactions:24 - Retrieved 4 G/L transactions (page 1 of 1)
+2026-02-12 12:58:06.124 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 12:58:07.458 | INFO     | src.config.dependencies:get_azure_service_bus_repository:190 - Creating AzureServiceBusRepository singleton
+2026-02-12 12:58:08.055 | INFO     | src.repository.database:query_documents:130 - Retrieved 1 documents (type: all)
+2026-02-12 12:58:10.848 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 12:58:15.656 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 12:58:20.479 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 12:58:24.994 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 12:58:25.469 | INFO     | src.config.dependencies:get_azure_service_bus_repository:190 - Creating AzureServiceBusRepository singleton
+2026-02-12 12:58:25.471 | INFO     | src.delivery.upload_routes:upload_file:40 - Received PDF upload: INV0271.pdf with file_id 9d53d21c-0bfa-4325-bb50-68164e905405 and activity_id afabf6ba-d40b-47e8-8493-dd8870b91b0d
+2026-02-12 12:58:25.534 | INFO     | src.usecase.file_upload:_split_pdf_pages:119 - Splitting PDF INV0271.pdf into 3 pages
+2026-02-12 12:58:25.544 | INFO     | src.usecase.file_upload:_split_pdf_pages:135 - Successfully split INV0271.pdf into 3 pages
+2026-02-12 12:58:25.544 | INFO     | src.usecase.file_upload:upload:178 - Uploading 3 pages from PDF INV0271.pdf
+2026-02-12 12:58:26.333 | INFO     | src.repository.storage:upload_file:89 - Uploaded file INV0271_1.pdf for case 9d53d21c-0bfa-4325-bb50-68164e905405, blob: 9d53d21c-0bfa-4325-bb50-68164e905405/INV0271_1.pdf
+2026-02-12 12:58:26.453 | INFO     | src.repository.storage:upload_file:89 - Uploaded file INV0271_2.pdf for case 9d53d21c-0bfa-4325-bb50-68164e905405, blob: 9d53d21c-0bfa-4325-bb50-68164e905405/INV0271_2.pdf
+2026-02-12 12:58:26.571 | INFO     | src.repository.storage:upload_file:89 - Uploaded file INV0271_3.pdf for case 9d53d21c-0bfa-4325-bb50-68164e905405, blob: 9d53d21c-0bfa-4325-bb50-68164e905405/INV0271_3.pdf
+2026-02-12 12:58:29.970 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 12:58:31.019 | INFO     | src.repository.messaging:send_message:18 - Message sent to queue document-uploads: {'document_id': '9d53d21c-0bfa-4325-bb50-68164e905405', 'timestamp': '2026-02-12T05:58:26.779438Z'}
+2026-02-12 12:58:31.020 | INFO     | src.delivery.upload_routes:upload_file:50 - Successfully processed PDF upload for file_id 9d53d21c-0bfa-4325-bb50-68164e905405 and activity_id afabf6ba-d40b-47e8-8493-dd8870b91b0d
+2026-02-12 12:58:31.031 | INFO     | src.config.dependencies:get_azure_service_bus_repository:190 - Creating AzureServiceBusRepository singleton
+2026-02-12 12:58:31.619 | INFO     | src.repository.database:query_documents:130 - Retrieved 2 documents (type: all)
+2026-02-12 12:58:34.796 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 12:58:39.197 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 12:58:39.516 | INFO     | src.config.dependencies:get_azure_service_bus_repository:190 - Creating AzureServiceBusRepository singleton
+2026-02-12 12:58:40.114 | INFO     | src.repository.database:query_documents:130 - Retrieved 2 documents (type: all)
+2026-02-12 12:58:44.073 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 12:58:46.226 | INFO     | src.config.dependencies:get_azure_service_bus_repository:190 - Creating AzureServiceBusRepository singleton
+2026-02-12 12:58:46.228 | INFO     | src.delivery.upload_routes:upload_file:40 - Received PDF upload: INV0271.pdf with file_id 5fc752d1-58c3-4da2-af7b-c669802aee40 and activity_id f81ec624-9856-480c-bb2e-388eb5609555
+2026-02-12 12:58:46.230 | INFO     | src.usecase.file_upload:_split_pdf_pages:119 - Splitting PDF INV0271.pdf into 3 pages
+2026-02-12 12:58:46.242 | INFO     | src.usecase.file_upload:_split_pdf_pages:135 - Successfully split INV0271.pdf into 3 pages
+2026-02-12 12:58:46.243 | INFO     | src.usecase.file_upload:upload:178 - Uploading 3 pages from PDF INV0271.pdf
+2026-02-12 12:58:46.408 | INFO     | src.repository.storage:upload_file:89 - Uploaded file INV0271_1.pdf for case 5fc752d1-58c3-4da2-af7b-c669802aee40, blob: 5fc752d1-58c3-4da2-af7b-c669802aee40/INV0271_1.pdf
+2026-02-12 12:58:46.543 | INFO     | src.repository.storage:upload_file:89 - Uploaded file INV0271_2.pdf for case 5fc752d1-58c3-4da2-af7b-c669802aee40, blob: 5fc752d1-58c3-4da2-af7b-c669802aee40/INV0271_2.pdf
+2026-02-12 12:58:46.670 | INFO     | src.repository.storage:upload_file:89 - Uploaded file INV0271_3.pdf for case 5fc752d1-58c3-4da2-af7b-c669802aee40, blob: 5fc752d1-58c3-4da2-af7b-c669802aee40/INV0271_3.pdf
+2026-02-12 12:58:48.988 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 12:58:50.526 | INFO     | src.repository.messaging:send_message:18 - Message sent to queue document-uploads: {'document_id': '5fc752d1-58c3-4da2-af7b-c669802aee40', 'timestamp': '2026-02-12T05:58:46.897181Z'}
+2026-02-12 12:58:50.527 | INFO     | src.delivery.upload_routes:upload_file:50 - Successfully processed PDF upload for file_id 5fc752d1-58c3-4da2-af7b-c669802aee40 and activity_id f81ec624-9856-480c-bb2e-388eb5609555
+2026-02-12 12:58:50.538 | INFO     | src.config.dependencies:get_azure_service_bus_repository:190 - Creating AzureServiceBusRepository singleton
+2026-02-12 12:58:51.147 | INFO     | src.repository.database:query_documents:130 - Retrieved 3 documents (type: all)
+2026-02-12 12:58:53.757 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 12:58:53.997 | INFO     | __main__:run_worker:75 - Received message: 5e2aded2-7061-4513-855a-4f2148908c85
+2026-02-12 12:58:53.998 | INFO     | src.usecase.content_extraction:process_message:654 - Processing content extraction for document ID: 5fc752d1-58c3-4da2-af7b-c669802aee40
+2026-02-12 12:58:53.998 | INFO     | src.usecase.content_extraction:process_documents_in_folder:317 - Processing documents in folder: 5fc752d1-58c3-4da2-af7b-c669802aee40
+2026-02-12 12:58:54.511 | INFO     | src.repository.storage:list_files:138 - Listed 3 files for case 5fc752d1-58c3-4da2-af7b-c669802aee40
+2026-02-12 12:58:54.511 | INFO     | src.usecase.content_extraction:process_documents_in_folder:321 - Found 3 files in folder 5fc752d1-58c3-4da2-af7b-c669802aee40
+2026-02-12 12:58:54.511 | INFO     | src.usecase.content_extraction:process_documents_in_folder:338 - Files sorted numerically: ['5fc752d1-58c3-4da2-af7b-c669802aee40/INV0271_1.pdf', '5fc752d1-58c3-4da2-af7b-c669802aee40/INV0271_2.pdf', '5fc752d1-58c3-4da2-af7b-c669802aee40/INV0271_3.pdf']
+2026-02-12 12:58:54.511 | INFO     | src.usecase.content_extraction:process_documents_in_folder:362 - Analyzing document: 5fc752d1-58c3-4da2-af7b-c669802aee40/INV0271_1.pdf
+2026-02-12 12:58:55.152 | INFO     | src.usecase.content_extraction:process_documents_in_folder:377 - Analysis initiated for 5fc752d1-58c3-4da2-af7b-c669802aee40/INV0271_1.pdf, request ID: a826336a-7b29-4d47-9c1d-219d9b48a5ee
+2026-02-12 12:59:09.463 | INFO     | src.usecase.content_extraction:_wait_for_analysis_result:130 - Analysis completed successfully: a826336a-7b29-4d47-9c1d-219d9b48a5ee
+2026-02-12 12:59:15.589 | INFO     | src.usecase.content_extraction:_wait_for_analysis_result:224 - Content classification completed for a826336a-7b29-4d47-9c1d-219d9b48a5ee
+2026-02-12 12:59:15.590 | INFO     | src.usecase.content_extraction:process_documents_in_folder:395 - Successfully analyzed: 5fc752d1-58c3-4da2-af7b-c669802aee40/INV0271_1.pdf
+2026-02-12 12:59:15.590 | INFO     | src.usecase.content_extraction:process_documents_in_folder:401 - Suitable document found: 5fc752d1-58c3-4da2-af7b-c669802aee40/INV0271_1.pdf - Classification: Invoice
+2026-02-12 12:59:15.590 | INFO     | src.usecase.content_extraction:process_documents_in_folder:362 - Analyzing document: 5fc752d1-58c3-4da2-af7b-c669802aee40/INV0271_2.pdf
+2026-02-12 12:59:16.253 | INFO     | src.usecase.content_extraction:process_documents_in_folder:377 - Analysis initiated for 5fc752d1-58c3-4da2-af7b-c669802aee40/INV0271_2.pdf, request ID: 8a4a3832-0b08-4276-8efe-b0c301331565
+2026-02-12 12:59:30.597 | INFO     | src.usecase.content_extraction:_wait_for_analysis_result:130 - Analysis completed successfully: 8a4a3832-0b08-4276-8efe-b0c301331565
+2026-02-12 12:59:33.726 | INFO     | src.usecase.content_extraction:_wait_for_analysis_result:167 - Tax invoice page accumulated. Total pages: 1, Complete: False
+2026-02-12 12:59:33.726 | INFO     | src.usecase.content_extraction:_wait_for_analysis_result:171 - Tax invoice incomplete. Accumulated 1 pages so far. Continuing to next page.
+2026-02-12 12:59:33.726 | INFO     | src.usecase.content_extraction:process_documents_in_folder:392 - Incomplete page for 5fc752d1-58c3-4da2-af7b-c669802aee40/INV0271_2.pdf, continuing to next page
+2026-02-12 12:59:33.726 | INFO     | src.usecase.content_extraction:process_documents_in_folder:362 - Analyzing document: 5fc752d1-58c3-4da2-af7b-c669802aee40/INV0271_3.pdf
+2026-02-12 12:59:34.214 | INFO     | src.usecase.content_extraction:process_documents_in_folder:377 - Analysis initiated for 5fc752d1-58c3-4da2-af7b-c669802aee40/INV0271_3.pdf, request ID: d7633933-d54b-46ea-aa85-48840c4dfe4f
+2026-02-12 12:59:41.514 | INFO     | src.usecase.content_extraction:_wait_for_analysis_result:130 - Analysis completed successfully: d7633933-d54b-46ea-aa85-48840c4dfe4f
+2026-02-12 12:59:44.399 | INFO     | src.usecase.content_extraction:_wait_for_analysis_result:167 - Tax invoice page accumulated. Total pages: 2, Complete: True
+2026-02-12 12:59:44.399 | INFO     | src.usecase.content_extraction:_wait_for_analysis_result:176 - Tax invoice complete. Extracting from 2 merged pages
+2026-02-12 12:59:44.400 | INFO     | src.usecase.content_extraction:_merge_pdfs_from_urls:270 - Downloading PDF 1/2: https://protohub.blob.core.windows.net/tax-documents/5fc752d1-58c3-4da2-af7b-c669802aee40/INV0271_2.pdf
+2026-02-12 12:59:44.484 | INFO     | src.repository.storage:download_blob:161 - Downloaded blob: 5fc752d1-58c3-4da2-af7b-c669802aee40/INV0271_2.pdf (109580 bytes)
+2026-02-12 12:59:44.489 | INFO     | src.usecase.content_extraction:_merge_pdfs_from_urls:270 - Downloading PDF 2/2: https://protohub.blob.core.windows.net/tax-documents/5fc752d1-58c3-4da2-af7b-c669802aee40/INV0271_3.pdf
+2026-02-12 12:59:44.537 | INFO     | src.repository.storage:download_blob:161 - Downloaded blob: 5fc752d1-58c3-4da2-af7b-c669802aee40/INV0271_3.pdf (39044 bytes)
+2026-02-12 12:59:44.541 | INFO     | src.usecase.content_extraction:_merge_pdfs_from_urls:295 - Uploading merged PDF: merged_tax_invoice_5fc752d1-58c3-4da2-af7b-c669802aee40.pdf
+2026-02-12 12:59:44.711 | INFO     | src.repository.storage:upload_file:89 - Uploaded file merged_tax_invoice_5fc752d1-58c3-4da2-af7b-c669802aee40.pdf for case 5fc752d1-58c3-4da2-af7b-c669802aee40, blob: 5fc752d1-58c3-4da2-af7b-c669802aee40/merged_tax_invoice_5fc752d1-58c3-4da2-af7b-c669802aee40.pdf
+2026-02-12 12:59:44.712 | INFO     | src.usecase.content_extraction:_merge_pdfs_from_urls:305 - Merged PDF uploaded successfully: https://protohub.blob.core.windows.net/tax-documents/5fc752d1-58c3-4da2-af7b-c669802aee40/merged_tax_invoice_5fc752d1-58c3-4da2-af7b-c669802aee40.pdf
+2026-02-12 12:59:44.712 | INFO     | src.usecase.content_extraction:_wait_for_analysis_result:187 - Merged 2 PDFs into: https://protohub.blob.core.windows.net/tax-documents/5fc752d1-58c3-4da2-af7b-c669802aee40/merged_tax_invoice_5fc752d1-58c3-4da2-af7b-c669802aee40.pdf
+2026-02-12 13:05:00.043 | INFO     | src.usecase.content_extraction:_wait_for_analysis_result:224 - Content classification completed for d7633933-d54b-46ea-aa85-48840c4dfe4f
+2026-02-12 13:05:00.059 | INFO     | src.usecase.content_extraction:process_documents_in_folder:395 - Successfully analyzed: 5fc752d1-58c3-4da2-af7b-c669802aee40/INV0271_3.pdf
+2026-02-12 13:05:00.059 | INFO     | src.usecase.content_extraction:process_documents_in_folder:401 - Suitable document found: 5fc752d1-58c3-4da2-af7b-c669802aee40/INV0271_3.pdf - Classification: Tax Invoice (Faktur Pajak)
+2026-02-12 13:05:00.059 | INFO     | src.usecase.content_extraction:process_documents_in_folder:425 - Completed processing 2 documents from folder 5fc752d1-58c3-4da2-af7b-c669802aee40
+2026-02-12 13:05:00.059 | INFO     | src.usecase.content_extraction:process_documents_in_folder:426 - Suitable documents (Invoice/TaxInvoice) found: True
+2026-02-12 13:05:00.625 | INFO     | src.repository.database:query_documents:130 - Retrieved 1 documents (type: all)
+2026-02-12 13:05:00.924 | INFO     | src.repository.database:query_documents:130 - Retrieved 1 documents (type: all)
+2026-02-12 13:07:34.423 | INFO     | src.repository.database:get_document_by_id:67 - Retrieved document: 5b8d8efb-31e3-492d-a07f-0a41ed5bd35b
+2026-02-12 13:07:34.660 | INFO     | src.repository.database:update_document:261 - Updated document: 5b8d8efb-31e3-492d-a07f-0a41ed5bd35b
+2026-02-12 13:07:34.660 | INFO     | src.usecase.content_extraction:copy_tax_invoice_item_to_gl_recon_item:640 - Updated GL transaction 5b8d8efb-31e3-492d-a07f-0a41ed5bd35b with 2 GLReconItem(s)
+2026-02-12 13:07:35.174 | INFO     | src.repository.database:get_document_by_id:67 - Retrieved document: 5fc752d1-58c3-4da2-af7b-c669802aee40
+2026-02-12 13:07:35.368 | INFO     | src.repository.database:update_document:261 - Updated document: 5fc752d1-58c3-4da2-af7b-c669802aee40
+2026-02-12 13:07:35.368 | INFO     | src.usecase.content_extraction:process_message:685 - Successfully processed content extraction for document ID: 5fc752d1-58c3-4da2-af7b-c669802aee40
+2026-02-12 13:07:37.073 | INFO     | src.config.dependencies:get_azure_service_bus_repository:190 - Creating AzureServiceBusRepository singleton
+2026-02-12 13:07:38.439 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 13:07:38.802 | INFO     | __main__:run_worker:75 - Received message: 4f9281d9-95dc-4be7-9e64-a694720be6dc
+2026-02-12 13:07:38.802 | INFO     | src.usecase.content_extraction:process_message:654 - Processing content extraction for document ID: 9d53d21c-0bfa-4325-bb50-68164e905405
+2026-02-12 13:07:38.802 | INFO     | src.usecase.content_extraction:process_documents_in_folder:317 - Processing documents in folder: 9d53d21c-0bfa-4325-bb50-68164e905405
+2026-02-12 13:07:38.873 | INFO     | src.repository.database:query_documents:130 - Retrieved 3 documents (type: all)
+2026-02-12 13:07:39.490 | INFO     | src.repository.storage:list_files:138 - Listed 3 files for case 9d53d21c-0bfa-4325-bb50-68164e905405
+2026-02-12 13:07:39.490 | INFO     | src.usecase.content_extraction:process_documents_in_folder:321 - Found 3 files in folder 9d53d21c-0bfa-4325-bb50-68164e905405
+2026-02-12 13:07:39.490 | INFO     | src.usecase.content_extraction:process_documents_in_folder:338 - Files sorted numerically: ['9d53d21c-0bfa-4325-bb50-68164e905405/INV0271_1.pdf', '9d53d21c-0bfa-4325-bb50-68164e905405/INV0271_2.pdf', '9d53d21c-0bfa-4325-bb50-68164e905405/INV0271_3.pdf']
+2026-02-12 13:07:39.490 | INFO     | src.usecase.content_extraction:process_documents_in_folder:362 - Analyzing document: 9d53d21c-0bfa-4325-bb50-68164e905405/INV0271_1.pdf
+2026-02-12 13:07:40.496 | INFO     | src.usecase.content_extraction:process_documents_in_folder:377 - Analysis initiated for 9d53d21c-0bfa-4325-bb50-68164e905405/INV0271_1.pdf, request ID: 3fba4025-32e6-4dfc-a8a3-f9c66c023849
+2026-02-12 13:07:41.017 | INFO     | src.repository.database:query_documents:130 - Retrieved 1 documents (type: all)
+2026-02-12 13:07:41.019 | INFO     | src.delivery.tax_management:get_gl_transaction_by_urn:65 - Retrieved G/L transaction: INV-0271/ZL/POSPRO/PL-BND/0225
+2026-02-12 13:07:41.754 | INFO     | src.repository.database:query_documents:130 - Retrieved 1 documents (type: all)
+2026-02-12 13:07:41.754 | INFO     | src.delivery.tax_management:get_all_invoices:116 - Retrieved 1 invoices
+2026-02-12 13:07:42.510 | INFO     | src.repository.database:query_documents:130 - Retrieved 1 documents (type: all)
+2026-02-12 13:07:42.511 | INFO     | src.delivery.tax_management:get_all_tax_invoices:93 - Retrieved 1 tax invoices
