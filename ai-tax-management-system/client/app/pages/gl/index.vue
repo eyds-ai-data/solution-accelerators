@@ -24,15 +24,9 @@ const handlePageSizeChange = async (pageSize: number) => {
   await fetchGLTransactions(undefined, 1, pageSize)
 }
 
-const missingInvoiceCount = computed(() => {
-  return glTransactions.value.filter(gl => !gl.relatedInvoice).length
+const hasDiffNormal = computed(() => {
+  return glTransactions.value.some(gl => gl.diffNormal != null && gl.diffNormal !== 0)
 })
-
-const missingTaxInvoiceCount = computed(() => {
-  return glTransactions.value.filter(gl => !gl.relatedTaxInvoice).length
-})
-
-const hasMissingDocuments = computed(() => missingInvoiceCount.value > 0 || missingTaxInvoiceCount.value > 0)
 </script>
 
 <template>
@@ -59,12 +53,12 @@ const hasMissingDocuments = computed(() => missingInvoiceCount.value > 0 || miss
       </div>
     </div>
 
-    <!-- Alert for Missing Documents -->
-    <Alert v-if="hasMissingDocuments && !loading" variant="destructive">
+    <!-- Alert for Diff Normal -->
+    <!-- <Alert v-if="hasDiffNormal && !loading" variant="destructive">
       <AlertCircle class="h-4 w-4" />
-      <AlertTitle>Missing Documents Detected</AlertTitle>
+      <AlertTitle>Diff Normal Detected</AlertTitle>
       <AlertDescription>Please check the highlighted rows below.</AlertDescription>
-    </Alert>
+    </Alert> -->
 
     <!-- Error Message -->
     <div v-if="error" class="bg-destructive/10 border border-destructive text-destructive px-4 py-3 rounded-lg">

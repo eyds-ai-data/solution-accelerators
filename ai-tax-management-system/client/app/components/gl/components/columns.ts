@@ -32,6 +32,23 @@ export const columns: ColumnDef<GL>[] = [
     cell: ({ row }) => h('div', { class: 'text-sm' }, row.getValue('referenceNumber')),
   },
   {
+    accessorKey: 'diffNormal',
+    header: ({ column }) => h(DataTableColumnHeader, { column, title: 'Diff Normal' }),
+    cell: ({ row }) => {
+      const amount = Number(row.getValue('diffNormal'))
+      const currency = row.original.localCurrency || 'IDR'
+      
+      const formatted = new Intl.NumberFormat('id-ID', {
+        style: 'currency',
+        currency: currency,
+        minimumFractionDigits: 0,
+        maximumFractionDigits: 0,
+      }).format(amount)
+ 
+      return h('div', { class: 'text-left font-medium' }, formatted)
+    },
+  },
+  {
     id: 'invoice',
     header: ({ column }) => h(DataTableColumnHeader, { column, title: 'Invoice' }),
     cell: ({ row }) => {

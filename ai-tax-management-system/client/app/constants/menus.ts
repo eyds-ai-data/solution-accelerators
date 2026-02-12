@@ -15,20 +15,25 @@ export const navMenu: NavMenu[] = [
     heading: 'WHT Management',
     items: [
       {
-        title: 'GL Transactions',
+        title: 'Reconciliation Process',
         icon: 'i-lucide-book-open',
         link: '/gl',
+      },
+      {
+        title: 'Reference Data',
+        icon: 'i-lucide-database',
+        link: '/mdm',
       }
     ],
   },
 ]
 
 export const navMenuBottom: NavMenuItems = [
-  {
-    title: 'Master Data',
-    icon: 'i-lucide-database',
-    link: '/mdm',
-  },
+  // {
+  //   title: 'Master Data',
+  //   icon: 'i-lucide-database',
+  //   link: '/mdm',
+  // },
   {
     title: 'Settings',
     icon: 'i-lucide-settings',

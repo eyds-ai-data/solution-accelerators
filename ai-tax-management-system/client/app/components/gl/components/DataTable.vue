@@ -91,7 +91,7 @@ const handleRowClick = (row: any) => {
               @click="handleRowClick(row)"
               :class="[
                 'cursor-pointer hover:bg-muted/50 transition-colors',
-                (!row.original.relatedInvoice || !row.original.relatedTaxInvoice) && 'bg-destructive/10 hover:bg-destructive/20'
+                (row.original.diffNormal != null && row.original.diffNormal !== 0) && 'bg-yellow-50 hover:bg-yellow-100'
               ]"
             >
               <TableCell v-for="cell in row.getVisibleCells()" :key="cell.id">

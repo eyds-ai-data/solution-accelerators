@@ -625,7 +625,7 @@ class ContentExtraction:
 
             gl_transaction['diffNormal'] = sum_of_diff_normal
             gl_transaction['whtNormal'] = sum_of_wht_normal
-            gl_transaction['taxBaseWhtNormal'] = sum_of_tax_base_wht_normal
+            gl_transaction['taxBasedWhtNormal'] = sum_of_tax_base_wht_normal
         
         # 4. Update the GL transaction with glReconItem
         if gl_recon_items:
@@ -640,7 +640,7 @@ class ContentExtraction:
                     "glReconItem": gl_recon_items_dict,
                     "diffNormal": gl_transaction['diffNormal'],
                     "whtNormal": gl_transaction['whtNormal'],
-                    "taxBaseWhtNormal": gl_transaction['taxBaseWhtNormal']
+                    "taxBasedWhtNormal": gl_transaction['taxBasedWhtNormal']
                 },
                 container_id="gl-transactions",
                 partial_update=True

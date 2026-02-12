@@ -362,13 +362,14 @@ const activeTab = ref<'invoice' | 'tax'>('invoice')
                   <DataTableGLItems :data="gl?.glReconItem ?? []" :columns="glReconColumns" />
                   
                   <!-- AI Recon Warning -->
-                  <Alert class="mt-4 bg-yellow-50 dark:bg-yellow-950 border-yellow-500 dark:border-yellow-600">
+                  <!-- <Alert class="mt-4 bg-yellow-50 dark:bg-yellow-950 border-yellow-500 dark:border-yellow-600">
                     <AlertCircle class="h-4 w-4 text-yellow-600 dark:text-yellow-500" />
                     <AlertTitle class="text-yellow-800 dark:text-yellow-400">AI Recon System Not Activated</AlertTitle>
                     <AlertDescription class="text-yellow-700 dark:text-yellow-500">
                       The AI-powered reconciliation system is currently not activated. Manual review is required for all reconciliation items.
                     </AlertDescription>
-                  </Alert>
+                  </Alert> -->
+
                 </div>
                 <!-- See details button -->
                 <div class="flex justify-end mt-2">
@@ -454,7 +455,7 @@ const activeTab = ref<'invoice' | 'tax'>('invoice')
 
                     <div class="flex justify-between items-center text-sm min-h-[36px]">
                       <span class="text-muted-foreground"><strong>Tax Based</strong></span>
-                      <span class="font-medium">{{ formatNumber(gl.taxBase) }}</span>
+                      <span class="font-medium">{{ formatNumber(gl.taxBased) }}</span>
                     </div>
 
                     <div class="flex justify-between items-center text-sm min-h-[36px]">
