@@ -593,6 +593,8 @@ class ContentExtraction:
             tax_invoice_details = tax_invoice.get("taxInvoiceDetail", [])
             
             sum_of_diff_normal = 0
+            sum_of_wht_normal = 0
+            sum_of_tax_base_wht_normal = 0
             for detail in tax_invoice_details:
                 # Extract itemName from the detail
                 item_name = detail.get("itemName", "")
@@ -602,6 +604,8 @@ class ContentExtraction:
 
                 diff_normal = tax_base * gl_transaction.get("taxRate", 0) - wht_normal if tax_base else 0
                 sum_of_diff_normal += diff_normal
+                sum_of_wht_normal += wht_normal
+                sum_of_tax_base_wht_normal += tax_base
                 ai_explanation = None
 
                 # TODO: calculate diff normal and ai explanation later
@@ -620,6 +624,8 @@ class ContentExtraction:
                 gl_recon_items.append(gl_recon_item)
 
             gl_transaction['diffNormal'] = sum_of_diff_normal
+            gl_transaction['whtNormal'] = sum_of_wht_normal
+            gl_transaction['taxBaseWhtNormal'] = sum_of_tax_base_wht_normal
         
         # 4. Update the GL transaction with glReconItem
         if gl_recon_items:
@@ -631,7 +637,10 @@ class ContentExtraction:
                 document_id=gl_transaction["id"],
                 partition_key=gl_transaction["urn"],
                 update_data={
-                    "glReconItem": gl_recon_items_dict
+                    "glReconItem": gl_recon_items_dict,
+                    "diffNormal": gl_transaction['diffNormal'],
+                    "whtNormal": gl_transaction['whtNormal'],
+                    "taxBaseWhtNormal": gl_transaction['taxBaseWhtNormal']
                 },
                 container_id="gl-transactions",
                 partial_update=True

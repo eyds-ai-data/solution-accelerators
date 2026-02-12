@@ -129,10 +129,12 @@ export const glReconColumns: ColumnDef<NonNullable<GL['glReconItem']>[number], a
           class: 'text-sm text-right cursor-text border rounded px-2 py-1 hover:border-primary focus:outline-none focus:ring-2 focus:ring-primary/20',
           contenteditable: 'true',
           onInput: (e: Event) => {
-            row.original.diffNormal = (e.target as HTMLDivElement).innerText
+            const value = (e.target as HTMLDivElement).innerText.replace(/,/g, '')
+            row.original.diffNormal = parseFloat(value) || 0
+            ;(e.target as HTMLDivElement).innerText = formatNumber(row.original.diffNormal)
           },
         }, 
-        row.getValue('diffNormal') ?? '-'
+        row.getValue('diffNormal') != null ? formatNumber(row.getValue('diffNormal')) : '-'
       ),
   }
   // {
