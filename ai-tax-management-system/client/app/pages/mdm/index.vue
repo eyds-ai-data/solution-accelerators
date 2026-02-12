@@ -1,8 +1,9 @@
 <script setup lang="ts">
 import { Tabs, TabsList, TabsTrigger, TabsContent } from '@/components/ui/tabs'
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card'
+import { Alert, AlertDescription, AlertTitle } from '@/components/ui/alert'
 import { Skeleton } from '@/components/ui/skeleton'
-import { Receipt, FileText } from 'lucide-vue-next'
+import { Receipt, FileText, AlertCircle } from 'lucide-vue-next'
 
 // Import invoice components
 import { invoiceMasterColumns } from '@/components/invoice/components/masterColumns'
@@ -29,6 +30,16 @@ onMounted(async () => {
 })
 
 const activeTab = ref('invoices')
+
+const missingInvoicesCount = computed(() => {
+  return invoices.value.filter(inv => !inv.invoiceNumber).length
+})
+
+const missingTaxInvoicesCount = computed(() => {
+  return taxInvoices.value.filter(inv => !inv.invoiceNumber).length
+})
+
+const hasMissingData = computed(() => missingInvoicesCount.value > 0 || missingTaxInvoicesCount.value > 0)
 </script>
 
 <template>
@@ -44,6 +55,22 @@ const activeTab = ref('invoices')
         </p>
       </div>
     </div>
+
+    <!-- Alert for Missing Data -->
+    <Alert v-if="hasMissingData" variant="destructive">
+      <AlertCircle class="h-4 w-4" />
+      <AlertTitle>Missing Information Detected</AlertTitle>
+      <AlertDescription>
+        <span v-if="missingInvoicesCount > 0">
+          Found {{ missingInvoicesCount }} invoice(s) with missing Invoice Numbers.
+        </span>
+        <span v-if="missingTaxInvoicesCount > 0">
+          {{ missingInvoicesCount > 0 ? ' Also found ' : 'Found ' }}
+          {{ missingTaxInvoicesCount }} tax invoice(s) with missing Invoice Numbers.
+        </span>
+        Please check the highlighted rows below.
+      </AlertDescription>
+    </Alert>
 
     <!-- Tabs Content -->
     <Tabs v-model="activeTab" default-value="invoices" class="w-full">
