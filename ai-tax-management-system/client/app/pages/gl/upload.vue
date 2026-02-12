@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { ArrowLeft, UploadCloud, Loader2 } from 'lucide-vue-next'
+import { ArrowLeft, UploadCloud, Loader2, Info, Download } from 'lucide-vue-next'
 import { toast } from 'vue-sonner'
 
 const router = useRouter()
@@ -65,6 +65,20 @@ const uploadFile = async (file: File) => {
     }
   }
 }
+
+const downloadTemplate = () => {
+  // Create a link element and trigger download
+  const link = document.createElement('a')
+  link.href = '/templates/gl-template.xlsx'
+  link.download = 'GL-Template.xlsx'
+  document.body.appendChild(link)
+  link.click()
+  document.body.removeChild(link)
+  
+  toast.success('Template download started', {
+    description: 'Check your downloads folder',
+  })
+}
 </script>
 
 <template>
@@ -84,6 +98,24 @@ const uploadFile = async (file: File) => {
       </div>
     </div>
 
+    <!-- Info Alert -->
+    <Alert variant="default" class="border-blue-200 bg-blue-50 dark:bg-blue-950 dark:border-blue-800 relative pr-44">
+      <Info class="h-4 w-4 text-blue-600 dark:text-blue-400" />
+      <AlertTitle class="text-blue-900 dark:text-blue-100">Supported File Format</AlertTitle>
+      <AlertDescription class="text-blue-800 dark:text-blue-200">
+        For now, we only support XLSX files. Please ensure your general ledger data is in Excel format (.xlsx).
+      </AlertDescription>
+      <Button 
+        variant="outline" 
+        size="sm" 
+        class="absolute top-3 right-4 shadow-sm border-blue-300 text-blue-700 hover:bg-blue-100 dark:border-blue-700 dark:text-blue-300 dark:hover:bg-blue-900"
+        @click.stop="downloadTemplate"
+      >
+        <Download class="h-3.5 w-3.5 mr-1.5" />
+        Download Template
+      </Button>
+    </Alert>
+
     <!-- Upload Area -->
     <div
       class="border-2 border-dashed rounded-lg p-12 flex flex-col items-center justify-center text-center transition-colors hover:bg-muted/50 cursor-pointer"
@@ -95,7 +127,7 @@ const uploadFile = async (file: File) => {
       <input
         ref="fileInput"
         type="file"
-        accept=".xlsx,.csv,.json"
+        accept=".xlsx"
         class="hidden"
         @change="handleFileSelect"
       >
@@ -107,7 +139,7 @@ const uploadFile = async (file: File) => {
         {{ isUploading ? 'Uploading...' : 'Click to upload or drag and drop' }}
       </h3>
       <p class="text-sm text-muted-foreground mt-1">
-        XLSX, CSV or JSON (MAX. 10MB)
+        XLSX (MAX. 10MB)
       </p>
       <Button class="mt-4" :disabled="isUploading">
         {{ isUploading ? 'Uploading...' : 'Select File' }}

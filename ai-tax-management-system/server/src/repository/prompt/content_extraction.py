@@ -96,19 +96,25 @@ def get_content_classification_prompt(document_content: str) -> str:
 
     # Document Completeness Guidelines:
 
-    ## Tax Invoice (Faktur Pajak) Completeness Indicators (document is COMPLETE when it has):
+    ## Tax Invoice (Faktur Pajak) Completeness — MANDATORY Requirements:
+    A Faktur Pajak is ONLY considered COMPLETE when **BOTH** of the following are present:
+    1. **Referensi footer**: A "Referensi" section at the bottom of the document (e.g., "(Referensi: xxxxxxxx)"). This reference number is the invoice number.
+    2. **Pemberitahuan footer**: A notice text that reads "Pemberitahuan: Faktur Pajak ini telah dilaporkan ke Direktorat Jenderal Pajak dan telah memperoleh persetujuan sesuai..." (or substantially similar wording indicating the tax invoice has been reported to the DJP and received approval).
+
+    **If EITHER of these two elements is missing, the document MUST be classified as INCOMPLETE — no exceptions.**
+
+    ## Additional Completeness Supporting Indicators (helpful but NOT sufficient on their own):
     - Digital signature or QR code indicating authorization
-    - Name of city and date of issuance, e.g., "Jakarta, 15 Maret 2023"
-    - Presence of signature note like: "Ditandatangani secara elektronik"
     - Page numbers indicating all pages are present, example: "2 dari 2"
-    - Even though there is a notes that says something like "Ditandatangani secara elektronik", if there is no name of city and date of issuance or the person who signed, then consider the document as INCOMPLETE.
+    - Even though there is a notes that says something like "Ditandatangani secara elektronik", if there is no name of city and date of issuance or the person who signed, that alone does NOT make it complete.
 
     # Completeness Assessment Logic:
+    - **CRITICAL**: Document is INCOMPLETE if it does NOT have BOTH the "Referensi" footer AND the "Pemberitahuan: Faktur Pajak ini telah dilaporkan ke Direktorat Jenderal Pajak dan telah memperoleh persetujuan sesuai..." text.
     - Document is INCOMPLETE if it ends abruptly or shows obvious truncation (e.g., line items cut off, missing totals, text continues without conclusion)
     - Document is INCOMPLETE if critical signatures or authorization marks are missing for Faktur Pajak
     - Document is INCOMPLETE if the final total/closing section is missing or partial
-    - Document is COMPLETE if all major sections and signature areas are present (even if some optional fields are missing)
-    - Look for visual/textual indicators of signature areas: "Signature:", "Authorized by:", "Signed", "TTD" (Tanda Tangan), signature lines, or actual signature marks
+    - Document is COMPLETE **only** when Referensi footer + Pemberitahuan DJP approval text are both present, AND all major sections are intact
+    - Look for visual/textual indicators of signature areas: "Signature:", "Authorized by:", "Signed", "TTD" (Tanda Tangan), signature lines, or actual signature marks, a footer with text indicating reporting to tax authority
 
     Provide the classification result in the following JSON format:
     {{
@@ -136,6 +142,7 @@ def get_content_classification_prompt(document_content: str) -> str:
     - Generic column headers ("Description", "Amount", "Price", "Quantity") + "Invoice No" = Regular Invoice
     - Look for signature indicators: "TTD", "Signature", "Authorized", signature lines (------), or actual signature marks.
     - For Faktur Pajak, presence of signature/authorization area is CRITICAL for determining completeness.
+    - **MANDATORY FOR FAKTUR PAJAK COMPLETENESS**: The document MUST have BOTH a "Referensi" footer AND the "Pemberitahuan: Faktur Pajak ini telah dilaporkan ke Direktorat Jenderal Pajak dan telah memperoleh persetujuan sesuai..." text to be considered COMPLETE. If either is missing, mark as INCOMPLETE.
 
     """
 

@@ -46,7 +46,7 @@ async def get_all_gl_transactions(
         )
         return JSONResponse(content=error_response.model_dump(), status_code=500)
 
-@router.get("/gl-transactions/{urn}")
+@router.get("/gl-transactions/{urn:path}")
 async def get_gl_transaction_by_urn(
     urn: str,
     tax_management_service: TaxManagementDep = None

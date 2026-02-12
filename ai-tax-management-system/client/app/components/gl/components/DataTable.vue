@@ -65,7 +65,7 @@ const table = useVueTable({
 const handleRowClick = (row: any) => {
   const urn = row.original.urn
   if (urn) {
-    router.push(`/gl/${urn}`)
+    router.push(`/gl/${encodeURIComponent(urn)}`)
   }
 }
 </script>

@@ -331,6 +331,10 @@ class GLUpload:
         for field, default_value in required_numeric_fields.items():
             if field not in row_data or row_data[field] is None or (isinstance(row_data[field], str) and row_data[field].strip() == ""):
                 row_data[field] = default_value
+        
+        # If URN is empty or missing, fill it with reference_number
+        if not row_data.get("urn") or (isinstance(row_data.get("urn"), str) and row_data["urn"].strip() == ""):
+            row_data["urn"] = row_data.get("reference_number", "")
     
     def _convert_row_types(self, row_data: Dict[str, Any]) -> Dict[str, Any]:
         """Convert row data types to match GLTransaction domain (Cosmos DB)"""

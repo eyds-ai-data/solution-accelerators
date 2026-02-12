@@ -24,7 +24,7 @@ useHead({
   },
 })
 
-const title = 'EY TaxIQ'
+const title = 'EY | Tax Management System'
 const description = ''
 
 useSeoMeta({

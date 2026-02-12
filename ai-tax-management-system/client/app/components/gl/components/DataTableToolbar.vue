@@ -21,10 +21,10 @@ const isFilterActive = computed(() => props.table.getState().columnFilters.lengt
     <div class="flex flex-col gap-4 lg:flex-row lg:items-center lg:justify-between">
       <div class="flex flex-1 flex-col gap-2 lg:flex-row lg:items-center lg:gap-2">
         <Input
-          placeholder="Filter by URN..."
-          :model-value="(props.table.getColumn('urn')?.getFilterValue() as string) ?? ''"
+          placeholder="Search by Reference Number"
+          :model-value="(props.table.getColumn('referenceNumber')?.getFilterValue() as string) ?? ''"
           class="h-10 w-full lg:max-w-sm"
-          @update:model-value="props.table.getColumn('urn')?.setFilterValue($event)"
+          @update:model-value="props.table.getColumn('referenceNumber')?.setFilterValue($event)"
         />
       </div>
       <div class="flex gap-2">

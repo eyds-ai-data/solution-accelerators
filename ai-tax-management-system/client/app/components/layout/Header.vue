@@ -9,7 +9,19 @@ function setLinks() {
   const segments = route.fullPath.split('/').filter(item => item !== '')
 
   const breadcrumbs = segments.map((item, index) => {
-    const str = item.replace(/-/g, ' ')
+    // Special handling for URN/ID under GL
+    if (index > 0 && segments[index - 1].toLowerCase() === 'gl') {
+      const lowerItem = item.toLowerCase()
+      // Skip static routes under GL
+      if (!['upload', 'upload-invoice'].includes(lowerItem)) {
+        return {
+          title: decodeURIComponent(item), // Preserve the original case (likely uppercase from data)
+          href: `/${segments.slice(0, index + 1).join('/')}`,
+        }
+      }
+    }
+
+    const str = decodeURIComponent(item).replace(/-/g, ' ')
     const title = str
       .split(' ')
       .map((word) => {

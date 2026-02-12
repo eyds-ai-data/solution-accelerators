@@ -40,7 +40,7 @@ import { formatNumber } from '@/components/gl/components/numbering'
 
 const route = useRoute()
 const router = useRouter()
-const glId = route.params.urn as string
+const glId = decodeURIComponent(route.params.urn as string)
 
 const { glTransaction, loading: glLoading, error: glError, fetchGLTransactionByUrn } = useGLTransactionDetail()
 const { invoices, loading: invoiceLoading, error: invoiceError, fetchInvoices } = useInvoices()
@@ -186,7 +186,10 @@ const activeTab = ref<'invoice' | 'tax'>('invoice')
           </Button>
           <div>
             <div class="flex items-center gap-3 mb-1">
-              <h1 class="text-2xl font-bold tracking-tight text-foreground">URN: {{ gl.urn }}</h1>
+              <h1 class="text-2xl font-bold tracking-tight text-foreground">ID:</h1>
+              <Badge variant="outline" class="text-lg px-3 py-1 bg-blue-100 text-blue-800 hover:bg-blue-100 dark:bg-blue-900 dark:text-blue-300">
+                {{ gl.urn }}
+              </Badge>
             </div>
           </div>
         </div>
@@ -478,7 +481,7 @@ const activeTab = ref<'invoice' | 'tax'>('invoice')
               :class="activeTab === 'invoice' ? 'border-b-2 border-blue-500 text-blue-500' : 'text-gray-500'"
               @click="activeTab = 'invoice'"
             >
-              Invoice Detail
+              Commercial Invoice Detail
             </button>
             <button
               class="px-4 py-2 font-medium"

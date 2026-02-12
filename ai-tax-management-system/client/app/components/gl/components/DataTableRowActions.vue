@@ -19,7 +19,7 @@ const props = defineProps<DataTableRowActionsProps>()
 const router = useRouter()
 
 const viewDetails = () => {
-  router.push(`/gl/${props.row.original.urn}`)
+  router.push(`/gl/${encodeURIComponent(props.row.original.urn)}`)
 }
 
 const deleteRow = () => {

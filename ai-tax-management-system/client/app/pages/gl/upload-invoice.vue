@@ -382,7 +382,7 @@ const uploadFiles = async (files: File[]) => {
                 <TableCell>
                   <NuxtLink 
                     v-if="file.urn" 
-                    :to="`/gl/${file.urn}`"
+                    :to="`/gl/${encodeURIComponent(file.urn)}`"
                     class="font-mono text-sm text-blue-600 hover:underline"
                   >
                     {{ file.urn }}
