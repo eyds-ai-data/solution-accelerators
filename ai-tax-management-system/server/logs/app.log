@@ -99630,3 +99630,819 @@ Time:2026-02-11T04:53:08.9755969Z</Message></Error>. Using last page URL.
 2026-02-12 18:03:09.430 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
 2026-02-12 18:03:14.207 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
 2026-02-12 18:03:19.312 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 18:03:24.334 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 18:03:29.500 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 18:03:34.202 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 18:03:38.979 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 18:03:43.920 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 18:03:49.346 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 18:03:54.507 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 18:03:58.188 | INFO     | src.repository.database:query_documents:130 - Retrieved 1 documents (type: all)
+2026-02-12 18:03:58.189 | INFO     | src.delivery.tax_management:get_gl_transaction_by_urn:65 - Retrieved G/L transaction: INV-0271/ZL/POSPRO/PL-BND/0225
+2026-02-12 18:03:58.934 | INFO     | src.repository.database:query_documents:130 - Retrieved 1 documents (type: all)
+2026-02-12 18:03:58.935 | INFO     | src.delivery.tax_management:get_all_invoices:116 - Retrieved 1 invoices
+2026-02-12 18:03:59.619 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 18:03:59.652 | INFO     | src.repository.database:query_documents:130 - Retrieved 1 documents (type: all)
+2026-02-12 18:03:59.653 | INFO     | src.delivery.tax_management:get_all_tax_invoices:93 - Retrieved 1 tax invoices
+2026-02-12 18:04:04.517 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 18:04:09.420 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 18:04:14.230 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 18:04:19.076 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 18:04:23.834 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 18:04:28.763 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 18:04:34.286 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 18:04:38.525 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 18:04:43.003 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 18:04:47.604 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 18:04:52.237 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 18:04:56.976 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 18:05:01.728 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 18:05:06.501 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 18:05:11.195 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 18:05:15.676 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 18:05:20.483 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 18:05:25.121 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 18:05:30.262 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 18:05:35.077 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 18:05:39.871 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 18:05:44.398 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 18:05:49.118 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 18:05:53.819 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 18:05:58.579 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 18:06:03.262 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 18:06:07.820 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 18:06:12.451 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 18:06:17.043 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 18:06:21.547 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 18:06:26.180 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 18:06:30.876 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 18:06:35.486 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 18:06:40.053 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 18:06:44.735 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 18:06:49.461 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 18:06:54.130 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 18:06:58.848 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 18:07:03.801 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 18:07:08.364 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 18:07:13.016 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 18:07:17.802 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 18:07:22.647 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 18:07:27.530 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 18:07:32.216 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 18:07:36.877 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 18:07:41.598 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 18:07:46.187 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 18:07:50.850 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 18:07:55.472 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 18:08:00.086 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 18:08:04.738 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 18:08:09.486 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 18:08:14.501 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 18:08:19.467 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 18:08:24.549 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 18:08:25.462 | INFO     | src.repository.database:query_documents:130 - Retrieved 4 documents (type: all)
+2026-02-12 18:08:26.190 | INFO     | src.repository.database:query_documents:130 - Retrieved 1 documents (type: all)
+2026-02-12 18:08:26.893 | INFO     | src.repository.database:query_documents:130 - Retrieved 1 documents (type: all)
+2026-02-12 18:08:27.517 | INFO     | src.repository.database:query_documents:130 - Retrieved 1 documents (type: all)
+2026-02-12 18:08:28.163 | INFO     | src.repository.database:query_documents:130 - Retrieved 1 documents (type: all)
+2026-02-12 18:08:28.827 | INFO     | src.repository.database:query_documents:130 - Retrieved 1 documents (type: all)
+2026-02-12 18:08:29.379 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 18:08:29.458 | INFO     | src.repository.database:query_documents:130 - Retrieved 1 documents (type: all)
+2026-02-12 18:08:30.098 | INFO     | src.repository.database:query_documents:130 - Retrieved 1 documents (type: all)
+2026-02-12 18:08:30.734 | INFO     | src.repository.database:query_documents:130 - Retrieved 0 documents (type: all)
+2026-02-12 18:08:30.734 | INFO     | src.delivery.tax_management:get_all_gl_transactions:24 - Retrieved 4 G/L transactions (page 1 of 1)
+2026-02-12 18:08:34.229 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 18:08:39.076 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 18:08:43.936 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 18:08:48.992 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 18:08:53.959 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 18:08:57.037 | INFO     | src.repository.database:query_documents:130 - Retrieved 4 documents (type: all)
+2026-02-12 18:08:57.038 | INFO     | src.delivery.tax_management:get_all_invoices:116 - Retrieved 4 invoices
+2026-02-12 18:08:57.664 | INFO     | src.repository.database:query_documents:130 - Retrieved 4 documents (type: all)
+2026-02-12 18:08:57.665 | INFO     | src.delivery.tax_management:get_all_tax_invoices:93 - Retrieved 4 tax invoices
+2026-02-12 18:08:58.837 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 18:09:03.709 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 18:09:04.269 | INFO     | src.repository.database:query_documents:130 - Retrieved 4 documents (type: all)
+2026-02-12 18:09:04.896 | INFO     | src.repository.database:query_documents:130 - Retrieved 1 documents (type: all)
+2026-02-12 18:09:05.551 | INFO     | src.repository.database:query_documents:130 - Retrieved 1 documents (type: all)
+2026-02-12 18:09:06.184 | INFO     | src.repository.database:query_documents:130 - Retrieved 1 documents (type: all)
+2026-02-12 18:09:06.867 | INFO     | src.repository.database:query_documents:130 - Retrieved 1 documents (type: all)
+2026-02-12 18:09:07.510 | INFO     | src.repository.database:query_documents:130 - Retrieved 1 documents (type: all)
+2026-02-12 18:09:08.165 | INFO     | src.repository.database:query_documents:130 - Retrieved 1 documents (type: all)
+2026-02-12 18:09:08.649 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 18:09:08.823 | INFO     | src.repository.database:query_documents:130 - Retrieved 1 documents (type: all)
+2026-02-12 18:09:09.467 | INFO     | src.repository.database:query_documents:130 - Retrieved 0 documents (type: all)
+2026-02-12 18:09:09.468 | INFO     | src.delivery.tax_management:get_all_gl_transactions:24 - Retrieved 4 G/L transactions (page 1 of 1)
+2026-02-12 18:09:13.556 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 18:09:18.362 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 18:09:23.153 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 18:09:28.132 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 18:09:32.863 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 18:09:37.510 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 18:09:42.274 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 18:09:46.917 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 18:09:51.764 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 18:09:56.439 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 18:10:01.423 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 18:10:06.196 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 18:10:10.892 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 18:10:15.785 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 18:10:20.673 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 18:10:25.331 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 18:10:30.076 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 18:10:35.059 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 18:10:39.651 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 18:10:44.583 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 18:10:49.303 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 18:10:54.038 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 18:10:58.901 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 18:11:03.779 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 18:11:08.629 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 18:11:13.223 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 18:11:18.056 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 18:11:23.080 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 18:11:27.998 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 18:11:32.769 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 18:11:37.543 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 18:11:42.378 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 18:11:47.047 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 18:11:51.782 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 18:11:56.701 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 18:12:01.536 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 18:12:06.087 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 18:12:11.076 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 18:12:15.639 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 18:12:20.332 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 18:12:25.245 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 18:12:30.090 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 18:12:34.993 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 18:12:39.833 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 18:12:44.691 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 18:12:49.512 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 18:12:54.368 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 18:12:59.149 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 18:13:04.141 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 18:13:09.048 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 18:13:13.774 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 18:13:18.581 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 18:13:23.252 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 18:13:28.067 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 18:13:32.884 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 18:13:37.702 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 18:13:42.545 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 18:13:47.289 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 18:13:52.315 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 18:13:57.006 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 18:14:01.858 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 18:14:06.643 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 18:14:11.303 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 18:14:16.467 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 18:14:21.314 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 18:14:26.103 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 18:14:30.885 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 18:14:35.563 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 18:14:40.167 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 18:14:44.955 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 18:14:49.888 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 18:14:55.003 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 18:14:59.917 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 18:15:04.827 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 18:15:09.743 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 18:15:14.654 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 18:15:19.508 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 18:15:24.422 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 18:15:29.370 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 18:15:34.213 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 18:15:39.140 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 18:15:44.159 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 18:15:49.504 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 18:15:54.430 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 18:15:59.260 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 18:16:04.135 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 18:16:08.930 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 18:16:13.709 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 18:16:18.395 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 18:16:22.916 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 18:16:27.565 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 18:16:32.401 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 18:16:37.590 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 18:16:42.197 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 18:16:46.995 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 18:16:52.254 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 18:16:57.341 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 18:17:02.054 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 18:17:06.850 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 18:17:11.569 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 18:17:16.011 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 18:17:20.842 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 18:17:25.384 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 18:17:29.945 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 18:17:34.463 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 18:17:39.111 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 18:17:43.631 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 18:17:48.413 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 18:17:48.792 | INFO     | src.repository.database:query_documents:130 - Retrieved 1 documents (type: all)
+2026-02-12 18:17:48.792 | INFO     | src.delivery.tax_management:get_gl_transaction_by_urn:65 - Retrieved G/L transaction: INV-0271/ZL/POSPRO/PL-BND/0225
+2026-02-12 18:17:49.508 | INFO     | src.repository.database:query_documents:130 - Retrieved 1 documents (type: all)
+2026-02-12 18:17:49.509 | INFO     | src.delivery.tax_management:get_all_invoices:116 - Retrieved 1 invoices
+2026-02-12 18:17:50.192 | INFO     | src.repository.database:query_documents:130 - Retrieved 1 documents (type: all)
+2026-02-12 18:17:50.192 | INFO     | src.delivery.tax_management:get_all_tax_invoices:93 - Retrieved 1 tax invoices
+2026-02-12 18:17:53.608 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 18:17:58.222 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 18:18:02.824 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 18:18:07.434 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 18:18:11.888 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 18:18:16.406 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 18:18:21.122 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 18:18:25.704 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 18:18:30.345 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 18:18:33.633 | INFO     | src.repository.database:query_documents:130 - Retrieved 1 documents (type: all)
+2026-02-12 18:18:33.633 | INFO     | src.delivery.tax_management:get_gl_transaction_by_urn:65 - Retrieved G/L transaction: INV-0271/ZL/POSPRO/PL-BND/0225
+2026-02-12 18:18:34.337 | INFO     | src.repository.database:query_documents:130 - Retrieved 1 documents (type: all)
+2026-02-12 18:18:34.337 | INFO     | src.delivery.tax_management:get_all_invoices:116 - Retrieved 1 invoices
+2026-02-12 18:18:34.995 | INFO     | src.repository.database:query_documents:130 - Retrieved 1 documents (type: all)
+2026-02-12 18:18:34.995 | INFO     | src.delivery.tax_management:get_all_tax_invoices:93 - Retrieved 1 tax invoices
+2026-02-12 18:18:35.530 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 18:18:40.110 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 18:18:44.642 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 18:18:49.187 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 18:18:53.834 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 18:18:58.450 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 18:19:02.974 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 18:19:07.539 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 18:19:12.126 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 18:19:16.626 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 18:19:21.243 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 18:19:25.826 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 18:19:30.869 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 18:19:35.556 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 18:19:36.010 | INFO     | src.repository.database:query_documents:130 - Retrieved 1 documents (type: all)
+2026-02-12 18:19:36.011 | INFO     | src.delivery.tax_management:get_gl_transaction_by_urn:65 - Retrieved G/L transaction: INV-0271/ZL/POSPRO/PL-BND/0225
+2026-02-12 18:19:36.653 | INFO     | src.repository.database:query_documents:130 - Retrieved 1 documents (type: all)
+2026-02-12 18:19:36.653 | INFO     | src.delivery.tax_management:get_all_invoices:116 - Retrieved 1 invoices
+2026-02-12 18:19:37.294 | INFO     | src.repository.database:query_documents:130 - Retrieved 1 documents (type: all)
+2026-02-12 18:19:37.295 | INFO     | src.delivery.tax_management:get_all_tax_invoices:93 - Retrieved 1 tax invoices
+2026-02-12 18:19:40.509 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 18:19:45.115 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 18:19:49.661 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 18:19:54.833 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 18:19:59.484 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 18:20:04.187 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 18:20:08.922 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 18:20:13.355 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 18:20:17.888 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 18:20:22.579 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 18:20:27.113 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 18:20:31.731 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 18:20:36.242 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 18:20:40.919 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 18:20:42.929 | INFO     | src.repository.database:query_documents:130 - Retrieved 1 documents (type: all)
+2026-02-12 18:20:42.931 | INFO     | src.delivery.tax_management:get_gl_transaction_by_urn:65 - Retrieved G/L transaction: INV-0271/ZL/POSPRO/PL-BND/0225
+2026-02-12 18:20:43.594 | INFO     | src.repository.database:query_documents:130 - Retrieved 1 documents (type: all)
+2026-02-12 18:20:43.594 | INFO     | src.delivery.tax_management:get_all_invoices:116 - Retrieved 1 invoices
+2026-02-12 18:20:44.237 | INFO     | src.repository.database:query_documents:130 - Retrieved 1 documents (type: all)
+2026-02-12 18:20:44.238 | INFO     | src.delivery.tax_management:get_all_tax_invoices:93 - Retrieved 1 tax invoices
+2026-02-12 18:20:45.772 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 18:20:50.441 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 18:20:55.140 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 18:20:59.675 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 18:21:04.188 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 18:21:08.825 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 18:21:13.349 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 18:21:18.095 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 18:21:22.746 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 18:21:27.275 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 18:21:31.878 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 18:21:36.400 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 18:21:40.949 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 18:21:45.585 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 18:21:50.029 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 18:21:54.838 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 18:21:59.509 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 18:22:04.117 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 18:22:08.640 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 18:22:13.441 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 18:22:18.000 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 18:22:22.511 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 18:22:27.153 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 18:22:31.669 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 18:22:36.734 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 18:22:41.052 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 18:22:45.704 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 18:22:50.122 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 18:22:54.849 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 18:22:59.376 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 18:23:04.014 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 18:23:08.809 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 18:23:13.384 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 18:23:17.948 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 18:23:22.552 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 18:23:27.140 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 18:23:31.835 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 18:23:36.316 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 18:23:40.965 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 18:23:45.475 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 18:23:50.099 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 18:23:54.592 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 18:23:59.261 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 18:24:04.099 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 18:24:08.639 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 18:24:13.352 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 18:24:17.979 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 18:24:22.924 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 18:24:27.400 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 18:24:32.050 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 18:24:36.732 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 18:24:41.325 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 18:24:46.103 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 18:24:51.051 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 18:24:55.715 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 18:25:00.357 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 18:25:05.004 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 18:25:09.623 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 18:25:14.333 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 18:25:19.066 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 18:25:23.724 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 18:25:28.486 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 18:25:33.247 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 18:25:37.881 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 18:25:42.636 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 18:25:47.179 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 18:25:51.888 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 18:25:56.462 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 18:26:01.212 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 18:26:05.962 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 18:26:10.503 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 18:26:15.169 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 18:26:19.748 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 18:26:24.574 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 18:26:29.480 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 18:26:34.035 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 18:26:38.921 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 18:26:43.797 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 18:26:48.699 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 18:26:53.266 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 18:26:57.969 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 18:27:02.587 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 18:27:07.216 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 18:27:12.066 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 18:27:16.503 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 18:27:21.237 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 18:27:25.806 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 18:27:30.503 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 18:27:35.085 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 18:27:39.820 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 18:27:44.610 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 18:27:49.340 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 18:27:54.221 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 18:27:59.000 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 18:28:03.656 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 18:28:08.357 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 18:28:13.147 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 18:28:17.731 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 18:28:22.436 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 18:28:26.984 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 18:28:31.793 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 18:28:36.436 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 18:28:40.937 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 18:28:45.542 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 18:28:50.312 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 18:28:55.045 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 18:28:59.625 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 18:29:04.301 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 18:29:09.190 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 18:29:13.842 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 18:29:18.540 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 18:29:23.157 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 18:29:27.905 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 18:29:32.472 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 18:29:37.094 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 18:29:41.906 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 18:29:46.490 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 18:29:51.187 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 18:29:56.153 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 18:30:00.794 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 18:30:05.464 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 18:30:10.132 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 18:30:14.705 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 18:30:19.598 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 18:30:24.129 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 18:30:28.924 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 18:30:33.547 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 18:30:38.182 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 18:30:43.664 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 18:30:48.228 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 18:30:52.830 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 18:30:57.563 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 18:31:02.273 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 18:31:06.845 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 18:31:11.602 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 18:31:16.179 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 18:31:20.896 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 18:31:25.554 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 18:31:30.232 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 18:31:35.016 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 18:31:39.682 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 18:31:44.364 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 18:31:49.076 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 18:31:53.722 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 18:31:58.359 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 18:32:03.021 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 18:32:07.647 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 18:32:12.214 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 18:32:16.797 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 18:32:21.467 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 18:32:26.221 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 18:32:30.830 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 18:32:36.178 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 18:32:40.897 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 18:32:45.665 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 18:32:50.249 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 18:32:54.977 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 18:32:59.725 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 18:33:04.406 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 18:33:09.073 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 18:33:13.762 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 18:33:18.442 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 18:33:23.194 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 18:33:27.865 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 18:33:32.601 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 18:33:37.231 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 18:33:41.924 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 18:33:46.548 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 18:33:51.261 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 18:33:56.196 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 18:34:00.861 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 18:34:05.498 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 18:34:10.196 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 18:34:14.864 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 18:34:19.592 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 18:34:24.246 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 18:34:29.141 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 18:34:33.940 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 18:34:38.797 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 18:34:43.319 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 18:34:47.994 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 18:34:52.768 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 18:34:57.469 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 18:35:02.192 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 18:35:06.888 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 18:35:11.529 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 18:35:16.227 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 18:35:20.841 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 18:35:25.593 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 18:35:30.387 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 18:35:35.327 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 18:35:39.995 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 18:35:44.777 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 18:35:49.409 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 18:35:54.039 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 18:35:58.723 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 18:36:03.656 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 18:36:08.249 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 18:36:12.992 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 18:36:17.694 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 18:36:22.346 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 18:36:26.982 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 18:36:31.799 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 18:36:36.306 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 18:36:41.011 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 18:36:45.610 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 18:36:50.261 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 18:36:55.000 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 18:36:59.773 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 18:37:04.589 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 18:37:09.245 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 18:37:13.843 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 18:37:18.578 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 18:37:23.235 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 18:37:27.980 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 18:37:32.631 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 18:37:37.253 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 18:37:42.018 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 18:37:46.588 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 18:37:51.205 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 18:37:55.909 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 18:38:00.579 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 18:38:05.343 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 18:38:10.057 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 18:38:14.658 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 18:38:19.473 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 18:38:24.318 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 18:38:28.991 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 18:38:33.838 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 18:38:38.610 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 18:38:43.145 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 18:38:47.925 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 18:38:52.611 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 18:38:57.265 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 18:39:01.865 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 18:39:06.594 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 18:39:11.270 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 18:39:15.996 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 18:39:20.688 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 18:39:25.406 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 18:39:30.261 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 18:39:35.131 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 18:39:39.811 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 18:39:44.583 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 18:39:49.285 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 18:39:54.073 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 18:39:58.650 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 18:40:03.513 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 18:40:08.170 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 18:40:12.935 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 18:40:17.749 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 18:40:22.411 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 18:40:27.249 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 18:40:31.931 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 18:40:36.753 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 18:40:41.390 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 18:40:46.133 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 18:40:50.809 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 18:40:55.703 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 18:41:00.856 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 18:41:05.117 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 18:41:10.014 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 18:41:14.798 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 18:41:19.600 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 18:41:24.778 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 18:41:29.680 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 18:41:34.306 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 18:41:39.023 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 18:41:43.807 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 18:41:48.608 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 18:41:53.349 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 18:41:58.153 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 18:42:02.879 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 18:42:07.635 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 18:42:12.370 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 18:42:17.202 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 18:42:21.989 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 18:42:26.907 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 18:42:31.594 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 18:42:36.321 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 18:42:41.035 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 18:42:45.890 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 18:42:50.625 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 18:42:55.996 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 18:43:00.373 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 18:43:05.225 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 18:43:09.990 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 18:43:14.763 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 18:43:19.690 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 18:43:24.483 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 18:43:29.183 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 18:43:33.872 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 18:43:38.606 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 18:43:43.959 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 18:43:48.718 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 18:43:54.103 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 18:43:58.828 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 18:44:03.696 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 18:44:09.562 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 18:44:14.381 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 18:44:19.649 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 18:44:24.766 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 18:44:29.574 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 18:44:33.671 | INFO     | src.repository.database:query_documents:130 - Retrieved 1 documents (type: all)
+2026-02-12 18:44:33.672 | INFO     | src.delivery.tax_management:get_gl_transaction_by_urn:65 - Retrieved G/L transaction: INV-0271/ZL/POSPRO/PL-BND/0225
+2026-02-12 18:44:34.470 | INFO     | src.repository.database:query_documents:130 - Retrieved 1 documents (type: all)
+2026-02-12 18:44:34.471 | INFO     | src.delivery.tax_management:get_all_invoices:116 - Retrieved 1 invoices
+2026-02-12 18:44:34.765 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 18:44:35.219 | INFO     | src.repository.database:query_documents:130 - Retrieved 1 documents (type: all)
+2026-02-12 18:44:35.220 | INFO     | src.delivery.tax_management:get_all_tax_invoices:93 - Retrieved 1 tax invoices
+2026-02-12 18:44:39.666 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 18:44:44.671 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 18:44:49.879 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 18:44:54.858 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 18:44:59.977 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 18:45:04.936 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 18:45:09.964 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 18:45:15.743 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 18:45:20.733 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 18:45:25.974 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 18:45:31.280 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 18:45:36.970 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 18:45:41.290 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 18:45:46.287 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 18:45:51.440 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 18:45:56.563 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 18:46:02.559 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 18:46:07.505 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 18:46:12.636 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 18:46:17.458 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 18:46:22.941 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 18:46:27.174 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 18:46:31.918 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 18:46:36.689 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 18:46:41.553 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 18:46:46.225 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 18:46:51.051 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 18:46:55.946 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 18:47:00.732 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 18:47:05.621 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 18:47:10.422 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 18:47:15.189 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 18:47:20.054 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 18:47:24.890 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 18:47:29.799 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 18:47:30.450 | INFO     | src.repository.database:query_documents:130 - Retrieved 1 documents (type: all)
+2026-02-12 18:47:31.145 | INFO     | src.repository.database:query_documents:130 - Retrieved 1 documents (type: all)
+2026-02-12 18:47:31.836 | INFO     | src.repository.database:query_documents:130 - Retrieved 1 documents (type: all)
+2026-02-12 18:47:31.837 | INFO     | src.delivery.tax_management:get_all_gl_transactions:24 - Retrieved 1 G/L transactions (page 1 of 1)
+2026-02-12 18:47:34.589 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 18:47:39.445 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 18:47:39.895 | INFO     | src.repository.database:query_documents:130 - Retrieved 1 documents (type: all)
+2026-02-12 18:47:39.895 | INFO     | src.delivery.tax_management:get_gl_transaction_by_urn:65 - Retrieved G/L transaction: INV-0271/ZL/POSPRO/PL-BND/0225
+2026-02-12 18:47:40.528 | INFO     | src.repository.database:query_documents:130 - Retrieved 1 documents (type: all)
+2026-02-12 18:47:40.528 | INFO     | src.delivery.tax_management:get_all_invoices:116 - Retrieved 1 invoices
+2026-02-12 18:47:41.186 | INFO     | src.repository.database:query_documents:130 - Retrieved 1 documents (type: all)
+2026-02-12 18:47:41.186 | INFO     | src.delivery.tax_management:get_all_tax_invoices:93 - Retrieved 1 tax invoices
+2026-02-12 18:47:44.322 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 18:47:49.000 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 18:47:49.220 | INFO     | src.repository.database:query_documents:130 - Retrieved 1 documents (type: all)
+2026-02-12 18:47:49.850 | INFO     | src.repository.database:query_documents:130 - Retrieved 1 documents (type: all)
+2026-02-12 18:47:50.472 | INFO     | src.repository.database:query_documents:130 - Retrieved 1 documents (type: all)
+2026-02-12 18:47:50.473 | INFO     | src.delivery.tax_management:get_all_gl_transactions:24 - Retrieved 1 G/L transactions (page 1 of 1)
+2026-02-12 18:47:52.509 | INFO     | src.config.dependencies:get_azure_service_bus_repository:190 - Creating AzureServiceBusRepository singleton
+2026-02-12 18:47:53.254 | INFO     | src.repository.database:query_documents:130 - Retrieved 1 documents (type: all)
+2026-02-12 18:47:53.863 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 18:47:58.545 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 18:48:03.252 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 18:48:07.915 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 18:48:12.781 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 18:48:17.687 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 18:48:22.228 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 18:48:26.763 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 18:48:31.337 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 18:48:35.969 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 18:48:40.598 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 18:48:45.134 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 18:48:49.807 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 18:48:54.380 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 18:48:59.167 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 18:49:03.808 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 18:49:08.402 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 18:49:13.117 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 18:49:17.757 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 18:49:22.478 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 18:49:27.315 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 18:49:31.955 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 18:49:36.595 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 18:49:41.198 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 18:49:45.885 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 18:49:50.841 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 18:49:55.535 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 18:50:00.266 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 18:50:04.911 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 18:50:09.433 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 18:50:14.069 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 18:50:18.808 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 18:50:23.366 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 18:50:28.086 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 18:50:32.718 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 18:50:37.353 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 18:50:42.119 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 18:50:46.706 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 18:50:51.505 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 18:50:56.077 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 18:51:01.433 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 18:51:05.985 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 18:51:10.905 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 18:51:15.664 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 18:51:19.628 | INFO     | src.config.dependencies:get_azure_service_bus_repository:190 - Creating AzureServiceBusRepository singleton
+2026-02-12 18:51:19.628 | INFO     | src.delivery.upload_routes:upload_file:40 - Received PDF upload: PT Aden Indonesia.pdf with file_id 70cb6ab0-74e3-4b52-82cc-d41760813891 and activity_id 23f091d5-9d29-40c4-85e8-23e4d5b68a27
+2026-02-12 18:51:19.636 | INFO     | src.usecase.file_upload:_split_pdf_pages:119 - Splitting PDF PT Aden Indonesia.pdf into 3 pages
+2026-02-12 18:51:19.638 | INFO     | src.usecase.file_upload:_split_pdf_pages:135 - Successfully split PT Aden Indonesia.pdf into 3 pages
+2026-02-12 18:51:19.638 | INFO     | src.usecase.file_upload:upload:178 - Uploading 3 pages from PDF PT Aden Indonesia.pdf
+2026-02-12 18:51:20.402 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 18:51:20.569 | INFO     | src.repository.storage:upload_file:89 - Uploaded file PT Aden Indonesia_1.pdf for case 70cb6ab0-74e3-4b52-82cc-d41760813891, blob: 70cb6ab0-74e3-4b52-82cc-d41760813891/PT Aden Indonesia_1.pdf
+2026-02-12 18:51:20.669 | INFO     | src.repository.storage:upload_file:89 - Uploaded file PT Aden Indonesia_2.pdf for case 70cb6ab0-74e3-4b52-82cc-d41760813891, blob: 70cb6ab0-74e3-4b52-82cc-d41760813891/PT Aden Indonesia_2.pdf
+2026-02-12 18:51:20.776 | INFO     | src.repository.storage:upload_file:89 - Uploaded file PT Aden Indonesia_3.pdf for case 70cb6ab0-74e3-4b52-82cc-d41760813891, blob: 70cb6ab0-74e3-4b52-82cc-d41760813891/PT Aden Indonesia_3.pdf
+2026-02-12 18:51:25.447 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 18:51:26.100 | INFO     | src.repository.messaging:send_message:18 - Message sent to queue document-uploads: {'document_id': '70cb6ab0-74e3-4b52-82cc-d41760813891', 'timestamp': '2026-02-12T11:51:22.470090Z'}
+2026-02-12 18:51:26.100 | INFO     | src.delivery.upload_routes:upload_file:50 - Successfully processed PDF upload for file_id 70cb6ab0-74e3-4b52-82cc-d41760813891 and activity_id 23f091d5-9d29-40c4-85e8-23e4d5b68a27
+2026-02-12 18:51:26.101 | INFO     | __main__:run_worker:75 - Received message: 8485ed7e-4822-4e8d-be2b-3e3fc770a184
+2026-02-12 18:51:26.103 | INFO     | src.usecase.content_extraction:process_message:663 - Processing content extraction for document ID: 70cb6ab0-74e3-4b52-82cc-d41760813891
+2026-02-12 18:51:26.104 | INFO     | src.usecase.content_extraction:process_documents_in_folder:317 - Processing documents in folder: 70cb6ab0-74e3-4b52-82cc-d41760813891
+2026-02-12 18:51:26.113 | INFO     | src.config.dependencies:get_azure_service_bus_repository:190 - Creating AzureServiceBusRepository singleton
+2026-02-12 18:51:26.868 | INFO     | src.repository.database:query_documents:130 - Retrieved 2 documents (type: all)
+2026-02-12 18:51:26.919 | INFO     | src.repository.storage:list_files:138 - Listed 3 files for case 70cb6ab0-74e3-4b52-82cc-d41760813891
+2026-02-12 18:51:26.919 | INFO     | src.usecase.content_extraction:process_documents_in_folder:321 - Found 3 files in folder 70cb6ab0-74e3-4b52-82cc-d41760813891
+2026-02-12 18:51:26.920 | INFO     | src.usecase.content_extraction:process_documents_in_folder:338 - Files sorted numerically: ['70cb6ab0-74e3-4b52-82cc-d41760813891/PT Aden Indonesia_1.pdf', '70cb6ab0-74e3-4b52-82cc-d41760813891/PT Aden Indonesia_2.pdf', '70cb6ab0-74e3-4b52-82cc-d41760813891/PT Aden Indonesia_3.pdf']
+2026-02-12 18:51:26.920 | INFO     | src.usecase.content_extraction:process_documents_in_folder:362 - Analyzing document: 70cb6ab0-74e3-4b52-82cc-d41760813891/PT Aden Indonesia_1.pdf
+2026-02-12 18:51:28.028 | INFO     | src.usecase.content_extraction:process_documents_in_folder:377 - Analysis initiated for 70cb6ab0-74e3-4b52-82cc-d41760813891/PT Aden Indonesia_1.pdf, request ID: 8c1a5ec8-7734-451d-beef-90ca902bf835
+2026-02-12 18:59:18.052 | INFO     | __main__:<module>:258 - Starting application in 'worker' mode
+2026-02-12 18:59:18.052 | INFO     | __main__:run_worker_standalone:194 - Starting worker in standalone mode...
+2026-02-12 18:59:18.052 | INFO     | __main__:run_worker:34 - Worker started
+2026-02-12 18:59:18.052 | INFO     | src.config.dependencies:get_app_config:37 - Initializing application configuration
+2026-02-12 18:59:18.052 | INFO     | src.config.dependencies:get_content_understanding_repository:59 - Creating ContentUnderstandingRepository singleton
+2026-02-12 18:59:18.052 | INFO     | src.config.dependencies:get_azure_blob_storage_repository:82 - Creating AzureBlobStorageRepository singleton
+2026-02-12 18:59:18.906 | INFO     | src.repository.storage:__init__:21 - Blob container already exists: tax-documents
+2026-02-12 18:59:18.906 | INFO     | src.repository.storage:__init__:25 - Connected to Blob Storage, container: tax-documents
+2026-02-12 18:59:18.906 | INFO     | src.config.dependencies:get_llm_service_repository:212 - Creating LLMService singleton
+2026-02-12 18:59:19.454 | INFO     | src.config.dependencies:get_azure_cosmos_repository:106 - Creating AzureCosmosDBRepository singleton
+2026-02-12 18:59:20.708 | INFO     | src.repository.database:__init__:22 - Connected to Cosmos DB database 'tax-management-system', container 'gl-transactions'
+2026-02-12 18:59:20.717 | INFO     | src.config.dependencies:get_embedding_repository:235 - Creating EmbeddingRepository singleton
+2026-02-12 18:59:24.378 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 18:59:28.988 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 18:59:33.782 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 18:59:38.742 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 18:59:41.350 | INFO     | src.config.dependencies:get_azure_service_bus_repository:190 - Creating AzureServiceBusRepository singleton
+2026-02-12 18:59:43.779 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 18:59:44.763 | INFO     | src.repository.database:query_documents:130 - Retrieved 2 documents (type: all)
+2026-02-12 18:59:49.310 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 18:59:54.311 | INFO     | src.config.dependencies:get_azure_service_bus_repository:190 - Creating AzureServiceBusRepository singleton
+2026-02-12 18:59:54.313 | INFO     | src.delivery.upload_routes:upload_file:40 - Received PDF upload: INV0271.pdf with file_id d4239a5e-63a7-4ea8-99bb-e91c1b293980 and activity_id 9d412129-2802-46db-a20e-54b5b10e5a03
+2026-02-12 18:59:54.318 | INFO     | src.usecase.file_upload:_split_pdf_pages:119 - Splitting PDF INV0271.pdf into 3 pages
+2026-02-12 18:59:54.335 | INFO     | src.usecase.file_upload:_split_pdf_pages:135 - Successfully split INV0271.pdf into 3 pages
+2026-02-12 18:59:54.336 | INFO     | src.usecase.file_upload:upload:178 - Uploading 3 pages from PDF INV0271.pdf
+2026-02-12 18:59:54.774 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 18:59:55.218 | INFO     | src.repository.storage:upload_file:89 - Uploaded file INV0271_1.pdf for case d4239a5e-63a7-4ea8-99bb-e91c1b293980, blob: d4239a5e-63a7-4ea8-99bb-e91c1b293980/INV0271_1.pdf
+2026-02-12 18:59:55.418 | INFO     | src.repository.storage:upload_file:89 - Uploaded file INV0271_2.pdf for case d4239a5e-63a7-4ea8-99bb-e91c1b293980, blob: d4239a5e-63a7-4ea8-99bb-e91c1b293980/INV0271_2.pdf
+2026-02-12 18:59:55.532 | INFO     | src.repository.storage:upload_file:89 - Uploaded file INV0271_3.pdf for case d4239a5e-63a7-4ea8-99bb-e91c1b293980, blob: d4239a5e-63a7-4ea8-99bb-e91c1b293980/INV0271_3.pdf
+2026-02-12 18:59:59.353 | INFO     | src.repository.messaging:send_message:18 - Message sent to queue document-uploads: {'document_id': 'd4239a5e-63a7-4ea8-99bb-e91c1b293980', 'timestamp': '2026-02-12T11:59:55.758187Z'}
+2026-02-12 18:59:59.354 | INFO     | src.delivery.upload_routes:upload_file:50 - Successfully processed PDF upload for file_id d4239a5e-63a7-4ea8-99bb-e91c1b293980 and activity_id 9d412129-2802-46db-a20e-54b5b10e5a03
+2026-02-12 18:59:59.367 | INFO     | src.config.dependencies:get_azure_service_bus_repository:190 - Creating AzureServiceBusRepository singleton
+2026-02-12 18:59:59.762 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 19:00:00.013 | INFO     | __main__:run_worker:75 - Received message: cfd292a8-9fc1-4042-ae02-bbf3f31f0a69
+2026-02-12 19:00:00.029 | INFO     | src.usecase.content_extraction:process_message:663 - Processing content extraction for document ID: d4239a5e-63a7-4ea8-99bb-e91c1b293980
+2026-02-12 19:00:00.030 | INFO     | src.usecase.content_extraction:process_documents_in_folder:317 - Processing documents in folder: d4239a5e-63a7-4ea8-99bb-e91c1b293980
+2026-02-12 19:00:00.044 | INFO     | src.repository.database:query_documents:130 - Retrieved 3 documents (type: all)
+2026-02-12 19:00:00.111 | INFO     | src.repository.storage:list_files:138 - Listed 3 files for case d4239a5e-63a7-4ea8-99bb-e91c1b293980
+2026-02-12 19:00:00.111 | INFO     | src.usecase.content_extraction:process_documents_in_folder:321 - Found 3 files in folder d4239a5e-63a7-4ea8-99bb-e91c1b293980
+2026-02-12 19:00:00.113 | INFO     | src.usecase.content_extraction:process_documents_in_folder:338 - Files sorted numerically: ['d4239a5e-63a7-4ea8-99bb-e91c1b293980/INV0271_1.pdf', 'd4239a5e-63a7-4ea8-99bb-e91c1b293980/INV0271_2.pdf', 'd4239a5e-63a7-4ea8-99bb-e91c1b293980/INV0271_3.pdf']
+2026-02-12 19:00:00.113 | INFO     | src.usecase.content_extraction:process_documents_in_folder:362 - Analyzing document: d4239a5e-63a7-4ea8-99bb-e91c1b293980/INV0271_1.pdf
+2026-02-12 19:00:01.364 | INFO     | src.usecase.content_extraction:process_documents_in_folder:377 - Analysis initiated for d4239a5e-63a7-4ea8-99bb-e91c1b293980/INV0271_1.pdf, request ID: 82779290-dce0-4bed-80ff-2ee76c0b290a
+2026-02-12 19:01:14.877 | INFO     | src.usecase.content_extraction:_wait_for_analysis_result:130 - Analysis completed successfully: 82779290-dce0-4bed-80ff-2ee76c0b290a
+2026-02-12 19:04:12.650 | INFO     | __main__:<module>:258 - Starting application in 'worker' mode
+2026-02-12 19:04:12.654 | INFO     | __main__:run_worker_standalone:194 - Starting worker in standalone mode...
+2026-02-12 19:04:12.655 | INFO     | __main__:run_worker:34 - Worker started
+2026-02-12 19:04:12.655 | INFO     | src.config.dependencies:get_app_config:37 - Initializing application configuration
+2026-02-12 19:04:12.655 | INFO     | src.config.dependencies:get_content_understanding_repository:59 - Creating ContentUnderstandingRepository singleton
+2026-02-12 19:04:12.655 | INFO     | src.config.dependencies:get_azure_blob_storage_repository:82 - Creating AzureBlobStorageRepository singleton
+2026-02-12 19:04:13.301 | INFO     | src.repository.storage:__init__:21 - Blob container already exists: tax-documents
+2026-02-12 19:04:13.301 | INFO     | src.repository.storage:__init__:25 - Connected to Blob Storage, container: tax-documents
+2026-02-12 19:04:13.302 | INFO     | src.config.dependencies:get_llm_service_repository:212 - Creating LLMService singleton
+2026-02-12 19:04:13.871 | INFO     | src.config.dependencies:get_azure_cosmos_repository:106 - Creating AzureCosmosDBRepository singleton
+2026-02-12 19:04:15.149 | INFO     | src.repository.database:__init__:22 - Connected to Cosmos DB database 'tax-management-system', container 'gl-transactions'
+2026-02-12 19:04:15.149 | INFO     | src.config.dependencies:get_embedding_repository:235 - Creating EmbeddingRepository singleton
+2026-02-12 19:04:18.780 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 19:04:23.390 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 19:04:28.154 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 19:04:32.803 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 19:04:37.384 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 19:04:42.094 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 19:04:46.922 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 19:04:51.511 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 19:04:56.276 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 19:05:00.319 | INFO     | src.config.dependencies:get_azure_service_bus_repository:190 - Creating AzureServiceBusRepository singleton
+2026-02-12 19:05:01.561 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 19:05:02.889 | INFO     | src.repository.database:query_documents:130 - Retrieved 3 documents (type: all)
+2026-02-12 19:05:06.926 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 19:05:09.893 | INFO     | src.config.dependencies:get_azure_service_bus_repository:190 - Creating AzureServiceBusRepository singleton
+2026-02-12 19:05:09.893 | INFO     | src.delivery.upload_routes:upload_file:40 - Received PDF upload: INV0271.pdf with file_id e38668ff-f3a3-4341-a205-325795f404c4 and activity_id 8a254101-7a32-4bfb-ba90-635e0a7c57d8
+2026-02-12 19:05:09.908 | INFO     | src.usecase.file_upload:_split_pdf_pages:119 - Splitting PDF INV0271.pdf into 3 pages
+2026-02-12 19:05:09.926 | INFO     | src.usecase.file_upload:_split_pdf_pages:135 - Successfully split INV0271.pdf into 3 pages
+2026-02-12 19:05:09.926 | INFO     | src.usecase.file_upload:upload:178 - Uploading 3 pages from PDF INV0271.pdf
+2026-02-12 19:05:10.943 | INFO     | src.repository.storage:upload_file:89 - Uploaded file INV0271_1.pdf for case e38668ff-f3a3-4341-a205-325795f404c4, blob: e38668ff-f3a3-4341-a205-325795f404c4/INV0271_1.pdf
+2026-02-12 19:05:11.093 | INFO     | src.repository.storage:upload_file:89 - Uploaded file INV0271_2.pdf for case e38668ff-f3a3-4341-a205-325795f404c4, blob: e38668ff-f3a3-4341-a205-325795f404c4/INV0271_2.pdf
+2026-02-12 19:05:11.221 | INFO     | src.repository.storage:upload_file:89 - Uploaded file INV0271_3.pdf for case e38668ff-f3a3-4341-a205-325795f404c4, blob: e38668ff-f3a3-4341-a205-325795f404c4/INV0271_3.pdf
+2026-02-12 19:05:11.841 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 19:05:14.786 | INFO     | src.repository.messaging:send_message:18 - Message sent to queue document-uploads: {'document_id': 'e38668ff-f3a3-4341-a205-325795f404c4', 'timestamp': '2026-02-12T12:05:11.492959Z'}
+2026-02-12 19:05:14.787 | INFO     | src.delivery.upload_routes:upload_file:50 - Successfully processed PDF upload for file_id e38668ff-f3a3-4341-a205-325795f404c4 and activity_id 8a254101-7a32-4bfb-ba90-635e0a7c57d8
+2026-02-12 19:05:14.807 | INFO     | src.config.dependencies:get_azure_service_bus_repository:190 - Creating AzureServiceBusRepository singleton
+2026-02-12 19:05:15.430 | INFO     | src.repository.database:query_documents:130 - Retrieved 4 documents (type: all)
+2026-02-12 19:05:16.777 | INFO     | __main__:run_worker:72 - Connected to Service Bus queue: document-uploads
+2026-02-12 19:05:17.034 | INFO     | __main__:run_worker:75 - Received message: 259977e3-33d4-463a-9e08-6a9a91dade10
+2026-02-12 19:05:17.037 | INFO     | src.usecase.content_extraction:process_message:663 - Processing content extraction for document ID: e38668ff-f3a3-4341-a205-325795f404c4
+2026-02-12 19:05:17.038 | INFO     | src.usecase.content_extraction:process_documents_in_folder:317 - Processing documents in folder: e38668ff-f3a3-4341-a205-325795f404c4
+2026-02-12 19:05:17.115 | INFO     | src.repository.storage:list_files:138 - Listed 3 files for case e38668ff-f3a3-4341-a205-325795f404c4
+2026-02-12 19:05:17.115 | INFO     | src.usecase.content_extraction:process_documents_in_folder:321 - Found 3 files in folder e38668ff-f3a3-4341-a205-325795f404c4
+2026-02-12 19:05:17.116 | INFO     | src.usecase.content_extraction:process_documents_in_folder:338 - Files sorted numerically: ['e38668ff-f3a3-4341-a205-325795f404c4/INV0271_1.pdf', 'e38668ff-f3a3-4341-a205-325795f404c4/INV0271_2.pdf', 'e38668ff-f3a3-4341-a205-325795f404c4/INV0271_3.pdf']
+2026-02-12 19:05:17.116 | INFO     | src.usecase.content_extraction:process_documents_in_folder:362 - Analyzing document: e38668ff-f3a3-4341-a205-325795f404c4/INV0271_1.pdf
+2026-02-12 19:05:18.112 | INFO     | src.usecase.content_extraction:process_documents_in_folder:377 - Analysis initiated for e38668ff-f3a3-4341-a205-325795f404c4/INV0271_1.pdf, request ID: 7808dae2-78eb-4cf8-9180-4e6b16df8139
+2026-02-12 19:05:48.520 | INFO     | src.usecase.content_extraction:_wait_for_analysis_result:130 - Analysis completed successfully: 7808dae2-78eb-4cf8-9180-4e6b16df8139
+2026-02-12 19:06:36.874 | INFO     | src.usecase.content_extraction:_wait_for_analysis_result:224 - Content classification completed for 7808dae2-78eb-4cf8-9180-4e6b16df8139
+2026-02-12 19:06:36.874 | INFO     | src.usecase.content_extraction:process_documents_in_folder:395 - Successfully analyzed: e38668ff-f3a3-4341-a205-325795f404c4/INV0271_1.pdf
+2026-02-12 19:06:36.874 | INFO     | src.usecase.content_extraction:process_documents_in_folder:401 - Suitable document found: e38668ff-f3a3-4341-a205-325795f404c4/INV0271_1.pdf - Classification: Invoice
+2026-02-12 19:06:36.874 | INFO     | src.usecase.content_extraction:process_documents_in_folder:362 - Analyzing document: e38668ff-f3a3-4341-a205-325795f404c4/INV0271_2.pdf
+2026-02-12 19:06:37.909 | INFO     | src.usecase.content_extraction:process_documents_in_folder:377 - Analysis initiated for e38668ff-f3a3-4341-a205-325795f404c4/INV0271_2.pdf, request ID: b075070f-d275-42fb-bb29-c37b3ddfc956
+2026-02-12 19:07:07.491 | INFO     | src.usecase.content_extraction:_wait_for_analysis_result:130 - Analysis completed successfully: b075070f-d275-42fb-bb29-c37b3ddfc956
+2026-02-12 19:07:10.745 | INFO     | src.usecase.content_extraction:_wait_for_analysis_result:167 - Tax invoice page accumulated. Total pages: 1, Complete: False
+2026-02-12 19:07:10.746 | INFO     | src.usecase.content_extraction:_wait_for_analysis_result:171 - Tax invoice incomplete. Accumulated 1 pages so far. Continuing to next page.
+2026-02-12 19:07:10.747 | INFO     | src.usecase.content_extraction:process_documents_in_folder:392 - Incomplete page for e38668ff-f3a3-4341-a205-325795f404c4/INV0271_2.pdf, continuing to next page
+2026-02-12 19:07:10.747 | INFO     | src.usecase.content_extraction:process_documents_in_folder:362 - Analyzing document: e38668ff-f3a3-4341-a205-325795f404c4/INV0271_3.pdf
+2026-02-12 19:07:11.460 | INFO     | src.usecase.content_extraction:process_documents_in_folder:377 - Analysis initiated for e38668ff-f3a3-4341-a205-325795f404c4/INV0271_3.pdf, request ID: 1b2757db-9385-4dd1-ab8b-6f346e34863c
+2026-02-12 19:07:19.479 | INFO     | src.usecase.content_extraction:_wait_for_analysis_result:130 - Analysis completed successfully: 1b2757db-9385-4dd1-ab8b-6f346e34863c
+2026-02-12 19:07:22.339 | INFO     | src.usecase.content_extraction:_wait_for_analysis_result:167 - Tax invoice page accumulated. Total pages: 2, Complete: True
+2026-02-12 19:07:22.339 | INFO     | src.usecase.content_extraction:_wait_for_analysis_result:176 - Tax invoice complete. Extracting from 2 merged pages
+2026-02-12 19:07:22.339 | INFO     | src.usecase.content_extraction:_merge_pdfs_from_urls:270 - Downloading PDF 1/2: https://protohub.blob.core.windows.net/tax-documents/e38668ff-f3a3-4341-a205-325795f404c4/INV0271_2.pdf
+2026-02-12 19:07:22.465 | INFO     | src.repository.storage:download_blob:161 - Downloaded blob: e38668ff-f3a3-4341-a205-325795f404c4/INV0271_2.pdf (109580 bytes)
+2026-02-12 19:07:22.471 | INFO     | src.usecase.content_extraction:_merge_pdfs_from_urls:270 - Downloading PDF 2/2: https://protohub.blob.core.windows.net/tax-documents/e38668ff-f3a3-4341-a205-325795f404c4/INV0271_3.pdf
+2026-02-12 19:07:22.527 | INFO     | src.repository.storage:download_blob:161 - Downloaded blob: e38668ff-f3a3-4341-a205-325795f404c4/INV0271_3.pdf (39044 bytes)
+2026-02-12 19:07:22.527 | INFO     | src.usecase.content_extraction:_merge_pdfs_from_urls:295 - Uploading merged PDF: merged_tax_invoice_e38668ff-f3a3-4341-a205-325795f404c4.pdf
+2026-02-12 19:07:22.782 | INFO     | src.repository.storage:upload_file:89 - Uploaded file merged_tax_invoice_e38668ff-f3a3-4341-a205-325795f404c4.pdf for case e38668ff-f3a3-4341-a205-325795f404c4, blob: e38668ff-f3a3-4341-a205-325795f404c4/merged_tax_invoice_e38668ff-f3a3-4341-a205-325795f404c4.pdf
+2026-02-12 19:07:22.782 | INFO     | src.usecase.content_extraction:_merge_pdfs_from_urls:305 - Merged PDF uploaded successfully: https://protohub.blob.core.windows.net/tax-documents/e38668ff-f3a3-4341-a205-325795f404c4/merged_tax_invoice_e38668ff-f3a3-4341-a205-325795f404c4.pdf
+2026-02-12 19:07:22.782 | INFO     | src.usecase.content_extraction:_wait_for_analysis_result:187 - Merged 2 PDFs into: https://protohub.blob.core.windows.net/tax-documents/e38668ff-f3a3-4341-a205-325795f404c4/merged_tax_invoice_e38668ff-f3a3-4341-a205-325795f404c4.pdf

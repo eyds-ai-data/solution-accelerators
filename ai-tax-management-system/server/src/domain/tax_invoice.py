@@ -40,3 +40,5 @@ class TaxInvoice(BaseModel):
     jumlah_ppnbm: float = Field(default=0.0, alias="jumlahPpnbm", ge=0, description="Jumlah PPnBM (Total PPNBM/Luxury Tax)")
     created_at: str = Field(..., alias="createdAt", description="ISO timestamp when tax invoice was created")
     updated_at: str = Field(..., alias="updatedAt", description="ISO timestamp when tax invoice was last updated")
+
+    confidence_score: Optional[float] = Field(None, alias="confidenceScore", ge=0, le=1, description="AI confidence score (0.0 - 1.0) for extracted data")

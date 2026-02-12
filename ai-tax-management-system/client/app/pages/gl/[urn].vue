@@ -350,7 +350,7 @@ const activeTab = ref<'invoice' | 'tax'>('invoice')
                       <input
                         type="text"
                         class="w-48 rounded-md border px-2 py-1 text-sm"
-                        :value="formatNumber(gl.whtNormal)"
+                        :value="gl.whtNormal < 0 ? formatNumber(gl.whtNormal) : '-' + formatNumber(gl.whtNormal)"
                         disabled
                       />
                     </div>

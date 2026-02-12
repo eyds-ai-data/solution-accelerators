@@ -31,3 +31,5 @@ class Invoice(BaseModel):
     currency: str = Field(..., pattern="^[A-Z]{3}$", description="Currency code (ISO 4217 - e.g., USD, IDR, SGD)")
     created_at: str = Field(..., alias="createdAt", description="ISO timestamp when invoice was created")
     updated_at: str = Field(..., alias="updatedAt", description="ISO timestamp when invoice was last updated")
+
+    confidence_score: Optional[float] = Field(None, alias="confidenceScore", ge=0, le=1, description="AI confidence score (0.0 - 1.0) for extracted data")

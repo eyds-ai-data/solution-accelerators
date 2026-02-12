@@ -177,7 +177,8 @@ def get_invoice_extraction_prompt(document_content: str) -> str:
         "totalAmount": <number: final total invoice amount>,
         "currency": "<string: ISO 4217 currency code (e.g., USD, IDR, SGD)>",
         "createdAt": "<string: ISO timestamp when invoice was created>",
-        "updatedAt": "<string: ISO timestamp when invoice was last updated>"
+        "updatedAt": "<string: ISO timestamp when invoice was last updated>",
+        "confidenceScore": <number or null: AI confidence score (0.0 - 1.0) for extracted data>
     }}
 
     Guidelines for extraction:
@@ -232,7 +233,8 @@ def get_tax_invoice_extraction_prompt(document_content: str) -> str:
         "jumlahPpn": <number: Jumlah PPN (Total PPN/VAT, default 0.0)>,
         "jumlahPpnbm": <number: Jumlah PPnBM (Total PPNBM/Luxury Tax, default 0.0)>,
         "createdAt": "<string: ISO timestamp when tax invoice was created (YYYY-MM-DDTHH:MM:SSZ)>",
-        "updatedAt": "<string: ISO timestamp when tax invoice was last updated (YYYY-MM-DDTHH:MM:SSZ)>"
+        "updatedAt": "<string: ISO timestamp when tax invoice was last updated (YYYY-MM-DDTHH:MM:SSZ)>",
+        "confidenceScore": <number or null: AI confidence score (0.0 - 1.0) for extracted data>
     }}
 
     Guidelines for extraction:
