@@ -1,0 +1,92 @@
+version: '3.8'
+
+# AI Investigation System — root-level compose file
+# Runs all three microservices: server (API), worker (background processor), and client (UI)
+#
+# Prerequisites:
+#   - Copy server/.env.example → server/.env and fill in your values
+#   - Copy worker/.env (or create one) and fill in your values
+#   - The client UI calls the backend via the URL configured in
+#     app/services/*.ts (API_BASE_URL). For a fully local stack, update
+#     that value to http://localhost:8000/api/v1 and rebuild the client image.
+#
+# Usage:
+#   docker compose up --build
+
+services:
+
+  # -------------------------------------------------------------------------
+  # Backend API (Flask, port 8000)
+  # -------------------------------------------------------------------------
+  server:
+    build:
+      context: ./server
+      dockerfile: Dockerfile
+    container_name: ai-investigation-server
+    ports:
+      - "8003:8000"
+    env_file:
+      - ./server/.env
+    environment:
+      - PYTHONUNBUFFERED=1
+      - FLASK_ENV=production
+    volumes:
+      - ./server:/app
+      - /app/__pycache__
+    networks:
+      - ai-investigation-net
+    restart: unless-stopped
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:8000/ping"]
+      interval: 30s
+      timeout: 10s
+      start_period: 10s
+      retries: 3
+
+  # -------------------------------------------------------------------------
+  # Background Worker (Azure Service Bus consumer)
+  # -------------------------------------------------------------------------
+  worker:
+    build:
+      context: ./worker
+      dockerfile: Dockerfile
+    container_name: ai-investigation-worker
+    env_file:
+      - ./worker/.env
+    environment:
+      - PYTHONUNBUFFERED=1
+    volumes:
+      - ./worker:/app
+      - /app/__pycache__
+    networks:
+      - ai-investigation-net
+    restart: unless-stopped
+    depends_on:
+      server:
+        condition: service_healthy
+
+  # -------------------------------------------------------------------------
+  # Frontend Client (Nuxt 3 / Node, port 3000)
+  # -------------------------------------------------------------------------
+  client:
+    build:
+      context: ./client
+      dockerfile: Dockerfile
+    container_name: ai-investigation-client
+    ports:
+      - "3003:3000"
+    environment:
+      - NODE_ENV=production
+      # Server-side (Nuxt container → backend container via Docker network)
+      - NUXT_BACKEND_API_URL=http://server:8000/api/v1
+      # Browser-side (user's browser → exposed backend port)
+      - NUXT_PUBLIC_BACKEND_API_URL=http://localhost:8003/api/v1
+    networks:
+      - ai-investigation-net
+    restart: unless-stopped
+    depends_on:
+      - server
+
+networks:
+  ai-investigation-net:
+    driver: bridge
